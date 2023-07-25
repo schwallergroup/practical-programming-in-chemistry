@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/01_setup.html</loc>
-    <lastmod>2023-07-25T12:57:40.012Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/slides/lecture_01/index.html</loc>
-    <lastmod>2023-07-25T12:57:39.168Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/index.html</loc>
-    <lastmod>2023-07-25T12:57:38.865Z</lastmod>
+    <lastmod>2023-07-25T19:55:10.194Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/about.html</loc>
-    <lastmod>2023-07-25T12:57:39.420Z</lastmod>
+    <lastmod>2023-07-25T19:55:09.016Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/index.html</loc>
+    <lastmod>2023-07-25T19:55:08.455Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/slides/lecture_01/index.html</loc>
+    <lastmod>2023-07-25T19:55:08.761Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/02_github.html</loc>
+    <lastmod>2023-07-25T19:55:09.384Z</lastmod>
   </url>
 </urlset>

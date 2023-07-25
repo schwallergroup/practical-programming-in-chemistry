@@ -117,13 +117,22 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#for-windows-users" id="toc-for-windows-users" class="nav-link" data-scroll-target="#for-windows-users">For Windows Users</a></li>
   </ul></li>
   <li><a href="#common-command-line-commands" id="toc-common-command-line-commands" class="nav-link" data-scroll-target="#common-command-line-commands">Common Command Line Commands</a></li>
-  <li><a href="#download-prerequisites" id="toc-download-prerequisites" class="nav-link" data-scroll-target="#download-prerequisites">Download prerequisites</a>
-  <ul class="collapse">
   <li><a href="#introduction-to-anaconda-and-virtual-environments" id="toc-introduction-to-anaconda-and-virtual-environments" class="nav-link" data-scroll-target="#introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</a>
   <ul class="collapse">
   <li><a href="#creating-your-first-conda-environment" id="toc-creating-your-first-conda-environment" class="nav-link" data-scroll-target="#creating-your-first-conda-environment">Creating your first Conda environment</a></li>
   </ul></li>
+  <li><a href="#introduction-to-ides-and-text-editors" id="toc-introduction-to-ides-and-text-editors" class="nav-link" data-scroll-target="#introduction-to-ides-and-text-editors">Introduction to IDEs and Text Editors</a>
+  <ul class="collapse">
+  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab">JupyterLab</a></li>
+  <li><a href="#visual-studio-code-vs-code" id="toc-visual-studio-code-vs-code" class="nav-link" data-scroll-target="#visual-studio-code-vs-code">Visual Studio Code (VS Code)</a></li>
+  <li><a href="#differences-between-jupyterlab-and-vs-code" id="toc-differences-between-jupyterlab-and-vs-code" class="nav-link" data-scroll-target="#differences-between-jupyterlab-and-vs-code">Differences between JupyterLab and VS Code</a></li>
   </ul></li>
+  <li><a href="#installing-and-getting-started-with-jupyterlab" id="toc-installing-and-getting-started-with-jupyterlab" class="nav-link" data-scroll-target="#installing-and-getting-started-with-jupyterlab">Installing and Getting Started with JupyterLab</a></li>
+  <li><a href="#advanced-installing-and-getting-started-with-visual-studio-code" id="toc-advanced-installing-and-getting-started-with-visual-studio-code" class="nav-link" data-scroll-target="#advanced-installing-and-getting-started-with-visual-studio-code">(Advanced) Installing and Getting Started with Visual Studio Code</a>
+  <ul class="collapse">
+  <li><a href="#installing-jupyter-notebook-and-python-extensions-for-vs-code" id="toc-installing-jupyter-notebook-and-python-extensions-for-vs-code" class="nav-link" data-scroll-target="#installing-jupyter-notebook-and-python-extensions-for-vs-code">Installing Jupyter Notebook and Python extensions for VS Code</a></li>
+  </ul></li>
+  <li><a href="#getting-familiar-with-github" id="toc-getting-familiar-with-github" class="nav-link" data-scroll-target="#getting-familiar-with-github">Getting Familiar with GitHub</a></li>
   </ul>
 </nav>
     </div>
@@ -168,6 +177,19 @@ ul.task-list li input[type="checkbox"] {
 <li>That’s it! You should now have a GitHub account.</li>
 <li>(Optional) The GitHub Student Developer Pack is a free offer from GitHub specially for students. It provides access to a variety of premium development tools and services free of charge for as long as you’re a student. <a href="https://education.github.com/pack">GitHub Student Developer Pack</a></li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Share your GitHub handle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Share your GitHub handle/name on our Slack workspace, so we can add you to private repositories.</p>
+</div>
+</div>
 </section>
 <section id="configuring-your-computer" class="level2">
 <h2 class="anchored" data-anchor-id="configuring-your-computer">Configuring your computer</h2>
@@ -303,8 +325,6 @@ Exercise: Command line tools
 </div>
 </div>
 </section>
-<section id="download-prerequisites" class="level1">
-<h1>Download prerequisites</h1>
 <section id="introduction-to-anaconda-and-virtual-environments" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</h2>
 <p>Anaconda is an open-source distribution that simplifies package management and deployment for both Python and R. Particularly popular among data scientists and machine learning engineers, Anaconda is equipped a multitude of tools for data science, scientific computing, and much more.</p>
@@ -361,7 +381,7 @@ Exercise: Create course conda environment
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -370,7 +390,7 @@ Solution: Create course conda environment
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the command line tool:</p>
 <pre><code>conda create --name ch200 python=3.10
@@ -379,10 +399,92 @@ conda install jupyter</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
 </section>
+<section id="introduction-to-ides-and-text-editors" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-ides-and-text-editors">Introduction to IDEs and Text Editors</h2>
+<p>An important component of any programming or coding project is the tool used to write and edit your code. Two of the main options that we will be working with in this course are <strong>JupyterLab</strong> and <strong>Visual Studio Code (VS Code)</strong>.</p>
+<section id="jupyterlab" class="level3">
+<h3 class="anchored" data-anchor-id="jupyterlab">JupyterLab</h3>
+<p>JupyterLab is an integrated development environment (IDE) for Jupyter Notebooks, a project of the Project Jupyter open-source project. JupyterLab is web-based and provides a user-friendly interface for interacting with Jupyter notebooks, code editors, data file viewers, terminals, and more, making it a great tool for data science projects.</p>
+</section>
+<section id="visual-studio-code-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="visual-studio-code-vs-code">Visual Studio Code (VS Code)</h3>
+<p>Visual Studio Code, often just called VS Code, is a popular free source-code editor developed by Microsoft. It includes support for debugging, embedded Git control, syntax highlighting, code refactoring, and more. Its features are highly extendable through plugins, and it supports a multitude of programming languages.</p>
+</section>
+<section id="differences-between-jupyterlab-and-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="differences-between-jupyterlab-and-vs-code">Differences between JupyterLab and VS Code</h3>
+<p>While both JupyterLab and VS Code are powerful tools, there are key differences between the two:</p>
+<ul>
+<li><p><strong>Environment</strong>: JupyterLab provides a web-based interface and is ideal for interactive and exploratory computing. On the other hand, VS Code is a comprehensive text editor and is more akin to a full-fledged integrated development environment.</p></li>
+<li><p><strong>Use Case</strong>: JupyterLab excels when working with Jupyter notebooks and tasks that require visualizing data, running data analysis, and scientific computing in Python, Julia, R and other similar languages. VS Code shines when developing applications in various programming languages and it’s great for writing and managing codebases.</p></li>
+<li><p><strong>Features</strong>: JupyterLab primarily offers an intuitive interface for running and editing Jupyter notebooks, viewing plots, and inspecting file variables. VS Code offers debugging tools, has Git commands built-in, can be customized and extended with plugins, and supports a multitude of programming languages.</p></li>
+</ul>
+<p>Depending on your project, you could find one tool to be more efficient than the other. JupyterLab’s interactive workflow could be beneficial for tasks such as data exploration and visualization, whereas VS Code might be more suited to application development. Ultimately, both are extremely useful and offer unique capabilities that could help improve your programming workflow.</p>
+</section>
+</section>
+<section id="installing-and-getting-started-with-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-getting-started-with-jupyterlab">Installing and Getting Started with JupyterLab</h2>
+<p>Here’s how to install JupyterLab using Conda:</p>
+<ol type="1">
+<li>Open your Terminal (macOS/Linux) or Command Prompt (Windows).</li>
+<li>If you have a Conda environment you’d like to use, activate it by typing <code>conda activate myenv</code> replacing ‘myenv’ with the name of your environment.</li>
+<li>To install JupyterLab, type <code>conda install -c conda-forge jupyterlab</code> and hit <code>Enter</code>.</li>
+</ol>
+<p>To start JupyterLab:</p>
+<ol type="1">
+<li>In your terminal or command prompt, ensure your desired Conda environment is activated.</li>
+<li>Type <code>jupyter lab</code> and hit <code>Enter</code>. This should start the JupyterLab application and open a new tab in your default web browser displaying the JupyterLab interface.</li>
+</ol>
+<p>Once in the interface, you can create a new notebook by clicking on the <code>Python 3</code> icon in the Launcher, or by going to <code>File -&gt; New -&gt; Notebook</code>.</p>
+</section>
+<section id="advanced-installing-and-getting-started-with-visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-installing-and-getting-started-with-visual-studio-code">(Advanced) Installing and Getting Started with Visual Studio Code</h2>
+<p>Here’s how to install VS Code:</p>
+<ol type="1">
+<li>Navigate to <a href="https://code.visualstudio.com/download">VS Code’s download page</a>.</li>
+<li>According to your operating system (Windows, macOS, or Linux), download the appropriate installation file and run it.</li>
+<li>Follow the installation instructions provided in the installer.</li>
+</ol>
+<p>To start VS Code:</p>
+<ol type="1">
+<li>Open VS Code from your Start menu (Windows), Applications folder (Mac), or application launcher (Linux).</li>
+</ol>
+<p>Once you’ve opened VS Code, you can start creating or opening files straight away:</p>
+<ol type="1">
+<li>To open a file, go to <code>File -&gt; Open File</code> and navigate to your file.</li>
+<li>To create a new file, go to <code>File -&gt; New File</code>.</li>
+</ol>
+<p>Remember that you can customize and extend your VS Code functionalities by searching and installing extensions in the Extensions view (<code>View -&gt; Extensions</code>).</p>
+<p>Working with JupyterLab and VS Code might seem overwhelming at first, but practice and familiarity will soon make these tools an essential part of your coding and data analysis toolbox.</p>
+<section id="installing-jupyter-notebook-and-python-extensions-for-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="installing-jupyter-notebook-and-python-extensions-for-vs-code">Installing Jupyter Notebook and Python extensions for VS Code</h3>
+<p>VS Code supports a variety of extensions that can enhance your coding experience. For this setup, we are particularly interested in the Python extension, which includes rich support for the Python language, and the Jupyter Notebook extension, which allows you to create and run Jupyter notebooks within VS Code.</p>
+<p>Here’s how to install these extensions:</p>
+<ol type="1">
+<li>Open VS Code.</li>
+<li>Click on the Extensions view icon on the Sidebar located on the left-hand side, or, alternatively, use the shortcut <code>Ctrl+Shift+X</code>.</li>
+<li>In the Extensions view search bar, type <code>Python</code> and look for the extension named <code>Python</code> developed by Microsoft. Click <code>Install</code> to add this extension.</li>
+<li>After installing the Python extension, search for <code>Jupyter</code> in the Extensions view search bar. Look for the <code>Jupyter</code> extension also developed by Microsoft. Click <code>Install</code> to add it.</li>
+</ol>
+<p>With those two extensions installed, you can now create or open .ipynb (Jupyter Notebook) files and use VS Code to develop Python applications. When you open a .ipynb file, VS Code will enter the notebook editor mode where you can create and run Jupyter notebook cells.</p>
+<p>To create a new Jupyter notebook in VS Code:</p>
+<ol type="1">
+<li>Go to <code>File -&gt; New File</code>.</li>
+<li>From the command palette (<code>Ctrl+Shift+P</code>), type <code>Python: Select Interpreter</code> to select your previously created Conda or Python environment.</li>
+<li>Back in the command palette, type <code>Jupyter: Create New Blank Notebook</code>, an .ipynb file is created and you can start writing your Python code in cells.</li>
+</ol>
+<p>Finally, remember that VS Code also comes with a lot built-in features for coding, but might be a bit harder to handle for beginners.</p>
+</section>
+</section>
+<section id="getting-familiar-with-github" class="level2">
+<h2 class="anchored" data-anchor-id="getting-familiar-with-github">Getting Familiar with GitHub</h2>
+<p>Now that you’re set up with your coding environments and text editors, it’s time to get comfortable with an essential tool for any modern developer - GitHub.</p>
+<p>GitHub is a web-based hosting service for version control using Git. It’s a platform where over 65 million developers collaborate on code, making it not just a tool, but a social network for developers. On GitHub, you can manage and store revisions of projects, share your projects with others, collaborate with teammates, and even create separate branches to experiment without affecting the main project.</p>
+<p>In the upcoming sections, you’ll learn about creating your own repositories, cloning existing repositories, the concept of forking, creating pull requests, managing merge conflicts, and more. GitHub is not just a tool for version control; understanding GitHub also exposes you to the workflow that most developers are using today. This makes it a crucial skillset for any aspiring developer or data scientist.</p>
+<p>So prepare for an exciting journey into the <a href="../../tutorials/lecture_01/02_github.html">world of GitHub</a>, which will open up new horizons in your coding, collaboration, and career opportunities!</p>
+
+
 </section>
 
 </main> <!-- /main -->
