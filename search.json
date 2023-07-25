@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html",
+    "href": "tutorials/lecture_01/01_setup.html",
+    "title": "How to set up my computer",
+    "section": "",
+    "text": "In this first tutorial, you will have to download a few prerquisites to get started with the course.\nBefore you begin learning Python, there are few prerequisites that you need to install and a few concepts that you need to familiarize yourself with."
+  },
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html#creating-a-github-account",
+    "href": "tutorials/lecture_01/01_setup.html#creating-a-github-account",
+    "title": "How to set up my computer",
+    "section": "Creating a GitHub Account",
+    "text": "Creating a GitHub Account\nHere are the simple steps to set up a new GitHub account:\n\nOpen your web browser and navigate to https://github.com/.\nClick on the Sign Up button located in the top right corner of GitHub’s homepage.\nOn the next page, provide the required details including a new Username, a valid Email Address, and a Password. Make sure to verify that the password is at least 15 characters long or at least 8 characters long with a combination of letters, numbers, and symbols.\nReview GitHub’s Terms of Service and Privacy Statement, and if you agree, click on Create an account.\nNext, you might be guided through a few survey questions. You can answer them or directly click on Complete Setup.\nYou’ll be sent an email to the address you provided. In that email, click Verify email address.\nThat’s it! You should now have a GitHub account.\n(Optional) The GitHub Student Developer Pack is a free offer from GitHub specially for students. It provides access to a variety of premium development tools and services free of charge for as long as you’re a student. GitHub Student Developer Pack"
+  },
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html#configuring-your-computer",
+    "href": "tutorials/lecture_01/01_setup.html#configuring-your-computer",
+    "title": "How to set up my computer",
+    "section": "Configuring your computer",
+    "text": "Configuring your computer\n\nFor macOS Users: Installing Command Line Tools\nIf you’re using macOS, you should install Command Line Tools. This includes various utilities like compilers and—most crucial for this course—Git. Instead of installing it via the substantially large XCode software, we suggest a different method that won’t take up around 35 GB of your disk space.\nHere’s how to do it:\n\nOpen the Terminal application. It’s typically located in the /Applications/Utilities folder. Alternatively, press ⌘ and space bar simultaneously, type “terminal” in the search box, and select the Terminal application.\nOnce you see a prompt in the Terminal application, type xcode-select --install and hit Enter.\nFollow the instructions for installation when you’re prompted. Be aware it might take a few minutes to finish installing.\nClick here, skip the first step, and follow step 2 to 14.\n\nBy the end you should have created your first repository.\n\n\nFor Windows Users: Installing Git and Chrome or Firefox\nWe’ll be utilizing JupyterLab and/or VS Code in this tutorial. As JupyterLab is a browser-based application, it’s compatible with Chrome, Firefox, and Safari. However, Microsoft Edge isn’t supported. So, if you’re a Windows user, make sure you have either Chrome or Firefox installed.\nYou’ll also need to install Git. Here are the instructions to do so:\n\nClick here and follow the instructions provided.\n\nBy the end you should have created your first repository."
+  },
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html#setting-up-a-git-folder-in-your-home-directory",
+    "href": "tutorials/lecture_01/01_setup.html#setting-up-a-git-folder-in-your-home-directory",
+    "title": "How to set up my computer",
+    "section": "Setting Up a ‘git’ Folder in Your Home Directory",
+    "text": "Setting Up a ‘git’ Folder in Your Home Directory\nEstablishing a specific ‘git’ folder within your home directory is a great step to keep your projects organized and under version control. This guide will take you through the process of creating such a folder in your home directory. We recommend this setup as it’s simple, clean, and conveniently located in a familiar place.\n\nFor macOS/Linux Users\n\nOpen the Terminal application:\n\nFor macOS users, open Spotlight Search by pressing ⌘ and space bar simultaneously, then type “Terminal” and hit Enter.\nFor Linux users, you can use the search feature in your distribution’s application menu and type “Terminal”, or you can use the keyboard shortcut Ctrl + Alt+ T.\n\nOnce you’ve opened the Terminal, you should be automatically within your home directory. If not, type cd ~ to navigate to your home directory.\nNow, create the ‘git’ folder by typing mkdir git and hit Enter. This creates a new folder named ‘git’ in your home directory.\n\n\n\nFor Windows Users\n\nTo open Command Prompt, press the Windows key and type “Command Prompt”, and hit Enter.\nOnce in Command Prompt, navigate to your home directory by typing cd %HOMEPATH% and hitting Enter.\nNow, create the ‘git’ folder by typing mkdir git and hitting Enter. This creates a new folder named ‘git’ within your home directory.\n\nNow you have a dedicated ‘git’ folder in your home directory where you can clone, create and manage your repositories. This organization can help streamline your workflow and make working with Git a more enjoyable experience!"
+  },
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html#common-command-line-commands",
+    "href": "tutorials/lecture_01/01_setup.html#common-command-line-commands",
+    "title": "How to set up my computer",
+    "section": "Common Command Line Commands",
+    "text": "Common Command Line Commands\nThe command line is a powerful tool that allows users to interact directly with their operating system. Here’s a table featuring common command line commands for macOS/Linux and Windows:\n\n\n\n\n\n\n\n\nFunction\nmacOS/Linux Command\nWindows Command\n\n\n\n\nNavigate to home directory\ncd ~\ncd %HOMEPATH%\n\n\nList files in current directory\nls\ndir\n\n\nChange directory\ncd directoryName\ncd directoryName\n\n\nMake a new directory\nmkdir directoryName\nmkdir directoryName\n\n\nRemove a file\nrm fileName\ndel fileName\n\n\nRemove a directory\nrm -r directoryName\nrd /s directoryName\n\n\nCopy a file\ncp sourceFileName destinationFileName\ncopy sourceFileName destinationFileName\n\n\nMove or rename a file\nmv sourceFileName destinationFileName\nmove sourceFileName destinationFileName\n\n\nDisplay file’s contents\ncat fileName\ntype fileName\n\n\nClear the command line screen\nclear\ncls\n\n\n\nRemember, directoryName and fileName should be replaced with the actual name of the directory or file you want to interact with.\nTake the time to familiarize yourself with these commands as they form the foundation of your interactions with your operating system through the command line. With practice, you’ll find that many tasks can be performed more quickly and efficiently through the command line than through a graphical interface."
+  },
+  {
+    "objectID": "tutorials/lecture_01/01_setup.html#package-manager",
+    "href": "tutorials/lecture_01/01_setup.html#package-manager",
+    "title": "How to set up my computer",
+    "section": "Package Manager",
+    "text": "Package Manager"
+  },
+  {
+    "objectID": "slides/lecture_01/index.html#getting-up",
+    "href": "slides/lecture_01/index.html#getting-up",
+    "title": "Habits",
+    "section": "Getting up",
+    "text": "Getting up\n\nTurn off alarm\nGet out of bed"
+  },
+  {
+    "objectID": "slides/lecture_01/index.html#going-to-sleep",
+    "href": "slides/lecture_01/index.html#going-to-sleep",
+    "title": "Habits",
+    "section": "Going to sleep",
+    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Practical Programming for Chemistry",
+    "section": "",
+    "text": "This course provides a comprehensive and practical introduction to computer programming with a specific focus on its application for chemists and chemical engineers. The course assumes little programming experience and primarily uses Python as the teaching language. The content covers crucial programming concepts like data types, control structures, string processing, functions, and input/output operations. These concepts are taught within the context of chemical tasks.\nThe course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots.\n\n\n\nWeek\nTopic\nSlides\nTutorials\n\n\n\n\n\nGetting started\nSlides 01\nBasic setup"
+  },
+  {
+    "objectID": "index.html#content",
+    "href": "index.html#content",
+    "title": "Practical Programming for Chemistry",
+    "section": "",
+    "text": "This course provides a comprehensive and practical introduction to computer programming with a specific focus on its application for chemists and chemical engineers. The course assumes little programming experience and primarily uses Python as the teaching language. The content covers crucial programming concepts like data types, control structures, string processing, functions, and input/output operations. These concepts are taught within the context of chemical tasks.\nThe course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots.\n\n\n\nWeek\nTopic\nSlides\nTutorials\n\n\n\n\n\nGetting started\nSlides 01\nBasic setup"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Lot’s of work in progress."
+  }
+]
