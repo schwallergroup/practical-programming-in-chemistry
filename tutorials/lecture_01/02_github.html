@@ -144,12 +144,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setting-up-your-git-configuration-only-the-first-time" id="toc-setting-up-your-git-configuration-only-the-first-time" class="nav-link" data-scroll-target="#setting-up-your-git-configuration-only-the-first-time">Setting Up Your Git Configuration (only the first time)</a></li>
   <li><a href="#creating-a-new-repository" id="toc-creating-a-new-repository" class="nav-link" data-scroll-target="#creating-a-new-repository">Creating a New Repository</a></li>
   <li><a href="#cloning-a-repository" id="toc-cloning-a-repository" class="nav-link" data-scroll-target="#cloning-a-repository">Cloning a Repository</a></li>
-  <li><a href="#creating-a-new-branch" id="toc-creating-a-new-branch" class="nav-link" data-scroll-target="#creating-a-new-branch">Creating a New Branch</a></li>
-  <li><a href="#switching-between-branches" id="toc-switching-between-branches" class="nav-link" data-scroll-target="#switching-between-branches">Switching Between Branches</a></li>
   <li><a href="#making-changes-and-committing" id="toc-making-changes-and-committing" class="nav-link" data-scroll-target="#making-changes-and-committing">Making Changes and Committing</a></li>
   <li><a href="#pushing-changes-to-github" id="toc-pushing-changes-to-github" class="nav-link" data-scroll-target="#pushing-changes-to-github">Pushing Changes to GitHub</a></li>
+  </ul></li>
+  <li><a href="#more-git-commands" id="toc-more-git-commands" class="nav-link" data-scroll-target="#more-git-commands">More Git Commands</a>
+  <ul class="collapse">
+  <li><a href="#git-status" id="toc-git-status" class="nav-link" data-scroll-target="#git-status">Git Status</a></li>
+  <li><a href="#git-diff" id="toc-git-diff" class="nav-link" data-scroll-target="#git-diff">Git Diff</a></li>
+  <li><a href="#creating-a-new-branch" id="toc-creating-a-new-branch" class="nav-link" data-scroll-target="#creating-a-new-branch">Creating a New Branch</a></li>
+  <li><a href="#switching-between-branches" id="toc-switching-between-branches" class="nav-link" data-scroll-target="#switching-between-branches">Switching Between Branches</a></li>
   <li><a href="#basic-exercises" id="toc-basic-exercises" class="nav-link" data-scroll-target="#basic-exercises">Basic Exercises</a></li>
   </ul></li>
+  <li><a href="#advanced-introduction-to-pull-requests" id="toc-advanced-introduction-to-pull-requests" class="nav-link" data-scroll-target="#advanced-introduction-to-pull-requests">(Advanced) Introduction to Pull Requests</a></li>
+  <li><a href="#summary-of-the-commands" id="toc-summary-of-the-commands" class="nav-link" data-scroll-target="#summary-of-the-commands">Summary of the commands</a></li>
   </ul>
 </nav>
     </div>
@@ -214,18 +221,6 @@ Access the Command Line Tool
 <p>Replace ‘username’ and ‘repository.git’ with the username and repository name from GitHub.</p>
 <p>After cloning, navigate into the newly created directory by <code>cd repository</code> (replace ‘repository’ with your repository’s name).</p>
 </section>
-<section id="creating-a-new-branch" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-new-branch">Creating a New Branch</h3>
-<p>Branches allow you to work on different versions of your project simultaneously. To create a new branch:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch new-branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace ‘new-branch’ with your desired branch name.</p>
-</section>
-<section id="switching-between-branches" class="level3">
-<h3 class="anchored" data-anchor-id="switching-between-branches">Switching Between Branches</h3>
-<p>To switch from your current branch to another branch:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace ‘branch-name’ with the name of the branch you want to switch to.</p>
-</section>
 <section id="making-changes-and-committing" class="level3">
 <h3 class="anchored" data-anchor-id="making-changes-and-committing">Making Changes and Committing</h3>
 <p>Whenever you make changes to a file, Git recognizes that a file has changed in your repository. To commit these changes:</p>
@@ -237,8 +232,46 @@ Access the Command Line Tool
 <section id="pushing-changes-to-github" class="level3">
 <h3 class="anchored" data-anchor-id="pushing-changes-to-github">Pushing Changes to GitHub</h3>
 <p>To upload your changes to GitHub:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Replace ‘branch-name’ with the name of the branch you’re pushing to.</p>
+</section>
+</section>
+<section id="more-git-commands" class="level2">
+<h2 class="anchored" data-anchor-id="more-git-commands">More Git Commands</h2>
+<p>Two important Git commands that can help you better understand and manage your project’s changes are <code>git status</code> and <code>git diff</code>.</p>
+<section id="git-status" class="level3">
+<h3 class="anchored" data-anchor-id="git-status">Git Status</h3>
+<p><code>git status</code> shows you the status of changes as untracked, modified or staged. It’s a way to see what changes are queued for the next commit stage. When you run <code>git status</code>, Git will show you which branch you’re on, what changes exist in your working directory, and what changes have been staged.</p>
+<p>Here’s how to use it:</p>
+<ol type="1">
+<li>Navigate to your git directory using <code>cd</code> in your terminal or command prompt.</li>
+<li>Type <code>git status</code> and hit <code>Enter</code>.</li>
+</ol>
+<p>You should now see a list of any modified or untracked files.</p>
+</section>
+<section id="git-diff" class="level3">
+<h3 class="anchored" data-anchor-id="git-diff">Git Diff</h3>
+<p><code>git diff</code> shows you the differences between your staged changes and your last commit. By using <code>git diff</code>, you can see line-by-line what has been added or removed from each file since the last commit.</p>
+<p>Here’s how to use it:</p>
+<ol type="1">
+<li>Navigate to your git directory using <code>cd</code> in your terminal or command prompt.</li>
+<li>Type <code>git diff</code> and hit <code>Enter</code>.</li>
+</ol>
+<p>Now, you’ll be able to see exactly what changes were made. Green lines represent additions to files, while red lines represent deletions.</p>
+<p>Remember, if you want to see the differences between your working directory and the staging area (the changes that haven’t been staged yet), simply use <code>git diff</code> without any files specified. However, if you want to see the differences in the staging area or between commits (the changes that have been staged), you should use <code>git diff --staged</code>.</p>
+<p>‘git status’ and ‘git diff’ are both essential commands for understanding your project’s changes and managing your staging area. Make sure to use these regularly to keep track of what’s going on in your repository.</p>
+</section>
+<section id="creating-a-new-branch" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-new-branch">Creating a New Branch</h3>
+<p>Branches allow you to work on different versions of your project simultaneously. To create a new branch:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch new-branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace ‘new-branch’ with your desired branch name.</p>
+</section>
+<section id="switching-between-branches" class="level3">
+<h3 class="anchored" data-anchor-id="switching-between-branches">Switching Between Branches</h3>
+<p>To switch from your current branch to another branch:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout branch-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace ‘branch-name’ with the name of the branch you want to switch to.</p>
 </section>
 <section id="basic-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="basic-exercises">Basic Exercises</h3>
@@ -282,9 +315,96 @@ Exercise 3:
 </div>
 </div>
 <p>If you run into any issues, remember: your best friends are often the documentation, a quick web search (StackOverflow) or ChatGPT. The answers are almost always out there!</p>
-
-
 </section>
+</section>
+<section id="advanced-introduction-to-pull-requests" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-introduction-to-pull-requests">(Advanced) Introduction to Pull Requests</h2>
+<p>A pull request is a important feature in collaborating with Git and GitHub. It’s the way you can suggest changes you’ve made in a branch to be reviewed and potentially merged into another branch, usually the main branch.</p>
+<p>Usually, pull requests are made when you’ve finished working on a feature or fix and you believe it’s ready to be included in the main codebase. They are called ‘pull requests’ because you’re asking the repository maintainer to ‘pull’ your changes.</p>
+<p>Here’s a basic flow of how to create a pull request on GitHub:</p>
+<ol type="1">
+<li>Fork the repository or create a new branch in the repository where you want to make changes.</li>
+<li>Make your changes in your branch. This could involve editing files, adding files, or removing files.</li>
+<li>Push these changes to your GitHub repository.</li>
+<li>Go to the main page of the GitHub repository where you want to propose changes.</li>
+<li>Click on the <code>Pull request</code> button.</li>
+<li>Click on the <code>New pull request</code> button.</li>
+<li>Select your fork or branch on the right dropdown menu and the main repository or branch on the left.</li>
+<li>Review your changes and if everything looks good, click on the <code>Create pull request</code> button.</li>
+<li>Add a title to your pull request and describe the changes you’ve made, then click <code>Create pull request</code>.</li>
+</ol>
+<p>Once a pull request has been opened, the repository owner or collaborators can review the changes, discuss potential modifications, and even push follow-up commits if necessary.</p>
+<p>Then, when all parties agree that the changes are ready, the owner or authorized collaborator can merge your changes into the original branch.</p>
+<p>Remember, properly communicating what changes you’ve made and why you made them in the pull request description is an integral part of effective collaboration.</p>
+</section>
+<section id="summary-of-the-commands" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-the-commands">Summary of the commands</h2>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git config --global user.name "name"</code></td>
+<td>Set your name in git configuration (only once)</td>
+</tr>
+<tr class="even">
+<td><code>git config --global user.email "email"</code></td>
+<td>Set your email in git configuration (only once)</td>
+</tr>
+<tr class="odd">
+<td><code>git clone https://github.com/username/repository.git</code></td>
+<td>Clone a GitHub repository to your local machine</td>
+</tr>
+<tr class="even">
+<td><code>git branch branch-name</code></td>
+<td>Create a new branch</td>
+</tr>
+<tr class="odd">
+<td><code>git checkout branch-name</code></td>
+<td>Switch to another branch</td>
+</tr>
+<tr class="even">
+<td><code>git add .</code></td>
+<td>Track all changes in directory</td>
+</tr>
+<tr class="odd">
+<td><code>git commit -m "commit message"</code></td>
+<td>Commit your tracked changes</td>
+</tr>
+<tr class="even">
+<td><code>git push origin branch-name</code></td>
+<td>Push your local commits to the GitHub</td>
+</tr>
+<tr class="odd">
+<td><code>git pull origin branch-name</code></td>
+<td>Fetch the newest updates from the remote branch</td>
+</tr>
+<tr class="even">
+<td><code>git status</code></td>
+<td>Check the status of your local repository</td>
+</tr>
+<tr class="odd">
+<td><code>git diff</code></td>
+<td>Show changes between your working directory and the last commit</td>
+</tr>
+<tr class="even">
+<td><code>git diff --staged</code></td>
+<td>Show changes between your staging area and the last commit</td>
+</tr>
+</tbody>
+</table>
+<p>Above are the basic Git commands you’ll frequently use which cover most of the general use cases from cloning repositories to making changes and updating your remote branches. Each command is a powerful tool in Git, and they are designed to work together to create a seamless workflow.</p>
+<p>Remember, the best way to become comfortable with Git is practice. Try using these commands to manage a test project and experiment until you’re confident with the functionality of each one.</p>
+
+
 </section>
 
 </main> <!-- /main -->
