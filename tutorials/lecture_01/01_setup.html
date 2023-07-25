@@ -119,7 +119,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#common-command-line-commands" id="toc-common-command-line-commands" class="nav-link" data-scroll-target="#common-command-line-commands">Common Command Line Commands</a></li>
   <li><a href="#download-prerequisites" id="toc-download-prerequisites" class="nav-link" data-scroll-target="#download-prerequisites">Download prerequisites</a>
   <ul class="collapse">
-  <li><a href="#package-manager" id="toc-package-manager" class="nav-link" data-scroll-target="#package-manager">Package Manager</a></li>
+  <li><a href="#introduction-to-anaconda-and-virtual-environments" id="toc-introduction-to-anaconda-and-virtual-environments" class="nav-link" data-scroll-target="#introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</a>
+  <ul class="collapse">
+  <li><a href="#creating-your-first-conda-environment" id="toc-creating-your-first-conda-environment" class="nav-link" data-scroll-target="#creating-your-first-conda-environment">Creating your first Conda environment</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -292,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+Exercise: Command line tools
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -302,10 +305,83 @@ Exercise
 </section>
 <section id="download-prerequisites" class="level1">
 <h1>Download prerequisites</h1>
-<section id="package-manager" class="level2">
-<h2 class="anchored" data-anchor-id="package-manager">Package Manager</h2>
+<section id="introduction-to-anaconda-and-virtual-environments" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</h2>
+<p>Anaconda is an open-source distribution that simplifies package management and deployment for both Python and R. Particularly popular among data scientists and machine learning engineers, Anaconda is equipped a multitude of tools for data science, scientific computing, and much more.</p>
+<p>Why should you use Anaconda?</p>
+<p>One of the main reasons is its package manager called Conda. With Conda, not only can you easily install packages, but you can also set up isolated environments to keep your projects organized and prevent potential conflicts between package versions.</p>
+<p>Here’s how to download Anaconda:</p>
+<ol type="1">
+<li>Navigate to <a href="https://www.anaconda.com/products/distribution#Downloads">Anaconda’s download page</a>.</li>
+<li>Choose your operating system (Windows, macOS, or Linux).</li>
+<li>Select the Python 3.x version and click <code>Download</code>.</li>
+<li>Run the downloaded file and follow the installation instructions.</li>
+</ol>
+<p>Now, let’s talk about virtual environments.</p>
+<p><strong>Virtual environments</strong> are isolated environments where you can install packages and run code without affecting the rest of your system. These environments help you manage your project-specific dependencies separately, thus avoiding versioning conflicts and maintaining stability across all your projects.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each project should ideally have its own virtual environment.</p>
+</div>
+</div>
+<section id="creating-your-first-conda-environment" class="level3">
+<h3 class="anchored" data-anchor-id="creating-your-first-conda-environment">Creating your first Conda environment</h3>
+<p>To create a virtual environment using Conda, you can follow these steps:</p>
+<ol type="1">
+<li>Open your terminal or command prompt.</li>
+<li>Enter <code>conda create --name myenv python=3.10</code> replacing ‘myenv’ with the name you want to assign to your new environment. Note that we directly installed <code>python</code> (version 3.10).</li>
+<li>Activate your new environment by typing <code>conda activate myenv</code> (again, replace ‘myenv’ with the name of your environment).</li>
+<li>You can now install packages either through <code>conda install package_name</code> or also using <code>pip install package_name</code> in the activated environment.</li>
+</ol>
+<p>Now, any packages that you install while this environment is activated will only affect this particular environment, leaving your global environment and any other virtual environments unchanged.</p>
+<p>By using Anaconda and taking advantage of virtual environments, you can create a more organized, conflict-free coding setup, making your data science or programming projects significantly smoother and more manageable.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Create course conda environment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use the commands above to create an environment with the name <code>ch200</code> with <code>python=3.10</code>.</li>
+<li>Activate the created environment.</li>
+<li>And install the package <code>jupyter</code>.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution: Create course conda environment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the command line tool:</p>
+<pre><code>conda create --name ch200 python=3.10
+conda activate ch200
+conda install jupyter</code></pre>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
