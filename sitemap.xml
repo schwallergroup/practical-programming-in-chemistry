@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/01_setup.html</loc>
-    <lastmod>2023-07-25T20:06:12.140Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/about.html</loc>
-    <lastmod>2023-07-25T20:06:10.814Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/index.html</loc>
-    <lastmod>2023-07-25T20:06:10.267Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/slides/lecture_01/index.html</loc>
-    <lastmod>2023-07-25T20:06:10.557Z</lastmod>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/cheatsheets.html</loc>
+    <lastmod>2023-07-26T08:35:57.320Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/02_github.html</loc>
-    <lastmod>2023-07-25T20:06:11.354Z</lastmod>
+    <lastmod>2023-07-26T08:35:56.272Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/index.html</loc>
+    <lastmod>2023-07-26T08:35:55.410Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/slides/lecture_01/index.html</loc>
+    <lastmod>2023-07-26T08:35:55.708Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/01_setup.html</loc>
+    <lastmod>2023-07-26T08:35:57.067Z</lastmod>
   </url>
 </urlset>
