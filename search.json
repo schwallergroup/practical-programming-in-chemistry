@@ -81,7 +81,7 @@
     "href": "tutorials/lecture_01/03_ssh_connection.html#checking-for-existing-ssh-keys",
     "title": "Connecting to GitHub using SSH",
     "section": "Checking for Existing SSH Keys",
-    "text": "Checking for Existing SSH Keys\nBefore we generate an SSH key, we need to check for existing ones.\nOn macOS/Linux, open Terminal and enter:\nls -al ~/.ssh\nOn Windows, open Git Bash and enter:\nls -al ~/.ssh\nIf you see files named id_rsa.pub, id_ed25519.pub or id_ecdsa.pub then you have existing keys. If you want to keep those and not override them, you can skip the next step."
+    "text": "Checking for Existing SSH Keys\nBefore we generate an SSH key, we need to check for existing ones.\nOn macOS/Linux, open Terminal and enter:\nls -al ~/.ssh\nOn Windows, open Git Bash from the menu (it was installed together with Git) and enter:\nls -al ~/.ssh\nIf you see files named id_rsa.pub, id_ed25519.pub or id_ecdsa.pub then you have existing keys. If you want to keep those and not override them, you can skip the next step."
   },
   {
     "objectID": "tutorials/lecture_01/03_ssh_connection.html#generating-a-new-ssh-key",
