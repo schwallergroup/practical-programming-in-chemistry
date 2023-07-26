@@ -73,9 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Home
-      </li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cheatsheets.html">Commands summary</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -100,6 +98,13 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheets.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Commands summary</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Lecture 01</span></span>
@@ -119,16 +124,34 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial: GitHub SSH Connection</span></a>
+ <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Next steps: Fork and Code</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 02</span></span>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#command-line" id="toc-command-line" class="nav-link active" data-scroll-target="#command-line">Command line</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -150,9 +173,142 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Lot’s of work in progress.</p>
+<section id="command-line" class="level2">
+<h2 class="anchored" data-anchor-id="command-line">Command line</h2>
+<table class="table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 46%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>macOS/Linux Command</th>
+<th>Windows Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Navigate to home directory</td>
+<td><code>cd ~</code></td>
+<td><code>cd %HOMEPATH%</code></td>
+</tr>
+<tr class="even">
+<td>List files in current directory</td>
+<td><code>ls</code></td>
+<td><code>dir</code></td>
+</tr>
+<tr class="odd">
+<td>Change directory</td>
+<td><code>cd directoryName</code></td>
+<td><code>cd directoryName</code></td>
+</tr>
+<tr class="even">
+<td>Make a new directory</td>
+<td><code>mkdir directoryName</code></td>
+<td><code>mkdir directoryName</code></td>
+</tr>
+<tr class="odd">
+<td>Remove a file</td>
+<td><code>rm fileName</code></td>
+<td><code>del fileName</code></td>
+</tr>
+<tr class="even">
+<td>Remove a directory</td>
+<td><code>rm -r directoryName</code></td>
+<td><code>rd /s directoryName</code></td>
+</tr>
+<tr class="odd">
+<td>Copy a file</td>
+<td><code>cp sourceFileName destinationFileName</code></td>
+<td><code>copy sourceFileName destinationFileName</code></td>
+</tr>
+<tr class="even">
+<td>Move or rename a file</td>
+<td><code>mv sourceFileName destinationFileName</code></td>
+<td><code>move sourceFileName destinationFileName</code></td>
+</tr>
+<tr class="odd">
+<td>Display file’s contents</td>
+<td><code>cat fileName</code></td>
+<td><code>type fileName</code></td>
+</tr>
+<tr class="even">
+<td>Clear the command line screen</td>
+<td><code>clear</code></td>
+<td><code>cls</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="github" class="level2">
+<h2 class="anchored" data-anchor-id="github">GitHub</h2>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git config --global user.name "name"</code></td>
+<td>Set your name in git configuration (only once)</td>
+</tr>
+<tr class="even">
+<td><code>git config --global user.email "email"</code></td>
+<td>Set your email in git configuration (only once)</td>
+</tr>
+<tr class="odd">
+<td><code>git clone git@github.com:username/repository.git</code></td>
+<td>Clone a GitHub repository to your local machine</td>
+</tr>
+<tr class="even">
+<td><code>git branch branch-name</code></td>
+<td>Create a new branch</td>
+</tr>
+<tr class="odd">
+<td><code>git checkout branch-name</code></td>
+<td>Switch to another branch</td>
+</tr>
+<tr class="even">
+<td><code>git add .</code></td>
+<td>Track all changes in directory</td>
+</tr>
+<tr class="odd">
+<td><code>git commit -m "commit message"</code></td>
+<td>Commit your tracked changes</td>
+</tr>
+<tr class="even">
+<td><code>git push origin branch-name</code></td>
+<td>Push your local commits to the GitHub</td>
+</tr>
+<tr class="odd">
+<td><code>git pull origin branch-name</code></td>
+<td>Fetch the newest updates from the remote branch</td>
+</tr>
+<tr class="even">
+<td><code>git status</code></td>
+<td>Check the status of your local repository</td>
+</tr>
+<tr class="odd">
+<td><code>git diff</code></td>
+<td>Show changes between your working directory and the last commit</td>
+</tr>
+<tr class="even">
+<td><code>git diff --staged</code></td>
+<td>Show changes between your staging area and the last commit</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
