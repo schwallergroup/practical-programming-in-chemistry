@@ -42,6 +42,20 @@
     "text": "Summary of the commands\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit config --global user.name \"name\"\nSet your name in git configuration (only once)\n\n\ngit config --global user.email \"email\"\nSet your email in git configuration (only once)\n\n\ngit clone https://github.com/username/repository.git\nClone a GitHub repository to your local machine\n\n\ngit branch branch-name\nCreate a new branch\n\n\ngit checkout branch-name\nSwitch to another branch\n\n\ngit add .\nTrack all changes in directory\n\n\ngit commit -m \"commit message\"\nCommit your tracked changes\n\n\ngit push origin branch-name\nPush your local commits to the GitHub\n\n\ngit pull origin branch-name\nFetch the newest updates from the remote branch\n\n\ngit status\nCheck the status of your local repository\n\n\ngit diff\nShow changes between your working directory and the last commit\n\n\ngit diff --staged\nShow changes between your staging area and the last commit\n\n\n\nAbove are the basic Git commands you’ll frequently use which cover most of the general use cases from cloning repositories to making changes and updating your remote branches. Each command is a powerful tool in Git, and they are designed to work together to create a seamless workflow.\nRemember, the best way to become comfortable with Git is practice. Try using these commands to manage a test project and experiment until you’re confident with the functionality of each one."
   },
   {
+    "objectID": "slides/lecture_01/index.html#getting-up",
+    "href": "slides/lecture_01/index.html#getting-up",
+    "title": "Habits",
+    "section": "Getting up",
+    "text": "Getting up\n\nTurn off alarm\nGet out of bed"
+  },
+  {
+    "objectID": "slides/lecture_01/index.html#going-to-sleep",
+    "href": "slides/lecture_01/index.html#going-to-sleep",
+    "title": "Habits",
+    "section": "Going to sleep",
+    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Practical Programming for Chemistry",
@@ -56,18 +70,46 @@
     "text": "This course provides a comprehensive and practical introduction to computer programming with a specific focus on its application for chemists and chemical engineers. The course assumes little programming experience and primarily uses Python as the teaching language. The content covers crucial programming concepts like data types, control structures, string processing, functions, and input/output operations. These concepts are taught within the context of chemical tasks.\nThe course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots.\n\n\n\nWeek\nTopic\nSlides\nTutorials\n\n\n\n\n\nGetting started\nSlides 01\nBasic setup\n\n\n\n\n\nGitHub intro"
   },
   {
-    "objectID": "slides/lecture_01/index.html#getting-up",
-    "href": "slides/lecture_01/index.html#getting-up",
-    "title": "Habits",
-    "section": "Getting up",
-    "text": "Getting up\n\nTurn off alarm\nGet out of bed"
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html",
+    "href": "tutorials/lecture_01/03_ssh_connection.html",
+    "title": "Connecting to GitHub using SSH",
+    "section": "",
+    "text": "SSH stands for Secure Shell. It’s a protocol used to securely connect and interact with servers. When it comes to GitHub, using SSH keys can simplify the process of interacting with your repositories.\nInstead of entering your username and password every time you perform a Git operation, using SSH keys involves creating a pair of keys - a private key (kept secret on your machine) and a public key (added to your GitHub account). This pair forms a secure connection between your machine and GitHub without having to supply your username and password each time.\n\n\n\n\n\n\nWhy should I do this? sounds complicated…\n\n\n\nIt will save you a lot of time, as you won’t have to type your username and password every single time you download a GitHub repository."
   },
   {
-    "objectID": "slides/lecture_01/index.html#going-to-sleep",
-    "href": "slides/lecture_01/index.html#going-to-sleep",
-    "title": "Habits",
-    "section": "Going to sleep",
-    "text": "Going to sleep\n\nGet in bed\nCount sheep"
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html#checking-for-existing-ssh-keys",
+    "href": "tutorials/lecture_01/03_ssh_connection.html#checking-for-existing-ssh-keys",
+    "title": "Connecting to GitHub using SSH",
+    "section": "Checking for Existing SSH Keys",
+    "text": "Checking for Existing SSH Keys\nBefore we generate an SSH key, we need to check for existing ones.\nOn macOS/Linux, open Terminal and enter:\nls -al ~/.ssh\nOn Windows, open Git Bash and enter:\nls -al ~/.ssh\nIf you see files named id_rsa.pub, id_ed25519.pub or id_ecdsa.pub then you have existing keys. If you want to keep those and not override them, you can skip the next step."
+  },
+  {
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html#generating-a-new-ssh-key",
+    "href": "tutorials/lecture_01/03_ssh_connection.html#generating-a-new-ssh-key",
+    "title": "Connecting to GitHub using SSH",
+    "section": "Generating a new SSH key",
+    "text": "Generating a new SSH key\nIf you don’t have an existing SSH key or want to create a new one, here’s how you can do it:\nOn macOS/Linux, open Terminal and use the following command, replacing “your_email@example.com” with your GitHub email address:\nssh-keygen -t ed25519 -C \"your_email@example.com\"\nOn Windows, open Git Bash and use the same command:\nssh-keygen -t ed25519 -C \"your_email@example.com\"\nYou’ll be asked to enter a file in which to save the key, you can just press Enter to accept the default file location.\nNext, you’ll be asked to enter a secure passphrase. While it’s optional, it’s good practice to enter one for an added layer of security.\nThe entire process would look something like this:\n&gt; ssh-keygen -t ed25519 -C \"your_email@example.com\"\n&gt; Generating public/private ed25519 key pair.\n&gt; Enter file in which to save the key (/Users/you/.ssh/id_ed25519): [Press enter]\n&gt; Enter passphrase (empty for no passphrase): [Type a passphrase]\n&gt; Enter same passphrase again: [Type passphrase again]\nYour SSH key pair is now generated!"
+  },
+  {
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html#adding-your-ssh-key-to-the-ssh-agent",
+    "href": "tutorials/lecture_01/03_ssh_connection.html#adding-your-ssh-key-to-the-ssh-agent",
+    "title": "Connecting to GitHub using SSH",
+    "section": "Adding Your SSH Key to the ssh-agent",
+    "text": "Adding Your SSH Key to the ssh-agent\nBefore adding a new SSH key to your GitHub account, we should add it to the ssh-agent software on your computer.\n\nStart the ssh-agent in the background with the following command:\n\nOn macOS/Linux, open Terminal and use:\neval \"$(ssh-agent -s)\"\nOn Windows, open Git Bash and use:\neval \"$(ssh-agent -s)\"\n\nNext, add your SSH private key to the ssh-agent.\n\nIf you used a custom name for your SSH key, replace id_ed25519 accordingly, else:\nOn macOS you can use the ssh-add command like so:\nssh-add -K ~/.ssh/id_ed25519\nOn Windows and Linux use:\nssh-add ~/.ssh/id_ed25519"
+  },
+  {
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html#adding-ssh-key-to-your-github-account",
+    "href": "tutorials/lecture_01/03_ssh_connection.html#adding-ssh-key-to-your-github-account",
+    "title": "Connecting to GitHub using SSH",
+    "section": "Adding SSH key to your GitHub Account",
+    "text": "Adding SSH key to your GitHub Account\n\nNow you need to add the SSH key to your GitHub account. First, you need to copy the SSH key to your clipboard.\nOn macOS/Linux, use the pbcopy command:\npbcopy &lt; ~/.ssh/id_ed25519.pub\nOn Windows, use the clip command:\nclip &lt; ~/.ssh/id_ed25519.pub\nGo to GitHub, click on your profile picture and then click on Settings.\nOn the left side of the page, click on SSH and GPG keys.\nClick on the New SSH Key button.\nGive your key a title (it’s useful to use the name of your machine) and paste the key into the “Key” field. It should start with ssh-ed25519 or ssh-rsa.\nClick the Add SSH Key button to complete the process."
+  },
+  {
+    "objectID": "tutorials/lecture_01/03_ssh_connection.html#testing-your-ssh-connection",
+    "href": "tutorials/lecture_01/03_ssh_connection.html#testing-your-ssh-connection",
+    "title": "Connecting to GitHub using SSH",
+    "section": "Testing your SSH Connection",
+    "text": "Testing your SSH Connection\nFinally, to ensure that everything is set up correctly:\n\nOpen Terminal or Git Bash and enter the following command:\n\nssh -T git@github.com\n\nYou’ll see a message like this:\n\nThe authenticity of host 'github.com (IP ADDRESS)' can't be established.\nRSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.\nAre you sure you want to continue connecting (yes/no/[fingerprint])? \nType yes. Then, you’ll receive a message like this:\nHi &lt;your_GitHub_username&gt;! You've successfully authenticated, but GitHub does not provide shell access.\nIf you see the above message, you’ve successfully set up SSH authentication to GitHub. Now, you can use Git without having to enter your username and password every time for each operation.\nGreat! Now you understand how to connect to GitHub using SSH on Windows, macOS, and Linux.\nGoing forward, if you want to clone any repository from GitHub, use the SSH URL which starts with “git@github.com” instead of HTTPS.\nFor example:\ngit clone git@github.com:username/repository.git\nWith the SSH link, your machine will use the SSH key pair to authenticate with GitHub, so you won’t have to enter your username (or email) and password each time you perform any git operations like push or pull.\nRemember, if you have multiple GitHub accounts or if you use multiple machines, you will need to generate a unique ssh-key pair for each combination of GitHub account and machine. You can manage all your SSH keys within the settings of your GitHub account.\nThrough SSH keys, you have established a secure connection between your machine and GitHub. This will significantly simplify your work-flow, especially when working on bigger projects.\nAlso, make sure to keep your private key (~/.ssh/id_ed25519 in our case) confidential and secure, don’t share it with anyone. Your public key (~/.ssh/id_ed25519.pub in our case) is the one you add to your GitHub account."
   },
   {
     "objectID": "tutorials/lecture_01/01_setup.html",
