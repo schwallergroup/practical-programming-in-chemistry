@@ -1,0 +1,35 @@
+---
+title: "Cheatsheets"
+---
+
+## Command line
+
+| Function | macOS/Linux Command | Windows Command |
+|----------|------------------------|------------------|
+| Navigate to home directory | `cd ~` | `cd %HOMEPATH%` |
+| List files in current directory | `ls` | `dir` |
+| Change directory | `cd directoryName` | `cd directoryName` |
+| Make a new directory | `mkdir directoryName` | `mkdir directoryName` |
+| Remove a file | `rm fileName` | `del fileName` |
+| Remove a directory | `rm -r directoryName` | `rd /s directoryName` |
+| Copy a file | `cp sourceFileName destinationFileName` | `copy sourceFileName destinationFileName` |
+| Move or rename a file | `mv sourceFileName destinationFileName` | `move sourceFileName destinationFileName` |
+| Display file's contents | `cat fileName` | `type fileName` |
+| Clear the command line screen | `clear` | `cls` |
+
+## GitHub
+
+| Command | Description |
+|---------|-------------|
+| `git config --global user.name "name"` | Set your name in git configuration (only once)|
+| `git config --global user.email "email"` | Set your email in git configuration (only once)|
+| `git clone git@github.com:username/repository.git` | Clone a GitHub repository to your local machine |
+| `git branch branch-name` | Create a new branch |
+| `git checkout branch-name` | Switch to another branch |
+| `git add .` | Track all changes in directory |
+| `git commit -m "commit message"` | Commit your tracked changes |
+| `git push origin branch-name` | Push your local commits to the GitHub |
+| `git pull origin branch-name` | Fetch the newest updates from the remote branch |
+| `git status` | Check the status of your local repository |
+| `git diff` | Show changes between your working directory and the last commit |
+| `git diff --staged` | Show changes between your staging area and the last commit |

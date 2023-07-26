@@ -1,0 +1,73 @@
+---
+title: "Next steps: Fork the Course Repository and Code"
+---
+
+## Forking the Course Repository and Going Through a Python Recap
+
+Now that you have set up your machine, conda environment, and familiarized yourself with JupyterLab and/or VS Code, and Git & GitHub, you're ready for the next stage of this course—a Python recap! Here's how to go about it:
+
+1. **Fork the Course Repository**: Go to the repository for this course on GitHub [(click here!)](https://github.com/schwallergroup/practical-programming-in-chemistry). Click on the `Fork` button, which is at the top right corner of the page. This creates a copy of the repository in your GitHub account.
+
+2. **Clone the Forked Repository**: Open your terminal or command prompt and navigate to your 'git' folder. Use the command `git clone git@github.com:yourusername/practical-programming-in-chemistry.git`, replacing 'yourusername' with your GitHub usernamey.
+
+3. **Navigate to the 'Exercises' Folder**: Use the command `cd practical-programming-in-chemistry/exercises` to navigate into the exercises directory of the course repository.
+
+4. **Activate Your Conda Environment**: Activate the Conda environment created in the previous tutorial by entering `conda activate ch200`. the name of your Conda environment.
+
+5. **Launch JupyterLab or VS Code**: 
+   - **If you're using JupyterLab**, type `jupyter lab` to start the JupyterLab application. This will open a new tab in your default web browser displaying the JupyterLab interface. Navigate to the 'lecture_01' folder within the JupyterLab interface. 
+   - **If you're using VS Code**, type `code .` to open VS Code in the current directory. Inside VS Code, you can navigate to the 'lecture_01' folder using its Explorer.
+
+6. **Going Through a Python Recap**: Now, with JupyterLab or VS Code running, open the Python recap notebook file. Go through the content and follow along with the exercises provided in it. This recap will help refresh and solidify your Python programming capabilities as we get ready to delve into more advanced topics.
+
+Remember, the key to mastering these concepts is practice. Don't rush through the exercises. Take your time, experiment, try different things, and make sure you're comfortable with one topic before moving on to the next. Happy coding!
+
+## (Advanced) Understanding GitHub Forks
+
+A 'fork' is a copy of a repository. Forking a repository in GitHub allows you to freely experiment with changes without affecting the original project. It is an essential part of open-source contribution workflows and it's how users can propose changes to projects that they do not have write access to.
+
+Here's how it typically works:
+
+1. You find a project on GitHub that you'd like to contribute to or experiment with, so you 'fork' it. This creates a copy of the project in your own GitHub account.
+
+2. You clone the forked repository down to your local machine with `git clone` for further experimentation.
+
+3. In your local copy, you can make changes, try out new ideas, or fix bugs—often in a separate branch.
+
+4. Once you're satisfied with your changes, you can commit them to your forked repository and push them to your GitHub account with `git push`.
+
+5. If the changes you've made to your fork would be useful to the original repository, you can open a 'pull request'. This lets the original repository's maintainer see your changes and, if they approve, merge them into the original repository.
+
+Why are forks useful?
+
+Forks are a way of showcasing your modifications to the original project without directly changing it. It allows you to make changes to a project without affecting the work of others. You're able to freely experiment within your fork, and once you have something worthwhile, you can share it back with the original repository.
+
+Moreover, forks are also useful in open-source contribution, where you can propose changes to an open-source project. If the project maintainers like your contribution, they can merge your fork, making your changes a part of the official project!
+
+Understanding and being able to work with forks can increase your collaboration options and open doors to contributing to open-source projects.
+
+## (Advanced) Introduction to Pull Requests
+
+In the world of collaborative coding, a pull request is a key way of contributing to the shared or open source projects. It's a method used to submit contributions to an existing Git project. 
+
+A pull request, sometimes referred to as a PR, is a request for the repository's maintainers to review your work, provide feedback, and if it is up to the project's standards, merge your contributions into the project.
+
+Let's break down the basic steps of creating a pull request:
+
+1. **Fork and Clone the Repository**: You start by making a copy (fork) of the repository you wish to contribute to. Then, you clone this repository to your local machine.
+
+2. **Create a New Branch**: Next, you create a new branch in your local repository. By making changes in a separate branch (other than main), you avoid potential conflicts with the main branch or other contributors' work.
+
+3. **Make Changes**: Now you can make changes in your new branch. This could be adding a feature, fixing a bug, improving documentation, or any other modification you think would benefit the project.
+
+4. **Stage and Commit Your Changes**: Once you've made your changes, you stage them for commit using `git add` and then commit the changes with `git commit`.
+
+5. **Push Your Changes to GitHub**: The next step is to push your changes that exist on your local machine to your GitHub account. You can do this with `git push`.
+
+6. **Open a Pull Request**: Finally, you return to the original repository on GitHub, and there should now be a message indicating that you recently pushed a new branch. You can click on "Compare & pull request" button to begin creating your pull request.
+
+7. **Write a Good Pull Request Description**: It's essential to write a clear and concise description of your pull request. You should explain what changes you've made, why you've made them, and how you've tested them if applicable. Good communication can streamline the review process and increase the chances of your pull request being accepted.
+
+Once you've filed the pull request, owners of the repository will review your change. They may suggest modifications or even directly make changes. Once everyone is satisfied, they can merge your PR into the project, meaning your changes are now part of the main codebase!
+
+Pull requests are a fantastic collaborative feature of Git and GitHub, enabling many developers all over the world to work together on both small and large projects.

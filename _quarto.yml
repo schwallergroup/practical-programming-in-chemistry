@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  title: "Practical programming in Chemistry"
+  page-navigation: true
+  sidebar:
+    - id: main-sidebar
+      title: "Home"
+      style: "floating"
+      collapse-level: 1
+      align: left
+      contents:
+        - text: Commands summary
+          href: cheatsheets.qmd
+        - ---
+        - section: Lecture 01
+        - text: "Tutorial: Configuration"
+          href: tutorials/lecture_01/01_setup.qmd
+        - text: "Tutorial: GitHub Basics"
+          href: tutorials/lecture_01/02_github.qmd
+        - text: "Tutorial: SSH Connection"
+          href: tutorials/lecture_01/03_ssh_connection.qmd
+        - text: "Next steps: Fork and Code"
+          href: tutorials/lecture_01/04_next_steps.qmd
+        - ---
+        - section: Lecture 02
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

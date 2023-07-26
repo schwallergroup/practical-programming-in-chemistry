@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Practical programming in Chemistry - How to set up my computer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../tutorials/lecture_01/02_github.html" rel="next">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_01/01_setup.html">Tutorial: Configuration</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Home</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands summary</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 01</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tutorial: Configuration</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: GitHub Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: SSH Connection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Next steps: Fork and Code</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 02</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#creating-a-github-account" id="toc-creating-a-github-account" class="nav-link active" data-scroll-target="#creating-a-github-account">Creating a GitHub Account</a></li>
+  <li><a href="#configuring-your-computer" id="toc-configuring-your-computer" class="nav-link" data-scroll-target="#configuring-your-computer">Configuring your computer</a>
+  <ul class="collapse">
+  <li><a href="#for-macos-users-installing-command-line-tools" id="toc-for-macos-users-installing-command-line-tools" class="nav-link" data-scroll-target="#for-macos-users-installing-command-line-tools">For macOS Users: Installing Command Line Tools</a></li>
+  <li><a href="#for-windows-users-installing-git-and-chrome-or-firefox" id="toc-for-windows-users-installing-git-and-chrome-or-firefox" class="nav-link" data-scroll-target="#for-windows-users-installing-git-and-chrome-or-firefox">For Windows Users: Installing Git and Chrome or Firefox</a></li>
+  </ul></li>
+  <li><a href="#setting-up-a-git-folder-in-your-home-directory" id="toc-setting-up-a-git-folder-in-your-home-directory" class="nav-link" data-scroll-target="#setting-up-a-git-folder-in-your-home-directory">Setting Up a ‘git’ Folder in Your Home Directory</a>
+  <ul class="collapse">
+  <li><a href="#for-macoslinux-users" id="toc-for-macoslinux-users" class="nav-link" data-scroll-target="#for-macoslinux-users">For macOS/Linux Users</a></li>
+  <li><a href="#for-windows-users" id="toc-for-windows-users" class="nav-link" data-scroll-target="#for-windows-users">For Windows Users</a></li>
+  </ul></li>
+  <li><a href="#common-command-line-commands" id="toc-common-command-line-commands" class="nav-link" data-scroll-target="#common-command-line-commands">Common Command Line Commands</a></li>
+  <li><a href="#introduction-to-anaconda-and-virtual-environments" id="toc-introduction-to-anaconda-and-virtual-environments" class="nav-link" data-scroll-target="#introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</a>
+  <ul class="collapse">
+  <li><a href="#creating-your-first-conda-environment" id="toc-creating-your-first-conda-environment" class="nav-link" data-scroll-target="#creating-your-first-conda-environment">Creating your first Conda environment</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-ides-and-text-editors" id="toc-introduction-to-ides-and-text-editors" class="nav-link" data-scroll-target="#introduction-to-ides-and-text-editors">Introduction to IDEs and Text Editors</a>
+  <ul class="collapse">
+  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab">JupyterLab</a></li>
+  <li><a href="#visual-studio-code-vs-code" id="toc-visual-studio-code-vs-code" class="nav-link" data-scroll-target="#visual-studio-code-vs-code">Visual Studio Code (VS Code)</a></li>
+  <li><a href="#differences-between-jupyterlab-and-vs-code" id="toc-differences-between-jupyterlab-and-vs-code" class="nav-link" data-scroll-target="#differences-between-jupyterlab-and-vs-code">Differences between JupyterLab and VS Code</a></li>
+  </ul></li>
+  <li><a href="#installing-and-getting-started-with-jupyterlab" id="toc-installing-and-getting-started-with-jupyterlab" class="nav-link" data-scroll-target="#installing-and-getting-started-with-jupyterlab">Installing and Getting Started with JupyterLab</a></li>
+  <li><a href="#advanced-installing-and-getting-started-with-visual-studio-code" id="toc-advanced-installing-and-getting-started-with-visual-studio-code" class="nav-link" data-scroll-target="#advanced-installing-and-getting-started-with-visual-studio-code">(Advanced) Installing and Getting Started with Visual Studio Code</a>
+  <ul class="collapse">
+  <li><a href="#installing-jupyter-notebook-and-python-extensions-for-vs-code" id="toc-installing-jupyter-notebook-and-python-extensions-for-vs-code" class="nav-link" data-scroll-target="#installing-jupyter-notebook-and-python-extensions-for-vs-code">Installing Jupyter Notebook and Python extensions for VS Code</a></li>
+  </ul></li>
+  <li><a href="#getting-familiar-with-github" id="toc-getting-familiar-with-github" class="nav-link" data-scroll-target="#getting-familiar-with-github">Getting Familiar with GitHub</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to set up my computer</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this first tutorial, you will have to download a few prerquisites to get started with the course.</p>
+<p>Before you begin learning Python, there are few prerequisites that you need to install and a few concepts that you need to familiarize yourself with.</p>
+<ol type="1">
+<li><p><strong>Anaconda</strong>: Anaconda is a free and open-source distribution of Python language for scientific computing, that aims to simplify package management and deployment. It’s not mandatory, but it can simplify the process, especially for new users.</p></li>
+<li><p><strong>Command Line / Powershell</strong>: Basic knowledge of command line (Linux/Mac) or Powershell (Windows) is beneficial. You will often need to run commands, navigate through directories, or install packages through command line or Powershell.</p></li>
+<li><p><strong>Text editor / IDE (Integrated Development Environment)</strong>: Although Python comes with a basic editor, you might want to get a dedicated Python IDE or a versatile text editor for coding. VS Code and Jupyter notebook (comes along with Anaconda) are good choices for Python IDEs. Sublime Text and Atom are great text editors.</p></li>
+<li><p><strong>GitHub</strong>: Familiarity with GitHub is beneficial for every programmer, not just for a Python developer. GitHub is a platform where developers can share and collaborate on code. It’s used for version control in software development projects. Basic knowledge of how to clone repositories, commit changes, and handle branches will be of great help in managing code.</p></li>
+</ol>
+<section id="creating-a-github-account" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-github-account">Creating a GitHub Account</h2>
+<p>Here are the simple steps to set up a new GitHub account:</p>
+<ol type="1">
+<li>Open your web browser and navigate to <a href="https://github.com/">https://github.com/</a>.</li>
+<li>Click on the <code>Sign Up</code> button located in the top right corner of GitHub’s homepage.</li>
+<li>On the next page, provide the required details including a new <code>Username</code>, a <code>valid Email Address</code>, and a <code>Password</code>. Make sure to verify that the password is at least 15 characters long or at least 8 characters long with a combination of letters, numbers, and symbols.</li>
+<li>Review GitHub’s Terms of Service and Privacy Statement, and if you agree, click on <code>Create an account</code>.</li>
+<li>Next, you might be guided through a few survey questions. You can answer them or directly click on <code>Complete Setup</code>.</li>
+<li>You’ll be sent an email to the address you provided. In that email, click <code>Verify email address</code>.</li>
+<li>That’s it! You should now have a GitHub account.</li>
+<li>(Optional) The GitHub Student Developer Pack is a free offer from GitHub specially for students. It provides access to a variety of premium development tools and services free of charge for as long as you’re a student. <a href="https://education.github.com/pack">GitHub Student Developer Pack</a></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Share your GitHub handle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Share your GitHub handle/name on our Slack workspace, so we can add you to private repositories.</p>
+</div>
+</div>
+</section>
+<section id="configuring-your-computer" class="level2">
+<h2 class="anchored" data-anchor-id="configuring-your-computer">Configuring your computer</h2>
+<section id="for-macos-users-installing-command-line-tools" class="level3">
+<h3 class="anchored" data-anchor-id="for-macos-users-installing-command-line-tools">For macOS Users: Installing Command Line Tools</h3>
+<p>If you’re using macOS, you should install Command Line Tools. This includes various utilities like compilers and—most crucial for this course—Git. Instead of installing it via the substantially large XCode software, we suggest a different method that won’t take up around 35 GB of your disk space.</p>
+<p>Here’s how to do it:</p>
+<ol type="1">
+<li>Open the Terminal application. It’s typically located in the <code>/Applications/Utilities</code> folder. Alternatively, press <code>⌘</code> and <code>space bar</code> simultaneously, type “terminal” in the search box, and select the Terminal application.</li>
+<li>Once you see a prompt in the Terminal application, type <code>xcode-select --install</code> and hit <code>Enter</code>.</li>
+<li>Follow the instructions for installation when you’re prompted. Be aware it might take a few minutes to finish installing.</li>
+<li>Click <a href="https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows">here</a>, skip the first step, and follow step 2 to 14.</li>
+</ol>
+<p>By the end you should have created your first repository.</p>
+</section>
+<section id="for-windows-users-installing-git-and-chrome-or-firefox" class="level3">
+<h3 class="anchored" data-anchor-id="for-windows-users-installing-git-and-chrome-or-firefox">For Windows Users: Installing Git and Chrome or Firefox</h3>
+<p>We’ll be utilizing JupyterLab and/or VS Code in this tutorial. As JupyterLab is a browser-based application, it’s compatible with Chrome, Firefox, and Safari. However, Microsoft Edge isn’t supported. So, if you’re a Windows user, make sure you have either Chrome or Firefox installed.</p>
+<p>You’ll also need to install Git. Here are the instructions to do so:</p>
+<ol type="1">
+<li>Click <a href="https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows">here</a> and follow the instructions provided.</li>
+</ol>
+<p>By the end you should have created your first repository.</p>
+</section>
+</section>
+<section id="setting-up-a-git-folder-in-your-home-directory" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-a-git-folder-in-your-home-directory">Setting Up a ‘git’ Folder in Your Home Directory</h2>
+<p>Establishing a specific ‘git’ folder within your home directory is a great step to keep your projects organized and under version control. This guide will take you through the process of creating such a folder in your home directory. We recommend this setup as it’s simple, clean, and conveniently located in a familiar place.</p>
+<section id="for-macoslinux-users" class="level3">
+<h3 class="anchored" data-anchor-id="for-macoslinux-users">For macOS/Linux Users</h3>
+<ol type="1">
+<li><p>Open the Terminal application:</p>
+<ul>
+<li>For macOS users, open Spotlight Search by pressing <code>⌘</code> and <code>space bar</code> simultaneously, then type “Terminal” and hit <code>Enter</code>.</li>
+<li>For Linux users, you can use the search feature in your distribution’s application menu and type “Terminal”, or you can use the keyboard shortcut <code>Ctrl</code> + <code>Alt</code>+ <code>T</code>.</li>
+</ul></li>
+<li><p>Once you’ve opened the Terminal, you should be automatically within your home directory. If not, type <code>cd ~</code> to navigate to your home directory.</p></li>
+<li><p>Now, create the ‘git’ folder by typing <code>mkdir git</code> and hit <code>Enter</code>. This creates a new folder named ‘git’ in your home directory.</p></li>
+</ol>
+</section>
+<section id="for-windows-users" class="level3">
+<h3 class="anchored" data-anchor-id="for-windows-users">For Windows Users</h3>
+<ol type="1">
+<li><p>To open Command Prompt, press the <code>Windows</code> key and type “Command Prompt”, and hit <code>Enter</code>.</p></li>
+<li><p>Once in Command Prompt, navigate to your home directory by typing <code>cd %HOMEPATH%</code> and hitting <code>Enter</code>.</p></li>
+<li><p>Now, create the ‘git’ folder by typing <code>mkdir git</code> and hitting <code>Enter</code>. This creates a new folder named ‘git’ within your home directory.</p></li>
+</ol>
+<p>Now you have a dedicated ‘git’ folder in your home directory where you can clone, create and manage your repositories. This organization can help streamline your workflow and make working with Git a more enjoyable experience!</p>
+</section>
+</section>
+<section id="common-command-line-commands" class="level2">
+<h2 class="anchored" data-anchor-id="common-command-line-commands">Common Command Line Commands</h2>
+<p>The command line is a powerful tool that allows users to interact directly with their operating system. Here’s a table featuring common command line commands for macOS/Linux and Windows:</p>
+<table class="table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 46%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>macOS/Linux Command</th>
+<th>Windows Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Navigate to home directory</td>
+<td><code>cd ~</code></td>
+<td><code>cd %HOMEPATH%</code></td>
+</tr>
+<tr class="even">
+<td>List files in current directory</td>
+<td><code>ls</code></td>
+<td><code>dir</code></td>
+</tr>
+<tr class="odd">
+<td>Change directory</td>
+<td><code>cd directoryName</code></td>
+<td><code>cd directoryName</code></td>
+</tr>
+<tr class="even">
+<td>Make a new directory</td>
+<td><code>mkdir directoryName</code></td>
+<td><code>mkdir directoryName</code></td>
+</tr>
+<tr class="odd">
+<td>Remove a file</td>
+<td><code>rm fileName</code></td>
+<td><code>del fileName</code></td>
+</tr>
+<tr class="even">
+<td>Remove a directory</td>
+<td><code>rm -r directoryName</code></td>
+<td><code>rd /s directoryName</code></td>
+</tr>
+<tr class="odd">
+<td>Copy a file</td>
+<td><code>cp sourceFileName destinationFileName</code></td>
+<td><code>copy sourceFileName destinationFileName</code></td>
+</tr>
+<tr class="even">
+<td>Move or rename a file</td>
+<td><code>mv sourceFileName destinationFileName</code></td>
+<td><code>move sourceFileName destinationFileName</code></td>
+</tr>
+<tr class="odd">
+<td>Display file’s contents</td>
+<td><code>cat fileName</code></td>
+<td><code>type fileName</code></td>
+</tr>
+<tr class="even">
+<td>Clear the command line screen</td>
+<td><code>clear</code></td>
+<td><code>cls</code></td>
+</tr>
+</tbody>
+</table>
+<p>Remember, <code>directoryName</code> and <code>fileName</code> should be replaced with the actual name of the directory or file you want to interact with.</p>
+<p>Take the time to familiarize yourself with these commands as they form the foundation of your interactions with your operating system through the command line. With practice, you’ll find that many tasks can be performed more quickly and efficiently through the command line than through a graphical interface.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Command line tools
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Move the <code>test_demo</code> repository you have created above (step 2-14) to your <code>git</code> folder.</p>
+</div>
+</div>
+</section>
+<section id="introduction-to-anaconda-and-virtual-environments" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-anaconda-and-virtual-environments">Introduction to Anaconda and Virtual Environments</h2>
+<p>Anaconda is an open-source distribution that simplifies package management and deployment for both Python and R. Particularly popular among data scientists and machine learning engineers, Anaconda is equipped a multitude of tools for data science, scientific computing, and much more.</p>
+<p>Why should you use Anaconda?</p>
+<p>One of the main reasons is its package manager called Conda. With Conda, not only can you easily install packages, but you can also set up isolated environments to keep your projects organized and prevent potential conflicts between package versions.</p>
+<p>Here’s how to download Anaconda:</p>
+<ol type="1">
+<li>Navigate to <a href="https://www.anaconda.com/products/distribution#Downloads">Anaconda’s download page</a>.</li>
+<li>Choose your operating system (Windows, macOS, or Linux).</li>
+<li>Select the Python 3.x version and click <code>Download</code>.</li>
+<li>Run the downloaded file and follow the installation instructions.</li>
+</ol>
+<p>Now, let’s talk about virtual environments.</p>
+<p><strong>Virtual environments</strong> are isolated environments where you can install packages and run code without affecting the rest of your system. These environments help you manage your project-specific dependencies separately, thus avoiding versioning conflicts and maintaining stability across all your projects.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each project should ideally have its own virtual environment.</p>
+</div>
+</div>
+<section id="creating-your-first-conda-environment" class="level3">
+<h3 class="anchored" data-anchor-id="creating-your-first-conda-environment">Creating your first Conda environment</h3>
+<p>To create a virtual environment using Conda, you can follow these steps:</p>
+<ol type="1">
+<li>Open your terminal or command prompt.</li>
+<li>Enter <code>conda create --name myenv python=3.10</code> replacing ‘myenv’ with the name you want to assign to your new environment. Note that we directly installed <code>python</code> (version 3.10).</li>
+<li>Activate your new environment by typing <code>conda activate myenv</code> (again, replace ‘myenv’ with the name of your environment).</li>
+<li>You can now install packages either through <code>conda install package_name</code> or also using <code>pip install package_name</code> in the activated environment.</li>
+</ol>
+<p>Now, any packages that you install while this environment is activated will only affect this particular environment, leaving your global environment and any other virtual environments unchanged.</p>
+<p>By using Anaconda and taking advantage of virtual environments, you can create a more organized, conflict-free coding setup, making your data science or programming projects significantly smoother and more manageable.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Create course conda environment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use the commands above to create an environment with the name <code>ch200</code> with <code>python=3.10</code>.</li>
+<li>Activate the created environment.</li>
+<li>And install the package <code>jupyter</code>.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution: Create course conda environment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the command line tool:</p>
+<pre><code>conda create --name ch200 python=3.10
+conda activate ch200
+conda install jupyter</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="introduction-to-ides-and-text-editors" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-ides-and-text-editors">Introduction to IDEs and Text Editors</h2>
+<p>An important component of any programming or coding project is the tool used to write and edit your code. Two of the main options that we will be working with in this course are <strong>JupyterLab</strong> and <strong>Visual Studio Code (VS Code)</strong>.</p>
+<section id="jupyterlab" class="level3">
+<h3 class="anchored" data-anchor-id="jupyterlab">JupyterLab</h3>
+<p>JupyterLab is an integrated development environment (IDE) for Jupyter Notebooks, a project of the Project Jupyter open-source project. JupyterLab is web-based and provides a user-friendly interface for interacting with Jupyter notebooks, code editors, data file viewers, terminals, and more, making it a great tool for data science projects.</p>
+</section>
+<section id="visual-studio-code-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="visual-studio-code-vs-code">Visual Studio Code (VS Code)</h3>
+<p>Visual Studio Code, often just called VS Code, is a popular free source-code editor developed by Microsoft. It includes support for debugging, embedded Git control, syntax highlighting, code refactoring, and more. Its features are highly extendable through plugins, and it supports a multitude of programming languages.</p>
+</section>
+<section id="differences-between-jupyterlab-and-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="differences-between-jupyterlab-and-vs-code">Differences between JupyterLab and VS Code</h3>
+<p>While both JupyterLab and VS Code are powerful tools, there are key differences between the two:</p>
+<ul>
+<li><p><strong>Environment</strong>: JupyterLab provides a web-based interface and is ideal for interactive and exploratory computing. On the other hand, VS Code is a comprehensive text editor and is more akin to a full-fledged integrated development environment.</p></li>
+<li><p><strong>Use Case</strong>: JupyterLab excels when working with Jupyter notebooks and tasks that require visualizing data, running data analysis, and scientific computing in Python, Julia, R and other similar languages. VS Code shines when developing applications in various programming languages and it’s great for writing and managing codebases.</p></li>
+<li><p><strong>Features</strong>: JupyterLab primarily offers an intuitive interface for running and editing Jupyter notebooks, viewing plots, and inspecting file variables. VS Code offers debugging tools, has Git commands built-in, can be customized and extended with plugins, and supports a multitude of programming languages.</p></li>
+</ul>
+<p>Depending on your project, you could find one tool to be more efficient than the other. JupyterLab’s interactive workflow could be beneficial for tasks such as data exploration and visualization, whereas VS Code might be more suited to application development. Ultimately, both are extremely useful and offer unique capabilities that could help improve your programming workflow.</p>
+</section>
+</section>
+<section id="installing-and-getting-started-with-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-getting-started-with-jupyterlab">Installing and Getting Started with JupyterLab</h2>
+<p>Here’s how to install JupyterLab using Conda:</p>
+<ol type="1">
+<li>Open your Terminal (macOS/Linux) or Command Prompt (Windows).</li>
+<li>If you have a Conda environment you’d like to use, activate it by typing <code>conda activate myenv</code> replacing ‘myenv’ with the name of your environment.</li>
+<li>To install JupyterLab, type <code>conda install -c conda-forge jupyterlab</code> and hit <code>Enter</code>.</li>
+</ol>
+<p>To start JupyterLab:</p>
+<ol type="1">
+<li>In your terminal or command prompt, ensure your desired Conda environment is activated.</li>
+<li>Type <code>jupyter lab</code> and hit <code>Enter</code>. This should start the JupyterLab application and open a new tab in your default web browser displaying the JupyterLab interface.</li>
+</ol>
+<p>Once in the interface, you can create a new notebook by clicking on the <code>Python 3</code> icon in the Launcher, or by going to <code>File -&gt; New -&gt; Notebook</code>.</p>
+</section>
+<section id="advanced-installing-and-getting-started-with-visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-installing-and-getting-started-with-visual-studio-code">(Advanced) Installing and Getting Started with Visual Studio Code</h2>
+<p>Here’s how to install VS Code:</p>
+<ol type="1">
+<li>Navigate to <a href="https://code.visualstudio.com/download">VS Code’s download page</a>.</li>
+<li>According to your operating system (Windows, macOS, or Linux), download the appropriate installation file and run it.</li>
+<li>Follow the installation instructions provided in the installer.</li>
+</ol>
+<p>To start VS Code:</p>
+<ol type="1">
+<li>Open VS Code from your Start menu (Windows), Applications folder (Mac), or application launcher (Linux).</li>
+</ol>
+<p>Once you’ve opened VS Code, you can start creating or opening files straight away:</p>
+<ol type="1">
+<li>To open a file, go to <code>File -&gt; Open File</code> and navigate to your file.</li>
+<li>To create a new file, go to <code>File -&gt; New File</code>.</li>
+</ol>
+<p>Remember that you can customize and extend your VS Code functionalities by searching and installing extensions in the Extensions view (<code>View -&gt; Extensions</code>).</p>
+<p>Working with JupyterLab and VS Code might seem overwhelming at first, but practice and familiarity will soon make these tools an essential part of your coding and data analysis toolbox.</p>
+<section id="installing-jupyter-notebook-and-python-extensions-for-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="installing-jupyter-notebook-and-python-extensions-for-vs-code">Installing Jupyter Notebook and Python extensions for VS Code</h3>
+<p>VS Code supports a variety of extensions that can enhance your coding experience. For this setup, we are particularly interested in the Python extension, which includes rich support for the Python language, and the Jupyter Notebook extension, which allows you to create and run Jupyter notebooks within VS Code.</p>
+<p>Here’s how to install these extensions:</p>
+<ol type="1">
+<li>Open VS Code.</li>
+<li>Click on the Extensions view icon on the Sidebar located on the left-hand side, or, alternatively, use the shortcut <code>Ctrl+Shift+X</code>.</li>
+<li>In the Extensions view search bar, type <code>Python</code> and look for the extension named <code>Python</code> developed by Microsoft. Click <code>Install</code> to add this extension.</li>
+<li>After installing the Python extension, search for <code>Jupyter</code> in the Extensions view search bar. Look for the <code>Jupyter</code> extension also developed by Microsoft. Click <code>Install</code> to add it.</li>
+</ol>
+<p>With those two extensions installed, you can now create or open .ipynb (Jupyter Notebook) files and use VS Code to develop Python applications. When you open a .ipynb file, VS Code will enter the notebook editor mode where you can create and run Jupyter notebook cells.</p>
+<p>To create a new Jupyter notebook in VS Code:</p>
+<ol type="1">
+<li>Go to <code>File -&gt; New File</code>.</li>
+<li>From the command palette (<code>Ctrl+Shift+P</code>), type <code>Python: Select Interpreter</code> to select your previously created Conda or Python environment.</li>
+<li>Back in the command palette, type <code>Jupyter: Create New Blank Notebook</code>, an .ipynb file is created and you can start writing your Python code in cells.</li>
+</ol>
+<p>Finally, remember that VS Code also comes with a lot built-in features for coding, but might be a bit harder to handle for beginners.</p>
+</section>
+</section>
+<section id="getting-familiar-with-github" class="level2">
+<h2 class="anchored" data-anchor-id="getting-familiar-with-github">Getting Familiar with GitHub</h2>
+<p>Now that you’re set up with your coding environments and text editors, it’s time to get comfortable with an essential tool for any modern developer - GitHub.</p>
+<p>GitHub is a web-based hosting service for version control using Git. It’s a platform where over 65 million developers collaborate on code, making it not just a tool, but a social network for developers. On GitHub, you can manage and store revisions of projects, share your projects with others, collaborate with teammates, and even create separate branches to experiment without affecting the main project.</p>
+<p>In the upcoming sections, you’ll learn about creating your own repositories, cloning existing repositories, the concept of forking, creating pull requests, managing merge conflicts, and more. GitHub is not just a tool for version control; understanding GitHub also exposes you to the workflow that most developers are using today. This makes it a crucial skillset for any aspiring developer or data scientist.</p>
+<p>So prepare for an exciting journey into the <a href="../../tutorials/lecture_01/02_github.html">world of GitHub</a>, which will open up new horizons in your coding, collaboration, and career opportunities!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../tutorials/lecture_01/02_github.html" class="pagination-link">
+        <span class="nav-page-text">Tutorial: GitHub Basics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

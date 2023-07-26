@@ -1,0 +1,253 @@
+---
+title: "How to set up my computer"
+---
+
+In this first tutorial, you will have to download a few prerquisites to get started with the course.
+
+Before you begin learning Python, there are few prerequisites that you need to install and a few concepts that you need to familiarize yourself with.
+
+1. **Anaconda**: Anaconda is a free and open-source distribution of Python language for scientific computing, that aims to simplify package management and deployment. It's not mandatory, but it can simplify the process, especially for new users.
+
+2. **Command Line / Powershell**: Basic knowledge of command line (Linux/Mac) or Powershell (Windows) is beneficial. You will often need to run commands, navigate through directories, or install packages through command line or Powershell.
+
+3. **Text editor / IDE (Integrated Development Environment)**: Although Python comes with a basic editor, you might want to get a dedicated Python IDE or a versatile text editor for coding. VS Code and Jupyter notebook (comes along with Anaconda) are good choices for Python IDEs. Sublime Text and Atom are great text editors.
+
+4. **GitHub**: Familiarity with GitHub is beneficial for every programmer, not just for a Python developer. GitHub is a platform where developers can share and collaborate on code. It’s used for version control in software development projects. Basic knowledge of how to clone repositories, commit changes, and handle branches will be of great help in managing code.
+
+## Creating a GitHub Account
+
+Here are the simple steps to set up a new GitHub account:
+
+1. Open your web browser and navigate to [https://github.com/](https://github.com/).
+2. Click on the `Sign Up` button located in the top right corner of GitHub's homepage.
+3. On the next page, provide the required details including a new `Username`, a `valid Email Address`, and a `Password`. Make sure to verify that the password is at least 15 characters long or at least 8 characters long with a combination of letters, numbers, and symbols.
+4. Review GitHub's Terms of Service and Privacy Statement, and if you agree, click on `Create an account`.
+5. Next, you might be guided through a few survey questions. You can answer them or directly click on `Complete Setup`.
+6. You'll be sent an email to the address you provided. In that email, click `Verify email address`.
+7. That's it! You should now have a GitHub account.
+8. (Optional) The GitHub Student Developer Pack is a free offer from GitHub specially for students. It provides access to a variety of premium development tools and services free of charge for as long as you're a student. [GitHub Student Developer Pack](https://education.github.com/pack)
+
+::: {.callout-tip}
+## Exercise: Share your GitHub handle
+Share your GitHub handle/name on our Slack workspace, so we can add you to private repositories.
+:::
+
+## Configuring your computer
+
+### For macOS Users: Installing Command Line Tools
+
+If you're using macOS, you should install Command Line Tools. This includes various utilities like compilers and—most crucial for this course—Git. Instead of installing it via the substantially large XCode software, we suggest a different method that won't take up around 35 GB of your disk space. 
+
+Here's how to do it:
+
+1. Open the Terminal application. It's typically located in the `/Applications/Utilities` folder. Alternatively, press `⌘` and `space bar` simultaneously, type "terminal" in the search box, and select the Terminal application. 
+2. Once you see a prompt in the Terminal application, type `xcode-select --install` and hit `Enter`.
+3. Follow the instructions for installation when you're prompted. Be aware it might take a few minutes to finish installing.
+4. Click [here](https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows), skip the first step, and follow step 2 to 14.
+
+By the end you should have created your first repository. 
+
+### For Windows Users: Installing Git and Chrome or Firefox
+
+We'll be utilizing JupyterLab and/or VS Code in this tutorial. As JupyterLab is a browser-based application, it's compatible with Chrome, Firefox, and Safari. However, Microsoft Edge isn't supported. So, if you're a Windows user, make sure you have either Chrome or Firefox installed.
+
+You'll also need to install Git. Here are the instructions to do so:
+
+1. Click [here](https://www.simplilearn.com/tutorials/git-tutorial/git-installation-on-windows) and follow the instructions provided.
+
+By the end you should have created your first repository. 
+
+## Setting Up a 'git' Folder in Your Home Directory
+
+Establishing a specific 'git' folder within your home directory is a great step to keep your projects organized and under version control. This guide will take you through the process of creating such a folder in your home directory. We recommend this setup as it's simple, clean, and conveniently located in a familiar place.
+
+### For macOS/Linux Users
+
+1. Open the Terminal application: 
+   - For macOS users, open Spotlight Search by pressing `⌘` and `space bar` simultaneously, then type "Terminal" and hit `Enter`.
+   - For Linux users, you can use the search feature in your distribution's application menu and type "Terminal", or you can use the keyboard shortcut `Ctrl` + `Alt`+ `T`.
+
+2. Once you've opened the Terminal, you should be automatically within your home directory. If not, type `cd ~` to navigate to your home directory.
+
+3. Now, create the 'git' folder by typing `mkdir git` and hit `Enter`. This creates a new folder named 'git' in your home directory.
+
+### For Windows Users
+
+1. To open Command Prompt, press the `Windows` key and type "Command Prompt", and hit `Enter`.
+
+2. Once in Command Prompt, navigate to your home directory by typing `cd %HOMEPATH%` and hitting `Enter`.
+
+3. Now, create the 'git' folder by typing `mkdir git` and hitting `Enter`. This creates a new folder named 'git' within your home directory.
+
+Now you have a dedicated 'git' folder in your home directory where you can clone, create and manage your repositories. This organization can help streamline your workflow and make working with Git a more enjoyable experience!
+
+## Common Command Line Commands
+
+The command line is a powerful tool that allows users to interact directly with their operating system. Here's a table featuring common command line commands for macOS/Linux and Windows:
+
+| Function | macOS/Linux Command | Windows Command |
+|----------|------------------------|------------------|
+| Navigate to home directory | `cd ~` | `cd %HOMEPATH%` |
+| List files in current directory | `ls` | `dir` |
+| Change directory | `cd directoryName` | `cd directoryName` |
+| Make a new directory | `mkdir directoryName` | `mkdir directoryName` |
+| Remove a file | `rm fileName` | `del fileName` |
+| Remove a directory | `rm -r directoryName` | `rd /s directoryName` |
+| Copy a file | `cp sourceFileName destinationFileName` | `copy sourceFileName destinationFileName` |
+| Move or rename a file | `mv sourceFileName destinationFileName` | `move sourceFileName destinationFileName` |
+| Display file's contents | `cat fileName` | `type fileName` |
+| Clear the command line screen | `clear` | `cls` |
+
+Remember, `directoryName` and `fileName` should be replaced with the actual name of the directory or file you want to interact with.
+
+Take the time to familiarize yourself with these commands as they form the foundation of your interactions with your operating system through the command line. With practice, you'll find that many tasks can be performed more quickly and efficiently through the command line than through a graphical interface.
+
+::: {.callout-tip}
+## Exercise: Command line tools
+Move the `test_demo` repository you have created above (step 2-14) to your `git` folder.
+:::
+
+## Introduction to Anaconda and Virtual Environments
+
+Anaconda is an open-source distribution that simplifies package management and deployment for both Python and R. Particularly popular among data scientists and machine learning engineers, Anaconda is equipped a multitude of tools for data science, scientific computing, and much more.
+
+Why should you use Anaconda?
+
+One of the main reasons is its package manager called Conda. With Conda, not only can you easily install packages, but you can also set up isolated environments to keep your projects organized and prevent potential conflicts between package versions.
+
+Here's how to download Anaconda:
+
+1. Navigate to [Anaconda's download page](https://www.anaconda.com/products/distribution#Downloads).
+2. Choose your operating system (Windows, macOS, or Linux).
+3. Select the Python 3.x version and click `Download`.
+4. Run the downloaded file and follow the installation instructions. 
+
+Now, let's talk about virtual environments.
+
+**Virtual environments** are isolated environments where you can install packages and run code without affecting the rest of your system. These environments help you manage your project-specific dependencies separately, thus avoiding versioning conflicts and maintaining stability across all your projects.
+
+::: {.callout-warning}
+## Remember
+Each project should ideally have its own virtual environment.
+:::
+
+### Creating your first Conda environment
+
+To create a virtual environment using Conda, you can follow these steps:
+
+1. Open your terminal or command prompt.
+2. Enter `conda create --name myenv python=3.10` replacing 'myenv' with the name you want to assign to your new environment. Note that we directly installed `python` (version 3.10).
+3. Activate your new environment by typing `conda activate myenv` (again, replace 'myenv' with the name of your environment).
+4. You can now install packages either through `conda install package_name` or also using `pip install package_name` in the activated environment.
+
+Now, any packages that you install while this environment is activated will only affect this particular environment, leaving your global environment and any other virtual environments unchanged.
+
+By using Anaconda and taking advantage of virtual environments, you can create a more organized, conflict-free coding setup, making your data science or programming projects significantly smoother and more manageable.
+
+::: {.callout-tip}
+## Exercise: Create course conda environment
+- Use the commands above to create an environment with the name `ch200` with `python=3.10`.
+- Activate the created environment. 
+- And install the package `jupyter`. 
+:::
+
+::: {.callout-note collapse="true"}
+## Solution: Create course conda environment
+In the command line tool:
+```
+conda create --name ch200 python=3.10
+conda activate ch200
+conda install jupyter
+```
+:::
+
+## Introduction to IDEs and Text Editors
+
+An important component of any programming or coding project is the tool used to write and edit your code. Two of the main options that we will be working with in this course are **JupyterLab** and **Visual Studio Code (VS Code)**.
+
+### JupyterLab
+
+JupyterLab is an integrated development environment (IDE) for Jupyter Notebooks, a project of the Project Jupyter open-source project. JupyterLab is web-based and provides a user-friendly interface for interacting with Jupyter notebooks, code editors, data file viewers, terminals, and more, making it a great tool for data science projects.
+
+### Visual Studio Code (VS Code)
+
+Visual Studio Code, often just called VS Code, is a popular free source-code editor developed by Microsoft. It includes support for debugging, embedded Git control, syntax highlighting, code refactoring, and more. Its features are highly extendable through plugins, and it supports a multitude of programming languages.
+
+### Differences between JupyterLab and VS Code
+
+While both JupyterLab and VS Code are powerful tools, there are key differences between the two:
+
+- **Environment**: JupyterLab provides a web-based interface and is ideal for interactive and exploratory computing. On the other hand, VS Code is a comprehensive text editor and is more akin to a full-fledged integrated development environment.
+
+- **Use Case**: JupyterLab excels when working with Jupyter notebooks and tasks that require visualizing data, running data analysis, and scientific computing in Python, Julia, R and other similar languages. VS Code shines when developing applications in various programming languages and it’s great for writing and managing codebases.
+
+- **Features**: JupyterLab primarily offers an intuitive interface for running and editing Jupyter notebooks, viewing plots, and inspecting file variables. VS Code offers debugging tools, has Git commands built-in, can be customized and extended with plugins, and supports a multitude of programming languages.
+
+Depending on your project, you could find one tool to be more efficient than the other. JupyterLab's interactive workflow could be beneficial for tasks such as data exploration and visualization, whereas VS Code might be more suited to application development. Ultimately, both are extremely useful and offer unique capabilities that could help improve your programming workflow.
+
+## Installing and Getting Started with JupyterLab
+
+Here's how to install JupyterLab using Conda:
+
+1. Open your Terminal (macOS/Linux) or Command Prompt (Windows).
+2. If you have a Conda environment you'd like to use, activate it by typing `conda activate myenv` replacing 'myenv' with the name of your environment.
+3. To install JupyterLab, type `conda install -c conda-forge jupyterlab` and hit `Enter`.
+
+To start JupyterLab:
+
+1. In your terminal or command prompt, ensure your desired Conda environment is activated.
+2. Type `jupyter lab` and hit `Enter`. This should start the JupyterLab application and open a new tab in your default web browser displaying the JupyterLab interface.
+
+Once in the interface, you can create a new notebook by clicking on the `Python 3` icon in the Launcher, or by going to `File -> New -> Notebook`.
+
+## (Advanced) Installing and Getting Started with Visual Studio Code
+
+Here's how to install VS Code:
+
+1. Navigate to [VS Code's download page](https://code.visualstudio.com/download).
+2. According to your operating system (Windows, macOS, or Linux), download the appropriate installation file and run it.
+3. Follow the installation instructions provided in the installer.
+
+To start VS Code:
+
+1. Open VS Code from your Start menu (Windows), Applications folder (Mac), or application launcher (Linux).
+
+Once you've opened VS Code, you can start creating or opening files straight away:
+
+1. To open a file, go to `File -> Open File` and navigate to your file.
+2. To create a new file, go to `File -> New File`.
+
+Remember that you can customize and extend your VS Code functionalities by searching and installing extensions in the Extensions view (`View -> Extensions`).
+
+Working with JupyterLab and VS Code might seem overwhelming at first, but practice and familiarity will soon make these tools an essential part of your coding and data analysis toolbox.
+
+### Installing Jupyter Notebook and Python extensions for VS Code
+
+VS Code supports a variety of extensions that can enhance your coding experience. For this setup, we are particularly interested in the Python extension, which includes rich support for the Python language, and the Jupyter Notebook extension, which allows you to create and run Jupyter notebooks within VS Code. 
+
+Here's how to install these extensions:
+
+1. Open VS Code.
+2. Click on the Extensions view icon on the Sidebar located on the left-hand side, or, alternatively, use the shortcut `Ctrl+Shift+X`.
+3. In the Extensions view search bar, type `Python` and look for the extension named `Python` developed by Microsoft. Click `Install` to add this extension.
+4. After installing the Python extension, search for `Jupyter` in the Extensions view search bar. Look for the `Jupyter` extension also developed by Microsoft. Click `Install` to add it.
+
+With those two extensions installed, you can now create or open .ipynb (Jupyter Notebook) files and use VS Code to develop Python applications. When you open a .ipynb file, VS Code will enter the notebook editor mode where you can create and run Jupyter notebook cells.
+
+To create a new Jupyter notebook in VS Code:
+
+1. Go to `File -> New File`.
+2. From the command palette (`Ctrl+Shift+P`), type `Python: Select Interpreter` to select your previously created Conda or Python environment.
+3. Back in the command palette, type `Jupyter: Create New Blank Notebook`, an .ipynb file is created and you can start writing your Python code in cells.
+
+Finally, remember that VS Code also comes with a lot built-in features for coding, but might be a bit harder to handle for beginners.
+
+## Getting Familiar with GitHub
+
+Now that you're set up with your coding environments and text editors, it's time to get comfortable with an essential tool for any modern developer - GitHub.
+
+GitHub is a web-based hosting service for version control using Git. It's a platform where over 65 million developers collaborate on code, making it not just a tool, but a social network for developers. On GitHub, you can manage and store revisions of projects, share your projects with others, collaborate with teammates, and even create separate branches to experiment without affecting the main project.
+
+In the upcoming sections, you'll learn about creating your own repositories, cloning existing repositories, the concept of forking, creating pull requests, managing merge conflicts, and more. GitHub is not just a tool for version control; understanding GitHub also exposes you to the workflow that most developers are using today. This makes it a crucial skillset for any aspiring developer or data scientist.
+
+So prepare for an exciting journey into the [world of GitHub](02_github.qmd), which will open up new horizons in your coding, collaboration, and career opportunities!
