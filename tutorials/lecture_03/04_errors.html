@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Connecting to GitHub using SSH</title>
+<title>Practical programming in Chemistry – errors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_01/04_next_steps.html" rel="next">
-<link href="../../tutorials/lecture_01/02_github.html" rel="prev">
+<link href="../../tutorials/lecture_03/03_fileio.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_01/03_ssh_connection.html">Tutorial: SSH Connection</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/04_errors.html">Error handling</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
@@ -223,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Error handling</span></a>
   </div>
 </li>
@@ -238,14 +237,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-ssh" id="toc-introduction-to-ssh" class="nav-link active" data-scroll-target="#introduction-to-ssh">Introduction to SSH</a></li>
-  <li><a href="#step-by-step-guide-to-connect-to-github-via-ssh" id="toc-step-by-step-guide-to-connect-to-github-via-ssh" class="nav-link" data-scroll-target="#step-by-step-guide-to-connect-to-github-via-ssh">Step-by-Step Guide to Connect to GitHub via SSH</a>
+  <li><a href="#errors-and-exception-handling-in-python" id="toc-errors-and-exception-handling-in-python" class="nav-link active" data-scroll-target="#errors-and-exception-handling-in-python">Errors and Exception Handling in Python</a>
   <ul class="collapse">
-  <li><a href="#checking-for-existing-ssh-keys" id="toc-checking-for-existing-ssh-keys" class="nav-link" data-scroll-target="#checking-for-existing-ssh-keys">Checking for Existing SSH Keys</a></li>
-  <li><a href="#generating-a-new-ssh-key" id="toc-generating-a-new-ssh-key" class="nav-link" data-scroll-target="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
-  <li><a href="#adding-your-ssh-key-to-the-ssh-agent" id="toc-adding-your-ssh-key-to-the-ssh-agent" class="nav-link" data-scroll-target="#adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</a></li>
-  <li><a href="#adding-ssh-key-to-your-github-account" id="toc-adding-ssh-key-to-your-github-account" class="nav-link" data-scroll-target="#adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</a></li>
-  <li><a href="#testing-your-ssh-connection" id="toc-testing-your-ssh-connection" class="nav-link" data-scroll-target="#testing-your-ssh-connection">Testing your SSH Connection</a></li>
+  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors">Syntax Errors</a></li>
+  <li><a href="#exceptions" id="toc-exceptions" class="nav-link" data-scroll-target="#exceptions">Exceptions</a></li>
+  <li><a href="#exception-handling" id="toc-exception-handling" class="nav-link" data-scroll-target="#exception-handling">Exception Handling</a></li>
+  <li><a href="#multiple-exceptions" id="toc-multiple-exceptions" class="nav-link" data-scroll-target="#multiple-exceptions">Multiple Exceptions</a></li>
+  <li><a href="#finally-clause" id="toc-finally-clause" class="nav-link" data-scroll-target="#finally-clause"><code>finally</code> clause</a></li>
+  <li><a href="#custom-exceptions" id="toc-custom-exceptions" class="nav-link" data-scroll-target="#custom-exceptions">Custom Exceptions</a></li>
+  </ul></li>
+  <li><a href="#exceptions-handling-in-python-exercises" id="toc-exceptions-handling-in-python-exercises" class="nav-link" data-scroll-target="#exceptions-handling-in-python-exercises">Exceptions Handling in Python Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -253,127 +260,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Connecting to GitHub using SSH</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="introduction-to-ssh" class="level1">
-<h1>Introduction to SSH</h1>
-<p>SSH stands for Secure Shell. It’s a protocol used to securely connect and interact with servers. When it comes to GitHub, using SSH keys can simplify the process of interacting with your repositories.</p>
-<p>Instead of entering your username and password every time you perform a Git operation, using SSH keys involves creating a pair of keys - a private key (kept secret on your machine) and a public key (added to your GitHub account). This pair forms a secure connection between your machine and GitHub without having to supply your username and password each time.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why should I do this? sounds complicated…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It will save you a lot of time, as you won’t have to type your username and password every single time you download a GitHub repository.</p>
-</div>
-</div>
+<section id="errors-and-exception-handling-in-python" class="level1">
+<h1>Errors and Exception Handling in Python</h1>
+<p>Error handling in Python is done through the use of exceptions. Exceptions are triggered automatically (or manually) when errors occur. Python has multiple built-in exceptions that can be triggered and caught in your code. When exceptions aren’t caught, your program will terminate abruptly.</p>
+<section id="syntax-errors" class="level2">
+<h2 class="anchored" data-anchor-id="syntax-errors">Syntax Errors</h2>
+<p>Syntax errors, also known as parsing errors, are <code>the most common</code> errors in Python and occur when the parser detects an incorrect statement.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="dv">0</span> <span class="op">/</span> <span class="dv">0</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output would give an invalid syntax error (with an arrow pointing at the caught error):</p>
+<pre><code>File "&lt;ipython-input&gt;", line 1
+print( 0 / 0 ))
+^
+SyntaxError: invalid syntax</code></pre>
 </section>
-<section id="step-by-step-guide-to-connect-to-github-via-ssh" class="level1">
-<h1>Step-by-Step Guide to Connect to GitHub via SSH</h1>
-<section id="checking-for-existing-ssh-keys" class="level2">
-<h2 class="anchored" data-anchor-id="checking-for-existing-ssh-keys">Checking for Existing SSH Keys</h2>
-<p>Before we generate an SSH key, we need to check for existing ones.</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash from the menu (it was installed together with Git) and enter:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see files named <code>id_rsa.pub</code>, <code>id_ed25519.pub</code> or <code>id_ecdsa.pub</code> then you have existing keys. If you want to keep those and not override them, you can skip the next step.</p>
+<section id="exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="exceptions">Exceptions</h2>
+<p>Exceptions, unlike Syntax errors, occur after correct syntax during execution which interrupts the program flow.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This returns a <code>ZeroDivisionError</code> Exception:</p>
+<pre><code>ZeroDivisionError: division by zero</code></pre>
 </section>
-<section id="generating-a-new-ssh-key" class="level2">
-<h2 class="anchored" data-anchor-id="generating-a-new-ssh-key">Generating a new SSH key</h2>
-<p>If you don’t have an existing SSH key or want to create a new one, here’s how you can do it:</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use the following command, replacing “your_email@example.com” with your GitHub email address:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use the same command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll be asked to enter a file in which to save the key, you can just press <code>Enter</code> to accept the default file location.</p>
-<p>Next, you’ll be asked to enter a secure passphrase. While it’s optional, it’s good practice to enter one for an added layer of security.</p>
-<p>The entire process would look something like this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh-keygen <span class="ex">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Generating <span class="ex">public/private</span> ed25519 key pair.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="fu">file</span> in which to save the key <span class="er">(</span><span class="ex">/Users/you/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span> [Press enter]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">passphrase</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span> [Type a passphrase]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">same</span> passphrase again: [Type passphrase again]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Your SSH key pair is now generated!</p>
+<section id="exception-handling" class="level2">
+<h2 class="anchored" data-anchor-id="exception-handling">Exception Handling</h2>
+<p>Exceptions can be intercepted and handled in your code, preventing the program from terminating unexpectedly. We control this flow using <code>try</code>, <code>except</code> statements.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You can't divide by zero!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>You can't divide by zero!</code></pre>
+<p>In this case, the division by zero caused a <code>ZeroDivisionError</code> which we caught using an <code>except</code> clause and printed a friendly error message instead.</p>
 </section>
-<section id="adding-your-ssh-key-to-the-ssh-agent" class="level2">
-<h2 class="anchored" data-anchor-id="adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</h2>
-<p>Before adding a new SSH key to your GitHub account, we should add it to the ssh-agent software on your computer.</p>
-<ol type="1">
-<li>Start the ssh-agent in the background with the following command:</li>
-</ol>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Next, add your SSH private key to the ssh-agent.</li>
-</ol>
-<p>If you used a custom name for your SSH key, replace <code>id_ed25519</code> accordingly, else:</p>
-<p>On <strong>macOS</strong> you can use the <code>ssh-add</code> command like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">-K</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows and Linux</strong> use:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="multiple-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-exceptions">Multiple Exceptions</h2>
+<p>A <code>try</code> statement can have multiple different except blocks to handle different exceptions.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code that could potentially raise an exception</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    chemical_compound <span class="op">=</span> {<span class="st">"H20"</span>: <span class="st">"Water"</span>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chemical_compound[<span class="st">"NaCl"</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Key not found in dictionary."</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"An unknown error occurred:"</span>, e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>Key not found in dictionary.</code></pre>
+<p>Here, the KeyError exception is raised when a dictionary key is not found. But we also have a generic <code>Exception</code> clause in case any other exception is raised.</p>
 </section>
-<section id="adding-ssh-key-to-your-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</h2>
-<ol type="1">
-<li><p>Now you need to add the SSH key to your GitHub account. First, you need to copy the SSH key to your clipboard.</p>
-<p>On <strong>macOS/Linux</strong>, use the <code>pbcopy</code> command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, use the <code>clip</code> command:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clip</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Go to GitHub, click on your profile picture and then click on <strong>Settings</strong>.</p></li>
-<li><p>On the left side of the page, click on <strong>SSH and GPG keys</strong>.</p></li>
-<li><p>Click on the <strong>New SSH Key</strong> button.</p></li>
-<li><p>Give your key a title (it’s useful to use the name of your machine) and paste the key into the “Key” field. It should start with <code>ssh-ed25519</code> or <code>ssh-rsa</code>.</p></li>
-<li><p>Click the <strong>Add SSH Key</strong> button to complete the process.</p></li>
-</ol>
+<section id="finally-clause" class="level2">
+<h2 class="anchored" data-anchor-id="finally-clause"><code>finally</code> clause</h2>
+<p>The <code>finally</code> clause is optional and used when you want code to be executed regardless of whether an exception was raised or caught:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You can't divide by zero!"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This line always executes."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>You can't divide by zero!
+This line always executes.</code></pre>
+<p>Even though the ZeroDivisionError exception was caught, the <code>finally</code> block is executed.</p>
 </section>
-<section id="testing-your-ssh-connection" class="level2">
-<h2 class="anchored" data-anchor-id="testing-your-ssh-connection">Testing your SSH Connection</h2>
-<p>Finally, to ensure that everything is set up correctly:</p>
-<ol type="1">
-<li>Open Terminal or Git Bash and enter the following command:</li>
-</ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>You’ll see a message like this:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'github.com (IP ADDRESS)'</span> can<span class="st">'t be established.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>yes</code>. Then, you’ll receive a message like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi</span> <span class="op">&lt;</span>your_GitHub_username<span class="op">&gt;</span>! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see the above message, you’ve successfully set up SSH authentication to GitHub. Now, you can use Git without having to enter your username and password every time for each operation.</p>
-<p>Great! Now you understand how to connect to GitHub using SSH on Windows, macOS, and Linux.</p>
-<p>Going forward, if you want to clone any repository from GitHub, use the SSH URL which starts with “git@github.com” instead of HTTPS.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:username/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With the SSH link, your machine will use the SSH key pair to authenticate with GitHub, so you won’t have to enter your username (or email) and password each time you perform any git operations like push or pull.</p>
-<p>Remember, if you have multiple GitHub accounts or if you use multiple machines, you will need to generate a unique ssh-key pair for each combination of GitHub account and machine. You can manage all your SSH keys within the settings of your GitHub account.</p>
-<p>Through SSH keys, you have established a secure connection between your machine and GitHub. This will significantly simplify your work-flow, especially when working on bigger projects.</p>
-<p>Also, make sure to keep your private key (<code>~/.ssh/id_ed25519</code> in our case) confidential and secure, don’t share it with anyone. Your public key (<code>~/.ssh/id_ed25519.pub</code> in our case) is the one you add to your GitHub account.</p>
+<section id="custom-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="custom-exceptions">Custom Exceptions</h2>
+<p>You can define your own exceptions by creating a new exception class derived from Python’s <code>Exception</code> class. However, these are quite advanced and will require a more complex understanding of Python and are usually used less commonly than the built-in exceptions.</p>
+</section>
+</section>
+<section id="exceptions-handling-in-python-exercises" class="level1">
+<h1>Exceptions Handling in Python Exercises</h1>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>Write a Python program to handle simple runtime error with <code>try</code> - <code>except</code>.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    div <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"An error just occurred!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>An error just occurred!</code></pre>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>Suppose we have a dictionary of atoms, add a <code>try</code> - <code>except</code> block to handle <code>KeyError</code> when a non-existent atom is searched.</p>
+<p>Atoms dictionary: <code>atoms = { "H": {"name": "Hydrogen", "number": 1}, "He": {"name": "Helium", "number": 2} }</code>.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>atoms <span class="op">=</span> { <span class="st">"H"</span>: {<span class="st">"name"</span>: <span class="st">"Hydrogen"</span>, <span class="st">"number"</span>: <span class="dv">1</span>}, <span class="st">"He"</span>: {<span class="st">"name"</span>: <span class="st">"Helium"</span>, <span class="st">"number"</span>: <span class="dv">2</span>} }</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(atoms[<span class="st">"Li"</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This atom is not in the dictionary."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>This atom is not in the dictionary.</code></pre>
+</section>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+<p>Write a Python program that prompts the user for an integer input and catches the <code>ValueError</code> exception in case a non-integer value is entered.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter an integer: "</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"You entered: </span><span class="sc">{</span>number<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You did not enter an integer!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<p>Case 1 - <code>Enter an integer: a</code></p>
+<pre><code>You did not enter an integer!</code></pre>
+<p>Case 2 - <code>Enter an integer: 5</code></p>
+<pre><code>You entered: 5</code></pre>
+</section>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<p>Write a Python program that prompts the user for a chemical compound, catch <code>KeyError</code> when compound is not found in a dictionary, and use <code>finally</code> to print a statement whether the exception was raised or not.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> {<span class="st">'H2O'</span>: <span class="st">'Water'</span>, <span class="st">'CO2'</span>: <span class="st">'Carbon Dioxide'</span>}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    compound <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter a compound: "</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(compounds[compound])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This compound is not in the dictionary."</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Exiting the program."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note: This program will prompt for user input.</p>
+</section>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<p>Write a Python program that tries to access an undefined variable, catch the <code>NameError</code> exception and print a user-friendly message.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(undefined_variable)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">NameError</span>:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The variable is not defined."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>The variable is not defined.</code></pre>
 
 
 </section>
@@ -615,14 +635,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_01/02_github.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial: GitHub Basics</span>
+      <a href="../../tutorials/lecture_03/03_fileio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">File IO</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_01/04_next_steps.html" class="pagination-link">
-        <span class="nav-page-text">Next steps: Fork and Code</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

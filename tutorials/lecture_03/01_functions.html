@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Connecting to GitHub using SSH</title>
+<title>Practical programming in Chemistry – functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_01/04_next_steps.html" rel="next">
-<link href="../../tutorials/lecture_01/02_github.html" rel="prev">
+<link href="../../tutorials/lecture_03/02_packages.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_01/03_ssh_connection.html">Tutorial: SSH Connection</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/01_functions.html">Python functions</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
@@ -205,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Python functions</span></a>
   </div>
 </li>
@@ -238,14 +237,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-ssh" id="toc-introduction-to-ssh" class="nav-link active" data-scroll-target="#introduction-to-ssh">Introduction to SSH</a></li>
-  <li><a href="#step-by-step-guide-to-connect-to-github-via-ssh" id="toc-step-by-step-guide-to-connect-to-github-via-ssh" class="nav-link" data-scroll-target="#step-by-step-guide-to-connect-to-github-via-ssh">Step-by-Step Guide to Connect to GitHub via SSH</a>
+  <li><a href="#functions-in-python" id="toc-functions-in-python" class="nav-link active" data-scroll-target="#functions-in-python">Functions in Python</a>
   <ul class="collapse">
-  <li><a href="#checking-for-existing-ssh-keys" id="toc-checking-for-existing-ssh-keys" class="nav-link" data-scroll-target="#checking-for-existing-ssh-keys">Checking for Existing SSH Keys</a></li>
-  <li><a href="#generating-a-new-ssh-key" id="toc-generating-a-new-ssh-key" class="nav-link" data-scroll-target="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
-  <li><a href="#adding-your-ssh-key-to-the-ssh-agent" id="toc-adding-your-ssh-key-to-the-ssh-agent" class="nav-link" data-scroll-target="#adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</a></li>
-  <li><a href="#adding-ssh-key-to-your-github-account" id="toc-adding-ssh-key-to-your-github-account" class="nav-link" data-scroll-target="#adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</a></li>
-  <li><a href="#testing-your-ssh-connection" id="toc-testing-your-ssh-connection" class="nav-link" data-scroll-target="#testing-your-ssh-connection">Testing your SSH Connection</a></li>
+  <li><a href="#defining-a-function" id="toc-defining-a-function" class="nav-link" data-scroll-target="#defining-a-function">Defining a Function</a></li>
+  <li><a href="#calling-a-function" id="toc-calling-a-function" class="nav-link" data-scroll-target="#calling-a-function">Calling a Function</a></li>
+  <li><a href="#function-parameters" id="toc-function-parameters" class="nav-link" data-scroll-target="#function-parameters">Function Parameters</a></li>
+  <li><a href="#using-default-parameter-value" id="toc-using-default-parameter-value" class="nav-link" data-scroll-target="#using-default-parameter-value">Using Default Parameter Value</a>
+  <ul class="collapse">
+  <li><a href="#examples-of-functions-in-python" id="toc-examples-of-functions-in-python" class="nav-link" data-scroll-target="#examples-of-functions-in-python">Examples of Functions in Python</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -253,129 +255,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Connecting to GitHub using SSH</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="introduction-to-ssh" class="level1">
-<h1>Introduction to SSH</h1>
-<p>SSH stands for Secure Shell. It’s a protocol used to securely connect and interact with servers. When it comes to GitHub, using SSH keys can simplify the process of interacting with your repositories.</p>
-<p>Instead of entering your username and password every time you perform a Git operation, using SSH keys involves creating a pair of keys - a private key (kept secret on your machine) and a public key (added to your GitHub account). This pair forms a secure connection between your machine and GitHub without having to supply your username and password each time.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why should I do this? sounds complicated…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It will save you a lot of time, as you won’t have to type your username and password every single time you download a GitHub repository.</p>
-</div>
-</div>
+<section id="functions-in-python" class="level1">
+<h1>Functions in Python</h1>
+<p>Functions in Python are blocks of reusable code that carry out a specific task. When working on larger scale projects, functions provide better modularity for your application and a high degree of code reusing.</p>
+<p>Python has many built-in functions like print(), input(), len(), etc, but you can also create your own functions. These functions are called user-defined functions.</p>
+<section id="defining-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="defining-a-function">Defining a Function</h2>
+<p>You can define your own function in Python using the keyword <code>def</code>.</p>
+<p>Here’s a simple example of a function that calculates the square of a number:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> square(number):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    sq <span class="op">=</span> number <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this code, <code>square</code> is the function name, <code>number</code> is the input parameter to the function, the operator <code>**</code> is used to calculate the square of a number and <code>return</code> is the keyword used to output a value from the function.</p>
 </section>
-<section id="step-by-step-guide-to-connect-to-github-via-ssh" class="level1">
-<h1>Step-by-Step Guide to Connect to GitHub via SSH</h1>
-<section id="checking-for-existing-ssh-keys" class="level2">
-<h2 class="anchored" data-anchor-id="checking-for-existing-ssh-keys">Checking for Existing SSH Keys</h2>
-<p>Before we generate an SSH key, we need to check for existing ones.</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash from the menu (it was installed together with Git) and enter:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see files named <code>id_rsa.pub</code>, <code>id_ed25519.pub</code> or <code>id_ecdsa.pub</code> then you have existing keys. If you want to keep those and not override them, you can skip the next step.</p>
+<section id="calling-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="calling-a-function">Calling a Function</h2>
+<p>To call a function, you simply need to provide the function name followed by parentheses with required parameters, if any.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(square(<span class="dv">6</span>)) <span class="co">#Output: 36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="generating-a-new-ssh-key" class="level2">
-<h2 class="anchored" data-anchor-id="generating-a-new-ssh-key">Generating a new SSH key</h2>
-<p>If you don’t have an existing SSH key or want to create a new one, here’s how you can do it:</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use the following command, replacing “your_email@example.com” with your GitHub email address:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use the same command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll be asked to enter a file in which to save the key, you can just press <code>Enter</code> to accept the default file location.</p>
-<p>Next, you’ll be asked to enter a secure passphrase. While it’s optional, it’s good practice to enter one for an added layer of security.</p>
-<p>The entire process would look something like this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh-keygen <span class="ex">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Generating <span class="ex">public/private</span> ed25519 key pair.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="fu">file</span> in which to save the key <span class="er">(</span><span class="ex">/Users/you/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span> [Press enter]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">passphrase</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span> [Type a passphrase]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">same</span> passphrase again: [Type passphrase again]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Your SSH key pair is now generated!</p>
+<section id="function-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="function-parameters">Function Parameters</h2>
+<p>You can pass data, known as parameters, into a function. A function can accept any number and type of parameters.</p>
+<p>Let’s create a function that greet a user:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">". Good Morning!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can call this function and pass a name as the argument:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">'Alice'</span>) <span class="co">#Output: Hello, Alice. Good Morning!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="adding-your-ssh-key-to-the-ssh-agent" class="level2">
-<h2 class="anchored" data-anchor-id="adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</h2>
-<p>Before adding a new SSH key to your GitHub account, we should add it to the ssh-agent software on your computer.</p>
+<section id="using-default-parameter-value" class="level2">
+<h2 class="anchored" data-anchor-id="using-default-parameter-value">Using Default Parameter Value</h2>
+<p>You can set a default parameter value for a function. If we call the function without argument, it uses the default value.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name <span class="op">=</span> <span class="st">"User"</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">". Good Morning!"</span>) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>greet() <span class="co">#Output: Hello, User. Good Morning!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the context of chemistry, we can wrap a series of calculations within a function. For example, a chemist may often need to calculate the molar mass for different substances. This can be done using a function:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate molar mass of hydrocarbons</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_molar_mass(hydrogen, carbon):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> <span class="fl">1.008</span>  <span class="co"># molar mass of Hydrogen</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> <span class="fl">12.01</span>  <span class="co"># molar mass of Carbon</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (H<span class="op">*</span>hydrogen <span class="op">+</span> C<span class="op">*</span>carbon)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now calculate molar mass of Methane (CH4)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_molar_mass(<span class="dv">4</span>, <span class="dv">1</span>))  <span class="co">#Output: 16.042</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This way, chemists can create their own library of useful functions to perform various calculations related to their work, increasing efficiency and reducing the chance of errors in their calculations.</p>
+<section id="examples-of-functions-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="examples-of-functions-in-python">Examples of Functions in Python</h3>
+<p>Let’s go through more examples of functions, this time keeping our examples more chemistry oriented.</p>
+<section id="calculating-amount-of-substance" class="level4">
+<h4 class="anchored" data-anchor-id="calculating-amount-of-substance">Calculating Amount of Substance</h4>
+<p>Say you routinely need to calculate the number of moles in a sample given its mass and molar mass. We can make a function to do exactly this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate amount of substance</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_moles(mass, molar_mass):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mass <span class="op">/</span> molar_mass</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now calculate the moles in a 22g sample of Carbon (C = 12.01 g/mol)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_moles(<span class="dv">22</span>, <span class="fl">12.01</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="calculating-dilution" class="level4">
+<h4 class="anchored" data-anchor-id="calculating-dilution">Calculating Dilution</h4>
+<p>If you often perform dilutions, you might want a function to quickly calculate the final concentration after dilution:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate final concentration after dilution</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dilute(C1, V1, V2):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (C1 <span class="op">*</span> V1) <span class="op">/</span> V2</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now calculate the concentration after dilution</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dilute(<span class="fl">0.5</span>, <span class="dv">5</span>, <span class="dv">10</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
 <ol type="1">
-<li>Start the ssh-agent in the background with the following command:</li>
-</ol>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Next, add your SSH private key to the ssh-agent.</li>
-</ol>
-<p>If you used a custom name for your SSH key, replace <code>id_ed25519</code> accordingly, else:</p>
-<p>On <strong>macOS</strong> you can use the <code>ssh-add</code> command like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">-K</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows and Linux</strong> use:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="adding-ssh-key-to-your-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</h2>
-<ol type="1">
-<li><p>Now you need to add the SSH key to your GitHub account. First, you need to copy the SSH key to your clipboard.</p>
-<p>On <strong>macOS/Linux</strong>, use the <code>pbcopy</code> command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, use the <code>clip</code> command:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clip</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Go to GitHub, click on your profile picture and then click on <strong>Settings</strong>.</p></li>
-<li><p>On the left side of the page, click on <strong>SSH and GPG keys</strong>.</p></li>
-<li><p>Click on the <strong>New SSH Key</strong> button.</p></li>
-<li><p>Give your key a title (it’s useful to use the name of your machine) and paste the key into the “Key” field. It should start with <code>ssh-ed25519</code> or <code>ssh-rsa</code>.</p></li>
-<li><p>Click the <strong>Add SSH Key</strong> button to complete the process.</p></li>
+<li>Write a function to calculate the pH of a solution given the concentration of H+ ions.</li>
+<li>Write a function that returns the concentration of OH- ions given the concentration of H+ ions.</li>
+<li>Write a function to calculate the final pressure of a gas given initial pressure, volume and temperature, and final volume and temperature (use ideal gas law).</li>
+<li>Write a function that calculates and returns the molar mass of a hydrocarbon given numbers of H, C and O atoms.</li>
+<li>Write a function that calculates mass percent of an element in a compound given the molar mass of the element and the compound.</li>
 </ol>
 </section>
-<section id="testing-your-ssh-connection" class="level2">
-<h2 class="anchored" data-anchor-id="testing-your-ssh-connection">Testing your SSH Connection</h2>
-<p>Finally, to ensure that everything is set up correctly:</p>
-<ol type="1">
-<li>Open Terminal or Git Bash and enter the following command:</li>
-</ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>You’ll see a message like this:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'github.com (IP ADDRESS)'</span> can<span class="st">'t be established.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>yes</code>. Then, you’ll receive a message like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi</span> <span class="op">&lt;</span>your_GitHub_username<span class="op">&gt;</span>! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see the above message, you’ve successfully set up SSH authentication to GitHub. Now, you can use Git without having to enter your username and password every time for each operation.</p>
-<p>Great! Now you understand how to connect to GitHub using SSH on Windows, macOS, and Linux.</p>
-<p>Going forward, if you want to clone any repository from GitHub, use the SSH URL which starts with “git@github.com” instead of HTTPS.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:username/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With the SSH link, your machine will use the SSH key pair to authenticate with GitHub, so you won’t have to enter your username (or email) and password each time you perform any git operations like push or pull.</p>
-<p>Remember, if you have multiple GitHub accounts or if you use multiple machines, you will need to generate a unique ssh-key pair for each combination of GitHub account and machine. You can manage all your SSH keys within the settings of your GitHub account.</p>
-<p>Through SSH keys, you have established a secure connection between your machine and GitHub. This will significantly simplify your work-flow, especially when working on bigger projects.</p>
-<p>Also, make sure to keep your private key (<code>~/.ssh/id_ed25519</code> in our case) confidential and secure, don’t share it with anyone. Your public key (<code>~/.ssh/id_ed25519.pub</code> in our case) is the one you add to your GitHub account.</p>
+<section id="solutions" class="level3">
+<h3 class="anchored" data-anchor-id="solutions">Solutions</h3>
+<p>Solution 1:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_pH(H_concentration):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>math.log10(H_concentration)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_pH(<span class="fl">0.0001</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solution 2:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_OH_concentration(H_concentration):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    Kw <span class="op">=</span> <span class="fl">1.0e-14</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Kw <span class="op">/</span> H_concentration</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_pH(<span class="fl">0.0001</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solution 3:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_final_pressure(P1, V1, T1, V2, T2):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (P1 <span class="op">*</span> V1 <span class="op">/</span> T1) <span class="op">*</span> (T2 <span class="op">/</span> V2)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_final_pressure(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">300</span>, <span class="dv">5</span>, <span class="dv">300</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solution 4:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_molar_mass(hydrogen, carbon, oxygen):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> <span class="fl">1.008</span>  </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> <span class="fl">12.01</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    O <span class="op">=</span> <span class="fl">16.00</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (H<span class="op">*</span>hydrogen <span class="op">+</span> C<span class="op">*</span>carbon <span class="op">+</span> O<span class="op">*</span>oxygen)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_molar_mass(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Solution 5:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_mass_percent(element_molar_mass, compound_molar_mass):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (element_molar_mass <span class="op">/</span> compound_molar_mass) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculate_mass_percent(<span class="fl">12.01</span>, <span class="fl">18.015</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s it! By writing and using your own functions, your code becomes more readable and reusable.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -615,13 +611,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_01/02_github.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial: GitHub Basics</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_01/04_next_steps.html" class="pagination-link">
-        <span class="nav-page-text">Next steps: Fork and Code</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../tutorials/lecture_03/02_packages.html" class="pagination-link">
+        <span class="nav-page-text">Python packages</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

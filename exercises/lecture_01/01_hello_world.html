@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Connecting to GitHub using SSH</title>
+<title>Practical programming in Chemistry - Introduction:</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_01/04_next_steps.html" rel="next">
-<link href="../../tutorials/lecture_01/02_github.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_01/03_ssh_connection.html">Tutorial: SSH Connection</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Home
+      </li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
@@ -238,14 +238,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-ssh" id="toc-introduction-to-ssh" class="nav-link active" data-scroll-target="#introduction-to-ssh">Introduction to SSH</a></li>
-  <li><a href="#step-by-step-guide-to-connect-to-github-via-ssh" id="toc-step-by-step-guide-to-connect-to-github-via-ssh" class="nav-link" data-scroll-target="#step-by-step-guide-to-connect-to-github-via-ssh">Step-by-Step Guide to Connect to GitHub via SSH</a>
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of Contents:</a></li>
+  <li><a href="#most-important-jupyter-notebook-commands" id="toc-most-important-jupyter-notebook-commands" class="nav-link" data-scroll-target="#most-important-jupyter-notebook-commands">1. Most important Jupyter notebook commands:</a></li>
+  <li><a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics">2. Python Basics</a>
   <ul class="collapse">
-  <li><a href="#checking-for-existing-ssh-keys" id="toc-checking-for-existing-ssh-keys" class="nav-link" data-scroll-target="#checking-for-existing-ssh-keys">Checking for Existing SSH Keys</a></li>
-  <li><a href="#generating-a-new-ssh-key" id="toc-generating-a-new-ssh-key" class="nav-link" data-scroll-target="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
-  <li><a href="#adding-your-ssh-key-to-the-ssh-agent" id="toc-adding-your-ssh-key-to-the-ssh-agent" class="nav-link" data-scroll-target="#adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</a></li>
-  <li><a href="#adding-ssh-key-to-your-github-account" id="toc-adding-ssh-key-to-your-github-account" class="nav-link" data-scroll-target="#adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</a></li>
-  <li><a href="#testing-your-ssh-connection" id="toc-testing-your-ssh-connection" class="nav-link" data-scroll-target="#testing-your-ssh-connection">Testing your SSH Connection</a></li>
+  <li><a href="#running-python-code" id="toc-running-python-code" class="nav-link" data-scroll-target="#running-python-code">2.1 Running Python Code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -255,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Connecting to GitHub using SSH</h1>
+<h1 class="title">Introduction:</h1>
 </div>
 
 
@@ -270,110 +267,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introduction-to-ssh" class="level1">
-<h1>Introduction to SSH</h1>
-<p>SSH stands for Secure Shell. It’s a protocol used to securely connect and interact with servers. When it comes to GitHub, using SSH keys can simplify the process of interacting with your repositories.</p>
-<p>Instead of entering your username and password every time you perform a Git operation, using SSH keys involves creating a pair of keys - a private key (kept secret on your machine) and a public key (added to your GitHub account). This pair forms a secure connection between your machine and GitHub without having to supply your username and password each time.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why should I do this? sounds complicated…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It will save you a lot of time, as you won’t have to type your username and password every single time you download a GitHub repository.</p>
-</div>
-</div>
-</section>
-<section id="step-by-step-guide-to-connect-to-github-via-ssh" class="level1">
-<h1>Step-by-Step Guide to Connect to GitHub via SSH</h1>
-<section id="checking-for-existing-ssh-keys" class="level2">
-<h2 class="anchored" data-anchor-id="checking-for-existing-ssh-keys">Checking for Existing SSH Keys</h2>
-<p>Before we generate an SSH key, we need to check for existing ones.</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash from the menu (it was installed together with Git) and enter:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see files named <code>id_rsa.pub</code>, <code>id_ed25519.pub</code> or <code>id_ecdsa.pub</code> then you have existing keys. If you want to keep those and not override them, you can skip the next step.</p>
-</section>
-<section id="generating-a-new-ssh-key" class="level2">
-<h2 class="anchored" data-anchor-id="generating-a-new-ssh-key">Generating a new SSH key</h2>
-<p>If you don’t have an existing SSH key or want to create a new one, here’s how you can do it:</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use the following command, replacing “your_email@example.com” with your GitHub email address:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use the same command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll be asked to enter a file in which to save the key, you can just press <code>Enter</code> to accept the default file location.</p>
-<p>Next, you’ll be asked to enter a secure passphrase. While it’s optional, it’s good practice to enter one for an added layer of security.</p>
-<p>The entire process would look something like this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh-keygen <span class="ex">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Generating <span class="ex">public/private</span> ed25519 key pair.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="fu">file</span> in which to save the key <span class="er">(</span><span class="ex">/Users/you/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span> [Press enter]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">passphrase</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span> [Type a passphrase]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">same</span> passphrase again: [Type passphrase again]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Your SSH key pair is now generated!</p>
-</section>
-<section id="adding-your-ssh-key-to-the-ssh-agent" class="level2">
-<h2 class="anchored" data-anchor-id="adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</h2>
-<p>Before adding a new SSH key to your GitHub account, we should add it to the ssh-agent software on your computer.</p>
+<p>Welcome to Python for Beginners tutorial! Python is a popular and beginner-friendly programming language known for its simplicity and readability. In this tutorial, you will learn the basics of Python and how to work with Jupyter notebooks. We will cover the fundamentals of Python syntax, variables, data types, control structures, functions, and more. Let’s get started!</p>
+<section id="table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents:</h2>
 <ol type="1">
-<li>Start the ssh-agent in the background with the following command:</li>
+<li>Python and Jupyter Notebook Setup</li>
+<li>Python Basics
+<ul>
+<li>2.1 Running Python Code</li>
+<li>2.2 Variables and Data Types</li>
+<li>2.3 Operators</li>
+<li>2.4 Type Conversion</li>
+</ul></li>
+<li>Control Structures
+<ul>
+<li>3.1 Conditional Statements</li>
+<li>3.2 Loops</li>
+<li>3.3 Exercises</li>
+</ul></li>
+<li>Functions
+<ul>
+<li>4.1 Defining and Calling Functions</li>
+<li>4.2 Arguments and Return Values</li>
+<li>4.3 Exercise</li>
+</ul></li>
+<li>Conclusion</li>
 </ol>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Next, add your SSH private key to the ssh-agent.</li>
-</ol>
-<p>If you used a custom name for your SSH key, replace <code>id_ed25519</code> accordingly, else:</p>
-<p>On <strong>macOS</strong> you can use the <code>ssh-add</code> command like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">-K</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows and Linux</strong> use:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before we begin, please make sure that you are in the course conda environment.</p>
 </section>
-<section id="adding-ssh-key-to-your-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</h2>
-<ol type="1">
-<li><p>Now you need to add the SSH key to your GitHub account. First, you need to copy the SSH key to your clipboard.</p>
-<p>On <strong>macOS/Linux</strong>, use the <code>pbcopy</code> command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, use the <code>clip</code> command:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clip</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Go to GitHub, click on your profile picture and then click on <strong>Settings</strong>.</p></li>
-<li><p>On the left side of the page, click on <strong>SSH and GPG keys</strong>.</p></li>
-<li><p>Click on the <strong>New SSH Key</strong> button.</p></li>
-<li><p>Give your key a title (it’s useful to use the name of your machine) and paste the key into the “Key” field. It should start with <code>ssh-ed25519</code> or <code>ssh-rsa</code>.</p></li>
-<li><p>Click the <strong>Add SSH Key</strong> button to complete the process.</p></li>
-</ol>
+<section id="most-important-jupyter-notebook-commands" class="level2">
+<h2 class="anchored" data-anchor-id="most-important-jupyter-notebook-commands">1. Most important Jupyter notebook commands:</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Enter</code></td>
+<td>Enter into <code>edit mode</code></td>
+</tr>
+<tr class="even">
+<td><code>Esc</code></td>
+<td>Switch to <code>command mode</code> where you can navigate around your notebook with arrow keys</td>
+</tr>
+<tr class="odd">
+<td><code>y</code></td>
+<td>Change the cell type to code</td>
+</tr>
+<tr class="even">
+<td><code>m</code></td>
+<td>Change the cell type to markdown</td>
+</tr>
+<tr class="odd">
+<td><code>a</code></td>
+<td>Insert a new cell above the current cell</td>
+</tr>
+<tr class="even">
+<td><code>b</code></td>
+<td>Insert a new cell below the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>x</code></td>
+<td>Cut the current cell</td>
+</tr>
+<tr class="even">
+<td><code>c</code></td>
+<td>Copy the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>v</code></td>
+<td>Paste the copied/cut cell</td>
+</tr>
+<tr class="even">
+<td><code>dd</code></td>
+<td>Delete the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>z</code></td>
+<td>Undo the last cell operation</td>
+</tr>
+<tr class="even">
+<td><code>f</code></td>
+<td>Find and replace on your code but not the outputs</td>
+</tr>
+<tr class="odd">
+<td><code>Shift + Enter</code></td>
+<td>Run the current cell and select the next cell</td>
+</tr>
+<tr class="even">
+<td><code>s</code></td>
+<td>Save the notebook</td>
+</tr>
+<tr class="odd">
+<td><code>h</code></td>
+<td>Display the keyboard shortcuts help dialog</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The character-based commands have to be run in the <code>command mode</code>. If you are in the <code>edit mode</code>. Press <code>ESC</code> and then <code>a</code> to insert a new cell below.</p>
 </section>
-<section id="testing-your-ssh-connection" class="level2">
-<h2 class="anchored" data-anchor-id="testing-your-ssh-connection">Testing your SSH Connection</h2>
-<p>Finally, to ensure that everything is set up correctly:</p>
-<ol type="1">
-<li>Open Terminal or Git Bash and enter the following command:</li>
-</ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>You’ll see a message like this:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'github.com (IP ADDRESS)'</span> can<span class="st">'t be established.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>yes</code>. Then, you’ll receive a message like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi</span> <span class="op">&lt;</span>your_GitHub_username<span class="op">&gt;</span>! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see the above message, you’ve successfully set up SSH authentication to GitHub. Now, you can use Git without having to enter your username and password every time for each operation.</p>
-<p>Great! Now you understand how to connect to GitHub using SSH on Windows, macOS, and Linux.</p>
-<p>Going forward, if you want to clone any repository from GitHub, use the SSH URL which starts with “git@github.com” instead of HTTPS.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:username/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With the SSH link, your machine will use the SSH key pair to authenticate with GitHub, so you won’t have to enter your username (or email) and password each time you perform any git operations like push or pull.</p>
-<p>Remember, if you have multiple GitHub accounts or if you use multiple machines, you will need to generate a unique ssh-key pair for each combination of GitHub account and machine. You can manage all your SSH keys within the settings of your GitHub account.</p>
-<p>Through SSH keys, you have established a secure connection between your machine and GitHub. This will significantly simplify your work-flow, especially when working on bigger projects.</p>
-<p>Also, make sure to keep your private key (<code>~/.ssh/id_ed25519</code> in our case) confidential and secure, don’t share it with anyone. Your public key (<code>~/.ssh/id_ed25519.pub</code> in our case) is the one you add to your GitHub account.</p>
+<section id="python-basics" class="level2">
+<h2 class="anchored" data-anchor-id="python-basics">2. Python Basics</h2>
+<section id="running-python-code" class="level3">
+<h3 class="anchored" data-anchor-id="running-python-code">2.1 Running Python Code</h3>
+<p>Jupyter Notebook allows us to write and execute Python code in separate cells. To execute a cell, click on it and press Shift + Enter or click the Run button in the toolbar. Let’s start with a simple example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, Python!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run the above code by placing it in a cell and executing it. You should see the output <code>Hello, Python!</code> printed below the cell.</p>
 
 
 </section>
@@ -613,18 +619,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_01/02_github.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial: GitHub Basics</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_01/04_next_steps.html" class="pagination-link">
-        <span class="nav-page-text">Next steps: Fork and Code</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

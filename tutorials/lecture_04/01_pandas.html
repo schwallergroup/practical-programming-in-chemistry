@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Cheatsheets</title>
+<title>Practical programming in Chemistry – pandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -61,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -73,7 +73,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cheatsheets.html">Commands summary</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Home
+      </li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -88,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Home</a> 
+      <a href="../../">Home</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -100,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cheatsheets.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../cheatsheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Commands summary</span></a>
   </div>
 </li>
@@ -111,25 +113,25 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: Configuration</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: GitHub Basics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Next steps: Fork and Code</span></a>
   </div>
 </li>
@@ -140,25 +142,25 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter notebooks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python basics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python iterations</span></a>
   </div>
 </li>
@@ -169,25 +171,25 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python functions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_03/02_packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/02_packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">File IO</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Error handling</span></a>
   </div>
 </li>
@@ -198,250 +200,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#command-line" id="toc-command-line" class="nav-link active" data-scroll-target="#command-line">Command line</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
-  <li><a href="#jupyter-notebook" id="toc-jupyter-notebook" class="nav-link" data-scroll-target="#jupyter-notebook">Jupyter notebook</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Cheatsheets</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="command-line" class="level2">
-<h2 class="anchored" data-anchor-id="command-line">Command line</h2>
-<table class="table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 46%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>macOS/Linux Command</th>
-<th>Windows Command</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Navigate to home directory</td>
-<td><code>cd ~</code></td>
-<td><code>cd %HOMEPATH%</code></td>
-</tr>
-<tr class="even">
-<td>List files in current directory</td>
-<td><code>ls</code></td>
-<td><code>dir</code></td>
-</tr>
-<tr class="odd">
-<td>Change directory</td>
-<td><code>cd directoryName</code></td>
-<td><code>cd directoryName</code></td>
-</tr>
-<tr class="even">
-<td>Make a new directory</td>
-<td><code>mkdir directoryName</code></td>
-<td><code>mkdir directoryName</code></td>
-</tr>
-<tr class="odd">
-<td>Remove a file</td>
-<td><code>rm fileName</code></td>
-<td><code>del fileName</code></td>
-</tr>
-<tr class="even">
-<td>Remove a directory</td>
-<td><code>rm -r directoryName</code></td>
-<td><code>rd /s directoryName</code></td>
-</tr>
-<tr class="odd">
-<td>Copy a file</td>
-<td><code>cp sourceFileName destinationFileName</code></td>
-<td><code>copy sourceFileName destinationFileName</code></td>
-</tr>
-<tr class="even">
-<td>Move or rename a file</td>
-<td><code>mv sourceFileName destinationFileName</code></td>
-<td><code>move sourceFileName destinationFileName</code></td>
-</tr>
-<tr class="odd">
-<td>Display file’s contents</td>
-<td><code>cat fileName</code></td>
-<td><code>type fileName</code></td>
-</tr>
-<tr class="even">
-<td>Clear the command line screen</td>
-<td><code>clear</code></td>
-<td><code>cls</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="github" class="level2">
-<h2 class="anchored" data-anchor-id="github">GitHub</h2>
-<table class="table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>git config --global user.name "name"</code></td>
-<td>Set your name in git configuration (only once)</td>
-</tr>
-<tr class="even">
-<td><code>git config --global user.email "email"</code></td>
-<td>Set your email in git configuration (only once)</td>
-</tr>
-<tr class="odd">
-<td><code>git clone git@github.com:username/repository.git</code></td>
-<td>Clone a GitHub repository to your local machine</td>
-</tr>
-<tr class="even">
-<td><code>git branch branch-name</code></td>
-<td>Create a new branch</td>
-</tr>
-<tr class="odd">
-<td><code>git checkout branch-name</code></td>
-<td>Switch to another branch</td>
-</tr>
-<tr class="even">
-<td><code>git add .</code></td>
-<td>Track all changes in directory</td>
-</tr>
-<tr class="odd">
-<td><code>git commit -m "commit message"</code></td>
-<td>Commit your tracked changes</td>
-</tr>
-<tr class="even">
-<td><code>git push origin branch-name</code></td>
-<td>Push your local commits to the GitHub</td>
-</tr>
-<tr class="odd">
-<td><code>git pull origin branch-name</code></td>
-<td>Fetch the newest updates from the remote branch</td>
-</tr>
-<tr class="even">
-<td><code>git status</code></td>
-<td>Check the status of your local repository</td>
-</tr>
-<tr class="odd">
-<td><code>git diff</code></td>
-<td>Show changes between your working directory and the last commit</td>
-</tr>
-<tr class="even">
-<td><code>git diff --staged</code></td>
-<td>Show changes between your staging area and the last commit</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="jupyter-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="jupyter-notebook">Jupyter notebook</h2>
-<table class="table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Enter</code></td>
-<td>Enter into <code>edit mode</code></td>
-</tr>
-<tr class="even">
-<td><code>Esc</code></td>
-<td>Switch to <code>command mode</code> where you can navigate around your notebook with arrow keys</td>
-</tr>
-<tr class="odd">
-<td><code>y</code></td>
-<td>Change the cell type to code</td>
-</tr>
-<tr class="even">
-<td><code>m</code></td>
-<td>Change the cell type to markdown</td>
-</tr>
-<tr class="odd">
-<td><code>a</code></td>
-<td>Insert a new cell above the current cell</td>
-</tr>
-<tr class="even">
-<td><code>b</code></td>
-<td>Insert a new cell below the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>x</code></td>
-<td>Cut the current cell</td>
-</tr>
-<tr class="even">
-<td><code>c</code></td>
-<td>Copy the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>v</code></td>
-<td>Paste the copied/cut cell</td>
-</tr>
-<tr class="even">
-<td><code>dd</code></td>
-<td>Delete the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>z</code></td>
-<td>Undo the last cell operation</td>
-</tr>
-<tr class="even">
-<td><code>f</code></td>
-<td>Find and replace on your code but not the outputs</td>
-</tr>
-<tr class="odd">
-<td><code>Shift + Enter</code></td>
-<td>Run the current cell and select the next cell</td>
-</tr>
-<tr class="even">
-<td><code>s</code></td>
-<td>Save the notebook</td>
-</tr>
-<tr class="odd">
-<td><code>h</code></td>
-<td>Display the keyboard shortcuts help dialog</td>
-</tr>
-</tbody>
-</table>
-<p>Note: The character-based commands have to be run in the <code>command mode</code>. If you are in the <code>edit mode</code>. Press <code>ESC</code> and then <code>a</code> to insert a new cell below.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

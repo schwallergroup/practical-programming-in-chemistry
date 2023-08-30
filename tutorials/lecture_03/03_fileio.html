@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Connecting to GitHub using SSH</title>
+<title>Practical programming in Chemistry – fileio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_01/04_next_steps.html" rel="next">
-<link href="../../tutorials/lecture_01/02_github.html" rel="prev">
+<link href="../../tutorials/lecture_03/04_errors.html" rel="next">
+<link href="../../tutorials/lecture_03/02_packages.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_01/03_ssh_connection.html">Tutorial: SSH Connection</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/03_fileio.html">File IO</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial: SSH Connection</span></a>
   </div>
 </li>
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">File IO</span></a>
   </div>
 </li>
@@ -238,14 +238,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-ssh" id="toc-introduction-to-ssh" class="nav-link active" data-scroll-target="#introduction-to-ssh">Introduction to SSH</a></li>
-  <li><a href="#step-by-step-guide-to-connect-to-github-via-ssh" id="toc-step-by-step-guide-to-connect-to-github-via-ssh" class="nav-link" data-scroll-target="#step-by-step-guide-to-connect-to-github-via-ssh">Step-by-Step Guide to Connect to GitHub via SSH</a>
+  <li><a href="#file-inputoutput-in-python" id="toc-file-inputoutput-in-python" class="nav-link active" data-scroll-target="#file-inputoutput-in-python">File Input/Output in Python</a>
   <ul class="collapse">
-  <li><a href="#checking-for-existing-ssh-keys" id="toc-checking-for-existing-ssh-keys" class="nav-link" data-scroll-target="#checking-for-existing-ssh-keys">Checking for Existing SSH Keys</a></li>
-  <li><a href="#generating-a-new-ssh-key" id="toc-generating-a-new-ssh-key" class="nav-link" data-scroll-target="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
-  <li><a href="#adding-your-ssh-key-to-the-ssh-agent" id="toc-adding-your-ssh-key-to-the-ssh-agent" class="nav-link" data-scroll-target="#adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</a></li>
-  <li><a href="#adding-ssh-key-to-your-github-account" id="toc-adding-ssh-key-to-your-github-account" class="nav-link" data-scroll-target="#adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</a></li>
-  <li><a href="#testing-your-ssh-connection" id="toc-testing-your-ssh-connection" class="nav-link" data-scroll-target="#testing-your-ssh-connection">Testing your SSH Connection</a></li>
+  <li><a href="#opening-a-file" id="toc-opening-a-file" class="nav-link" data-scroll-target="#opening-a-file">Opening a File</a></li>
+  <li><a href="#reading-from-a-file" id="toc-reading-from-a-file" class="nav-link" data-scroll-target="#reading-from-a-file">Reading From a File</a></li>
+  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file">Writing to a File</a></li>
+  </ul></li>
+  <li><a href="#the-with-statement-for-reading-and-writing-files" id="toc-the-with-statement-for-reading-and-writing-files" class="nav-link" data-scroll-target="#the-with-statement-for-reading-and-writing-files">The <code>with</code> Statement for Reading and Writing Files</a></li>
+  <li><a href="#file-io-exercises" id="toc-file-io-exercises" class="nav-link" data-scroll-target="#file-io-exercises">File IO Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -253,127 +259,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Connecting to GitHub using SSH</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="introduction-to-ssh" class="level1">
-<h1>Introduction to SSH</h1>
-<p>SSH stands for Secure Shell. It’s a protocol used to securely connect and interact with servers. When it comes to GitHub, using SSH keys can simplify the process of interacting with your repositories.</p>
-<p>Instead of entering your username and password every time you perform a Git operation, using SSH keys involves creating a pair of keys - a private key (kept secret on your machine) and a public key (added to your GitHub account). This pair forms a secure connection between your machine and GitHub without having to supply your username and password each time.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why should I do this? sounds complicated…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It will save you a lot of time, as you won’t have to type your username and password every single time you download a GitHub repository.</p>
-</div>
-</div>
+<section id="file-inputoutput-in-python" class="level1">
+<h1>File Input/Output in Python</h1>
+<p>Python allows you to read and write to files on your system, which is essential for many data analysis tasks.</p>
+<section id="opening-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="opening-a-file">Opening a File</h2>
+<p>To open a file in Python, we use the open function. The <code>open</code> function returns a file object and is most commonly used with two arguments: <code>open(filename, mode)</code>.</p>
+<ul>
+<li><p>The <code>filename</code> is the name (and the path if the file is not located in the same directory as the Python script) of the file you want to open.</p></li>
+<li><p>The <code>mode</code> argument is a string that defines which mode you want to open the file in:</p>
+<ul>
+<li><code>"r"</code>: read mode (default)</li>
+<li><code>"w"</code>: write mode, for overwriting the contents of a file</li>
+<li><code>"x"</code>: exclusive creation mode, for creating a new file and failing if it already exists</li>
+<li><code>"a"</code>: append mode, for appending data to an existing file</li>
+<li><code>"b"</code>: binary mode</li>
+<li><code>"t"</code>: text mode (default)</li>
+</ul></li>
+</ul>
+<p>Here’s an example of how to open a file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remember to always close the file after you’re done with it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="step-by-step-guide-to-connect-to-github-via-ssh" class="level1">
-<h1>Step-by-Step Guide to Connect to GitHub via SSH</h1>
-<section id="checking-for-existing-ssh-keys" class="level2">
-<h2 class="anchored" data-anchor-id="checking-for-existing-ssh-keys">Checking for Existing SSH Keys</h2>
-<p>Before we generate an SSH key, we need to check for existing ones.</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash from the menu (it was installed together with Git) and enter:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see files named <code>id_rsa.pub</code>, <code>id_ed25519.pub</code> or <code>id_ecdsa.pub</code> then you have existing keys. If you want to keep those and not override them, you can skip the next step.</p>
+<section id="reading-from-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="reading-from-a-file">Reading From a File</h2>
+<p>To read from a file, Python provides several methods:</p>
+<ul>
+<li><p><code>read()</code>: This reads the entire file.</p></li>
+<li><p><code>readline()</code>: This reads a file line by line.</p></li>
+<li><p><code>readlines()</code>: This reads all the lines and returns them as a list of strings.</p></li>
+</ul>
+<p>Here’s an example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"r"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">file</span>.read())  <span class="co"># prints the entire content of the file</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="generating-a-new-ssh-key" class="level2">
-<h2 class="anchored" data-anchor-id="generating-a-new-ssh-key">Generating a new SSH key</h2>
-<p>If you don’t have an existing SSH key or want to create a new one, here’s how you can do it:</p>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use the following command, replacing “your_email@example.com” with your GitHub email address:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use the same command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll be asked to enter a file in which to save the key, you can just press <code>Enter</code> to accept the default file location.</p>
-<p>Next, you’ll be asked to enter a secure passphrase. While it’s optional, it’s good practice to enter one for an added layer of security.</p>
-<p>The entire process would look something like this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ssh-keygen <span class="ex">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Generating <span class="ex">public/private</span> ed25519 key pair.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="fu">file</span> in which to save the key <span class="er">(</span><span class="ex">/Users/you/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span> [Press enter]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">passphrase</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span> [Type a passphrase]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Enter <span class="ex">same</span> passphrase again: [Type passphrase again]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Your SSH key pair is now generated!</p>
+<section id="writing-to-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="writing-to-a-file">Writing to a File</h2>
+<p>You can also write to a file using the <code>write()</code> method. Remember to open the file in write mode:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"w"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(<span class="st">"This is a new line"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note: Be careful when opening a file in write mode (<code>"w"</code>), as this will erase all previous contents of the file. If you want to add to the file without deleting its content, use append mode (<code>"a"</code>).</p>
 </section>
-<section id="adding-your-ssh-key-to-the-ssh-agent" class="level2">
-<h2 class="anchored" data-anchor-id="adding-your-ssh-key-to-the-ssh-agent">Adding Your SSH Key to the ssh-agent</h2>
-<p>Before adding a new SSH key to your GitHub account, we should add it to the ssh-agent software on your computer.</p>
-<ol type="1">
-<li>Start the ssh-agent in the background with the following command:</li>
-</ol>
-<p>On <strong>macOS/Linux</strong>, open Terminal and use:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, open Git Bash and use:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Next, add your SSH private key to the ssh-agent.</li>
-</ol>
-<p>If you used a custom name for your SSH key, replace <code>id_ed25519</code> accordingly, else:</p>
-<p>On <strong>macOS</strong> you can use the <code>ssh-add</code> command like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">-K</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows and Linux</strong> use:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="adding-ssh-key-to-your-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="adding-ssh-key-to-your-github-account">Adding SSH key to your GitHub Account</h2>
-<ol type="1">
-<li><p>Now you need to add the SSH key to your GitHub account. First, you need to copy the SSH key to your clipboard.</p>
-<p>On <strong>macOS/Linux</strong>, use the <code>pbcopy</code> command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On <strong>Windows</strong>, use the <code>clip</code> command:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clip</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Go to GitHub, click on your profile picture and then click on <strong>Settings</strong>.</p></li>
-<li><p>On the left side of the page, click on <strong>SSH and GPG keys</strong>.</p></li>
-<li><p>Click on the <strong>New SSH Key</strong> button.</p></li>
-<li><p>Give your key a title (it’s useful to use the name of your machine) and paste the key into the “Key” field. It should start with <code>ssh-ed25519</code> or <code>ssh-rsa</code>.</p></li>
-<li><p>Click the <strong>Add SSH Key</strong> button to complete the process.</p></li>
-</ol>
+<section id="the-with-statement-for-reading-and-writing-files" class="level1">
+<h1>The <code>with</code> Statement for Reading and Writing Files</h1>
+<p>The <code>with</code> statement in Python is a control flow structure which is often used for handling file input/output operations. This is known as context management and is part of the standard library.</p>
+<p>The advantage of using a <code>with</code> statement is that it always closes the file when it finishes running, even if an exception was raised in the block of code within the <code>with</code> statement. This ensures that the cleanup of resources (like closing files) is always done promptly and reliably.</p>
+<p>Here is how you use <code>with</code> to read a file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'chemicals.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example, <code>file</code> is the file object returned by <code>open()</code>. As soon as the program exits the <code>with</code> block, the <code>file.close()</code> method is automatically called. This makes <code>with</code> especially useful when working with I/O operations which may fail and cause errors; this way you make sure that <code>file.close()</code> is always called.</p>
+<p>The same applies to writing files:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'chemicals.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">'New line in file.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this case, the <code>with</code> statement ensures that the file is saved before the block of code is exited.</p>
+<p>This approach is not just more concise, but also much safer, since it ensures that the file is properly closed after it is no longer needed or if an error occurs during the operation.</p>
+<p>A common use would be reading data files in a chemistry project, processing them and writing the results back to a different file. The processing part could potentially cause an exception (division by zero, array out of bounds etc.). If an exception is thrown, the program will stop, but the <code>with</code> statement guarantees that all open files are properly closed, which avoids file corruption.</p>
 </section>
-<section id="testing-your-ssh-connection" class="level2">
-<h2 class="anchored" data-anchor-id="testing-your-ssh-connection">Testing your SSH Connection</h2>
-<p>Finally, to ensure that everything is set up correctly:</p>
-<ol type="1">
-<li>Open Terminal or Git Bash and enter the following command:</li>
-</ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>You’ll see a message like this:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'github.com (IP ADDRESS)'</span> can<span class="st">'t be established.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Type <code>yes</code>. Then, you’ll receive a message like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi</span> <span class="op">&lt;</span>your_GitHub_username<span class="op">&gt;</span>! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see the above message, you’ve successfully set up SSH authentication to GitHub. Now, you can use Git without having to enter your username and password every time for each operation.</p>
-<p>Great! Now you understand how to connect to GitHub using SSH on Windows, macOS, and Linux.</p>
-<p>Going forward, if you want to clone any repository from GitHub, use the SSH URL which starts with “git@github.com” instead of HTTPS.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:username/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With the SSH link, your machine will use the SSH key pair to authenticate with GitHub, so you won’t have to enter your username (or email) and password each time you perform any git operations like push or pull.</p>
-<p>Remember, if you have multiple GitHub accounts or if you use multiple machines, you will need to generate a unique ssh-key pair for each combination of GitHub account and machine. You can manage all your SSH keys within the settings of your GitHub account.</p>
-<p>Through SSH keys, you have established a secure connection between your machine and GitHub. This will significantly simplify your work-flow, especially when working on bigger projects.</p>
-<p>Also, make sure to keep your private key (<code>~/.ssh/id_ed25519</code> in our case) confidential and secure, don’t share it with anyone. Your public key (<code>~/.ssh/id_ed25519.pub</code> in our case) is the one you add to your GitHub account.</p>
+<section id="file-io-exercises" class="level1">
+<h1>File IO Exercises</h1>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>Create a new text file (using the <code>with</code> statement) named <code>compounds.txt</code> and write the names of five chemical compounds.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    compounds <span class="op">=</span> [<span class="st">'Water'</span>, <span class="st">'Methane'</span>, <span class="st">'Ammonia'</span>, <span class="st">'Hydrogen Peroxide'</span>, <span class="st">'Acetic Acid'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> compound <span class="kw">in</span> compounds:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(compound <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>Read the <code>compounds.txt</code> file, print its content line by line, and count the total number of lines.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line.strip())</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Number of compounds:"</span>, <span class="bu">len</span>(lines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+<p>Append three more chemical compounds to the <code>compounds.txt</code> file.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'a'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    compounds <span class="op">=</span> [<span class="st">'Carbon Dioxide'</span>, <span class="st">'Ethanol'</span>, <span class="st">'Glucose'</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> compound <span class="kw">in</span> compounds:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(compound <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<p>Open <code>compounds.txt</code> and a new file <code>reversed_compounds.txt</code>. Write the content of <code>compounds.txt</code> into <code>reversed_compounds.txt</code> in reverse order (last line first and first line last).</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> read_file:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> read_file.readlines()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'reversed_compounds.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> write_file:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">reversed</span>(lines):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        write_file.write(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<p>Create a new file <code>compounds_uppercase.txt</code> and write the names of all compounds from <code>compounds.txt</code> but in uppercase letters.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> read_file:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> read_file.readlines()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds_uppercase.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> write_file:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        write_file.write(line.upper())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -615,13 +615,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_01/02_github.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial: GitHub Basics</span>
+      <a href="../../tutorials/lecture_03/02_packages.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python packages</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_01/04_next_steps.html" class="pagination-link">
-        <span class="nav-page-text">Next steps: Fork and Code</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../tutorials/lecture_03/04_errors.html" class="pagination-link">
+        <span class="nav-page-text">Error handling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
