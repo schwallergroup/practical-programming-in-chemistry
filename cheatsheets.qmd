@@ -33,3 +33,27 @@ title: "Cheatsheets"
 | `git status` | Check the status of your local repository |
 | `git diff` | Show changes between your working directory and the last commit |
 | `git diff --staged` | Show changes between your staging area and the last commit |
+
+
+## Jupyter notebook
+
+
+| Command | Description |
+| --- | --- |
+| `Enter` | Enter into `edit mode` |
+| `Esc`   | Switch to `command mode` where you can navigate around your notebook with arrow keys |
+| `y` | Change the cell type to code |
+| `m` | Change the cell type to markdown  |
+| `a` | Insert a new cell above the current cell |
+| `b` | Insert a new cell below the current cell |
+| `x` | Cut the current cell |
+| `c` | Copy the current cell |
+| `v` | Paste the copied/cut cell  |
+| `dd` | Delete the current cell |
+| `z` | Undo the last cell operation |
+| `f` | Find and replace on your code but not the outputs |
+| `Shift + Enter` | Run the current cell and select the next cell |
+| `s` | Save the notebook |
+| `h` | Display the keyboard shortcuts help dialog |
+
+Note: The character-based commands have to be run in the `command mode`. If you are in the `edit mode`. Press `ESC` and then `a` to insert a new cell below. 

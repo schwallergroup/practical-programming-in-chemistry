@@ -138,6 +138,83 @@ ul.task-list li input[type="checkbox"] {
       <span class="sidebar-item-text sidebar-link text-start">
  <span class="menu-text">Lecture 02</span></span>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python iterations</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 03</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File IO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib and Seaborn</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
     </ul>
     </div>
 </nav>
@@ -150,6 +227,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#command-line" id="toc-command-line" class="nav-link active" data-scroll-target="#command-line">Command line</a></li>
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
+  <li><a href="#jupyter-notebook" id="toc-jupyter-notebook" class="nav-link" data-scroll-target="#jupyter-notebook">Jupyter notebook</a></li>
   </ul>
 </nav>
     </div>
@@ -306,6 +384,84 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="jupyter-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-notebook">Jupyter notebook</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Enter</code></td>
+<td>Enter into <code>edit mode</code></td>
+</tr>
+<tr class="even">
+<td><code>Esc</code></td>
+<td>Switch to <code>command mode</code> where you can navigate around your notebook with arrow keys</td>
+</tr>
+<tr class="odd">
+<td><code>y</code></td>
+<td>Change the cell type to code</td>
+</tr>
+<tr class="even">
+<td><code>m</code></td>
+<td>Change the cell type to markdown</td>
+</tr>
+<tr class="odd">
+<td><code>a</code></td>
+<td>Insert a new cell above the current cell</td>
+</tr>
+<tr class="even">
+<td><code>b</code></td>
+<td>Insert a new cell below the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>x</code></td>
+<td>Cut the current cell</td>
+</tr>
+<tr class="even">
+<td><code>c</code></td>
+<td>Copy the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>v</code></td>
+<td>Paste the copied/cut cell</td>
+</tr>
+<tr class="even">
+<td><code>dd</code></td>
+<td>Delete the current cell</td>
+</tr>
+<tr class="odd">
+<td><code>z</code></td>
+<td>Undo the last cell operation</td>
+</tr>
+<tr class="even">
+<td><code>f</code></td>
+<td>Find and replace on your code but not the outputs</td>
+</tr>
+<tr class="odd">
+<td><code>Shift + Enter</code></td>
+<td>Run the current cell and select the next cell</td>
+</tr>
+<tr class="even">
+<td><code>s</code></td>
+<td>Save the notebook</td>
+</tr>
+<tr class="odd">
+<td><code>h</code></td>
+<td>Display the keyboard shortcuts help dialog</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The character-based commands have to be run in the <code>command mode</code>. If you are in the <code>edit mode</code>. Press <code>ESC</code> and then <code>a</code> to insert a new cell below.</p>
 
 
 </section>

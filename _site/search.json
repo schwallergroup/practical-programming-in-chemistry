@@ -21,6 +21,209 @@
     "text": "GitHub\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit config --global user.name \"name\"\nSet your name in git configuration (only once)\n\n\ngit config --global user.email \"email\"\nSet your email in git configuration (only once)\n\n\ngit clone git@github.com:username/repository.git\nClone a GitHub repository to your local machine\n\n\ngit branch branch-name\nCreate a new branch\n\n\ngit checkout branch-name\nSwitch to another branch\n\n\ngit add .\nTrack all changes in directory\n\n\ngit commit -m \"commit message\"\nCommit your tracked changes\n\n\ngit push origin branch-name\nPush your local commits to the GitHub\n\n\ngit pull origin branch-name\nFetch the newest updates from the remote branch\n\n\ngit status\nCheck the status of your local repository\n\n\ngit diff\nShow changes between your working directory and the last commit\n\n\ngit diff --staged\nShow changes between your staging area and the last commit"
   },
   {
+    "objectID": "cheatsheets.html#jupyter-notebook",
+    "href": "cheatsheets.html#jupyter-notebook",
+    "title": "Cheatsheets",
+    "section": "Jupyter notebook",
+    "text": "Jupyter notebook\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\nEnter\nEnter into edit mode\n\n\nEsc\nSwitch to command mode where you can navigate around your notebook with arrow keys\n\n\ny\nChange the cell type to code\n\n\nm\nChange the cell type to markdown\n\n\na\nInsert a new cell above the current cell\n\n\nb\nInsert a new cell below the current cell\n\n\nx\nCut the current cell\n\n\nc\nCopy the current cell\n\n\nv\nPaste the copied/cut cell\n\n\ndd\nDelete the current cell\n\n\nz\nUndo the last cell operation\n\n\nf\nFind and replace on your code but not the outputs\n\n\nShift + Enter\nRun the current cell and select the next cell\n\n\ns\nSave the notebook\n\n\nh\nDisplay the keyboard shortcuts help dialog\n\n\n\nNote: The character-based commands have to be run in the command mode. If you are in the edit mode. Press ESC and then a to insert a new cell below."
+  },
+  {
+    "objectID": "tutorials/lecture_03/01_functions.html",
+    "href": "tutorials/lecture_03/01_functions.html",
+    "title": "Functions in Python",
+    "section": "",
+    "text": "Functions in Python are blocks of reusable code that carry out a specific task. When working on larger scale projects, functions provide better modularity for your application and a high degree of code reusing.\nPython has many built-in functions like print(), input(), len(), etc, but you can also create your own functions. These functions are called user-defined functions.\n\n\nYou can define your own function in Python using the keyword def.\nHere’s a simple example of a function that calculates the square of a number:\ndef square(number):\n    sq = number ** 2\n    return sq\nIn this code, square is the function name, number is the input parameter to the function, the operator ** is used to calculate the square of a number and return is the keyword used to output a value from the function.\n\n\n\nTo call a function, you simply need to provide the function name followed by parentheses with required parameters, if any.\nprint(square(6)) #Output: 36\n\n\n\nYou can pass data, known as parameters, into a function. A function can accept any number and type of parameters.\nLet’s create a function that greet a user:\ndef greet(name):\n    print(\"Hello, \" + name + \". Good Morning!\")\nNow we can call this function and pass a name as the argument:\ngreet('Alice') #Output: Hello, Alice. Good Morning!\n\n\n\nYou can set a default parameter value for a function. If we call the function without argument, it uses the default value.\ndef greet(name = \"User\"):\n    print(\"Hello, \" + name + \". Good Morning!\") \n\ngreet() #Output: Hello, User. Good Morning!\nIn the context of chemistry, we can wrap a series of calculations within a function. For example, a chemist may often need to calculate the molar mass for different substances. This can be done using a function:\n# Function to calculate molar mass of hydrocarbons\ndef calculate_molar_mass(hydrogen, carbon):\n    H = 1.008  # molar mass of Hydrogen\n    C = 12.01  # molar mass of Carbon\n    return (H*hydrogen + C*carbon)\n\n# Now calculate molar mass of Methane (CH4)\nprint(calculate_molar_mass(4, 1))  #Output: 16.042\nThis way, chemists can create their own library of useful functions to perform various calculations related to their work, increasing efficiency and reducing the chance of errors in their calculations.\n\n\nLet’s go through more examples of functions, this time keeping our examples more chemistry oriented.\n\n\nSay you routinely need to calculate the number of moles in a sample given its mass and molar mass. We can make a function to do exactly this:\n# Function to calculate amount of substance\ndef calculate_moles(mass, molar_mass):\n    return mass / molar_mass\n\n# Now calculate the moles in a 22g sample of Carbon (C = 12.01 g/mol)\nprint(calculate_moles(22, 12.01)) \n\n\n\nIf you often perform dilutions, you might want a function to quickly calculate the final concentration after dilution:\n# Function to calculate final concentration after dilution\ndef dilute(C1, V1, V2):\n    return (C1 * V1) / V2\n\n# Now calculate the concentration after dilution\nprint(dilute(0.5, 5, 10))  \n\n\n\n\n\nWrite a function to calculate the pH of a solution given the concentration of H+ ions.\nWrite a function that returns the concentration of OH- ions given the concentration of H+ ions.\nWrite a function to calculate the final pressure of a gas given initial pressure, volume and temperature, and final volume and temperature (use ideal gas law).\nWrite a function that calculates and returns the molar mass of a hydrocarbon given numbers of H, C and O atoms.\nWrite a function that calculates mass percent of an element in a compound given the molar mass of the element and the compound.\n\n\n\n\nSolution 1:\nimport math\n\ndef calculate_pH(H_concentration):\n    return -math.log10(H_concentration)\n\nprint(calculate_pH(0.0001))  \nSolution 2:\ndef calculate_OH_concentration(H_concentration):\n    Kw = 1.0e-14\n    return Kw / H_concentration\n\nprint(calculate_pH(0.0001))   \nSolution 3:\ndef calculate_final_pressure(P1, V1, T1, V2, T2):\n    return (P1 * V1 / T1) * (T2 / V2)\n\nprint(calculate_final_pressure(2, 10, 300, 5, 300))  \nSolution 4:\ndef calculate_molar_mass(hydrogen, carbon, oxygen):\n    H = 1.008  \n    C = 12.01 \n    O = 16.00 \n    return (H*hydrogen + C*carbon + O*oxygen)\n\nprint(calculate_molar_mass(4, 2, 2)) \nSolution 5:\ndef calculate_mass_percent(element_molar_mass, compound_molar_mass):\n    return (element_molar_mass / compound_molar_mass) * 100\n\nprint(calculate_mass_percent(12.01, 18.015)) \nThat’s it! By writing and using your own functions, your code becomes more readable and reusable."
+  },
+  {
+    "objectID": "tutorials/lecture_03/01_functions.html#defining-a-function",
+    "href": "tutorials/lecture_03/01_functions.html#defining-a-function",
+    "title": "Functions in Python",
+    "section": "",
+    "text": "You can define your own function in Python using the keyword def.\nHere’s a simple example of a function that calculates the square of a number:\ndef square(number):\n    sq = number ** 2\n    return sq\nIn this code, square is the function name, number is the input parameter to the function, the operator ** is used to calculate the square of a number and return is the keyword used to output a value from the function."
+  },
+  {
+    "objectID": "tutorials/lecture_03/01_functions.html#calling-a-function",
+    "href": "tutorials/lecture_03/01_functions.html#calling-a-function",
+    "title": "Functions in Python",
+    "section": "",
+    "text": "To call a function, you simply need to provide the function name followed by parentheses with required parameters, if any.\nprint(square(6)) #Output: 36"
+  },
+  {
+    "objectID": "tutorials/lecture_03/01_functions.html#function-parameters",
+    "href": "tutorials/lecture_03/01_functions.html#function-parameters",
+    "title": "Functions in Python",
+    "section": "",
+    "text": "You can pass data, known as parameters, into a function. A function can accept any number and type of parameters.\nLet’s create a function that greet a user:\ndef greet(name):\n    print(\"Hello, \" + name + \". Good Morning!\")\nNow we can call this function and pass a name as the argument:\ngreet('Alice') #Output: Hello, Alice. Good Morning!"
+  },
+  {
+    "objectID": "tutorials/lecture_03/01_functions.html#using-default-parameter-value",
+    "href": "tutorials/lecture_03/01_functions.html#using-default-parameter-value",
+    "title": "Functions in Python",
+    "section": "",
+    "text": "You can set a default parameter value for a function. If we call the function without argument, it uses the default value.\ndef greet(name = \"User\"):\n    print(\"Hello, \" + name + \". Good Morning!\") \n\ngreet() #Output: Hello, User. Good Morning!\nIn the context of chemistry, we can wrap a series of calculations within a function. For example, a chemist may often need to calculate the molar mass for different substances. This can be done using a function:\n# Function to calculate molar mass of hydrocarbons\ndef calculate_molar_mass(hydrogen, carbon):\n    H = 1.008  # molar mass of Hydrogen\n    C = 12.01  # molar mass of Carbon\n    return (H*hydrogen + C*carbon)\n\n# Now calculate molar mass of Methane (CH4)\nprint(calculate_molar_mass(4, 1))  #Output: 16.042\nThis way, chemists can create their own library of useful functions to perform various calculations related to their work, increasing efficiency and reducing the chance of errors in their calculations.\n\n\nLet’s go through more examples of functions, this time keeping our examples more chemistry oriented.\n\n\nSay you routinely need to calculate the number of moles in a sample given its mass and molar mass. We can make a function to do exactly this:\n# Function to calculate amount of substance\ndef calculate_moles(mass, molar_mass):\n    return mass / molar_mass\n\n# Now calculate the moles in a 22g sample of Carbon (C = 12.01 g/mol)\nprint(calculate_moles(22, 12.01)) \n\n\n\nIf you often perform dilutions, you might want a function to quickly calculate the final concentration after dilution:\n# Function to calculate final concentration after dilution\ndef dilute(C1, V1, V2):\n    return (C1 * V1) / V2\n\n# Now calculate the concentration after dilution\nprint(dilute(0.5, 5, 10))  \n\n\n\n\n\nWrite a function to calculate the pH of a solution given the concentration of H+ ions.\nWrite a function that returns the concentration of OH- ions given the concentration of H+ ions.\nWrite a function to calculate the final pressure of a gas given initial pressure, volume and temperature, and final volume and temperature (use ideal gas law).\nWrite a function that calculates and returns the molar mass of a hydrocarbon given numbers of H, C and O atoms.\nWrite a function that calculates mass percent of an element in a compound given the molar mass of the element and the compound.\n\n\n\n\nSolution 1:\nimport math\n\ndef calculate_pH(H_concentration):\n    return -math.log10(H_concentration)\n\nprint(calculate_pH(0.0001))  \nSolution 2:\ndef calculate_OH_concentration(H_concentration):\n    Kw = 1.0e-14\n    return Kw / H_concentration\n\nprint(calculate_pH(0.0001))   \nSolution 3:\ndef calculate_final_pressure(P1, V1, T1, V2, T2):\n    return (P1 * V1 / T1) * (T2 / V2)\n\nprint(calculate_final_pressure(2, 10, 300, 5, 300))  \nSolution 4:\ndef calculate_molar_mass(hydrogen, carbon, oxygen):\n    H = 1.008  \n    C = 12.01 \n    O = 16.00 \n    return (H*hydrogen + C*carbon + O*oxygen)\n\nprint(calculate_molar_mass(4, 2, 2)) \nSolution 5:\ndef calculate_mass_percent(element_molar_mass, compound_molar_mass):\n    return (element_molar_mass / compound_molar_mass) * 100\n\nprint(calculate_mass_percent(12.01, 18.015)) \nThat’s it! By writing and using your own functions, your code becomes more readable and reusable."
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html",
+    "href": "tutorials/lecture_03/02_classes.html",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "Classes are a key part of object-oriented programming in Python. They allow us to create objects that bundle both data and functionalities together. For chemists, using classes can streamline simulations, data analysis, and modeling of chemical processes by encapsulating related properties and methods into a single, coherent unit.\nA class in Python is like a blueprint for creating objects. An object has attributes (characteristics it possesses) and methods (actions it can perform).\n\n\nTo define a class in Python, you use the class keyword. Here’s an example of a simple class, Molecule, that could represent a chemical molecule:\nclass Molecule:\n    def __init__(self, chemical_formula, molar_mass):\n        self.chemical_formula = chemical_formula\n        self.molar_mass = molar_mass\n\n    def display_info(self):\n        print(f\"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol\")\nIn this class:\n\n__init__ is a special method called a constructor, which initializes new objects as instances of the class.\nself represents the instance of the class and allows access to its attributes and methods.\nchemical_formula and molar_mass are attributes.\ndisplay_info is a method that prints information about the molecule.\n\n\n\n\nTo create an object (an instance of a class), you simply call the class using its constructor and pass the required arguments, if any:\nwater = Molecule(\"H2O\", 18.015) # calls the __init__ method, with the two attributes\nwater.display_info()  # Output: Chemical Formula: H2O, Molar Mass: 18.015 g/mol\n\n\n\nLet’s explore how you can use classes in chemistry-related applications. We’ll create a class for handling reactions.\n\n\nThis class could encapsulate properties like reactants, products, and the stoichiometry of a chemical reaction, and methods for calculating reactant or product masses, or even equilibrium constants.\nclass Reaction:\n    def __init__(self, reactants, products):\n        self.reactants = reactants  # Expecting a list of Molecule objects\n        self.products = products    # Same here\n\n    def display_reaction(self):\n        reactant_str = \" + \".join([r.chemical_formula for r in self.reactants])\n        product_str = \" + \".join([p.chemical_formula for p in self.products])\n        print(f\"{reactant_str} -&gt; {product_str}\")\n\n\n\n\n\nExtend the Molecule class to include methods for calculating the number of moles given a mass, and vice versa, using the molar mass.\nCreate a Solution class that represents a chemical solution, including attributes for solvent, solute, concentration, and volume. Include methods for diluting the solution and calculating the mass of solute.\nImplement a Gas class that models an ideal gas, with methods to calculate pressure, volume, and temperature changes based on the ideal gas law.\n\nBy using classes, you can create more structured, modular, and reusable code. Classes allow you to encapsulate data and functionality in a way that models real-world objects or concepts, making your Python scripts for chemical analysis, simulation, or any other purpose more intuitive and maintainable.\n\n\n\n\n\nWe’ll add methods to the Molecule class for calculating the number of moles given a mass and vice versa.\nclass Molecule:\n    def __init__(self, chemical_formula, molar_mass):\n        self.chemical_formula = chemical_formula\n        self.molar_mass = molar_mass\n\n    def display_info(self):\n        print(f\"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol\")\n    \n    def calculate_moles(self, mass):\n        return mass / self.molar_mass\n\n    def calculate_mass(self, moles):\n        return moles * self.molar_mass\n\n\n\nThis class will represent a chemical solution, including attributes for the solvent, solute (as Molecule objects), concentration, and volume. It will also include methods for diluting the solution and calculating the mass of the solute.\nclass Solution:\n    def __init__(self, solute, solvent, concentration, volume):\n        self.solute = solute\n        self.solvent = solvent\n        self.concentration = concentration  # mol/L\n        self.volume = volume  # L\n\n    def dilute(self, final_volume):\n        # Assuming volume is added, not replaced\n        self.concentration *= (self.volume / final_volume)\n        self.volume = final_volume\n\n    def calculate_mass_of_solute(self):\n        # Mass = moles * molar mass\n        moles = self.concentration * self.volume\n        return self.solute.calculate_mass(moles)\n\n\n\nThis class will model an ideal gas, with methods to calculate changes in pressure, volume, and temperature based on the ideal gas law \\(PV=nRT\\).\nclass Gas:\n    R = 0.0821  # Ideal gas constant, L atm / (mol K)\n\n    def __init__(self, pressure, volume, temperature):\n        self.pressure = pressure  # atm\n        self.volume = volume  # L\n        self.temperature = temperature  # K\n\n    def calculate_pressure(self, n, V=None, T=None):\n        V = V if V is not None else self.volume\n        T = T if T is not None else self.temperature\n        self.pressure = (n * Gas.R * T) / V\n        return self.pressure\n\n    def calculate_volume(self, n, P=None, T=None):\n        P = P if P is not None else self.pressure\n        T = T if T is not None else self.temperature\n        self.volume = (n * Gas.R * T) / P\n        return self.volume\n\n    def calculate_temperature(self, n, P=None, V=None):\n        P = P if P is not None else self.pressure\n        V = V if V is not None else self.volume\n        self.temperature = (P * V) / (n * Gas.R)\n        return self.temperature\nThese solutions provide a foundation for creating chemistry-oriented applications with Python. They demonstrate how to encapsulate related data and functionalities within classes, making your code more modular, readable, and reusable. Feel free to expand on these examples or adapt them to your specific needs in chemical computations and simulations.\n\n\n\n\nObject-oriented programming (OOP) is a programming paradigm that uses “objects” to design applications and computer programs. It provides a clear modular structure for programs which makes it good for defining abstract data types, implementing real-world scenarios, and for code reusability. Here’s a breakdown of the core concepts in OOP to help you better understand this approach:\nClasses: Think of a class as a blueprint or template for creating objects. A class defines a set of properties and methods that are common to all objects of that type. For example, in a chemistry application, you might have a Molecule class that defines properties like chemical formula and molar mass, and methods to perform operations like calculating moles from mass.\nObjects: An object is an instance of a class. It has the properties and can perform the actions defined by its class. Using the Molecule example, if you create an instance of the Molecule class for water, that instance represents the water molecule, with its own specific chemical formula (H2O) and molar mass (18.015 g/mol).\nEncapsulation is the bundling of data (attributes) and methods that operate on the data into a single unit, or class. It also means restricting access to some of a class’s components, which is a way of preventing accidental interference and misuse of the data. For instance, in the Molecule class, the molar mass is stored as an attribute, and the methods to calculate moles or mass from it are encapsulated within the class.\nInheritance allows a class (the child class) to inherit attributes and methods from another class (the parent class). This is useful for creating a general class with broad features, then creating more specific classes that add additional features or override existing ones. For example, you might have a general ChemicalSubstance class that provides basic properties and methods for any substance, and a Molecule class that inherits from it and adds more specific features like bonding information.\nPolymorphism allows objects of different classes to be treated as objects of a common superclass. It is the ability for different classes to be used interchangeably, if they inherit from the same parent class, but still have their own unique behavior for the methods they inherit or define. For example, you might have a method that calculates the reaction rate (calculate_reaction_rate), which could apply to any ChemicalReaction object, whether it’s a FirstOrderReaction or a SecondOrderReaction, each implementing its own version of the calculation.\nclass ChemicalReaction:\n    def __init__(self, reactants, products, rate_constant):\n        self.reactants = reactants\n        self.products = products\n        self.rate_constant = rate_constant  # Rate constant as a fundamental property\n    \n    def calculate_reaction_rate(self, conditions):\n        # Implementation depends on subclass\n        raise NotImplementedError(\"Subclass must implement abstract method\")\n\nclass FirstOrderReaction(ChemicalReaction):\n    def calculate_reaction_rate(self, concentration):\n        return self.rate_constant * concentration\n\n\nclass SecondOrderReaction(ChemicalReaction):\n    def calculate_reaction_rate(self, conditions):\n        concentration1 = conditions['concentration1']  # Concentration of the first reactant\n        concentration2 = conditions['concentration2']  # Concentration of the second reactant\n        return self.rate_constant * concentration1 * concentration2\nThis code could then be used as follows:\nfirst_order = FirstOrderReaction([\"A\"], [\"B\"], 0.5)\nsecond_order = SecondOrderReaction([\"A\", \"B\"], [\"C\"], 0.01)\n\nreaction_conditions_first_order = {'concentration': 0.1}\nreaction_conditions_second_order = {'concentration1': 0.1, 'concentration2': 0.2}\n\nprint(first_order.calculate_reaction_rate(reaction_conditions_first_order))\nprint(second_order.calculate_reaction_rate(reaction_conditions_second_order))\nAbstraction involves hiding the complex reality while exposing only the necessary parts. It means representing essential features without including the background details or explanations. Classes use the concept of abstraction by only showing the essential attributes and methods to the outside world while hiding the internal implementation details.\n\n\nIn practice, OOP can make your code more modular, flexible, and intuitive to understand. By organizing code into classes and objects, you can model real-world entities more directly, manage complexity by abstracting details, and reuse code more effectively through inheritance.\nFor chemists or scientists, OOP is particularly powerful for simulating complex systems, managing experimental data, and processing chemical information, because it aligns with the way scientists think about the world: a collection of objects (molecules, reactions, experiments) that interact with each other."
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#defining-a-class",
+    "href": "tutorials/lecture_03/02_classes.html#defining-a-class",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "To define a class in Python, you use the class keyword. Here’s an example of a simple class, Molecule, that could represent a chemical molecule:\nclass Molecule:\n    def __init__(self, chemical_formula, molar_mass):\n        self.chemical_formula = chemical_formula\n        self.molar_mass = molar_mass\n\n    def display_info(self):\n        print(f\"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol\")\nIn this class:\n\n__init__ is a special method called a constructor, which initializes new objects as instances of the class.\nself represents the instance of the class and allows access to its attributes and methods.\nchemical_formula and molar_mass are attributes.\ndisplay_info is a method that prints information about the molecule."
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#creating-an-object",
+    "href": "tutorials/lecture_03/02_classes.html#creating-an-object",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "To create an object (an instance of a class), you simply call the class using its constructor and pass the required arguments, if any:\nwater = Molecule(\"H2O\", 18.015) # calls the __init__ method, with the two attributes\nwater.display_info()  # Output: Chemical Formula: H2O, Molar Mass: 18.015 g/mol"
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#using-classes-for-chemistry-applications",
+    "href": "tutorials/lecture_03/02_classes.html#using-classes-for-chemistry-applications",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "Let’s explore how you can use classes in chemistry-related applications. We’ll create a class for handling reactions.\n\n\nThis class could encapsulate properties like reactants, products, and the stoichiometry of a chemical reaction, and methods for calculating reactant or product masses, or even equilibrium constants.\nclass Reaction:\n    def __init__(self, reactants, products):\n        self.reactants = reactants  # Expecting a list of Molecule objects\n        self.products = products    # Same here\n\n    def display_reaction(self):\n        reactant_str = \" + \".join([r.chemical_formula for r in self.reactants])\n        product_str = \" + \".join([p.chemical_formula for p in self.products])\n        print(f\"{reactant_str} -&gt; {product_str}\")"
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#exercises",
+    "href": "tutorials/lecture_03/02_classes.html#exercises",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "Extend the Molecule class to include methods for calculating the number of moles given a mass, and vice versa, using the molar mass.\nCreate a Solution class that represents a chemical solution, including attributes for solvent, solute, concentration, and volume. Include methods for diluting the solution and calculating the mass of solute.\nImplement a Gas class that models an ideal gas, with methods to calculate pressure, volume, and temperature changes based on the ideal gas law.\n\nBy using classes, you can create more structured, modular, and reusable code. Classes allow you to encapsulate data and functionality in a way that models real-world objects or concepts, making your Python scripts for chemical analysis, simulation, or any other purpose more intuitive and maintainable."
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#solutions",
+    "href": "tutorials/lecture_03/02_classes.html#solutions",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "We’ll add methods to the Molecule class for calculating the number of moles given a mass and vice versa.\nclass Molecule:\n    def __init__(self, chemical_formula, molar_mass):\n        self.chemical_formula = chemical_formula\n        self.molar_mass = molar_mass\n\n    def display_info(self):\n        print(f\"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol\")\n    \n    def calculate_moles(self, mass):\n        return mass / self.molar_mass\n\n    def calculate_mass(self, moles):\n        return moles * self.molar_mass\n\n\n\nThis class will represent a chemical solution, including attributes for the solvent, solute (as Molecule objects), concentration, and volume. It will also include methods for diluting the solution and calculating the mass of the solute.\nclass Solution:\n    def __init__(self, solute, solvent, concentration, volume):\n        self.solute = solute\n        self.solvent = solvent\n        self.concentration = concentration  # mol/L\n        self.volume = volume  # L\n\n    def dilute(self, final_volume):\n        # Assuming volume is added, not replaced\n        self.concentration *= (self.volume / final_volume)\n        self.volume = final_volume\n\n    def calculate_mass_of_solute(self):\n        # Mass = moles * molar mass\n        moles = self.concentration * self.volume\n        return self.solute.calculate_mass(moles)\n\n\n\nThis class will model an ideal gas, with methods to calculate changes in pressure, volume, and temperature based on the ideal gas law \\(PV=nRT\\).\nclass Gas:\n    R = 0.0821  # Ideal gas constant, L atm / (mol K)\n\n    def __init__(self, pressure, volume, temperature):\n        self.pressure = pressure  # atm\n        self.volume = volume  # L\n        self.temperature = temperature  # K\n\n    def calculate_pressure(self, n, V=None, T=None):\n        V = V if V is not None else self.volume\n        T = T if T is not None else self.temperature\n        self.pressure = (n * Gas.R * T) / V\n        return self.pressure\n\n    def calculate_volume(self, n, P=None, T=None):\n        P = P if P is not None else self.pressure\n        T = T if T is not None else self.temperature\n        self.volume = (n * Gas.R * T) / P\n        return self.volume\n\n    def calculate_temperature(self, n, P=None, V=None):\n        P = P if P is not None else self.pressure\n        V = V if V is not None else self.volume\n        self.temperature = (P * V) / (n * Gas.R)\n        return self.temperature\nThese solutions provide a foundation for creating chemistry-oriented applications with Python. They demonstrate how to encapsulate related data and functionalities within classes, making your code more modular, readable, and reusable. Feel free to expand on these examples or adapt them to your specific needs in chemical computations and simulations."
+  },
+  {
+    "objectID": "tutorials/lecture_03/02_classes.html#advanced-more-on-object-oriented-programming",
+    "href": "tutorials/lecture_03/02_classes.html#advanced-more-on-object-oriented-programming",
+    "title": "Understanding Classes in Python",
+    "section": "",
+    "text": "Object-oriented programming (OOP) is a programming paradigm that uses “objects” to design applications and computer programs. It provides a clear modular structure for programs which makes it good for defining abstract data types, implementing real-world scenarios, and for code reusability. Here’s a breakdown of the core concepts in OOP to help you better understand this approach:\nClasses: Think of a class as a blueprint or template for creating objects. A class defines a set of properties and methods that are common to all objects of that type. For example, in a chemistry application, you might have a Molecule class that defines properties like chemical formula and molar mass, and methods to perform operations like calculating moles from mass.\nObjects: An object is an instance of a class. It has the properties and can perform the actions defined by its class. Using the Molecule example, if you create an instance of the Molecule class for water, that instance represents the water molecule, with its own specific chemical formula (H2O) and molar mass (18.015 g/mol).\nEncapsulation is the bundling of data (attributes) and methods that operate on the data into a single unit, or class. It also means restricting access to some of a class’s components, which is a way of preventing accidental interference and misuse of the data. For instance, in the Molecule class, the molar mass is stored as an attribute, and the methods to calculate moles or mass from it are encapsulated within the class.\nInheritance allows a class (the child class) to inherit attributes and methods from another class (the parent class). This is useful for creating a general class with broad features, then creating more specific classes that add additional features or override existing ones. For example, you might have a general ChemicalSubstance class that provides basic properties and methods for any substance, and a Molecule class that inherits from it and adds more specific features like bonding information.\nPolymorphism allows objects of different classes to be treated as objects of a common superclass. It is the ability for different classes to be used interchangeably, if they inherit from the same parent class, but still have their own unique behavior for the methods they inherit or define. For example, you might have a method that calculates the reaction rate (calculate_reaction_rate), which could apply to any ChemicalReaction object, whether it’s a FirstOrderReaction or a SecondOrderReaction, each implementing its own version of the calculation.\nclass ChemicalReaction:\n    def __init__(self, reactants, products, rate_constant):\n        self.reactants = reactants\n        self.products = products\n        self.rate_constant = rate_constant  # Rate constant as a fundamental property\n    \n    def calculate_reaction_rate(self, conditions):\n        # Implementation depends on subclass\n        raise NotImplementedError(\"Subclass must implement abstract method\")\n\nclass FirstOrderReaction(ChemicalReaction):\n    def calculate_reaction_rate(self, concentration):\n        return self.rate_constant * concentration\n\n\nclass SecondOrderReaction(ChemicalReaction):\n    def calculate_reaction_rate(self, conditions):\n        concentration1 = conditions['concentration1']  # Concentration of the first reactant\n        concentration2 = conditions['concentration2']  # Concentration of the second reactant\n        return self.rate_constant * concentration1 * concentration2\nThis code could then be used as follows:\nfirst_order = FirstOrderReaction([\"A\"], [\"B\"], 0.5)\nsecond_order = SecondOrderReaction([\"A\", \"B\"], [\"C\"], 0.01)\n\nreaction_conditions_first_order = {'concentration': 0.1}\nreaction_conditions_second_order = {'concentration1': 0.1, 'concentration2': 0.2}\n\nprint(first_order.calculate_reaction_rate(reaction_conditions_first_order))\nprint(second_order.calculate_reaction_rate(reaction_conditions_second_order))\nAbstraction involves hiding the complex reality while exposing only the necessary parts. It means representing essential features without including the background details or explanations. Classes use the concept of abstraction by only showing the essential attributes and methods to the outside world while hiding the internal implementation details.\n\n\nIn practice, OOP can make your code more modular, flexible, and intuitive to understand. By organizing code into classes and objects, you can model real-world entities more directly, manage complexity by abstracting details, and reuse code more effectively through inheritance.\nFor chemists or scientists, OOP is particularly powerful for simulating complex systems, managing experimental data, and processing chemical information, because it aligns with the way scientists think about the world: a collection of objects (molecules, reactions, experiments) that interact with each other."
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html",
+    "href": "tutorials/lecture_04/01_pandas.html",
+    "title": "Pandas",
+    "section": "",
+    "text": "Pandas is a powerful library for data manipulation and analysis in Python, making it a valuable tool for chemists looking to process experimental data, chemical properties, or any structured data related to their research.\nIt’s like the Excel in Python.\n\n\nFirst, ensure you are in a conda environment. You can then install Pandas and Numpy using pip:\npip install pandas numpy\nor\npip install pandas\npip install numpy\n\n\n\nStart your Python script or Jupyter notebook by importing Pandas and Numpy:\nimport pandas as pd\nimport numpy as np\n\n\n\nA DataFrame is a two-dimensional, size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). For a chemistry application, let’s consider a simple example where we have a dataset of several compounds with their molecular weights and melting points.\ndata = {\n    \"Compound\": [\"Water\", \"Ethanol\", \"Glucose\", \"Sodium Chloride\", \"Methane\"],\n    \"Molecular Weight\": [18.015, 46.07, 180.16, 58.44, 16.04],\n    \"Melting Point (°C)\": [0, -114.1, 146, 801, -182.5]\n}\ndf = pd.DataFrame(data)\n\n\n\nPandas provides numerous functions to quickly inspect your data:\n\ndf.head() displays the first few rows of the DataFrame.\ndf.describe() gives a statistical summary of the numerical columns.\ndf.dtypes shows the data type of each column.\n\n\n\n\nYou can access specific columns using their labels:\nmw = df[\"Molecular Weight\"]\nOr use conditions to filter data:\nsolids = df[df[\"Melting Point (°C)\"] &gt; 25]\n\n\n\nPandas supports various operations that can be useful in chemistry, such as calculating the mean, median, or applying more complex functions:\naverage_mw = df[\"Molecular Weight\"].mean()\nYou can also apply functions to transform data, such as converting temperatures:\ndf[\"Melting Point (°F)\"] = df[\"Melting Point (°C)\"].apply(lambda x: x * 9/5 + 32)"
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#setting-up-your-environment",
+    "href": "tutorials/lecture_04/01_pandas.html#setting-up-your-environment",
+    "title": "Pandas",
+    "section": "",
+    "text": "First, ensure you are in a conda environment. You can then install Pandas and Numpy using pip:\npip install pandas numpy\nor\npip install pandas\npip install numpy"
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#importing-libraries",
+    "href": "tutorials/lecture_04/01_pandas.html#importing-libraries",
+    "title": "Pandas",
+    "section": "",
+    "text": "Start your Python script or Jupyter notebook by importing Pandas and Numpy:\nimport pandas as pd\nimport numpy as np"
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#creating-a-dataframe",
+    "href": "tutorials/lecture_04/01_pandas.html#creating-a-dataframe",
+    "title": "Pandas",
+    "section": "",
+    "text": "A DataFrame is a two-dimensional, size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). For a chemistry application, let’s consider a simple example where we have a dataset of several compounds with their molecular weights and melting points.\ndata = {\n    \"Compound\": [\"Water\", \"Ethanol\", \"Glucose\", \"Sodium Chloride\", \"Methane\"],\n    \"Molecular Weight\": [18.015, 46.07, 180.16, 58.44, 16.04],\n    \"Melting Point (°C)\": [0, -114.1, 146, 801, -182.5]\n}\ndf = pd.DataFrame(data)"
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#basic-data-inspection",
+    "href": "tutorials/lecture_04/01_pandas.html#basic-data-inspection",
+    "title": "Pandas",
+    "section": "",
+    "text": "Pandas provides numerous functions to quickly inspect your data:\n\ndf.head() displays the first few rows of the DataFrame.\ndf.describe() gives a statistical summary of the numerical columns.\ndf.dtypes shows the data type of each column."
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#accessing-data",
+    "href": "tutorials/lecture_04/01_pandas.html#accessing-data",
+    "title": "Pandas",
+    "section": "",
+    "text": "You can access specific columns using their labels:\nmw = df[\"Molecular Weight\"]\nOr use conditions to filter data:\nsolids = df[df[\"Melting Point (°C)\"] &gt; 25]"
+  },
+  {
+    "objectID": "tutorials/lecture_04/01_pandas.html#operations",
+    "href": "tutorials/lecture_04/01_pandas.html#operations",
+    "title": "Pandas",
+    "section": "",
+    "text": "Pandas supports various operations that can be useful in chemistry, such as calculating the mean, median, or applying more complex functions:\naverage_mw = df[\"Molecular Weight\"].mean()\nYou can also apply functions to transform data, such as converting temperatures:\ndf[\"Melting Point (°F)\"] = df[\"Melting Point (°C)\"].apply(lambda x: x * 9/5 + 32)"
+  },
+  {
+    "objectID": "tutorials/lecture_02/04_python_iterations.html",
+    "href": "tutorials/lecture_02/04_python_iterations.html",
+    "title": "Iterations and List Comprehensions in Python",
+    "section": "",
+    "text": "Iterations and List Comprehensions in Python\nIterations play a crucial role in Python, allowing us to execute code repeatedly which can save a significant amount of time and effort. In Python, the most common forms of iteration are for and while loops. However, Python offers an even more concise and readable way to perform iterations, especially on lists — this is through list comprehensions. A list comprehension consists of brackets containing an expression followed by a for statement, and possible if clauses. It provides a neat way to take an existing list, perform an operation on each element, and return the results in a new list. It is a very Pythonic way to generate or transform lists in a single line of code.\n\n\nIterations in Python\nIn Python, “iteration” means executing the same block of code over and over, potentially many times. Structures used for iteration are “loops”. Python provides two basic types of loop - for loop and while loop.\n\nFor Loop\nA for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string). Each item in the sequence is assigned to the iteration variable, and the statement(s) are executed until the entire sequence is processed.\nHere is an example of a for loop that iterates over a list of elements:\nlist_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']\n\nfor element in list_of_elements:\n    print(element)\nFor each iteration, the value of element will be updated to the next value in the list. So, the print() function will print each element from the list.\n\n\nWhile Loop\nA while loop repeatedly tests an expression (the loop condition), and keeps executing the loop body while the expression is True. Here is an example of a while loop:\ntemperature = 25\n\nwhile temperature &gt; 20:\n    print(\"The reaction is too fast!\")\n    temperature = temperature - 1\nThe loop will continue to print “The reaction is too fast!” and subtract 1 from the temperature, as long as the temperature is strictly greater than 20.\n\n\nLoop Control Statements\nLoop control statements change the execution of a loop from its normal sequence. Python provides the following loop control statements:\n\nbreak statement: Terminates the loop and transfers execution to the statement immediately following the loop.\ncontinue statement: Causes the loop to skip the rest of its body for this iteration and immediately retest its condition prior to reiterating.\n\n\n\nExercises\n\nUsing a for loop, print the atomic number for each element in your list of five elements from the previous exercise.\nUsing a while loop, keep dividing a pressure of 100 atm by 2 until it is less than 1 atm, and print the current pressure at each step.\nIn the while loop above, add a break statement to exit the loop when the pressure is less than 5 atm.\nAlso in the while loop above, add a continue statement to skip the loop iteration when the pressure is exactly 10 atm and not print the pressure at this step.\n\n\n\nSolutions\nSolution 1:\nlist_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']\nlist_of_atomic_numbers = [1, 2, 3, 4]\n\nfor i in range(len(list_of_elements)):\n    print(\"The atomic number of\", list_of_elements[i], \"is\", list_of_atomic_numbers[i])\nSolution 2:\npressure = 100\n\nwhile pressure &gt;= 1:\n    print(pressure)\n    pressure = pressure / 2\nSolution 3:\npressure = 100\n\nwhile pressure &gt;= 1:\n    if pressure &lt; 5:\n        break\n    print(pressure)\n    pressure = pressure / 2\nSolution 4:\npressure = 100\n\nwhile pressure &gt;= 1:\n    pressure = pressure / 2\n    if pressure == 10:\n        continue\n    print(pressure)\nBy controlling flow in Python, you can execute complex algorithms that can respond to varied conditions and perform intricate tasks at a high level.\n\n\n\nList Comprehensions in Python\nList comprehension is an elegant and concise way to create a new list from an existing list in Python.\nA list comprehension consists of an expression followed by a for statement inside square brackets.\nHere is an example to make a list with each item being increasing power of 2.\npowers_of_two = [2 ** x for x in range(10)]\nprint(powers_of_two) \nThis will output:\n[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]\nWe can also create more advanced list comprehensions which include a conditional statement on the iterable. Let’s square only the positive numbers in the following list.\nnumbers = [1, -2, 3, -4, -5, 6, -7]\nsquared = [n ** 2 for n in numbers if n &gt; 0]\nprint(squared)\nThis will output:\n[1, 9, 36]\nIn the context of Chemistry, let’s say we had a list of various elements and we wanted a new list which only included the elements with an atomic number less than 3.\nelements = [('Hydrogen', 1), ('Helium', 2), ('Lithium', 3), ('Beryllium', 4), ('Boron', 5)]\nlight_elements = [name for name, atomic_number in elements if atomic_number &lt; 3]\nprint(light_elements)\nThis will output:\n['Hydrogen', 'Helium']\n\nExercises\n\nTake a list of charges of ions and create a new list squared charges.\nCreate a list of atomic weights and make a new list consisting only those atomic weights which are greater than 2.\nUse list comprehension to create a list of molecules with atomic mass less than 10 from the given list.\n\n\n\nSolutions\nSolution 1:\ncharges = [-1, 2, -3, 2, 1, -2]\nsquared_charges = [charge ** 2 for charge in charges]\nprint(squared_charges)  #Output: [1, 4, 9, 4, 1, 4]\nSolution 2:\nweights = [1.0079, 4.0026, 6.94, 9.0122, 10.81]\nweights_gt_2 = [weight for weight in weights if weight &gt; 2]\nprint(weights_gt_2)  #Output: [4.0026, 6.94, 9.0122, 10.81]\nSolution 3:\nmolecules = [('Hydrogen', 1.0079), ('Helium', 4.0026), ('Lithium', 6.94), ('Beryllium', 9.0122), ('Boron', 10.81)]\nlight_molecules = [name for name, weight in molecules if weight &lt; 10]\nprint(light_molecules)  #Output: ['Hydrogen', 'Helium', 'Lithium']\nList comprehension is a powerful tool that makes your code more efficient and easier to read. It can be used whenever you need to transform or filter a list in Python."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "Jupyter Lab Notebook is a very powerful tool, combining both code and rich text elements - paragraphs, equations, figures, links, etc. This makes it ideal for data cleaning and transformation, numerical simulation, statistical modeling, machine learning, and much more. This tutorial will guide you on how to use Jupyter Lab Notebook as a beginner.\n\n\nThe simplest way to run Jupyter Lab is by running the following command in your terminal:\njupyter lab\nA browser window should immediately open with the Jupyter Lab interface.\n\n\n\nOnce launched, Jupyter Lab presents an interface with a file browser on the left side (Navigator pane), and a main working area (Workspace) on the right. In the Workspace area, you can create new notebooks or files, and open existing ones by double-clicking on them in the Navigator.\n\n\n\nTo create a new Jupyter notebook, click on the “+” button at the top left of the interface. This will launch a new Launcher tab in the Workspace. Here, you can choose the type of file you want to create - in this case, choose Python 3 under the Notebooks section.\n\n\n\n\n\n\nA notebook is a list of cells. A cell is a multiline text input field, and its contents can be executed using Shift-Enter, or by clicking either the Play button at the top, or Cell &gt; Run Cells in the menu bar. There are three types of cells: * Code cells * Markdown cells * Raw cells\nYou can change the type of cells using the drop-down menu in the toolbar, or with keyboard shortcuts.\n\n\nCode cells allow you to input and run Python code with the output displayed underneath.\n\n\n\nMarkdown cells provide the narrative text around the code, using markup language to format the text.\nFor example, for a level 1 heading, you use # Heading 1, and for a level 2 heading, you use ## Heading 2.\n# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6\nTo create bullet points:\n- Bullet 1\n- Bullet 2\n- Bullet 3\nCreate numbered lists:\n1. Numbered list item 1\n2. Numbered list item 2\n3. Numbered list item 3\nLinks can be created with: [Link](www.link.com)\nImages can be added with: ![Image](image.jpg)\n\n\n\nRaw cells, unlike all other Jupyter notebook cells, have no input-output distinction. This means that they are not formatted in any way and appear as they were typed.\n\n\n\n\nTo save your notebook, click on the Save icon in the toolbar at the top, or you can hit CTRL + S.\nJupyter Lab provides a functionality to export your notebook into different formats like PDF, HTML, .py file etc. Click File &gt; Export Notebook As... to save the notebook in another format.\n\n\n\nOnce you are done, you can close the browser window and shut down the jupyter server by using CTRL + C in the terminal.\nThat is your basic rundown on how to use Jupyter Lab Notebook. Experiment, play around and get comfortable with it!\n\n\n\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\nEnter\nEnter into edit mode\n\n\nEsc\nSwitch to command mode where you can navigate around your notebook with arrow keys\n\n\ny\nChange the cell type to code\n\n\nm\nChange the cell type to markdown\n\n\na\nInsert a new cell above the current cell\n\n\nb\nInsert a new cell below the current cell\n\n\nx\nCut the current cell\n\n\nc\nCopy the current cell\n\n\nv\nPaste the copied/cut cell\n\n\ndd\nDelete the current cell\n\n\nz\nUndo the last cell operation\n\n\nf\nFind and replace on your code but not the outputs\n\n\nShift + Enter\nRun the current cell and select the next cell\n\n\ns\nSave the notebook\n\n\nh\nDisplay the keyboard shortcuts help dialog\n\n\n\nNote: The character-based commands have to be run in the command mode. If you are in the edit mode. Press ESC and then a to insert a new cell below.\nAll along this course we will collect the most important commands as a quick reference in this “CheatSheet” page.\nIf something is missing please, let us know in a GitHub issue or do a pull request. Thanks!"
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#start-jupyter-lab",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#start-jupyter-lab",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "The simplest way to run Jupyter Lab is by running the following command in your terminal:\njupyter lab\nA browser window should immediately open with the Jupyter Lab interface."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#user-interface",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#user-interface",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "Once launched, Jupyter Lab presents an interface with a file browser on the left side (Navigator pane), and a main working area (Workspace) on the right. In the Workspace area, you can create new notebooks or files, and open existing ones by double-clicking on them in the Navigator."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#create-a-new-notebook",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#create-a-new-notebook",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "To create a new Jupyter notebook, click on the “+” button at the top left of the interface. This will launch a new Launcher tab in the Workspace. Here, you can choose the type of file you want to create - in this case, choose Python 3 under the Notebooks section."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#notebook-cells",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#notebook-cells",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "A notebook is a list of cells. A cell is a multiline text input field, and its contents can be executed using Shift-Enter, or by clicking either the Play button at the top, or Cell &gt; Run Cells in the menu bar. There are three types of cells: * Code cells * Markdown cells * Raw cells\nYou can change the type of cells using the drop-down menu in the toolbar, or with keyboard shortcuts.\n\n\nCode cells allow you to input and run Python code with the output displayed underneath.\n\n\n\nMarkdown cells provide the narrative text around the code, using markup language to format the text.\nFor example, for a level 1 heading, you use # Heading 1, and for a level 2 heading, you use ## Heading 2.\n# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6\nTo create bullet points:\n- Bullet 1\n- Bullet 2\n- Bullet 3\nCreate numbered lists:\n1. Numbered list item 1\n2. Numbered list item 2\n3. Numbered list item 3\nLinks can be created with: [Link](www.link.com)\nImages can be added with: ![Image](image.jpg)\n\n\n\nRaw cells, unlike all other Jupyter notebook cells, have no input-output distinction. This means that they are not formatted in any way and appear as they were typed."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#saving-and-exporting-your-jupyter-notebook",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#saving-and-exporting-your-jupyter-notebook",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "To save your notebook, click on the Save icon in the toolbar at the top, or you can hit CTRL + S.\nJupyter Lab provides a functionality to export your notebook into different formats like PDF, HTML, .py file etc. Click File &gt; Export Notebook As... to save the notebook in another format."
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#closing-the-jupyter-lab-notebook",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#closing-the-jupyter-lab-notebook",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "Once you are done, you can close the browser window and shut down the jupyter server by using CTRL + C in the terminal.\nThat is your basic rundown on how to use Jupyter Lab Notebook. Experiment, play around and get comfortable with it!"
+  },
+  {
+    "objectID": "tutorials/lecture_02/01_jupyter_notebooks.html#most-important-commands",
+    "href": "tutorials/lecture_02/01_jupyter_notebooks.html#most-important-commands",
+    "title": "Jupyter Notebooks Tutorial For Beginners",
+    "section": "",
+    "text": "Command\nDescription\n\n\n\n\nEnter\nEnter into edit mode\n\n\nEsc\nSwitch to command mode where you can navigate around your notebook with arrow keys\n\n\ny\nChange the cell type to code\n\n\nm\nChange the cell type to markdown\n\n\na\nInsert a new cell above the current cell\n\n\nb\nInsert a new cell below the current cell\n\n\nx\nCut the current cell\n\n\nc\nCopy the current cell\n\n\nv\nPaste the copied/cut cell\n\n\ndd\nDelete the current cell\n\n\nz\nUndo the last cell operation\n\n\nf\nFind and replace on your code but not the outputs\n\n\nShift + Enter\nRun the current cell and select the next cell\n\n\ns\nSave the notebook\n\n\nh\nDisplay the keyboard shortcuts help dialog\n\n\n\nNote: The character-based commands have to be run in the command mode. If you are in the edit mode. Press ESC and then a to insert a new cell below.\nAll along this course we will collect the most important commands as a quick reference in this “CheatSheet” page.\nIf something is missing please, let us know in a GitHub issue or do a pull request. Thanks!"
+  },
+  {
     "objectID": "tutorials/lecture_01/01_setup.html",
     "href": "tutorials/lecture_01/01_setup.html",
     "title": "How to set up my computer",
@@ -161,18 +364,32 @@
     "text": "This course provides a comprehensive and practical introduction to computer programming with a specific focus on its application for chemists and chemical engineers. The course assumes little programming experience and primarily uses Python as the teaching language. The content covers crucial programming concepts like data types, control structures, string processing, functions, and input/output operations. These concepts are taught within the context of chemical tasks.\nThe course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots."
   },
   {
-    "objectID": "exercises/lecture_01/hello.html",
-    "href": "exercises/lecture_01/hello.html",
-    "title": "Quarto Basics",
+    "objectID": "exercises/lecture_01/01_hello_world.html",
+    "href": "exercises/lecture_01/01_hello_world.html",
+    "title": "Introduction:",
     "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+    "text": "Welcome to Python for Beginners tutorial! Python is a popular and beginner-friendly programming language known for its simplicity and readability. In this tutorial, you will learn the basics of Python and how to work with Jupyter notebooks. We will cover the fundamentals of Python syntax, variables, data types, control structures, functions, and more. Let’s get started!"
   },
   {
-    "objectID": "exercises/lecture_01/hello.html#polar-axis",
-    "href": "exercises/lecture_01/hello.html#polar-axis",
-    "title": "Quarto Basics",
-    "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+    "objectID": "exercises/lecture_01/01_hello_world.html#table-of-contents",
+    "href": "exercises/lecture_01/01_hello_world.html#table-of-contents",
+    "title": "Introduction:",
+    "section": "Table of Contents:",
+    "text": "Table of Contents:\n\nPython and Jupyter Notebook Setup\nPython Basics\n\n2.1 Running Python Code\n2.2 Variables and Data Types\n2.3 Operators\n2.4 Type Conversion\n\nControl Structures\n\n3.1 Conditional Statements\n3.2 Loops\n3.3 Exercises\n\nFunctions\n\n4.1 Defining and Calling Functions\n4.2 Arguments and Return Values\n4.3 Exercise\n\nConclusion\n\nBefore we begin, please make sure that you are in the course conda environment."
+  },
+  {
+    "objectID": "exercises/lecture_01/01_hello_world.html#most-important-jupyter-notebook-commands",
+    "href": "exercises/lecture_01/01_hello_world.html#most-important-jupyter-notebook-commands",
+    "title": "Introduction:",
+    "section": "1. Most important Jupyter notebook commands:",
+    "text": "1. Most important Jupyter notebook commands:\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\nEnter\nEnter into edit mode\n\n\nEsc\nSwitch to command mode where you can navigate around your notebook with arrow keys\n\n\ny\nChange the cell type to code\n\n\nm\nChange the cell type to markdown\n\n\na\nInsert a new cell above the current cell\n\n\nb\nInsert a new cell below the current cell\n\n\nx\nCut the current cell\n\n\nc\nCopy the current cell\n\n\nv\nPaste the copied/cut cell\n\n\ndd\nDelete the current cell\n\n\nz\nUndo the last cell operation\n\n\nf\nFind and replace on your code but not the outputs\n\n\nShift + Enter\nRun the current cell and select the next cell\n\n\ns\nSave the notebook\n\n\nh\nDisplay the keyboard shortcuts help dialog\n\n\n\nNote: The character-based commands have to be run in the command mode. If you are in the edit mode. Press ESC and then a to insert a new cell below."
+  },
+  {
+    "objectID": "exercises/lecture_01/01_hello_world.html#python-basics",
+    "href": "exercises/lecture_01/01_hello_world.html#python-basics",
+    "title": "Introduction:",
+    "section": "2. Python Basics",
+    "text": "2. Python Basics\n\n2.1 Running Python Code\nJupyter Notebook allows us to write and execute Python code in separate cells. To execute a cell, click on it and press Shift + Enter or click the Run button in the toolbar. Let’s start with a simple example:\nprint(\"Hello, Python!\")\nRun the above code by placing it in a cell and executing it. You should see the output Hello, Python! printed below the cell."
   },
   {
     "objectID": "tutorials/lecture_01/02_github.html",
@@ -236,5 +453,362 @@
     "title": "Next steps: Fork the Course Repository and Code",
     "section": "(Advanced) Introduction to Pull Requests",
     "text": "(Advanced) Introduction to Pull Requests\nIn the world of collaborative coding, a pull request is a key way of contributing to the shared or open source projects. It’s a method used to submit contributions to an existing Git project.\nA pull request, sometimes referred to as a PR, is a request for the repository’s maintainers to review your work, provide feedback, and if it is up to the project’s standards, merge your contributions into the project.\nLet’s break down the basic steps of creating a pull request:\n\nFork and Clone the Repository: You start by making a copy (fork) of the repository you wish to contribute to. Then, you clone this repository to your local machine.\nCreate a New Branch: Next, you create a new branch in your local repository. By making changes in a separate branch (other than main), you avoid potential conflicts with the main branch or other contributors’ work.\nMake Changes: Now you can make changes in your new branch. This could be adding a feature, fixing a bug, improving documentation, or any other modification you think would benefit the project.\nStage and Commit Your Changes: Once you’ve made your changes, you stage them for commit using git add and then commit the changes with git commit.\nPush Your Changes to GitHub: The next step is to push your changes that exist on your local machine to your GitHub account. You can do this with git push.\nOpen a Pull Request: Finally, you return to the original repository on GitHub, and there should now be a message indicating that you recently pushed a new branch. You can click on “Compare & pull request” button to begin creating your pull request.\nWrite a Good Pull Request Description: It’s essential to write a clear and concise description of your pull request. You should explain what changes you’ve made, why you’ve made them, and how you’ve tested them if applicable. Good communication can streamline the review process and increase the chances of your pull request being accepted.\n\nOnce you’ve filed the pull request, owners of the repository will review your change. They may suggest modifications or even directly make changes. Once everyone is satisfied, they can merge your PR into the project, meaning your changes are now part of the main codebase!\nPull requests are a fantastic collaborative feature of Git and GitHub, enabling many developers all over the world to work together on both small and large projects."
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html",
+    "href": "tutorials/lecture_02/02_python_basics.html",
+    "title": "Python Tutorial for Chemists",
+    "section": "",
+    "text": "In this tutorial, we will learn the basics of Python, which is an incredibly versatile and powerful programming language. Python is widely used in all fields of science, including Chemistry, due to its simplicity and flexibility. Specifically, we will focus on the concept of variables and types, then comparison and conditional operators.\n\n\nA large part of programming involves manipulating variables - containers that hold data. A variable can be of different types - integer, float, string, among others. Python automatically assigns a variable the type that is appropriate for its value.\n\n\nAn Integer variable holds integer values. In Python, you don’t have to specify the type of a variable when you create it. When you assign an integer value to a variable, Python knows that the variable is an integer.\nLet’s see an example:\natom_count = 6\nprint(atom_count)\nprint(type(atom_count))\nThis will output:\n6\n&lt;class 'int'&gt;\nIn chemistry, there are many times when we use integers. For example, number of moles, number of atoms etc.\n\n\n\nFloat stands for ‘floating point number’. You can use it for rational numbers, usually ending with a decimal figure, such as 1.11 or 3.14.\natomic_weight_carbon = 12.01\nprint(atomic_weight_carbon)\nprint(type(atomic_weight_carbon))\nThis will output:\n12.01\n&lt;class 'float'&gt;\nIn chemistry, atomic weights, concentration values etc are commonly represented as floating point numbers.\n\n\n\nIn Python, String variables are used to store textual data, a sequence of characters.\nelement_name = \"Carbon\"\nprint(element_name)\nprint(type(element_name))\nThis will output:\nCarbon\n&lt;class 'str'&gt;\nIn chemistry, we often deal with strings when handling names of compounds, elements etc.\n\n\n\nNow that we have learned about Variables and Types in Python, let’s test your understanding with the following exercises:\n\nCreate an integer variable named molecule_count and assign it a value of 20. Print its value and type.\nCreate a float variable named molar_mass_oxygen and assign it a value of 16.00. Print its value and type.\nCreate a string variable named chemical_formula_water and assign it a value of “H2O”. Print its value and type.\nChange the value of molecule_count to 50. Print the new value.\nChange the chemical_formula_water to “D2O”. Print the new value.\n\n\n\n\nSolution 1:\nmolecule_count = 20\nprint(molecule_count)\nprint(type(molecule_count))\nSolution 2:\nmolar_mass_oxygen = 16.00\nprint(molar_mass_oxygen)\nprint(type(molar_mass_oxygen))\nSolution 3:\nchemical_formula_water = \"H2O\"\nprint(chemical_formula_water)\nprint(type(chemical_formula_water))\nSolution 4:\nmolecule_count = 50\nprint(molecule_count)\nSolution 5:\nchemical_formula_water = \"D2O\"\nprint(chemical_formula_water)"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#variables-and-types",
+    "href": "tutorials/lecture_02/02_python_basics.html#variables-and-types",
+    "title": "Python Tutorial for Chemists",
+    "section": "",
+    "text": "A large part of programming involves manipulating variables - containers that hold data. A variable can be of different types - integer, float, string, among others. Python automatically assigns a variable the type that is appropriate for its value.\n\n\nAn Integer variable holds integer values. In Python, you don’t have to specify the type of a variable when you create it. When you assign an integer value to a variable, Python knows that the variable is an integer.\nLet’s see an example:\natom_count = 6\nprint(atom_count)\nprint(type(atom_count))\nThis will output:\n6\n&lt;class 'int'&gt;\nIn chemistry, there are many times when we use integers. For example, number of moles, number of atoms etc.\n\n\n\nFloat stands for ‘floating point number’. You can use it for rational numbers, usually ending with a decimal figure, such as 1.11 or 3.14.\natomic_weight_carbon = 12.01\nprint(atomic_weight_carbon)\nprint(type(atomic_weight_carbon))\nThis will output:\n12.01\n&lt;class 'float'&gt;\nIn chemistry, atomic weights, concentration values etc are commonly represented as floating point numbers.\n\n\n\nIn Python, String variables are used to store textual data, a sequence of characters.\nelement_name = \"Carbon\"\nprint(element_name)\nprint(type(element_name))\nThis will output:\nCarbon\n&lt;class 'str'&gt;\nIn chemistry, we often deal with strings when handling names of compounds, elements etc.\n\n\n\nNow that we have learned about Variables and Types in Python, let’s test your understanding with the following exercises:\n\nCreate an integer variable named molecule_count and assign it a value of 20. Print its value and type.\nCreate a float variable named molar_mass_oxygen and assign it a value of 16.00. Print its value and type.\nCreate a string variable named chemical_formula_water and assign it a value of “H2O”. Print its value and type.\nChange the value of molecule_count to 50. Print the new value.\nChange the chemical_formula_water to “D2O”. Print the new value.\n\n\n\n\nSolution 1:\nmolecule_count = 20\nprint(molecule_count)\nprint(type(molecule_count))\nSolution 2:\nmolar_mass_oxygen = 16.00\nprint(molar_mass_oxygen)\nprint(type(molar_mass_oxygen))\nSolution 3:\nchemical_formula_water = \"H2O\"\nprint(chemical_formula_water)\nprint(type(chemical_formula_water))\nSolution 4:\nmolecule_count = 50\nprint(molecule_count)\nSolution 5:\nchemical_formula_water = \"D2O\"\nprint(chemical_formula_water)"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#if-statements",
+    "href": "tutorials/lecture_02/02_python_basics.html#if-statements",
+    "title": "Python Tutorial for Chemists",
+    "section": "If Statements",
+    "text": "If Statements\nIn Python, if statement is used for conditional execution.\n\ntemperature = 25\n\nif temperature &gt; 20:\n    print(\"It's warm outside\") \nIn this example, the message It's warm outside is printed to the screen if the temperature is higher than 20."
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#elif-and-else-statements",
+    "href": "tutorials/lecture_02/02_python_basics.html#elif-and-else-statements",
+    "title": "Python Tutorial for Chemists",
+    "section": "Elif and Else Statements",
+    "text": "Elif and Else Statements\nPython supports multiple conditions in one if statement using elif (abbreviation of else if). The else clause serves as a default condition; its block is executed when none of the conditions is true.\npH = 3\n\nif pH &lt; 7:\n    print(\"Solution is acidic\") \nelif pH &gt; 7:\n    print(\"Solution is alkaline\")\nelse:\n    print(\"Solution is neutral\")\nIn this example, information about the nature of a solution given its pH is printed to the screen."
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#using-logical-operators",
+    "href": "tutorials/lecture_02/02_python_basics.html#using-logical-operators",
+    "title": "Python Tutorial for Chemists",
+    "section": "Using Logical Operators",
+    "text": "Using Logical Operators\nLogical operators (and, or, not) allow to build more complex conditional statements.\ntemperature = 25\npressure = 2\n\nif temperature &gt; 20 and pressure &gt; 1:\n    print(\"Reaction rate will be high!\") \n\nif not temperature &lt; 20:\n    print(\"It's not cold outside\") \nIn these examples, a message about reaction rate is printed to the screen if both temperature is higher than 20 and pressure is higher than 1. The second condition checks if the temperature is not lower than 20."
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#ternary-operator-conditional-expressions",
+    "href": "tutorials/lecture_02/02_python_basics.html#ternary-operator-conditional-expressions",
+    "title": "Python Tutorial for Chemists",
+    "section": "Ternary Operator (Conditional Expressions)",
+    "text": "Ternary Operator (Conditional Expressions)\nPython supports one more conditional expression which is called ternary operator:\nmessage = \"It's warm outside\" if temperature &gt; 20 else \"It's cold outside\"\nprint(message)\nHere, the message about the weather is chosen based on the temperature.\n\nExercises\n\nWrite a program that prints out whether a solution with a given pH is acidic, alkaline or neutral.\nWrite a program that prints out whether a reaction will be feasible given its enthalpy (∆H) and entropy (∆S). A reaction is feasible if ∆H &lt; 0 and ∆S &gt; 0.\nWrite a program that prints out whether a substance is solid, liquid or gas given its boiling point and the current temperature.\nWrite a program that uses logical operators to print out whether the reaction rate will be high given temperature and pressure.\nUse a ternary operator to print out whether a reaction is exothermic or endothermic given its ∆H.\n\n\n\nSolutions\nSolution 1:\npH = 8\n\nif pH &lt; 7:\n    print(\"Solution is acidic\") \nelif pH &gt; 7:\n    print(\"Solution is alkaline\")\nelse:\n    print(\"Solution is neutral\")\nSolution 2:\ndelta_H = -30\ndelta_S = 10\n\nif delta_H &lt; 0 and delta_S &gt; 0:\n    print(\"Reaction is feasible!\") \nelse:\n    print(\"Reaction is not feasible!\")\nSolution 3:\nboiling_point = 100\ntemperature = 50\n\nif temperature &lt; boiling_point:\n    print(\"Substance is solid or liquid!\")\nelse:\n    print(\"Substance is gas!\")\nSolution 4:\ntemperature = 25\npressure = 2\n\nif temperature &gt; 20 and pressure &gt; 1:\n    print(\"Reaction rate will be high!\") \nelse:\n    print(\"Reaction rate will be moderate or low!\")\nSolution 5:\ndelta_H = -10\n\nmessage = \"Reaction is exothermic\" if delta_H &lt; 0 else \"Reaction is endothermic\"\nprint(message)"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#converting-to-integer",
+    "href": "tutorials/lecture_02/02_python_basics.html#converting-to-integer",
+    "title": "Python Tutorial for Chemists",
+    "section": "Converting to Integer",
+    "text": "Converting to Integer\nTo convert a value to an integer, you use the int() function. For example:\nx = \"123\"\ny = int(x)\nprint(y) #Output: 123\nprint(type(y)) #Output: &lt;class 'int'&gt;"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#converting-to-float",
+    "href": "tutorials/lecture_02/02_python_basics.html#converting-to-float",
+    "title": "Python Tutorial for Chemists",
+    "section": "Converting to Float",
+    "text": "Converting to Float\nTo convert a value to a float, you use the float() function. For example:\nx = \"123.45\"\ny = float(x)\nprint(y) #Output: 123.45\nprint(type(y)) #Output: &lt;class 'float'&gt;"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#converting-to-string",
+    "href": "tutorials/lecture_02/02_python_basics.html#converting-to-string",
+    "title": "Python Tutorial for Chemists",
+    "section": "Converting to String",
+    "text": "Converting to String\nTo convert a value to a string, you use the str() function:\nx = 123\ny = str(x)\nprint(y) #Output: '123'\nprint(type(y)) #Output: &lt;class 'str'&gt;\nThis conversion is especially helpful when you want to concatenate some text with a number:\nx = \"The atomic number of Carbon is: \" + str(6)\nprint(x) #Output: The atomic number of Carbon is: 6\n\nExercises\n\nConvert the string '6.02' to float.\nConvert the float 1.0079 to string.\nPrint the sentence: “The atomic weight of Hydrogen is:” and then the atomic weight, provided as a float.\nConvert the string '78' to integer.\nPrint the sentence: “The atomic number of Oxygen is:”, and then atomic number, provided as an integer.\n\n\n\nSolutions\nSolution 1:\nx = \"6.02\"\ny = float(x)\nprint(y) #Output: 6.02\nSolution 2:\nx = 1.0079\ny = str(x)\nprint(y) #Output: '1.0079'\nSolution 3:\natomic_weight_hydrogen = 1.0079\nmessage = \"The atomic weight of Hydrogen is: \" + str(atomic_weight_hydrogen)\nprint(message) #Output: The atomic weight of Hydrogen is: 1.0079\nSolution 4:\nx = \"78\"\ny = int(x)\nprint(y) #Output: 78\nSolution 5:\natomic_number_oxygen = 8\nmessage = \"The atomic number of Oxygen is: \" + str(atomic_number_oxygen)\nprint(message) #Output: The atomic number of Oxygen is: 8\nAs seen from these examples, type conversion is an essential utility in Python as working between different data types is quite common. Keep in mind that each of the type conversion functions (float, str, etc.) returns a new object and does not modify the original object."
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#increment-operator",
+    "href": "tutorials/lecture_02/02_python_basics.html#increment-operator",
+    "title": "Python Tutorial for Chemists",
+    "section": "Increment Operator",
+    "text": "Increment Operator\nAn increment operator is an operator that increases the value of a variable by 1. This is often used in loops and other control structures. Python does not technically have built-in increment operators like some languages such as C++, but it provides equivalent mechanisms.\nThe typical way of incrementing a variable in Python is x = x + 1.\nBut Python provides a shorthand to do the same, x += 1.\nHere are some examples:\nx = 5\n\n# incrementing the value\nx = x + 1\nprint(x) # Output: 6\n\n# Alternate way to increment the value\nx += 1\nprint(x) # Output: 7"
+  },
+  {
+    "objectID": "tutorials/lecture_02/02_python_basics.html#other-arithmetic-assignment-operators",
+    "href": "tutorials/lecture_02/02_python_basics.html#other-arithmetic-assignment-operators",
+    "title": "Python Tutorial for Chemists",
+    "section": "Other Arithmetic Assignment Operators",
+    "text": "Other Arithmetic Assignment Operators\nIn addition to +=, there are other arithmetic assignment operators:\n\n-=: Decreases the current value of the variable by the specified amount.\n*=: Multiplies the current value of the variable by the specified amount.\n/=: Divides the current value of the variable by the specified amount.\n**=: Raises the current value of the variable to the power of the specified amount.\n//=: Performs floor division on the current value of the variable.\n%=: Modulo assignment, provides the remainder of the division.\n\nHere are examples of using these operators:\nx = 10\nx -= 2  # equivalent to x = x - 2\nprint(x) # Output: 8\n\nx = 5\nx *= 3  # equivalent to x = x * 3\nprint(x) # Output: 15\n\nx = 20\nx /= 4  # equivalent to x = x / 4\nprint(x) # Output: 5.0\n\nx = 3\nx **= 2  # equivalent to x = x ** 2\nprint(x) # Output: 9\n\nx = 10\nx //= 3  # equivalent to x = x // 3\nprint(x) # Output: 3\n\nx = 17\nx %= 5  # equivalent to x = x % 5\nprint(x) # Output: 2\nExperiment with these different assignment operators to become familiar with them, they can simplify your code and make it easier to read.\n\nExercises\n\nStart with a variable x with a value of 4. Increment its value by 3.\nStart with a variable y with a value of 10. Decrease its value by 6.\nStart with a variable z with a value of 9. Multiply its value by 5.\nStart with a variable a with a value of 100. Divide its value by 20.\nStart with a variable b with a value of 5. Raise its value to the power of 3.\n\n\n\nSolutions\nSolution 1:\nx = 4\nx += 3\nprint(x) # Output: 7\nSolution 2:\ny = 10\ny -= 6\nprint(y) # Output: 4\nSolution 3:\nz = 9\nz *= 5\nprint(z) # Output: 45\nSolution 4:\na = 100\na /= 20\nprint(a) # Output: 5.0\nSolution 5:\nb = 5\nb **= 3\nprint(b) # Output: 125\nThrough these exercises, you learn how to assign and modify variables using the different types of assignment operators available in Python. They can ease your code writing, making it simpler and more efficient."
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html",
+    "href": "tutorials/lecture_02/03_python_structures.html",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "",
+    "text": "In Python, there are four built-in data structures: lists, sets, tuples, and dictionaries.\n\nLists: These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets [].\nSets: Sets are unordered collections of unique elements. That means they don’t maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces {} (but not key-value pairs).\nTuples: Tuples are ordered, immutable collections, thus you can’t change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses ().\nDictionaries: Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces {}, where key and value are separated by a colon :."
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#creating-a-list",
+    "href": "tutorials/lecture_02/03_python_structures.html#creating-a-list",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Creating a List",
+    "text": "Creating a List\nYou can create a list simply by enclosing a comma-separated sequence of items in square brackets []. These items can be of different types: integers, floats, strings, and even other lists!\nelements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']\nprint(elements)\nThis will output:\n['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#accessing-elements-in-a-list",
+    "href": "tutorials/lecture_02/03_python_structures.html#accessing-elements-in-a-list",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Accessing Elements in a List",
+    "text": "Accessing Elements in a List\nIn Python, you can access list items by referring to their index number. Indexes in Python start from 0 for the first element.\nfirst_element = elements[0]\nprint(first_element) #Output: Hydrogen\nNegative indexing can be used to access items from the end of the list. For example, elements[-1] will return the last element: ‘Boron’."
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#modifying-a-list",
+    "href": "tutorials/lecture_02/03_python_structures.html#modifying-a-list",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Modifying a List",
+    "text": "Modifying a List\nYou can change the value of a specific item in the list by referring to its index number.\nelements[1] = 'Noble gas'\nprint(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#adding-elements",
+    "href": "tutorials/lecture_02/03_python_structures.html#adding-elements",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Adding Elements",
+    "text": "Adding Elements\nTo add an item to the end of the list, use the append() method. To add an item at a specific position, use the insert() method.\nelements.append('Carbon')\nprint(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']\n\nelements.insert(1, 'Helium')\nprint(elements) #Output: ['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#removing-elements",
+    "href": "tutorials/lecture_02/03_python_structures.html#removing-elements",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Removing Elements",
+    "text": "Removing Elements\nThe remove() method removes the first occurrence of the specified element.\nelements.remove('Noble gas')\nprint(elements) #Output: ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']\n\nExercises\n\nCreate a list of five elements.\nPrint out the second and fourth element of the list.\nReplace the third element of your list with the string ‘Metal’.\nAdd another element to your list.\nRemove the first element of the list.\n\n\n\nSolutions\nSolution 1:\nelements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']\nprint(elements)\nSolution 2:\nprint(elements[1])\nprint(elements[3])\nSolution 3:\nelements[2] = 'Metal'\nprint(elements)\nSolution 4:\nelements.append('Carbon')\nprint(elements)\nSolution 5:\nelements.remove('Hydrogen')\nprint(elements)\nThe ability to create and manipulate lists is an important part of managing data. Lists are very flexible and can hold entirely different kinds of elements."
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#tuples",
+    "href": "tutorials/lecture_02/03_python_structures.html#tuples",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Tuples",
+    "text": "Tuples\nA tuple is another sequence data type that is similar to the list. A tuple consists of a number of values separated by commas. Unlike lists, however, tuples are enclosed within parentheses () and are immutable, which means you can’t change elements of a tuple once it’s defined.\n\nCreating a Tuple\nA tuple is created by placing all the items inside parentheses (), separated by commas.\nelements = ('Hydrogen', 'Helium', 'Lithium')\nprint(elements) #Output: ('Hydrogen', 'Helium', 'Lithium')\n\n\nAccessing Elements in a Tuple\nYou can access tuple items by referring to their index, inside square brackets.\nprint(elements[0]) #Output: Hydrogen\n\n\nModifying a Tuple\nAs mentioned before, tuples are unchangeable, or immutable. But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.\nelements = list(elements)\nelements[1] = 'Noble gas'\nelements = tuple(elements)\nprint(elements) #Output: ('Hydrogen', 'Noble gas', 'Lithium')"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#sets",
+    "href": "tutorials/lecture_02/03_python_structures.html#sets",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Sets",
+    "text": "Sets\nA set is an unordered collection of items where every item is unique (no duplicates).\n\nCreating a Set\nYou can create a set by using the built-in set() function with a list or a tuple, or you can use curly braces{}.\nelements = {'Hydrogen', 'Helium', 'Lithium'}\nprint(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}\n\n\nAdding Items to a Set\nYou can add single items using the add() method, and multiple items using the update() method.\nelements.add('Beryllium')\nprint(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}\n\nelements.update(['Boron', 'Carbon'])\nprint(elements) #Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}\n\n\nRemoving Items from a Set\nTo remove an item in a set, you can use the remove(), or the discard() method.\nelements.remove('Beryllium')\nprint(elements) #Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}\n\n\nExercises\n\nCreate a tuple of four elements.\nPrint out the third element from your tuple.\nModify the second element of your tuple.\nCreate a set of three elements.\nAdd another element to your set.\n\n\n\nSolutions\nSolution 1:\nelements = ('Hydrogen', 'Helium', 'Lithium', 'Beryllium')\nprint(elements)\nSolution 2:\nprint(elements[2]) #Output: Lithium\nSolution 3:\nelements = list(elements)\nelements[1] = 'Noble gas'\nelements = tuple(elements)\nprint(elements) #Output: ('Hydrogen', 'Noble gas', 'Lithium', 'Beryllium')\nSolution 4:\nelements = {'Hydrogen', 'Helium', 'Lithium'}\nprint(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}\nSolution 5:\nelements.add('Beryllium')\nprint(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}\nTuples and sets are valuable constructs when you need to store multiple items in a single variable, just like lists. Try to work with different types of data structures in Python and understand their strengths and weaknesses."
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#creating-a-dictionary",
+    "href": "tutorials/lecture_02/03_python_structures.html#creating-a-dictionary",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Creating a dictionary",
+    "text": "Creating a dictionary\nDictionaries are defined by curly braces {}. A dictionary contains keys and values separated by a colon :. Each key-value pair in a dictionary is separated by a comma.\nLet’s make a dictionary to represent an element in the periodic table:\ncarbon = {\n    \"atomic_number\": 6,\n    \"symbol\": \"C\",\n    \"name\": \"Carbon\",\n    \"atomic_weight\": 12.01,\n    \"period\": 2,\n    \"group\": 14\n}"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#accessing-elements-in-a-dictionary",
+    "href": "tutorials/lecture_02/03_python_structures.html#accessing-elements-in-a-dictionary",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Accessing elements in a dictionary",
+    "text": "Accessing elements in a dictionary\nYou can access the items of a dictionary by referring to its key name, inside square brackets:\nprint(carbon[\"name\"]) #Output: Carbon\nThere’s also a method called get() that will give you the same result:\nprint(carbon.get(\"name\")) #Output: Carbon"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#changing-values-in-a-dictionary",
+    "href": "tutorials/lecture_02/03_python_structures.html#changing-values-in-a-dictionary",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Changing values in a dictionary",
+    "text": "Changing values in a dictionary\nYou can change the value of a specific item by referring to its key name:\ncarbon[\"period\"] = 3\nprint(carbon[\"period\"]) #Output: 3"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#adding-items-in-a-dictionary",
+    "href": "tutorials/lecture_02/03_python_structures.html#adding-items-in-a-dictionary",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Adding items in a dictionary",
+    "text": "Adding items in a dictionary\nAdding an item to the dictionary is done by using a new index key and assigning a value to it:\ncarbon[\"discovery\"] = 3750\nprint(carbon)"
+  },
+  {
+    "objectID": "tutorials/lecture_02/03_python_structures.html#removing-items-in-a-dictionary",
+    "href": "tutorials/lecture_02/03_python_structures.html#removing-items-in-a-dictionary",
+    "title": "Lists, sets, tuples, and dictionaries",
+    "section": "Removing items in a dictionary",
+    "text": "Removing items in a dictionary\nThe pop() method removes the item with the specified key name:\ncarbon.pop(\"discovery\")\nprint(carbon)\n\nExercises\n\nCreate a dictionary representing another chemical element.\nAccess the name and atomic_number of the element.\nChange the atomic_weight of the element.\nAdd a new key-value pair group_block to your dictionary representing the group block of the element.\nRemove the group_block from your dictionary.\n\n\n\nSolutions\nSolution 1:\noxygen = {\n    \"atomic_number\": 8,\n    \"symbol\": \"O\",\n    \"name\": \"Oxygen\",\n    \"atomic_weight\": 15.999,\n    \"period\": 2,\n    \"group\": 16\n}\nSolution 2:\nprint(oxygen[\"name\"]) #Output: Oxygen\nprint(oxygen[\"atomic_number\"]) #Output: 8\nSolution 3:\noxygen[\"atomic_weight\"] = 16.00\nprint(oxygen[\"atomic_weight\"]) #Output: 16.00\nSolution 4:\noxygen[\"group_block\"] = \"p-block\"\nprint(oxygen)\nSolution 5:\noxygen.pop(\"group_block\")\nprint(oxygen)\nA dictionary in Python is a great tool that helps you store a variety of data types and structures. They are optimized for retrieving data. You must know the key to retrieve the value."
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html",
+    "href": "tutorials/lecture_03/04_fileio.html",
+    "title": "File Input/Output in Python",
+    "section": "",
+    "text": "Python allows you to read and write to files on your system, which is essential for many data analysis tasks.\n\n\nTo open a file in Python, we use the open function. The open function returns a file object and is most commonly used with two arguments: open(filename, mode).\n\nThe filename is the name (and the path if the file is not located in the same directory as the Python script) of the file you want to open.\nThe mode argument is a string that defines which mode you want to open the file in:\n\n\"r\": read mode (default)\n\"w\": write mode, for overwriting the contents of a file\n\"x\": exclusive creation mode, for creating a new file and failing if it already exists\n\"a\": append mode, for appending data to an existing file\n\"b\": binary mode\n\"t\": text mode (default)\n\n\nHere’s an example of how to open a file:\nfile = open(\"chemicals.txt\", \"r\")\nRemember to always close the file after you’re done with it:\nfile.close()\n\n\n\nTo read from a file, Python provides several methods:\n\nread(): This reads the entire file.\nreadline(): This reads a file line by line.\nreadlines(): This reads all the lines and returns them as a list of strings.\n\nHere’s an example:\nfile = open(\"chemicals.txt\", \"r\")\n\nprint(file.read())  # prints the entire content of the file\n\nfile.close()\n\n\n\nYou can also write to a file using the write() method. Remember to open the file in write mode:\nfile = open(\"chemicals.txt\", \"w\")\n\nfile.write(\"This is a new line\")\n\nfile.close()\nNote: Be careful when opening a file in write mode (\"w\"), as this will erase all previous contents of the file. If you want to add to the file without deleting its content, use append mode (\"a\")."
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#opening-a-file",
+    "href": "tutorials/lecture_03/04_fileio.html#opening-a-file",
+    "title": "File Input/Output in Python",
+    "section": "",
+    "text": "To open a file in Python, we use the open function. The open function returns a file object and is most commonly used with two arguments: open(filename, mode).\n\nThe filename is the name (and the path if the file is not located in the same directory as the Python script) of the file you want to open.\nThe mode argument is a string that defines which mode you want to open the file in:\n\n\"r\": read mode (default)\n\"w\": write mode, for overwriting the contents of a file\n\"x\": exclusive creation mode, for creating a new file and failing if it already exists\n\"a\": append mode, for appending data to an existing file\n\"b\": binary mode\n\"t\": text mode (default)\n\n\nHere’s an example of how to open a file:\nfile = open(\"chemicals.txt\", \"r\")\nRemember to always close the file after you’re done with it:\nfile.close()"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#reading-from-a-file",
+    "href": "tutorials/lecture_03/04_fileio.html#reading-from-a-file",
+    "title": "File Input/Output in Python",
+    "section": "",
+    "text": "To read from a file, Python provides several methods:\n\nread(): This reads the entire file.\nreadline(): This reads a file line by line.\nreadlines(): This reads all the lines and returns them as a list of strings.\n\nHere’s an example:\nfile = open(\"chemicals.txt\", \"r\")\n\nprint(file.read())  # prints the entire content of the file\n\nfile.close()"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#writing-to-a-file",
+    "href": "tutorials/lecture_03/04_fileio.html#writing-to-a-file",
+    "title": "File Input/Output in Python",
+    "section": "",
+    "text": "You can also write to a file using the write() method. Remember to open the file in write mode:\nfile = open(\"chemicals.txt\", \"w\")\n\nfile.write(\"This is a new line\")\n\nfile.close()\nNote: Be careful when opening a file in write mode (\"w\"), as this will erase all previous contents of the file. If you want to add to the file without deleting its content, use append mode (\"a\")."
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#solution-1",
+    "href": "tutorials/lecture_03/04_fileio.html#solution-1",
+    "title": "File Input/Output in Python",
+    "section": "Solution 1",
+    "text": "Solution 1\nwith open('compounds.txt', 'w') as file:\n    compounds = ['Water', 'Methane', 'Ammonia', 'Hydrogen Peroxide', 'Acetic Acid']\n    for compound in compounds:\n        file.write(compound + '\\n')"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#solution-2",
+    "href": "tutorials/lecture_03/04_fileio.html#solution-2",
+    "title": "File Input/Output in Python",
+    "section": "Solution 2",
+    "text": "Solution 2\nwith open('compounds.txt', 'r') as file:\n    lines = file.readlines()\n    for line in lines:\n        print(line.strip())\n    print(\"Number of compounds:\", len(lines))"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#solution-3",
+    "href": "tutorials/lecture_03/04_fileio.html#solution-3",
+    "title": "File Input/Output in Python",
+    "section": "Solution 3",
+    "text": "Solution 3\nwith open('compounds.txt', 'a') as file:\n    compounds = ['Carbon Dioxide', 'Ethanol', 'Glucose']\n    for compound in compounds:\n        file.write(compound + '\\n')"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#solution-4",
+    "href": "tutorials/lecture_03/04_fileio.html#solution-4",
+    "title": "File Input/Output in Python",
+    "section": "Solution 4",
+    "text": "Solution 4\nwith open('compounds.txt', 'r') as read_file:\n    lines = read_file.readlines()\nwith open('reversed_compounds.txt', 'w') as write_file:\n    for line in reversed(lines):\n        write_file.write(line)"
+  },
+  {
+    "objectID": "tutorials/lecture_03/04_fileio.html#solution-5",
+    "href": "tutorials/lecture_03/04_fileio.html#solution-5",
+    "title": "File Input/Output in Python",
+    "section": "Solution 5",
+    "text": "Solution 5\nwith open('compounds.txt', 'r') as read_file:\n    lines = read_file.readlines()\nwith open('compounds_uppercase.txt', 'w') as write_file:\n    for line in lines:\n        write_file.write(line.upper())"
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html",
+    "href": "tutorials/lecture_03/05_errors.html",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "Error handling in Python is done through the use of exceptions. Exceptions are triggered automatically (or manually) when errors occur. Python has multiple built-in exceptions that can be triggered and caught in your code. When exceptions aren’t caught, your program will terminate abruptly.\n\n\nSyntax errors, also known as parsing errors, are the most common errors in Python and occur when the parser detects an incorrect statement.\nprint( 0 / 2 ))\nThe output would give an invalid syntax error (with an arrow pointing at the caught error):\nFile \"&lt;ipython-input&gt;\", line 1\nprint( 0 / 2 ))\n^\nSyntaxError: invalid syntax\n\n\n\nExceptions, unlike Syntax errors, occur after correct syntax during execution which interrupts the program flow.\nprint(1 / 0)\nThis returns a ZeroDivisionError Exception:\nZeroDivisionError: division by zero\n\n\n\nExceptions can be intercepted and handled in your code, preventing the program from terminating unexpectedly. We control this flow using try, except statements.\ntry:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print(\"You can't divide by zero!\")\nOutput:\nYou can't divide by zero!\nIn this case, the division by zero caused a ZeroDivisionError which we caught using an except clause and printed a friendly error message instead.\n\n\n\nA try statement can have multiple different except blocks to handle different exceptions.\ntry:\n    # code that could potentially raise an exception\n    chemical_compound = {\"H20\": \"Water\"}\n    print(chemical_compound[\"NaCl\"])\nexcept KeyError:\n    print(\"Key not found in dictionary.\")\nexcept Exception as e:\n    print(\"An unknown error occurred:\", e)\nOutput:\nKey not found in dictionary.\nHere, the KeyError exception is raised when a dictionary key is not found. But we also have a generic Exception clause in case any other exception is raised.\n\n\n\nThe finally clause is optional and used when you want code to be executed regardless of whether an exception was raised or caught:\ntry:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print(\"You can't divide by zero!\")\nfinally:\n    print(\"This line always executes.\")\nOutput:\nYou can't divide by zero!\nThis line always executes.\nEven though the ZeroDivisionError exception was caught, the finally block is executed.\n\n\n\nYou can define your own exceptions by creating a new exception class derived from Python’s Exception class. However, these are quite advanced and will require a more complex understanding of Python and are usually used less commonly than the built-in exceptions."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#syntax-errors",
+    "href": "tutorials/lecture_03/05_errors.html#syntax-errors",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "Syntax errors, also known as parsing errors, are the most common errors in Python and occur when the parser detects an incorrect statement.\nprint( 0 / 2 ))\nThe output would give an invalid syntax error (with an arrow pointing at the caught error):\nFile \"&lt;ipython-input&gt;\", line 1\nprint( 0 / 2 ))\n^\nSyntaxError: invalid syntax"
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exceptions",
+    "href": "tutorials/lecture_03/05_errors.html#exceptions",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "Exceptions, unlike Syntax errors, occur after correct syntax during execution which interrupts the program flow.\nprint(1 / 0)\nThis returns a ZeroDivisionError Exception:\nZeroDivisionError: division by zero"
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exception-handling",
+    "href": "tutorials/lecture_03/05_errors.html#exception-handling",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "Exceptions can be intercepted and handled in your code, preventing the program from terminating unexpectedly. We control this flow using try, except statements.\ntry:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print(\"You can't divide by zero!\")\nOutput:\nYou can't divide by zero!\nIn this case, the division by zero caused a ZeroDivisionError which we caught using an except clause and printed a friendly error message instead."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#multiple-exceptions",
+    "href": "tutorials/lecture_03/05_errors.html#multiple-exceptions",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "A try statement can have multiple different except blocks to handle different exceptions.\ntry:\n    # code that could potentially raise an exception\n    chemical_compound = {\"H20\": \"Water\"}\n    print(chemical_compound[\"NaCl\"])\nexcept KeyError:\n    print(\"Key not found in dictionary.\")\nexcept Exception as e:\n    print(\"An unknown error occurred:\", e)\nOutput:\nKey not found in dictionary.\nHere, the KeyError exception is raised when a dictionary key is not found. But we also have a generic Exception clause in case any other exception is raised."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#finally-clause",
+    "href": "tutorials/lecture_03/05_errors.html#finally-clause",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "The finally clause is optional and used when you want code to be executed regardless of whether an exception was raised or caught:\ntry:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print(\"You can't divide by zero!\")\nfinally:\n    print(\"This line always executes.\")\nOutput:\nYou can't divide by zero!\nThis line always executes.\nEven though the ZeroDivisionError exception was caught, the finally block is executed."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#custom-exceptions",
+    "href": "tutorials/lecture_03/05_errors.html#custom-exceptions",
+    "title": "Errors and Exception Handling in Python",
+    "section": "",
+    "text": "You can define your own exceptions by creating a new exception class derived from Python’s Exception class. However, these are quite advanced and will require a more complex understanding of Python and are usually used less commonly than the built-in exceptions."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exercise-1",
+    "href": "tutorials/lecture_03/05_errors.html#exercise-1",
+    "title": "Errors and Exception Handling in Python",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nWrite a Python program to handle simple runtime error with try - except.\nSolution:\ntry:\n    div = 1 / 0\nexcept:\n    print(\"An error just occurred!\")\nOutput:\nAn error just occurred!"
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exercise-2",
+    "href": "tutorials/lecture_03/05_errors.html#exercise-2",
+    "title": "Errors and Exception Handling in Python",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nSuppose we have a dictionary of atoms, add a try - except block to handle KeyError when a non-existent atom is searched.\nAtoms dictionary: atoms = { \"H\": {\"name\": \"Hydrogen\", \"number\": 1}, \"He\": {\"name\": \"Helium\", \"number\": 2} }.\nSolution:\natoms = { \"H\": {\"name\": \"Hydrogen\", \"number\": 1}, \"He\": {\"name\": \"Helium\", \"number\": 2} }\n\ntry:\n    print(atoms[\"Li\"])\nexcept KeyError:\n    print(\"This atom is not in the dictionary.\")\nOutput:\nThis atom is not in the dictionary."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exercise-3",
+    "href": "tutorials/lecture_03/05_errors.html#exercise-3",
+    "title": "Errors and Exception Handling in Python",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nWrite a Python program that prompts the user for an integer input and catches the ValueError exception in case a non-integer value is entered.\nSolution:\ntry:\n    number = int(input(\"Enter an integer: \"))\n    print(f\"You entered: {number}\")\nexcept ValueError:\n    print(\"You did not enter an integer!\")\nOutput:\nCase 1 - Enter an integer: a\nYou did not enter an integer!\nCase 2 - Enter an integer: 5\nYou entered: 5"
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exercise-4",
+    "href": "tutorials/lecture_03/05_errors.html#exercise-4",
+    "title": "Errors and Exception Handling in Python",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nWrite a Python program that prompts the user for a chemical compound, catch KeyError when compound is not found in a dictionary, and use finally to print a statement whether the exception was raised or not.\nSolution:\ncompounds = {'H2O': 'Water', 'CO2': 'Carbon Dioxide'}\n\ntry:\n    compound = input(\"Enter a compound: \")\n    print(compounds[compound])\nexcept KeyError:\n    print(\"This compound is not in the dictionary.\")\nfinally:\n    print(\"Exiting the program.\")\nNote: This program will prompt for user input."
+  },
+  {
+    "objectID": "tutorials/lecture_03/05_errors.html#exercise-5",
+    "href": "tutorials/lecture_03/05_errors.html#exercise-5",
+    "title": "Errors and Exception Handling in Python",
+    "section": "Exercise 5",
+    "text": "Exercise 5\nWrite a Python program that tries to access an undefined variable, catch the NameError exception and print a user-friendly message.\nSolution:\ntry:\n    print(undefined_variable)\nexcept NameError:\n    print(\"The variable is not defined.\")\nOutput:\nThe variable is not defined."
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html",
+    "href": "tutorials/lecture_03/03_packages.html",
+    "title": "Python Packages and Modules",
+    "section": "",
+    "text": "As programs get bigger and bigger, they become more difficult to maintain and comprehend. Therefore, dividing programs into smaller, manageable pieces (modules) and reusing these pieces in different programs is a common practice. Similarly, modules can be further grouped into packages.\n\n\nA module is simply a Python file .py that can contain variables, functions, or classes. These can be reused in other Python programs by importing the module with the import statement.\nFor instance, let’s create a simple module named concentration.py:\ndef molality(moles_solute, mass_solvent_kg):\n    return moles_solute / mass_solvent_kg\nThis module contains a single function molality, which calculates the molality given the amount of solute (in moles) and the mass of the solvent (in kilograms).\nWe can then use this function in our programs like this:\nimport concentration\n\nmoles_solute = 1\nmass_solvent_kg = 1\n\nprint(concentration.molality(moles_solute, mass_solvent_kg))  # Output: 1.0\n\n\n\nWhen the number of modules grows, it becomes necessary to arrange them in a hierarchical structure. A package in Python is simply a directory that contains other directories or modules.\nEach package in Python is a directory which MUST contain a special file called __init__.py. This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.\nConsider the following directory structure:\nchemicals/\n    __init__.py\n    concentrations.py\n    reactions.py\nIn this structure, chemicals is a package containing two modules: concentrations and reactions. The concentrations module can be imported as follows:\nfrom chemicals import concentrations\n\nmoles_solute = 1\nmass_solvent_kg = 1\n\nprint(concentrations.molality(moles_solute, mass_solvent_kg))  # Output: 1.0\nPython comes with a rich ecosystem of libraries (also known as packages), such as NumPy, SciPy, and pandas for data analysis, Matplotlib and Seaborn for data visualization, and Sklearn for machine learning. These libraries are composed of different modules that can be imported based on the requirement of the program.\nAs you become more comfortable with Python, you will use packages and modules more often. These powerful tools can greatly reduce the time and effort required to write code, and can make your code more readable and easier to maintain."
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html#python-modules",
+    "href": "tutorials/lecture_03/03_packages.html#python-modules",
+    "title": "Python Packages and Modules",
+    "section": "",
+    "text": "A module is simply a Python file .py that can contain variables, functions, or classes. These can be reused in other Python programs by importing the module with the import statement.\nFor instance, let’s create a simple module named concentration.py:\ndef molality(moles_solute, mass_solvent_kg):\n    return moles_solute / mass_solvent_kg\nThis module contains a single function molality, which calculates the molality given the amount of solute (in moles) and the mass of the solvent (in kilograms).\nWe can then use this function in our programs like this:\nimport concentration\n\nmoles_solute = 1\nmass_solvent_kg = 1\n\nprint(concentration.molality(moles_solute, mass_solvent_kg))  # Output: 1.0"
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html#python-packages",
+    "href": "tutorials/lecture_03/03_packages.html#python-packages",
+    "title": "Python Packages and Modules",
+    "section": "",
+    "text": "When the number of modules grows, it becomes necessary to arrange them in a hierarchical structure. A package in Python is simply a directory that contains other directories or modules.\nEach package in Python is a directory which MUST contain a special file called __init__.py. This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.\nConsider the following directory structure:\nchemicals/\n    __init__.py\n    concentrations.py\n    reactions.py\nIn this structure, chemicals is a package containing two modules: concentrations and reactions. The concentrations module can be imported as follows:\nfrom chemicals import concentrations\n\nmoles_solute = 1\nmass_solvent_kg = 1\n\nprint(concentrations.molality(moles_solute, mass_solvent_kg))  # Output: 1.0\nPython comes with a rich ecosystem of libraries (also known as packages), such as NumPy, SciPy, and pandas for data analysis, Matplotlib and Seaborn for data visualization, and Sklearn for machine learning. These libraries are composed of different modules that can be imported based on the requirement of the program.\nAs you become more comfortable with Python, you will use packages and modules more often. These powerful tools can greatly reduce the time and effort required to write code, and can make your code more readable and easier to maintain."
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html#installing-and-importing-numpy",
+    "href": "tutorials/lecture_03/03_packages.html#installing-and-importing-numpy",
+    "title": "Python Packages and Modules",
+    "section": "Installing and Importing NumPy",
+    "text": "Installing and Importing NumPy\nTo install NumPy, open your terminal or command prompt and type the following command:\npip install numpy\nIn your jupyter notebook you could also run.\n!pip install numpy\nThe ! in before a command (here pip install numpy) allows us to execute that command as if we were in our terminal or command prompt.\nOnce you’ve installed NumPy, you can import it in your programs using the following command:\nimport numpy as np\nThe as np part is used to create an alias for numpy, which allows us to use np instead of numpy when calling NumPy functions. This is not required, but it is a common practice and it makes the code cleaner."
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html#numpy-arrays",
+    "href": "tutorials/lecture_03/03_packages.html#numpy-arrays",
+    "title": "Python Packages and Modules",
+    "section": "NumPy Arrays",
+    "text": "NumPy Arrays\nA NumPy array is a grid of values, all of the same type, and is indexed by a tuple of nonnegative integers. The number of dimensions is the rank of the array; the shape of an array is a tuple of integers giving the size of the array along each dimension.\nHere’s how you create a NumPy array:\nimport numpy as np\n\n# Create a 1D NumPy array from a list\na = np.array([1, 2, 3])\n\n# Create a 2D NumPy array from a list of lists\nb = np.array([[1, 2, 3], [4, 5, 6]])\n\nprint(a)            # Output: [1 2 3]\nprint(b)            # Output: [[1 2 3], [4 5 6]]\nOperations in NumPy are element-wise, that is, they are applied element by element in the arrays. For example, here’s how you can do array addition:\nimport numpy as np\n\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\n\nc = a + b\n\nprint(c)  # Output: [5 7 9]\nIn the context of chemistry, let’s say we have an array of hydrogen atom masses and an array of oxygen atom masses, we can find an array of water molecule masses by simply adding the arrays:\nimport numpy as np\n\n# Hydrogen's atomic mass\nH_mass = np.array([1.007, 1.007])\n\n# Oxygen's atomic mass\nO_mass = np.array([15.999])\n\n# Mass of water molecules\nH2O_mass = H_mass.sum() + O_mass  # Element-wise addition\n\nprint('Masses of water molecules: ', H2O_mass)  # Output: Masses of water molecules: [18.013]"
+  },
+  {
+    "objectID": "tutorials/lecture_03/03_packages.html#using-numpy-for-chemical-calculations",
+    "href": "tutorials/lecture_03/03_packages.html#using-numpy-for-chemical-calculations",
+    "title": "Python Packages and Modules",
+    "section": "Using NumPy for Chemical Calculations",
+    "text": "Using NumPy for Chemical Calculations\nWith NumPy, we can make calculations for chemical problems simpler and more efficient.\nFor example, let’s calculate the molar mass of Carbon Dioxide (CO2). We know that the molar mass of carbon (C) is approximately 12.01 g/mol and the molar mass of oxygen (O) is approximately 16.00 g/mol.\nimport numpy as np\n\n# Define atomic masses\nC_mass = np.array([12.01])  # Carbon\nO_mass = np.array([16.00, 16.00])  # Oxygen\n\n# Calculate molar mass of CO2\nCO2_mass = C_mass.sum() + O_mass.sum()\n\nprint('Molar mass of CO2: ', CO2_mass, 'g/mol')  # Output: Molar mass of CO2: 44.01 g/mol"
   }
 ]
