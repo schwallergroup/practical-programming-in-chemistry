@@ -1,0 +1,210 @@
+# Errors and Exception Handling in Python
+
+Error handling in Python is done through the use of exceptions. Exceptions are triggered automatically (or manually) when errors occur. Python has multiple built-in exceptions that can be triggered and caught in your code. When exceptions aren't caught, your program will terminate abruptly.
+
+## Syntax Errors
+
+Syntax errors, also known as parsing errors, are `the most common` errors in Python and occur when the parser detects an incorrect statement.
+
+```python
+print( 0 / 2 ))
+```
+
+The output would give an invalid syntax error (with an arrow pointing at the caught error):
+
+```
+File "<ipython-input>", line 1
+print( 0 / 2 ))
+^
+SyntaxError: invalid syntax
+```
+
+## Exceptions 
+
+Exceptions, unlike Syntax errors, occur after correct syntax during execution which interrupts the program flow.
+
+```python
+print(1 / 0)
+```
+
+This returns a `ZeroDivisionError` Exception:
+
+```
+ZeroDivisionError: division by zero
+```
+
+## Exception Handling
+
+Exceptions can be intercepted and handled in your code, preventing the program from terminating unexpectedly. We control this flow using `try`, `except` statements.
+
+```python
+try:
+    print(1 / 0)
+except ZeroDivisionError:
+    print("You can't divide by zero!")
+```
+Output:
+
+```
+You can't divide by zero!
+```
+
+In this case, the division by zero caused a `ZeroDivisionError` which we caught using an `except` clause and printed a friendly error message instead.
+
+## Multiple Exceptions
+
+A `try` statement can have multiple different except blocks to handle different exceptions.
+
+```python
+try:
+    # code that could potentially raise an exception
+    chemical_compound = {"H20": "Water"}
+    print(chemical_compound["NaCl"])
+except KeyError:
+    print("Key not found in dictionary.")
+except Exception as e:
+    print("An unknown error occurred:", e)
+```
+
+Output:
+
+```
+Key not found in dictionary.
+```
+
+Here, the KeyError exception is raised when a dictionary key is not found. But we also have a generic `Exception` clause in case any other exception is raised.
+
+## `finally` clause
+
+The `finally` clause is optional and used when you want code to be executed regardless of whether an exception was raised or caught:
+
+```python
+try:
+    print(1 / 0)
+except ZeroDivisionError:
+    print("You can't divide by zero!")
+finally:
+    print("This line always executes.")
+```
+
+Output:
+```
+You can't divide by zero!
+This line always executes.
+```
+Even though the ZeroDivisionError exception was caught, the `finally` block is executed.
+
+## Custom Exceptions
+
+You can define your own exceptions by creating a new exception class derived from Python’s `Exception` class. However, these are quite advanced and will require a more complex understanding of Python and are usually used less commonly than the built-in exceptions.
+
+# Exceptions Handling in Python Exercises
+
+## Exercise 1
+
+Write a Python program to handle simple runtime error with `try` - `except`.
+
+**Solution:**
+
+```python
+try:
+    div = 1 / 0
+except:
+    print("An error just occurred!")
+```
+
+Output: 
+
+```
+An error just occurred!
+```
+
+## Exercise 2
+
+Suppose we have a dictionary of atoms, add a `try` - `except` block to handle `KeyError` when a non-existent atom is searched.
+
+Atoms dictionary: `atoms = { "H": {"name": "Hydrogen", "number": 1}, "He": {"name": "Helium", "number": 2} }`.
+
+**Solution:**
+
+```python
+atoms = { "H": {"name": "Hydrogen", "number": 1}, "He": {"name": "Helium", "number": 2} }
+
+try:
+    print(atoms["Li"])
+except KeyError:
+    print("This atom is not in the dictionary.")
+```
+
+Output: 
+
+```
+This atom is not in the dictionary.
+```
+
+## Exercise 3
+
+Write a Python program that prompts the user for an integer input and catches the `ValueError` exception in case a non-integer value is entered.
+
+**Solution:**
+
+```python
+try:
+    number = int(input("Enter an integer: "))
+    print(f"You entered: {number}")
+except ValueError:
+    print("You did not enter an integer!")
+```
+
+Output: 
+
+Case 1 - `Enter an integer: a`
+
+```
+You did not enter an integer!
+```
+
+Case 2 - `Enter an integer: 5`
+
+```
+You entered: 5
+```
+
+## Exercise 4
+
+Write a Python program that prompts the user for a chemical compound, catch `KeyError` when compound is not found in a dictionary, and use `finally` to print a statement whether the exception was raised or not.
+
+**Solution:**
+
+```python
+compounds = {'H2O': 'Water', 'CO2': 'Carbon Dioxide'}
+
+try:
+    compound = input("Enter a compound: ")
+    print(compounds[compound])
+except KeyError:
+    print("This compound is not in the dictionary.")
+finally:
+    print("Exiting the program.")
+```
+
+Note: This program will prompt for user input.
+
+## Exercise 5
+
+Write a Python program that tries to access an undefined variable, catch the `NameError` exception and print a user-friendly message.
+
+**Solution:**
+
+```python
+try:
+    print(undefined_variable)
+except NameError:
+    print("The variable is not defined.")
+```
+
+Output: 
+
+```
+The variable is not defined.
+```

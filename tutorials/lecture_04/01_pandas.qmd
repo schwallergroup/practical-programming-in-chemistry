@@ -1,0 +1,72 @@
+# Pandas
+
+Pandas is a powerful library for data manipulation and analysis in Python, making it a valuable tool for chemists looking to process experimental data, chemical properties, or any structured data related to their research.
+
+It's like the Excel in Python. 
+
+## Setting Up Your Environment
+First, ensure you are in a conda environment. You can then install Pandas and Numpy using pip:
+
+```sh
+pip install pandas numpy
+```
+or 
+
+```sh
+pip install pandas
+pip install numpy
+```
+
+## Importing Libraries
+Start your Python script or Jupyter notebook by importing Pandas and Numpy:
+
+```python
+import pandas as pd
+import numpy as np
+```
+
+## Creating a DataFrame
+A DataFrame is a two-dimensional, size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). For a chemistry application, let's consider a simple example where we have a dataset of several compounds with their molecular weights and melting points.
+
+```python
+data = {
+    "Compound": ["Water", "Ethanol", "Glucose", "Sodium Chloride", "Methane"],
+    "Molecular Weight": [18.015, 46.07, 180.16, 58.44, 16.04],
+    "Melting Point (°C)": [0, -114.1, 146, 801, -182.5]
+}
+df = pd.DataFrame(data)
+```
+
+## Basic Data Inspection
+Pandas provides numerous functions to quickly inspect your data:
+
+- `df.head()` displays the first few rows of the DataFrame.
+- `df.describe()` gives a statistical summary of the numerical columns.
+- `df.dtypes` shows the data type of each column.
+
+## Accessing Data
+You can access specific columns using their labels:
+
+```python
+mw = df["Molecular Weight"]
+```
+
+Or use conditions to filter data:
+
+```python
+solids = df[df["Melting Point (°C)"] > 25]
+```
+
+## Operations
+Pandas supports various operations that can be useful in chemistry, such as calculating the mean, median, or applying more complex functions:
+
+```python
+average_mw = df["Molecular Weight"].mean()
+```
+
+You can also apply functions to transform data, such as converting temperatures:
+
+```python
+df["Melting Point (°F)"] = df["Melting Point (°C)"].apply(lambda x: x * 9/5 + 32)
+```
+

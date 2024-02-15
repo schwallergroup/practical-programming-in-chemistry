@@ -1,0 +1,111 @@
+
+# Jupyter Notebooks Tutorial For Beginners
+
+Jupyter Lab Notebook is a very powerful tool, combining both code and rich text elements - paragraphs, equations, figures, links, etc. This makes it ideal for data cleaning and transformation, numerical simulation, statistical modeling, machine learning, and much more. This tutorial will guide you on how to use Jupyter Lab Notebook as a beginner.
+
+## Start Jupyter Lab
+
+The simplest way to run Jupyter Lab is by running the following command in your terminal:
+
+```sh
+jupyter lab
+```
+
+A browser window should immediately open with the Jupyter Lab interface.
+
+## User interface
+
+Once launched, Jupyter Lab presents an interface with a file browser on the left side (Navigator pane), and a main working area (Workspace) on the right. In the Workspace area, you can create new notebooks or files, and open existing ones by double-clicking on them in the Navigator.
+
+## Create a new notebook
+
+To create a new Jupyter notebook, click on the "+" button at the top left of the interface. This will launch a new Launcher tab in the Workspace. Here, you can choose the type of file you want to create - in this case, choose Python 3 under the Notebooks section.
+
+## Notebook
+
+## Notebook Cells
+A notebook is a list of cells. A cell is a multiline text input field, and its contents can be executed using `Shift-Enter`, or by clicking either the `Play` button at the top, or `Cell > Run Cells` in the menu bar. There are three types of cells:
+* Code cells
+* Markdown cells
+* Raw cells
+
+You can change the type of cells using the drop-down menu in the toolbar, or with keyboard shortcuts.
+
+### Code Cells
+Code cells allow you to input and run Python code with the output displayed underneath.
+
+### Markdown Cells
+Markdown cells provide the narrative text around the code, using markup language to format the text.
+
+For example, for a level 1 heading, you use `# Heading 1`, and for a level 2 heading, you use `## Heading 2`.
+
+```markdown
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+```
+
+To create bullet points:
+
+```markdown
+- Bullet 1
+- Bullet 2
+- Bullet 3
+```
+
+Create numbered lists:
+
+```markdown
+1. Numbered list item 1
+2. Numbered list item 2
+3. Numbered list item 3
+```
+
+Links can be created with: `[Link](www.link.com)`
+
+Images can be added with: `![Image](image.jpg)`
+
+### Raw Cells
+Raw cells, unlike all other Jupyter notebook cells, have no input-output distinction. This means that they are not formatted in any way and appear as they were typed.
+
+## Saving and Exporting Your Jupyter Notebook
+
+To save your notebook, click on the `Save` icon in the toolbar at the top, or you can hit `CTRL + S`. 
+
+Jupyter Lab provides a functionality to export your notebook into different formats like PDF, HTML, .py file etc. Click `File > Export Notebook As...` to save the notebook in another format.
+
+## Closing the Jupyter Lab Notebook
+
+Once you are done, you can close the browser window and shut down the jupyter server by using `CTRL + C` in the terminal.
+
+That is your basic rundown on how to use Jupyter Lab Notebook. Experiment, play around and get comfortable with it!
+
+## Most important commands
+
+
+| Command | Description |
+| --- | --- |
+| `Enter` | Enter into `edit mode` |
+| `Esc`   | Switch to `command mode` where you can navigate around your notebook with arrow keys |
+| `y` | Change the cell type to code |
+| `m` | Change the cell type to markdown  |
+| `a` | Insert a new cell above the current cell |
+| `b` | Insert a new cell below the current cell |
+| `x` | Cut the current cell |
+| `c` | Copy the current cell |
+| `v` | Paste the copied/cut cell  |
+| `dd` | Delete the current cell |
+| `z` | Undo the last cell operation |
+| `f` | Find and replace on your code but not the outputs |
+| `Shift + Enter` | Run the current cell and select the next cell |
+| `s` | Save the notebook |
+| `h` | Display the keyboard shortcuts help dialog |
+
+Note: The character-based commands have to be run in the `command mode`. If you are in the `edit mode`. Press `ESC` and then `a` to insert a new cell below. 
+
+All along this course we will collect the most important commands as a quick reference in this ["CheatSheet"](../../cheatsheets.html#jupyter-notebook) page.
+
+If something is missing please, let us know in a GitHub issue or do a pull request. Thanks! 

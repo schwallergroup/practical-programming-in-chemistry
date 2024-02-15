@@ -1,0 +1,164 @@
+# Functions in Python
+
+Functions in Python are blocks of reusable code that carry out a specific task. When working on larger scale projects, functions provide better modularity for your application and a high degree of code reusing.
+
+Python has many built-in functions like print(), input(), len(), etc, but you can also create your own functions. These functions are called user-defined functions.
+
+## Defining a Function
+
+You can define your own function in Python using the keyword `def`.
+
+Here’s a simple example of a function that calculates the square of a number:
+
+```python
+def square(number):
+    sq = number ** 2
+    return sq
+```
+
+In this code, `square` is the function name, `number` is the input parameter to the function, the operator `**` is used to calculate the square of a number and `return` is the keyword used to output a value from the function. 
+
+## Calling a Function
+
+To call a function, you simply need to provide the function name followed by parentheses with required parameters, if any.
+
+```python
+print(square(6)) #Output: 36
+```
+
+## Function Parameters
+
+You can pass data, known as parameters, into a function. A function can accept any number and type of parameters.
+
+Let's create a function that greet a user:
+
+```python
+def greet(name):
+    print("Hello, " + name + ". Good Morning!")
+```
+
+Now we can call this function and pass a name as the argument:
+
+```python
+greet('Alice') #Output: Hello, Alice. Good Morning!
+```
+
+## Using Default Parameter Value
+
+You can set a default parameter value for a function. If we call the function without argument, it uses the default value.
+
+```python
+def greet(name = "User"):
+    print("Hello, " + name + ". Good Morning!") 
+
+greet() #Output: Hello, User. Good Morning!
+```
+
+In the context of chemistry, we can wrap a series of calculations within a function. For example, a chemist may often need to calculate the molar mass for different substances. This can be done using a function:
+
+```python
+# Function to calculate molar mass of hydrocarbons
+def calculate_molar_mass(hydrogen, carbon):
+    H = 1.008  # molar mass of Hydrogen
+    C = 12.01  # molar mass of Carbon
+    return (H*hydrogen + C*carbon)
+
+# Now calculate molar mass of Methane (CH4)
+print(calculate_molar_mass(4, 1))  #Output: 16.042
+```
+
+This way, chemists can create their own library of useful functions to perform various calculations related to their work, increasing efficiency and reducing the chance of errors in their calculations.
+
+### Examples of Functions in Python
+
+Let's go through more examples of functions, this time keeping our examples more chemistry oriented.
+
+#### Calculating Amount of Substance
+
+Say you routinely need to calculate the number of moles in a sample given its mass and molar mass. We can make a function to do exactly this:
+
+```python
+# Function to calculate amount of substance
+def calculate_moles(mass, molar_mass):
+    return mass / molar_mass
+
+# Now calculate the moles in a 22g sample of Carbon (C = 12.01 g/mol)
+print(calculate_moles(22, 12.01)) 
+```
+
+#### Calculating Dilution
+
+If you often perform dilutions, you might want a function to quickly calculate the final concentration after dilution:
+
+```python
+# Function to calculate final concentration after dilution
+def dilute(C1, V1, V2):
+    return (C1 * V1) / V2
+
+# Now calculate the concentration after dilution
+print(dilute(0.5, 5, 10))  
+```
+
+### Exercises 
+
+1. Write a function to calculate the pH of a solution given the concentration of H+ ions.
+2. Write a function that returns the concentration of OH- ions given the concentration of H+ ions.
+3. Write a function to calculate the final pressure of a gas given initial pressure, volume and temperature, and final volume and temperature (use ideal gas law).
+4. Write a function that calculates and returns the molar mass of a hydrocarbon given numbers of H, C and O atoms.
+5. Write a function that calculates mass percent of an element in a compound given the molar mass of the element and the compound.
+
+### Solutions 
+
+Solution 1:
+
+```python 
+import math
+
+def calculate_pH(H_concentration):
+    return -math.log10(H_concentration)
+
+print(calculate_pH(0.0001))  
+```
+
+Solution 2:
+
+```python 
+def calculate_OH_concentration(H_concentration):
+    Kw = 1.0e-14
+    return Kw / H_concentration
+
+print(calculate_pH(0.0001))   
+```
+
+Solution 3:
+
+```python 
+def calculate_final_pressure(P1, V1, T1, V2, T2):
+    return (P1 * V1 / T1) * (T2 / V2)
+
+print(calculate_final_pressure(2, 10, 300, 5, 300))  
+```
+
+Solution 4:
+
+```python 
+def calculate_molar_mass(hydrogen, carbon, oxygen):
+    H = 1.008  
+    C = 12.01 
+    O = 16.00 
+    return (H*hydrogen + C*carbon + O*oxygen)
+
+print(calculate_molar_mass(4, 2, 2)) 
+```
+
+Solution 5:
+
+```python 
+def calculate_mass_percent(element_molar_mass, compound_molar_mass):
+    return (element_molar_mass / compound_molar_mass) * 100
+
+print(calculate_mass_percent(12.01, 18.015)) 
+```
+
+That's it! By writing and using your own functions, your code becomes more readable and reusable.
+

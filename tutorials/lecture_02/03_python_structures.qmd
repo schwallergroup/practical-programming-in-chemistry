@@ -1,0 +1,347 @@
+# Lists, sets, tuples, and dictionaries
+
+In Python, there are four built-in data structures: lists, sets, tuples, and dictionaries.
+
+1. Lists: These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets `[]`.
+
+2. Sets: Sets are unordered collections of unique elements. That means they don't maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces `{}` (but not key-value pairs).
+
+3. Tuples: Tuples are ordered, immutable collections, thus you can't change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses `()`.
+
+4. Dictionaries: Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces `{}`, where key and value are separated by a colon `:`.
+
+# Lists in Python
+
+A list in Python is a collection of items that are ordered and changeable. Lists are written with square brackets `[]`.
+
+## Creating a List 
+
+You can create a list simply by enclosing a comma-separated sequence of items in square brackets `[]`. These items can be of different types: integers, floats, strings, and even other lists!
+
+```python
+elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
+print(elements)
+```
+
+This will output:
+
+```python
+['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
+```
+
+## Accessing Elements in a List
+
+In Python, you can access list items by referring to their index number. Indexes in Python start from 0 for the first element.
+
+```python
+first_element = elements[0]
+print(first_element) #Output: Hydrogen
+```
+
+Negative indexing can be used to access items from the end of the list. For example, `elements[-1]` will return the last element: 'Boron'.
+
+## Modifying a List
+
+You can change the value of a specific item in the list by referring to its index number.
+
+```python
+elements[1] = 'Noble gas'
+print(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']
+```
+
+## Adding Elements
+
+To add an item to the end of the list, use the `append()` method. To add an item at a specific position, use the `insert()` method.
+
+```python
+elements.append('Carbon')
+print(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
+
+elements.insert(1, 'Helium')
+print(elements) #Output: ['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
+```
+
+## Removing Elements
+
+The `remove()` method removes the first occurrence of the specified element.
+
+```python
+elements.remove('Noble gas')
+print(elements) #Output: ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
+```
+
+### Exercises 
+
+1. Create a list of five elements.
+2. Print out the second and fourth element of the list.
+3. Replace the third element of your list with the string 'Metal'.
+4. Add another element to your list.
+5. Remove the first element of the list.
+
+### Solutions 
+
+Solution 1:
+
+```python
+elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
+print(elements)
+```
+
+Solution 2:
+
+```python
+print(elements[1])
+print(elements[3])
+```
+
+Solution 3:
+
+```python
+elements[2] = 'Metal'
+print(elements)
+```
+
+Solution 4:
+
+```python
+elements.append('Carbon')
+print(elements)
+```
+
+Solution 5:
+
+```python
+elements.remove('Hydrogen')
+print(elements)
+```
+
+The ability to create and manipulate lists is an important part of managing data. Lists are very flexible and can hold entirely different kinds of elements.
+
+# Tuples and Sets in Python
+
+## Tuples
+
+A tuple is another sequence data type that is similar to the list. A tuple consists of a number of values separated by commas. Unlike lists, however, tuples are enclosed within parentheses `()` and are immutable, which means you can't change elements of a tuple once it's defined.
+
+### Creating a Tuple
+
+A tuple is created by placing all the items inside parentheses `()`, separated by commas.
+
+```python
+elements = ('Hydrogen', 'Helium', 'Lithium')
+print(elements) #Output: ('Hydrogen', 'Helium', 'Lithium')
+```
+
+### Accessing Elements in a Tuple
+
+You can access tuple items by referring to their index, inside square brackets.
+
+```python
+print(elements[0]) #Output: Hydrogen
+```
+
+### Modifying a Tuple
+As mentioned before, tuples are unchangeable, or immutable. But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
+
+```python
+elements = list(elements)
+elements[1] = 'Noble gas'
+elements = tuple(elements)
+print(elements) #Output: ('Hydrogen', 'Noble gas', 'Lithium')
+```
+
+## Sets
+
+A set is an unordered collection of items where every item is unique (no duplicates).
+
+### Creating a Set
+
+You can create a set by using the built-in `set()` function with a list or a tuple, or you can use curly braces`{}`.
+
+```python
+elements = {'Hydrogen', 'Helium', 'Lithium'}
+print(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}
+```
+
+### Adding Items to a Set
+
+You can add single items using the `add()` method, and multiple items using the `update()` method.
+
+```python
+elements.add('Beryllium')
+print(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}
+
+elements.update(['Boron', 'Carbon'])
+print(elements) #Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}
+```
+
+### Removing Items from a Set
+
+To remove an item in a set, you can use the `remove()`, or the `discard()` method.
+
+```python
+elements.remove('Beryllium')
+print(elements) #Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}
+```
+
+### Exercises 
+
+1. Create a tuple of four elements.
+2. Print out the third element from your tuple.
+3. Modify the second element of your tuple.
+4. Create a set of three elements.
+5. Add another element to your set.
+
+### Solutions 
+
+Solution 1:
+
+```python
+elements = ('Hydrogen', 'Helium', 'Lithium', 'Beryllium')
+print(elements)
+```
+
+Solution 2:
+
+```python
+print(elements[2]) #Output: Lithium
+```
+
+Solution 3:
+
+```python
+elements = list(elements)
+elements[1] = 'Noble gas'
+elements = tuple(elements)
+print(elements) #Output: ('Hydrogen', 'Noble gas', 'Lithium', 'Beryllium')
+```
+
+Solution 4:
+
+```python
+elements = {'Hydrogen', 'Helium', 'Lithium'}
+print(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}
+```
+
+Solution 5:
+
+```python
+elements.add('Beryllium')
+print(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}
+```
+Tuples and sets are valuable constructs when you need to store multiple items in a single variable, just like lists. Try to work with different types of data structures in Python and understand their strengths and weaknesses.
+
+# Dictionaries in Python
+
+A dictionary in Python is an unordered collection of items. Dictionaries are used to store data values in key:value pairs. While the values can be of any data type and can repeat, keys must be of immutable type (string, number, or tuple) and must be unique.
+
+## Creating a dictionary
+
+Dictionaries are defined by curly braces `{}`. A dictionary contains keys and values separated by a colon `:`. Each key-value pair in a dictionary is separated by a comma.
+
+Let's make a dictionary to represent an element in the periodic table:
+
+```python
+carbon = {
+    "atomic_number": 6,
+    "symbol": "C",
+    "name": "Carbon",
+    "atomic_weight": 12.01,
+    "period": 2,
+    "group": 14
+}
+```
+
+## Accessing elements in a dictionary
+
+You can access the items of a dictionary by referring to its key name, inside square brackets:
+
+```python
+print(carbon["name"]) #Output: Carbon
+```
+
+There's also a method called `get()` that will give you the same result:
+
+```python
+print(carbon.get("name")) #Output: Carbon
+```
+
+## Changing values in a dictionary
+
+You can change the value of a specific item by referring to its key name:
+
+```python
+carbon["period"] = 3
+print(carbon["period"]) #Output: 3
+```
+
+## Adding items in a dictionary
+
+Adding an item to the dictionary is done by using a new index key and assigning a value to it:
+
+```python
+carbon["discovery"] = 3750
+print(carbon)
+```
+
+## Removing items in a dictionary
+
+The `pop()` method removes the item with the specified key name:
+
+```python
+carbon.pop("discovery")
+print(carbon)
+```
+
+### Exercises 
+
+1. Create a dictionary representing another chemical element.
+2. Access the `name` and `atomic_number` of the element.
+3. Change the `atomic_weight` of the element.
+4. Add a new key-value pair `group_block` to your dictionary representing the group block of the element.
+5. Remove the `group_block` from your dictionary.
+
+### Solutions 
+
+Solution 1:
+
+```python
+oxygen = {
+    "atomic_number": 8,
+    "symbol": "O",
+    "name": "Oxygen",
+    "atomic_weight": 15.999,
+    "period": 2,
+    "group": 16
+}
+```
+
+Solution 2:
+
+```python
+print(oxygen["name"]) #Output: Oxygen
+print(oxygen["atomic_number"]) #Output: 8
+```
+
+Solution 3:
+
+```python
+oxygen["atomic_weight"] = 16.00
+print(oxygen["atomic_weight"]) #Output: 16.00
+```
+
+Solution 4:
+
+```python
+oxygen["group_block"] = "p-block"
+print(oxygen)
+```
+
+Solution 5:
+
+```python
+oxygen.pop("group_block")
+print(oxygen)
+```
+
+A dictionary in Python is a great tool that helps you store a variety of data types and structures. They are optimized for retrieving data. You must know the key to retrieve the value.

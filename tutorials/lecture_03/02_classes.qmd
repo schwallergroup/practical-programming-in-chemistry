@@ -1,0 +1,197 @@
+# Understanding Classes in Python
+
+Classes are a key part of object-oriented programming in Python. They allow us to create objects that bundle both data and functionalities together. For chemists, using classes can streamline simulations, data analysis, and modeling of chemical processes by encapsulating related properties and methods into a single, coherent unit. 
+
+A class in Python is like a blueprint for creating objects. An object has attributes (characteristics it possesses) and methods (actions it can perform).
+
+## Defining a Class
+To define a class in Python, you use the class keyword. Here's an example of a simple class, Molecule, that could represent a chemical molecule:
+
+```python
+class Molecule:
+    def __init__(self, chemical_formula, molar_mass):
+        self.chemical_formula = chemical_formula
+        self.molar_mass = molar_mass
+
+    def display_info(self):
+        print(f"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol")
+```
+
+In this class:
+
+- `__init__` is a special method called a constructor, which initializes new objects as instances of the class.
+- `self` represents the instance of the class and allows access to its attributes and methods.
+- `chemical_formula` and `molar_mass` are attributes.
+- `display_info` is a method that prints information about the molecule.
+
+## Creating an Object
+To create an object (an instance of a class), you simply call the class using its constructor and pass the required arguments, if any:
+
+```python
+water = Molecule("H2O", 18.015) # calls the __init__ method, with the two attributes
+water.display_info()  # Output: Chemical Formula: H2O, Molar Mass: 18.015 g/mol
+```
+
+## Using Classes for Chemistry Applications
+Let's explore how you can use classes in chemistry-related applications. We'll create a class for handling reactions.
+
+### Example: Reaction Class
+
+This class could encapsulate properties like reactants, products, and the stoichiometry of a chemical reaction, and methods for calculating reactant or product masses, or even equilibrium constants.
+
+```python
+class Reaction:
+    def __init__(self, reactants, products):
+        self.reactants = reactants  # Expecting a list of Molecule objects
+        self.products = products    # Same here
+
+    def display_reaction(self):
+        reactant_str = " + ".join([r.chemical_formula for r in self.reactants])
+        product_str = " + ".join([p.chemical_formula for p in self.products])
+        print(f"{reactant_str} -> {product_str}")
+```
+
+## Exercises
+1. Extend the Molecule class to include methods for calculating the number of moles given a mass, and vice versa, using the molar mass.
+2. Create a Solution class that represents a chemical solution, including attributes for solvent, solute, concentration, and volume. Include methods for diluting the solution and calculating the mass of solute.
+3. Implement a Gas class that models an ideal gas, with methods to calculate pressure, volume, and temperature changes based on the ideal gas law.
+
+By using classes, you can create more structured, modular, and reusable code. Classes allow you to encapsulate data and functionality in a way that models real-world objects or concepts, making your Python scripts for chemical analysis, simulation, or any other purpose more intuitive and maintainable.
+
+## Solutions
+
+### Exercise 1: Extend the Molecule Class
+We'll add methods to the Molecule class for calculating the number of moles given a mass and vice versa.
+
+```python
+class Molecule:
+    def __init__(self, chemical_formula, molar_mass):
+        self.chemical_formula = chemical_formula
+        self.molar_mass = molar_mass
+
+    def display_info(self):
+        print(f"Chemical Formula: {self.chemical_formula}, Molar Mass: {self.molar_mass} g/mol")
+    
+    def calculate_moles(self, mass):
+        return mass / self.molar_mass
+
+    def calculate_mass(self, moles):
+        return moles * self.molar_mass
+```
+
+### Exercise 2: Create a Solution Class
+This class will represent a chemical solution, including attributes for the solvent, solute (as Molecule objects), concentration, and volume. It will also include methods for diluting the solution and calculating the mass of the solute.
+
+```python
+class Solution:
+    def __init__(self, solute, solvent, concentration, volume):
+        self.solute = solute
+        self.solvent = solvent
+        self.concentration = concentration  # mol/L
+        self.volume = volume  # L
+
+    def dilute(self, final_volume):
+        # Assuming volume is added, not replaced
+        self.concentration *= (self.volume / final_volume)
+        self.volume = final_volume
+
+    def calculate_mass_of_solute(self):
+        # Mass = moles * molar mass
+        moles = self.concentration * self.volume
+        return self.solute.calculate_mass(moles)
+```
+
+### Exercise 3: Implement a Gas Class
+This class will model an ideal gas, with methods to calculate changes in pressure, volume, and temperature based on the ideal gas law $PV=nRT$.
+
+```python
+class Gas:
+    R = 0.0821  # Ideal gas constant, L atm / (mol K)
+
+    def __init__(self, pressure, volume, temperature):
+        self.pressure = pressure  # atm
+        self.volume = volume  # L
+        self.temperature = temperature  # K
+
+    def calculate_pressure(self, n, V=None, T=None):
+        V = V if V is not None else self.volume
+        T = T if T is not None else self.temperature
+        self.pressure = (n * Gas.R * T) / V
+        return self.pressure
+
+    def calculate_volume(self, n, P=None, T=None):
+        P = P if P is not None else self.pressure
+        T = T if T is not None else self.temperature
+        self.volume = (n * Gas.R * T) / P
+        return self.volume
+
+    def calculate_temperature(self, n, P=None, V=None):
+        P = P if P is not None else self.pressure
+        V = V if V is not None else self.volume
+        self.temperature = (P * V) / (n * Gas.R)
+        return self.temperature
+```
+
+These solutions provide a foundation for creating chemistry-oriented applications with Python. They demonstrate how to encapsulate related data and functionalities within classes, making your code more modular, readable, and reusable. Feel free to expand on these examples or adapt them to your specific needs in chemical computations and simulations.
+
+## (Advanced) More on object-oriented programming
+
+**Object-oriented programming (OOP)** is a programming paradigm that uses "objects" to design applications and computer programs. It provides a clear modular structure for programs which makes it good for defining abstract data types, implementing real-world scenarios, and for code reusability. Here's a breakdown of the core concepts in OOP to help you better understand this approach:
+
+
+**Classes**: Think of a class as a blueprint or template for creating objects. A class defines a set of properties and methods that are common to all objects of that type. For example, in a chemistry application, you might have a Molecule class that defines properties like chemical formula and molar mass, and methods to perform operations like calculating moles from mass.
+
+**Objects**: An object is an *instance of a class*. It has the properties and can perform the actions defined by its class. Using the Molecule example, if you create an instance of the Molecule class for water, that instance represents the water molecule, with its own specific chemical formula (H2O) and molar mass (18.015 g/mol).
+
+**Encapsulation** is the bundling of data (attributes) and methods that operate on the data into a single unit, or class. It also means restricting access to some of a class's components, which is a way of preventing accidental interference and misuse of the data. For instance, in the Molecule class, the molar mass is stored as an attribute, and the methods to calculate moles or mass from it are encapsulated within the class.
+
+**Inheritance** allows a class (the child class) to inherit attributes and methods from another class (the parent class). This is useful for creating a general class with broad features, then creating more specific classes that add additional features or override existing ones. For example, you might have a general `ChemicalSubstance class` that provides basic properties and methods for any substance, and a `Molecule class` that inherits from it and adds more specific features like bonding information.
+
+**Polymorphism** allows objects of different classes to be treated as objects of a common superclass. It is the ability for different classes to be used interchangeably, if they inherit from the same parent class, but still have their own unique behavior for the methods they inherit or define. For example, you might have a method that calculates the reaction rate (`calculate_reaction_rate`), which could apply to any `ChemicalReaction` object, whether it's a `FirstOrderReaction` or a `SecondOrderReaction`, each implementing its own version of the calculation.
+
+```python
+class ChemicalReaction:
+    def __init__(self, reactants, products, rate_constant):
+        self.reactants = reactants
+        self.products = products
+        self.rate_constant = rate_constant  # Rate constant as a fundamental property
+    
+    def calculate_reaction_rate(self, conditions):
+        # Implementation depends on subclass
+        raise NotImplementedError("Subclass must implement abstract method")
+
+class FirstOrderReaction(ChemicalReaction):
+    def calculate_reaction_rate(self, concentration):
+        return self.rate_constant * concentration
+
+
+class SecondOrderReaction(ChemicalReaction):
+    def calculate_reaction_rate(self, conditions):
+        concentration1 = conditions['concentration1']  # Concentration of the first reactant
+        concentration2 = conditions['concentration2']  # Concentration of the second reactant
+        return self.rate_constant * concentration1 * concentration2
+```
+
+This code could then be used as follows:
+
+```python
+first_order = FirstOrderReaction(["A"], ["B"], 0.5)
+second_order = SecondOrderReaction(["A", "B"], ["C"], 0.01)
+
+reaction_conditions_first_order = {'concentration': 0.1}
+reaction_conditions_second_order = {'concentration1': 0.1, 'concentration2': 0.2}
+
+print(first_order.calculate_reaction_rate(reaction_conditions_first_order))
+print(second_order.calculate_reaction_rate(reaction_conditions_second_order))
+```
+
+
+**Abstraction** involves hiding the complex reality while exposing only the necessary parts. It means representing essential features without including the background details or explanations. Classes use the concept of abstraction by only showing the essential attributes and methods to the outside world while hiding the internal implementation details.
+
+### Object-oriented programming in Practice
+In practice, OOP can make your code more modular, flexible, and intuitive to understand. By organizing code into classes and objects, you can model real-world entities more directly, manage complexity by abstracting details, and reuse code more effectively through inheritance.
+
+For chemists or scientists, OOP is particularly powerful for simulating complex systems, managing experimental data, and processing chemical information, because it aligns with the way scientists think about the world: a collection of objects (molecules, reactions, experiments) that interact with each other.
+
+
+

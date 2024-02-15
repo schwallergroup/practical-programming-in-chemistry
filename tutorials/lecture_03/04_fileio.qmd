@@ -1,0 +1,150 @@
+# File Input/Output in Python
+
+Python allows you to read and write to files on your system, which is essential for many data analysis tasks. 
+
+## Opening a File
+
+To open a file in Python, we use the open function. The `open` function returns a file object and is most commonly used with two arguments: `open(filename, mode)`.
+
+- The `filename` is the name (and the path if the file is not located in the same directory as the Python script) of the file you want to open.
+
+- The `mode` argument is a string that defines which mode you want to open the file in:
+  - `"r"`: read mode (default)
+  - `"w"`: write mode, for overwriting the contents of a file
+  - `"x"`: exclusive creation mode, for creating a new file and failing if it already exists
+  - `"a"`: append mode, for appending data to an existing file
+  - `"b"`: binary mode
+  - `"t"`: text mode (default)
+
+Here's an example of how to open a file:
+
+```python
+file = open("chemicals.txt", "r")
+```
+
+Remember to always close the file after you're done with it:
+
+```python
+file.close()
+```
+
+## Reading From a File
+
+To read from a file, Python provides several methods:
+
+- `read()`: This reads the entire file.
+
+- `readline()`: This reads a file line by line.
+
+- `readlines()`: This reads all the lines and returns them as a list of strings.
+
+Here's an example:
+
+```python
+file = open("chemicals.txt", "r")
+
+print(file.read())  # prints the entire content of the file
+
+file.close()
+```
+
+## Writing to a File
+
+You can also write to a file using the `write()` method. Remember to open the file in write mode:
+
+```python
+file = open("chemicals.txt", "w")
+
+file.write("This is a new line")
+
+file.close()
+```
+
+Note: Be careful when opening a file in write mode (`"w"`), as this will erase all previous contents of the file. If you want to add to the file without deleting its content, use append mode (`"a"`).
+
+
+# The `with` Statement for Reading and Writing Files
+
+The `with` statement in Python is a control flow structure which is often used for handling file input/output operations. This is known as context management and is part of the standard library.
+
+The advantage of using a `with` statement is that it always closes the file when it finishes running, even if an exception was raised in the block of code within the `with` statement. This ensures that the cleanup of resources (like closing files) is always done promptly and reliably.
+
+Here is how you use `with` to read a file:
+
+```python
+with open('chemicals.txt', 'r') as file:
+    print(file.read())
+```
+
+In this example, `file` is the file object returned by `open()`. As soon as the program exits the `with` block, the `file.close()` method is automatically called. This makes `with` especially useful when working with I/O operations which may fail and cause errors; this way you make sure that `file.close()` is always called.
+
+The same applies to writing files:
+
+```python
+with open('chemicals.txt', 'w') as file:
+    file.write('New line in file.')
+```
+
+In this case, the `with` statement ensures that the file is saved before the block of code is exited.
+
+This approach is not just more concise, but also much safer, since it ensures that the file is properly closed after it is no longer needed or if an error occurs during the operation.
+
+A common use would be reading data files in a chemistry project, processing them and writing the results back to a different file. The processing part could potentially cause an exception (division by zero, array out of bounds etc.). If an exception is thrown, the program will stop, but the `with` statement guarantees that all open files are properly closed, which avoids file corruption.
+
+
+# File IO Exercises
+
+1. Create a new text file (using the `with` statement) named `compounds.txt` and write the names of five chemical compounds.
+2. Read the `compounds.txt` file, print its content line by line, and count the total number of lines.
+3. Append three more chemical compounds to the `compounds.txt` file.
+4. Open `compounds.txt` and a new file `reversed_compounds.txt`. Write the content of `compounds.txt` into `reversed_compounds.txt` in reverse order (last line first and first line last).
+5. Create a new file `compounds_uppercase.txt` and write the names of all compounds from `compounds.txt` but in uppercase letters.
+
+# Solutions
+
+## Solution 1
+```python
+with open('compounds.txt', 'w') as file:
+    compounds = ['Water', 'Methane', 'Ammonia', 'Hydrogen Peroxide', 'Acetic Acid']
+    for compound in compounds:
+        file.write(compound + '\n')
+```
+
+## Solution 2
+
+```python
+with open('compounds.txt', 'r') as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())
+    print("Number of compounds:", len(lines))
+```
+
+## Solution 3
+
+```python
+with open('compounds.txt', 'a') as file:
+    compounds = ['Carbon Dioxide', 'Ethanol', 'Glucose']
+    for compound in compounds:
+        file.write(compound + '\n')
+```
+
+## Solution 4
+
+```python
+with open('compounds.txt', 'r') as read_file:
+    lines = read_file.readlines()
+with open('reversed_compounds.txt', 'w') as write_file:
+    for line in reversed(lines):
+        write_file.write(line)
+```
+
+## Solution 5
+
+```python
+with open('compounds.txt', 'r') as read_file:
+    lines = read_file.readlines()
+with open('compounds_uppercase.txt', 'w') as write_file:
+    for line in lines:
+        write_file.write(line.upper())
+```

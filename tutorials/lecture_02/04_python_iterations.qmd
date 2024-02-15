@@ -1,0 +1,181 @@
+
+# Iterations and List Comprehensions in Python
+
+Iterations play a crucial role in Python, allowing us to execute code repeatedly which can save a significant amount of time and effort. In Python, the most common forms of iteration are `for` and `while` loops. However, Python offers an even more concise and readable way to perform iterations, especially on lists — this is through list comprehensions. A list comprehension consists of brackets containing an expression followed by a `for` statement, and possible `if` clauses. It provides a neat way to take an existing list, perform an operation on each element, and return the results in a new list. It is a very Pythonic way to generate or transform lists in a single line of code.
+
+
+# Iterations in Python
+
+In Python, "iteration" means executing the same block of code over and over, potentially many times. Structures used for iteration are "loops". Python provides two basic types of loop - `for` loop and `while` loop.
+
+### For Loop
+
+A `for` loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string). Each item in the sequence is assigned to the iteration variable, and the statement(s) are executed until the entire sequence is processed.
+
+Here is an example of a `for` loop that iterates over a list of elements:
+
+```python
+list_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
+
+for element in list_of_elements:
+    print(element)
+```
+
+For each iteration, the value of `element` will be updated to the next value in the list. So, the `print()` function will print each element from the list.
+
+### While Loop
+
+A `while` loop repeatedly tests an expression (the loop condition), and keeps executing the loop body while the expression is `True`. Here is an example of a `while` loop:
+
+```python
+temperature = 25
+
+while temperature > 20:
+    print("The reaction is too fast!")
+    temperature = temperature - 1
+```
+
+The loop will continue to print "The reaction is too fast!" and subtract 1 from the temperature, as long as the temperature is strictly greater than 20.
+
+### Loop Control Statements
+
+Loop control statements change the execution of a loop from its normal sequence. Python provides the following loop control statements:
+
+- `break` statement: Terminates the loop and transfers execution to the statement immediately following the loop.
+- `continue` statement: Causes the loop to skip the rest of its body for this iteration and immediately retest its condition prior to reiterating.
+
+### Exercises 
+
+1. Using a `for` loop, print the atomic number for each element in your list of five elements from the previous exercise. 
+2. Using a `while` loop, keep dividing a pressure of 100 atm by 2 until it is less than 1 atm, and print the current pressure at each step.
+3. In the `while` loop above, add a `break` statement to exit the loop when the pressure is less than 5 atm.
+4. Also in the `while` loop above, add a `continue` statement to skip the loop iteration when the pressure is exactly 10 atm and not print the pressure at this step.
+
+### Solutions
+
+Solution 1:
+
+```python
+list_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
+list_of_atomic_numbers = [1, 2, 3, 4]
+
+for i in range(len(list_of_elements)):
+    print("The atomic number of", list_of_elements[i], "is", list_of_atomic_numbers[i])
+```
+
+Solution 2:
+
+```python
+pressure = 100
+
+while pressure >= 1:
+    print(pressure)
+    pressure = pressure / 2
+```
+
+Solution 3:
+
+```python
+pressure = 100
+
+while pressure >= 1:
+    if pressure < 5:
+        break
+    print(pressure)
+    pressure = pressure / 2
+```
+
+Solution 4:
+
+```python
+pressure = 100
+
+while pressure >= 1:
+    pressure = pressure / 2
+    if pressure == 10:
+        continue
+    print(pressure)
+```
+
+By controlling flow in Python, you can execute complex algorithms that can respond to varied conditions and perform intricate tasks at a high level.
+
+# List Comprehensions in Python
+
+List comprehension is an elegant and concise way to create a new list from an existing list in Python.
+
+A list comprehension consists of an expression followed by a `for` statement inside square brackets.
+
+Here is an example to make a list with each item being increasing power of 2.
+
+```python
+powers_of_two = [2 ** x for x in range(10)]
+print(powers_of_two) 
+```
+
+This will output: 
+
+```python
+[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+```
+
+We can also create more advanced list comprehensions which include a conditional statement on the iterable. Let's square only the positive numbers in the following list.
+
+```python
+numbers = [1, -2, 3, -4, -5, 6, -7]
+squared = [n ** 2 for n in numbers if n > 0]
+print(squared)
+```
+
+This will output: 
+
+```python
+[1, 9, 36]
+```
+
+In the context of Chemistry, let’s say we had a list of various elements and we wanted a new list which only included the elements with an atomic number less than 3.
+
+```python
+elements = [('Hydrogen', 1), ('Helium', 2), ('Lithium', 3), ('Beryllium', 4), ('Boron', 5)]
+light_elements = [name for name, atomic_number in elements if atomic_number < 3]
+print(light_elements)
+```
+
+This will output: 
+
+```python
+['Hydrogen', 'Helium']
+```
+
+### Exercises
+
+1. Take a list of charges of ions and create a new list squared charges.
+2. Create a list of atomic weights and make a new list consisting only those atomic weights which are greater than 2. 
+3. Use list comprehension to create a list of molecules with atomic mass less than 10 from the given list.
+
+### Solutions
+
+Solution 1:
+
+```python
+charges = [-1, 2, -3, 2, 1, -2]
+squared_charges = [charge ** 2 for charge in charges]
+print(squared_charges)  #Output: [1, 4, 9, 4, 1, 4]
+```
+
+Solution 2:
+
+```python
+weights = [1.0079, 4.0026, 6.94, 9.0122, 10.81]
+weights_gt_2 = [weight for weight in weights if weight > 2]
+print(weights_gt_2)  #Output: [4.0026, 6.94, 9.0122, 10.81]
+```
+
+Solution 3:
+
+```python
+molecules = [('Hydrogen', 1.0079), ('Helium', 4.0026), ('Lithium', 6.94), ('Beryllium', 9.0122), ('Boron', 10.81)]
+light_molecules = [name for name, weight in molecules if weight < 10]
+print(light_molecules)  #Output: ['Hydrogen', 'Helium', 'Lithium']
+```
+
+List comprehension is a powerful tool that makes your code more efficient and easier to read. It can be used whenever you need to transform or filter a list in Python.

@@ -25,6 +25,33 @@ website:
           href: tutorials/lecture_01/04_next_steps.qmd
         - ---
         - section: Lecture 02
+        - text: "Jupyter notebooks"
+          href: tutorials/lecture_02/01_jupyter_notebooks.qmd
+        - text: "Python basics"
+          href: tutorials/lecture_02/02_python_basics.qmd
+        - text: "Python structures"
+          href: tutorials/lecture_02/03_python_structures.qmd
+        - text: "Python iterations"
+          href: tutorials/lecture_02/04_python_iterations.qmd
+        - ---
+        - section: Lecture 03
+        - text: "Python functions"
+          href: tutorials/lecture_03/01_functions.qmd
+        - text: "Python classes"
+          href: tutorials/lecture_03/02_classes.qmd
+        - text: "Python packages"
+          href: tutorials/lecture_03/03_packages.qmd
+        - text: "File IO"
+          href: tutorials/lecture_03/04_fileio.qmd
+        - text: "Error handling"
+          href: tutorials/lecture_03/05_errors.qmd
+        - ---
+        - section: Lecture 04
+        - text: "Pandas"
+          href: tutorials/lecture_04/01_pandas.qmd
+        - text: "Matplotlib and Seaborn"
+          href: tutorials/lecture_04/02_matplotlib.qmd
+        - ---
 format:
   html:
     theme: cosmo
