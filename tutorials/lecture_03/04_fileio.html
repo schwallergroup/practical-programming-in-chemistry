@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry – packages</title>
+<title>Practical programming in Chemistry – fileio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_03/03_fileio.html" rel="next">
-<link href="../../tutorials/lecture_03/01_functions.html" rel="prev">
+<link href="../../tutorials/lecture_03/05_errors.html" rel="next">
+<link href="../../tutorials/lecture_03/03_packages.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/02_packages.html">Python packages</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/04_fileio.html">File IO</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -211,20 +211,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/02_packages.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">File IO</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib and Seaborn</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -238,16 +261,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#python-packages-and-modules" id="toc-python-packages-and-modules" class="nav-link active" data-scroll-target="#python-packages-and-modules">Python Packages and Modules</a>
+  <li><a href="#file-inputoutput-in-python" id="toc-file-inputoutput-in-python" class="nav-link active" data-scroll-target="#file-inputoutput-in-python">File Input/Output in Python</a>
   <ul class="collapse">
-  <li><a href="#python-modules" id="toc-python-modules" class="nav-link" data-scroll-target="#python-modules">Python Modules</a></li>
-  <li><a href="#python-packages" id="toc-python-packages" class="nav-link" data-scroll-target="#python-packages">Python Packages</a></li>
+  <li><a href="#opening-a-file" id="toc-opening-a-file" class="nav-link" data-scroll-target="#opening-a-file">Opening a File</a></li>
+  <li><a href="#reading-from-a-file" id="toc-reading-from-a-file" class="nav-link" data-scroll-target="#reading-from-a-file">Reading From a File</a></li>
+  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file">Writing to a File</a></li>
   </ul></li>
-  <li><a href="#introduction-to-numpy" id="toc-introduction-to-numpy" class="nav-link" data-scroll-target="#introduction-to-numpy">Introduction to NumPy</a>
+  <li><a href="#the-with-statement-for-reading-and-writing-files" id="toc-the-with-statement-for-reading-and-writing-files" class="nav-link" data-scroll-target="#the-with-statement-for-reading-and-writing-files">The <code>with</code> Statement for Reading and Writing Files</a></li>
+  <li><a href="#file-io-exercises" id="toc-file-io-exercises" class="nav-link" data-scroll-target="#file-io-exercises">File IO Exercises</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
   <ul class="collapse">
-  <li><a href="#installing-and-importing-numpy" id="toc-installing-and-importing-numpy" class="nav-link" data-scroll-target="#installing-and-importing-numpy">Installing and Importing NumPy</a></li>
-  <li><a href="#numpy-arrays" id="toc-numpy-arrays" class="nav-link" data-scroll-target="#numpy-arrays">NumPy Arrays</a></li>
-  <li><a href="#using-numpy-for-chemical-calculations" id="toc-using-numpy-for-chemical-calculations" class="nav-link" data-scroll-target="#using-numpy-for-chemical-calculations">Using NumPy for Chemical Calculations</a></li>
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution 1</a></li>
+  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2">Solution 2</a></li>
+  <li><a href="#solution-3" id="toc-solution-3" class="nav-link" data-scroll-target="#solution-3">Solution 3</a></li>
+  <li><a href="#solution-4" id="toc-solution-4" class="nav-link" data-scroll-target="#solution-4">Solution 4</a></li>
+  <li><a href="#solution-5" id="toc-solution-5" class="nav-link" data-scroll-target="#solution-5">Solution 5</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -257,106 +285,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="python-packages-and-modules" class="level1">
-<h1>Python Packages and Modules</h1>
-<p>As programs get bigger and bigger, they become more difficult to maintain and comprehend. Therefore, dividing programs into smaller, manageable pieces (modules) and reusing these pieces in different programs is a common practice. Similarly, modules can be further grouped into packages.</p>
-<section id="python-modules" class="level2">
-<h2 class="anchored" data-anchor-id="python-modules">Python Modules</h2>
-<p>A module is simply a Python file <code>.py</code> that can contain variables, functions, or classes. These can be reused in other Python programs by importing the module with the <code>import</code> statement.</p>
-<p>For instance, let’s create a simple module named <code>concentration.py</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> molality(moles_solute, mass_solvent_kg):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> moles_solute <span class="op">/</span> mass_solvent_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This module contains a single function <code>molality</code>, which calculates the molality given the amount of solute (in moles) and the mass of the solvent (in kilograms).</p>
-<p>We can then use this function in our programs like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> concentration</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>moles_solute <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mass_solvent_kg <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(concentration.molality(moles_solute, mass_solvent_kg))  <span class="co"># Output: 1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="file-inputoutput-in-python" class="level1">
+<h1>File Input/Output in Python</h1>
+<p>Python allows you to read and write to files on your system, which is essential for many data analysis tasks.</p>
+<section id="opening-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="opening-a-file">Opening a File</h2>
+<p>To open a file in Python, we use the open function. The <code>open</code> function returns a file object and is most commonly used with two arguments: <code>open(filename, mode)</code>.</p>
+<ul>
+<li><p>The <code>filename</code> is the name (and the path if the file is not located in the same directory as the Python script) of the file you want to open.</p></li>
+<li><p>The <code>mode</code> argument is a string that defines which mode you want to open the file in:</p>
+<ul>
+<li><code>"r"</code>: read mode (default)</li>
+<li><code>"w"</code>: write mode, for overwriting the contents of a file</li>
+<li><code>"x"</code>: exclusive creation mode, for creating a new file and failing if it already exists</li>
+<li><code>"a"</code>: append mode, for appending data to an existing file</li>
+<li><code>"b"</code>: binary mode</li>
+<li><code>"t"</code>: text mode (default)</li>
+</ul></li>
+</ul>
+<p>Here’s an example of how to open a file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remember to always close the file after you’re done with it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="python-packages" class="level2">
-<h2 class="anchored" data-anchor-id="python-packages">Python Packages</h2>
-<p>When the number of modules grows, it becomes necessary to arrange them in a hierarchical structure. A package in Python is simply a directory that contains other directories or modules.</p>
-<p>Each package in Python is a directory which MUST contain a special file called <code>__init__.py</code>. This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.</p>
-<p>Consider the following directory structure:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chemicals<span class="op">/</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">__init__</span>.py</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    concentrations.py</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    reactions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this structure, <code>chemicals</code> is a package containing two modules: <code>concentrations</code> and <code>reactions</code>. The <code>concentrations</code> module can be imported as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chemicals <span class="im">import</span> concentrations</span>
+<section id="reading-from-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="reading-from-a-file">Reading From a File</h2>
+<p>To read from a file, Python provides several methods:</p>
+<ul>
+<li><p><code>read()</code>: This reads the entire file.</p></li>
+<li><p><code>readline()</code>: This reads a file line by line.</p></li>
+<li><p><code>readlines()</code>: This reads all the lines and returns them as a list of strings.</p></li>
+</ul>
+<p>Here’s an example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"r"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">file</span>.read())  <span class="co"># prints the entire content of the file</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="writing-to-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="writing-to-a-file">Writing to a File</h2>
+<p>You can also write to a file using the <code>write()</code> method. Remember to open the file in write mode:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">"chemicals.txt"</span>, <span class="st">"w"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>moles_solute <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mass_solvent_kg <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(concentrations.molality(moles_solute, mass_solvent_kg))  <span class="co"># Output: 1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Python comes with a rich ecosystem of libraries (also known as packages), such as NumPy, SciPy, and pandas for data analysis, Matplotlib and Seaborn for data visualization, and Sklearn for machine learning. These libraries are composed of different modules that can be imported based on the requirement of the program.</p>
-<p>As you become more comfortable with Python, you will use packages and modules more often. These powerful tools can greatly reduce the time and effort required to write code, and can make your code more readable and easier to maintain.</p>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(<span class="st">"This is a new line"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note: Be careful when opening a file in write mode (<code>"w"</code>), as this will erase all previous contents of the file. If you want to add to the file without deleting its content, use append mode (<code>"a"</code>).</p>
 </section>
 </section>
-<section id="introduction-to-numpy" class="level1">
-<h1>Introduction to NumPy</h1>
-<p>For the moment, let’s just look at one package from the Python ecosystem. NumPy, short for Numerical Python, is a fundamental package for scientific computing in Python. It provides support for arrays (including multi-dimensional arrays), array mathematics, random number generation, and much more. NumPy also allows us to perform data analysis and data manipulation tasks efficiently.</p>
-<section id="installing-and-importing-numpy" class="level2">
-<h2 class="anchored" data-anchor-id="installing-and-importing-numpy">Installing and Importing NumPy</h2>
-<p>To install NumPy, open your terminal or command prompt and type the following command:</p>
-<pre><code>pip install numpy</code></pre>
-<p>Once you’ve installed NumPy, you can import it in your programs using the following command:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>as np</code> part is used to create an alias for numpy, which allows us to use <code>np</code> instead of <code>numpy</code> when calling NumPy functions. This is not required, but it is a common practice and it makes the code cleaner.</p>
+<section id="the-with-statement-for-reading-and-writing-files" class="level1">
+<h1>The <code>with</code> Statement for Reading and Writing Files</h1>
+<p>The <code>with</code> statement in Python is a control flow structure which is often used for handling file input/output operations. This is known as context management and is part of the standard library.</p>
+<p>The advantage of using a <code>with</code> statement is that it always closes the file when it finishes running, even if an exception was raised in the block of code within the <code>with</code> statement. This ensures that the cleanup of resources (like closing files) is always done promptly and reliably.</p>
+<p>Here is how you use <code>with</code> to read a file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'chemicals.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example, <code>file</code> is the file object returned by <code>open()</code>. As soon as the program exits the <code>with</code> block, the <code>file.close()</code> method is automatically called. This makes <code>with</code> especially useful when working with I/O operations which may fail and cause errors; this way you make sure that <code>file.close()</code> is always called.</p>
+<p>The same applies to writing files:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'chemicals.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">'New line in file.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this case, the <code>with</code> statement ensures that the file is saved before the block of code is exited.</p>
+<p>This approach is not just more concise, but also much safer, since it ensures that the file is properly closed after it is no longer needed or if an error occurs during the operation.</p>
+<p>A common use would be reading data files in a chemistry project, processing them and writing the results back to a different file. The processing part could potentially cause an exception (division by zero, array out of bounds etc.). If an exception is thrown, the program will stop, but the <code>with</code> statement guarantees that all open files are properly closed, which avoids file corruption.</p>
 </section>
-<section id="numpy-arrays" class="level2">
-<h2 class="anchored" data-anchor-id="numpy-arrays">NumPy Arrays</h2>
-<p>A NumPy array is a grid of values, all of the same type, and is indexed by a tuple of nonnegative integers. The number of dimensions is the rank of the array; the shape of an array is a tuple of integers giving the size of the array along each dimension.</p>
-<p>Here’s how you create a NumPy array:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 1D NumPy array from a list</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D NumPy array from a list of lists</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)            <span class="co"># Output: [1 2 3]</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)            <span class="co"># Output: [[1 2 3], [4 5 6]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Operations in NumPy are element-wise, that is, they are applied element by element in the arrays. For example, here’s how you can do array addition:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)  <span class="co"># Output: [5 7 9]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the context of chemistry, let’s say we have an array of hydrogen atom masses and an array of oxygen atom masses, we can find an array of water molecule masses by simply adding the arrays:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hydrogen's atomic mass</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>H_mass <span class="op">=</span> np.array([<span class="fl">1.007</span>, <span class="fl">1.007</span>])</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Oxygen's atomic mass</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>O_mass <span class="op">=</span> np.array([<span class="fl">15.999</span>])</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mass of water molecules</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>H2O_mass <span class="op">=</span> H_mass.<span class="bu">sum</span>() <span class="op">+</span> O_mass  <span class="co"># Element-wise addition</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Masses of water molecules: '</span>, H2O_mass)  <span class="co"># Output: Masses of water molecules: [18.013]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="file-io-exercises" class="level1">
+<h1>File IO Exercises</h1>
+<ol type="1">
+<li>Create a new text file (using the <code>with</code> statement) named <code>compounds.txt</code> and write the names of five chemical compounds.</li>
+<li>Read the <code>compounds.txt</code> file, print its content line by line, and count the total number of lines.</li>
+<li>Append three more chemical compounds to the <code>compounds.txt</code> file.</li>
+<li>Open <code>compounds.txt</code> and a new file <code>reversed_compounds.txt</code>. Write the content of <code>compounds.txt</code> into <code>reversed_compounds.txt</code> in reverse order (last line first and first line last).</li>
+<li>Create a new file <code>compounds_uppercase.txt</code> and write the names of all compounds from <code>compounds.txt</code> but in uppercase letters.</li>
+</ol>
 </section>
-<section id="using-numpy-for-chemical-calculations" class="level2">
-<h2 class="anchored" data-anchor-id="using-numpy-for-chemical-calculations">Using NumPy for Chemical Calculations</h2>
-<p>With NumPy, we can make calculations for chemical problems simpler and more efficient.</p>
-<p>For example, let’s calculate the molar mass of Carbon Dioxide (CO2). We know that the molar mass of carbon (C) is approximately 12.01 g/mol and the molar mass of oxygen (O) is approximately 16.00 g/mol.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define atomic masses</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>C_mass <span class="op">=</span> np.array([<span class="fl">12.01</span>])  <span class="co"># Carbon</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>O_mass <span class="op">=</span> np.array([<span class="fl">16.00</span>, <span class="fl">16.00</span>])  <span class="co"># Oxygen</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate molar mass of CO2</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>CO2_mass <span class="op">=</span> C_mass.<span class="bu">sum</span>() <span class="op">+</span> O_mass.<span class="bu">sum</span>()</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Molar mass of CO2: '</span>, CO2_mass, <span class="st">'g/mol'</span>)  <span class="co"># Output: Molar mass of CO2: 44.01 g/mol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="solutions" class="level1">
+<h1>Solutions</h1>
+<section id="solution-1" class="level2">
+<h2 class="anchored" data-anchor-id="solution-1">Solution 1</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    compounds <span class="op">=</span> [<span class="st">'Water'</span>, <span class="st">'Methane'</span>, <span class="st">'Ammonia'</span>, <span class="st">'Hydrogen Peroxide'</span>, <span class="st">'Acetic Acid'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> compound <span class="kw">in</span> compounds:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(compound <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution-2" class="level2">
+<h2 class="anchored" data-anchor-id="solution-2">Solution 2</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line.strip())</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Number of compounds:"</span>, <span class="bu">len</span>(lines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution-3" class="level2">
+<h2 class="anchored" data-anchor-id="solution-3">Solution 3</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'a'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    compounds <span class="op">=</span> [<span class="st">'Carbon Dioxide'</span>, <span class="st">'Ethanol'</span>, <span class="st">'Glucose'</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> compound <span class="kw">in</span> compounds:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(compound <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution-4" class="level2">
+<h2 class="anchored" data-anchor-id="solution-4">Solution 4</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> read_file:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> read_file.readlines()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'reversed_compounds.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> write_file:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">reversed</span>(lines):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        write_file.write(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution-5" class="level2">
+<h2 class="anchored" data-anchor-id="solution-5">Solution 5</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> read_file:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> read_file.readlines()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'compounds_uppercase.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> write_file:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        write_file.write(line.upper())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -598,13 +639,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_03/01_functions.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python functions</span>
+      <a href="../../tutorials/lecture_03/03_packages.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python packages</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_03/03_fileio.html" class="pagination-link">
-        <span class="nav-page-text">File IO</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../tutorials/lecture_03/05_errors.html" class="pagination-link">
+        <span class="nav-page-text">Error handling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

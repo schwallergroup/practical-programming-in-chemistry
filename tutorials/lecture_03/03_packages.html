@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry – errors</title>
+<title>Practical programming in Chemistry – packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_03/03_fileio.html" rel="prev">
+<link href="../../tutorials/lecture_03/04_fileio.html" rel="next">
+<link href="../../tutorials/lecture_03/02_classes.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/04_errors.html">Error handling</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_03/03_packages.html">Python packages</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -210,20 +211,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/02_packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Python packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/03_fileio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">File IO</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_03/04_errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib and Seaborn</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -237,22 +261,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#errors-and-exception-handling-in-python" id="toc-errors-and-exception-handling-in-python" class="nav-link active" data-scroll-target="#errors-and-exception-handling-in-python">Errors and Exception Handling in Python</a>
+  <li><a href="#python-packages-and-modules" id="toc-python-packages-and-modules" class="nav-link active" data-scroll-target="#python-packages-and-modules">Python Packages and Modules</a>
   <ul class="collapse">
-  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors">Syntax Errors</a></li>
-  <li><a href="#exceptions" id="toc-exceptions" class="nav-link" data-scroll-target="#exceptions">Exceptions</a></li>
-  <li><a href="#exception-handling" id="toc-exception-handling" class="nav-link" data-scroll-target="#exception-handling">Exception Handling</a></li>
-  <li><a href="#multiple-exceptions" id="toc-multiple-exceptions" class="nav-link" data-scroll-target="#multiple-exceptions">Multiple Exceptions</a></li>
-  <li><a href="#finally-clause" id="toc-finally-clause" class="nav-link" data-scroll-target="#finally-clause"><code>finally</code> clause</a></li>
-  <li><a href="#custom-exceptions" id="toc-custom-exceptions" class="nav-link" data-scroll-target="#custom-exceptions">Custom Exceptions</a></li>
+  <li><a href="#python-modules" id="toc-python-modules" class="nav-link" data-scroll-target="#python-modules">Python Modules</a></li>
+  <li><a href="#python-packages" id="toc-python-packages" class="nav-link" data-scroll-target="#python-packages">Python Packages</a></li>
   </ul></li>
-  <li><a href="#exceptions-handling-in-python-exercises" id="toc-exceptions-handling-in-python-exercises" class="nav-link" data-scroll-target="#exceptions-handling-in-python-exercises">Exceptions Handling in Python Exercises</a>
+  <li><a href="#introduction-to-numpy" id="toc-introduction-to-numpy" class="nav-link" data-scroll-target="#introduction-to-numpy">Introduction to NumPy</a>
   <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
-  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
-  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#installing-and-importing-numpy" id="toc-installing-and-importing-numpy" class="nav-link" data-scroll-target="#installing-and-importing-numpy">Installing and Importing NumPy</a></li>
+  <li><a href="#numpy-arrays" id="toc-numpy-arrays" class="nav-link" data-scroll-target="#numpy-arrays">NumPy Arrays</a></li>
+  <li><a href="#using-numpy-for-chemical-calculations" id="toc-using-numpy-for-chemical-calculations" class="nav-link" data-scroll-target="#using-numpy-for-chemical-calculations">Using NumPy for Chemical Calculations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -262,138 +280,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="errors-and-exception-handling-in-python" class="level1">
-<h1>Errors and Exception Handling in Python</h1>
-<p>Error handling in Python is done through the use of exceptions. Exceptions are triggered automatically (or manually) when errors occur. Python has multiple built-in exceptions that can be triggered and caught in your code. When exceptions aren’t caught, your program will terminate abruptly.</p>
-<section id="syntax-errors" class="level2">
-<h2 class="anchored" data-anchor-id="syntax-errors">Syntax Errors</h2>
-<p>Syntax errors, also known as parsing errors, are <code>the most common</code> errors in Python and occur when the parser detects an incorrect statement.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="dv">0</span> <span class="op">/</span> <span class="dv">0</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The output would give an invalid syntax error (with an arrow pointing at the caught error):</p>
-<pre><code>File "&lt;ipython-input&gt;", line 1
-print( 0 / 0 ))
-^
-SyntaxError: invalid syntax</code></pre>
+<section id="python-packages-and-modules" class="level1">
+<h1>Python Packages and Modules</h1>
+<p>As programs get bigger and bigger, they become more difficult to maintain and comprehend. Therefore, dividing programs into smaller, manageable pieces (modules) and reusing these pieces in different programs is a common practice. Similarly, modules can be further grouped into packages.</p>
+<section id="python-modules" class="level2">
+<h2 class="anchored" data-anchor-id="python-modules">Python Modules</h2>
+<p>A module is simply a Python file <code>.py</code> that can contain variables, functions, or classes. These can be reused in other Python programs by importing the module with the <code>import</code> statement.</p>
+<p>For instance, let’s create a simple module named <code>concentration.py</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> molality(moles_solute, mass_solvent_kg):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> moles_solute <span class="op">/</span> mass_solvent_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This module contains a single function <code>molality</code>, which calculates the molality given the amount of solute (in moles) and the mass of the solvent (in kilograms).</p>
+<p>We can then use this function in our programs like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> concentration</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>moles_solute <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mass_solvent_kg <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(concentration.molality(moles_solute, mass_solvent_kg))  <span class="co"># Output: 1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="exceptions" class="level2">
-<h2 class="anchored" data-anchor-id="exceptions">Exceptions</h2>
-<p>Exceptions, unlike Syntax errors, occur after correct syntax during execution which interrupts the program flow.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This returns a <code>ZeroDivisionError</code> Exception:</p>
-<pre><code>ZeroDivisionError: division by zero</code></pre>
-</section>
-<section id="exception-handling" class="level2">
-<h2 class="anchored" data-anchor-id="exception-handling">Exception Handling</h2>
-<p>Exceptions can be intercepted and handled in your code, preventing the program from terminating unexpectedly. We control this flow using <code>try</code>, <code>except</code> statements.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You can't divide by zero!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>You can't divide by zero!</code></pre>
-<p>In this case, the division by zero caused a <code>ZeroDivisionError</code> which we caught using an <code>except</code> clause and printed a friendly error message instead.</p>
-</section>
-<section id="multiple-exceptions" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-exceptions">Multiple Exceptions</h2>
-<p>A <code>try</code> statement can have multiple different except blocks to handle different exceptions.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code that could potentially raise an exception</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    chemical_compound <span class="op">=</span> {<span class="st">"H20"</span>: <span class="st">"Water"</span>}</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chemical_compound[<span class="st">"NaCl"</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Key not found in dictionary."</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"An unknown error occurred:"</span>, e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>Key not found in dictionary.</code></pre>
-<p>Here, the KeyError exception is raised when a dictionary key is not found. But we also have a generic <code>Exception</code> clause in case any other exception is raised.</p>
-</section>
-<section id="finally-clause" class="level2">
-<h2 class="anchored" data-anchor-id="finally-clause"><code>finally</code> clause</h2>
-<p>The <code>finally</code> clause is optional and used when you want code to be executed regardless of whether an exception was raised or caught:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You can't divide by zero!"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This line always executes."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>You can't divide by zero!
-This line always executes.</code></pre>
-<p>Even though the ZeroDivisionError exception was caught, the <code>finally</code> block is executed.</p>
-</section>
-<section id="custom-exceptions" class="level2">
-<h2 class="anchored" data-anchor-id="custom-exceptions">Custom Exceptions</h2>
-<p>You can define your own exceptions by creating a new exception class derived from Python’s <code>Exception</code> class. However, these are quite advanced and will require a more complex understanding of Python and are usually used less commonly than the built-in exceptions.</p>
+<section id="python-packages" class="level2">
+<h2 class="anchored" data-anchor-id="python-packages">Python Packages</h2>
+<p>When the number of modules grows, it becomes necessary to arrange them in a hierarchical structure. A package in Python is simply a directory that contains other directories or modules.</p>
+<p>Each package in Python is a directory which MUST contain a special file called <code>__init__.py</code>. This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.</p>
+<p>Consider the following directory structure:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chemicals/</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">__init__.py</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">concentrations.py</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">reactions.py</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this structure, <code>chemicals</code> is a package containing two modules: <code>concentrations</code> and <code>reactions</code>. The <code>concentrations</code> module can be imported as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chemicals <span class="im">import</span> concentrations</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>moles_solute <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mass_solvent_kg <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(concentrations.molality(moles_solute, mass_solvent_kg))  <span class="co"># Output: 1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Python comes with a rich ecosystem of libraries (also known as packages), such as NumPy, SciPy, and pandas for data analysis, Matplotlib and Seaborn for data visualization, and Sklearn for machine learning. These libraries are composed of different modules that can be imported based on the requirement of the program.</p>
+<p>As you become more comfortable with Python, you will use packages and modules more often. These powerful tools can greatly reduce the time and effort required to write code, and can make your code more readable and easier to maintain.</p>
 </section>
 </section>
-<section id="exceptions-handling-in-python-exercises" class="level1">
-<h1>Exceptions Handling in Python Exercises</h1>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<p>Write a Python program to handle simple runtime error with <code>try</code> - <code>except</code>.</p>
-<p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    div <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"An error just occurred!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>An error just occurred!</code></pre>
+<section id="introduction-to-numpy" class="level1">
+<h1>Introduction to NumPy</h1>
+<p>For the moment, let’s just look at one package from the Python ecosystem. NumPy, short for Numerical Python, is a fundamental package for scientific computing in Python. It provides support for arrays (including multi-dimensional arrays), array mathematics, random number generation, and much more. NumPy also allows us to perform data analysis and data manipulation tasks efficiently.</p>
+<section id="installing-and-importing-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-importing-numpy">Installing and Importing NumPy</h2>
+<p>To install NumPy, open your terminal or command prompt and type the following command:</p>
+<pre><code>pip install numpy</code></pre>
+<p>In your jupyter notebook you could also run.</p>
+<pre><code>!pip install numpy</code></pre>
+<p>The <code>!</code> in before a command (here <code>pip install numpy</code>) allows us to execute that command as if we were in our terminal or command prompt.</p>
+<p>Once you’ve installed NumPy, you can import it in your programs using the following command:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>as np</code> part is used to create an alias for numpy, which allows us to use <code>np</code> instead of <code>numpy</code> when calling NumPy functions. This is not required, but it is a common practice and it makes the code cleaner.</p>
 </section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>Suppose we have a dictionary of atoms, add a <code>try</code> - <code>except</code> block to handle <code>KeyError</code> when a non-existent atom is searched.</p>
-<p>Atoms dictionary: <code>atoms = { "H": {"name": "Hydrogen", "number": 1}, "He": {"name": "Helium", "number": 2} }</code>.</p>
-<p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>atoms <span class="op">=</span> { <span class="st">"H"</span>: {<span class="st">"name"</span>: <span class="st">"Hydrogen"</span>, <span class="st">"number"</span>: <span class="dv">1</span>}, <span class="st">"He"</span>: {<span class="st">"name"</span>: <span class="st">"Helium"</span>, <span class="st">"number"</span>: <span class="dv">2</span>} }</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(atoms[<span class="st">"Li"</span>])</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This atom is not in the dictionary."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>This atom is not in the dictionary.</code></pre>
+<section id="numpy-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-arrays">NumPy Arrays</h2>
+<p>A NumPy array is a grid of values, all of the same type, and is indexed by a tuple of nonnegative integers. The number of dimensions is the rank of the array; the shape of an array is a tuple of integers giving the size of the array along each dimension.</p>
+<p>Here’s how you create a NumPy array:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 1D NumPy array from a list</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D NumPy array from a list of lists</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)            <span class="co"># Output: [1 2 3]</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)            <span class="co"># Output: [[1 2 3], [4 5 6]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Operations in NumPy are element-wise, that is, they are applied element by element in the arrays. For example, here’s how you can do array addition:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)  <span class="co"># Output: [5 7 9]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the context of chemistry, let’s say we have an array of hydrogen atom masses and an array of oxygen atom masses, we can find an array of water molecule masses by simply adding the arrays:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hydrogen's atomic mass</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>H_mass <span class="op">=</span> np.array([<span class="fl">1.007</span>, <span class="fl">1.007</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Oxygen's atomic mass</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>O_mass <span class="op">=</span> np.array([<span class="fl">15.999</span>])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mass of water molecules</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>H2O_mass <span class="op">=</span> H_mass.<span class="bu">sum</span>() <span class="op">+</span> O_mass  <span class="co"># Element-wise addition</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Masses of water molecules: '</span>, H2O_mass)  <span class="co"># Output: Masses of water molecules: [18.013]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<p>Write a Python program that prompts the user for an integer input and catches the <code>ValueError</code> exception in case a non-integer value is entered.</p>
-<p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter an integer: "</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"You entered: </span><span class="sc">{</span>number<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You did not enter an integer!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<p>Case 1 - <code>Enter an integer: a</code></p>
-<pre><code>You did not enter an integer!</code></pre>
-<p>Case 2 - <code>Enter an integer: 5</code></p>
-<pre><code>You entered: 5</code></pre>
-</section>
-<section id="exercise-4" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
-<p>Write a Python program that prompts the user for a chemical compound, catch <code>KeyError</code> when compound is not found in a dictionary, and use <code>finally</code> to print a statement whether the exception was raised or not.</p>
-<p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> {<span class="st">'H2O'</span>: <span class="st">'Water'</span>, <span class="st">'CO2'</span>: <span class="st">'Carbon Dioxide'</span>}</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    compound <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter a compound: "</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(compounds[compound])</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This compound is not in the dictionary."</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Exiting the program."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note: This program will prompt for user input.</p>
-</section>
-<section id="exercise-5" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
-<p>Write a Python program that tries to access an undefined variable, catch the <code>NameError</code> exception and print a user-friendly message.</p>
-<p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(undefined_variable)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">NameError</span>:</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The variable is not defined."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>The variable is not defined.</code></pre>
+<section id="using-numpy-for-chemical-calculations" class="level2">
+<h2 class="anchored" data-anchor-id="using-numpy-for-chemical-calculations">Using NumPy for Chemical Calculations</h2>
+<p>With NumPy, we can make calculations for chemical problems simpler and more efficient.</p>
+<p>For example, let’s calculate the molar mass of Carbon Dioxide (CO2). We know that the molar mass of carbon (C) is approximately 12.01 g/mol and the molar mass of oxygen (O) is approximately 16.00 g/mol.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define atomic masses</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>C_mass <span class="op">=</span> np.array([<span class="fl">12.01</span>])  <span class="co"># Carbon</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>O_mass <span class="op">=</span> np.array([<span class="fl">16.00</span>, <span class="fl">16.00</span>])  <span class="co"># Oxygen</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate molar mass of CO2</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>CO2_mass <span class="op">=</span> C_mass.<span class="bu">sum</span>() <span class="op">+</span> O_mass.<span class="bu">sum</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Molar mass of CO2: '</span>, CO2_mass, <span class="st">'g/mol'</span>)  <span class="co"># Output: Molar mass of CO2: 44.01 g/mol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -635,11 +624,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_03/03_fileio.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">File IO</span>
+      <a href="../../tutorials/lecture_03/02_classes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python classes</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../tutorials/lecture_03/04_fileio.html" class="pagination-link">
+        <span class="nav-page-text">File IO</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

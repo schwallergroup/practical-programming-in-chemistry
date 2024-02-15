@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry – jupyter_notebooks</title>
+<title>Practical programming in Chemistry – rdkit_advanced</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_02/02_python_basics.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +73,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_02/01_jupyter_notebooks.html">Jupyter notebooks</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Home
+      </li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -175,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter notebooks</span></a>
   </div>
 </li>
@@ -256,181 +223,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#jupyter-notebooks-tutorial-for-beginners" id="toc-jupyter-notebooks-tutorial-for-beginners" class="nav-link active" data-scroll-target="#jupyter-notebooks-tutorial-for-beginners">Jupyter Notebooks Tutorial For Beginners</a>
-  <ul class="collapse">
-  <li><a href="#start-jupyter-lab" id="toc-start-jupyter-lab" class="nav-link" data-scroll-target="#start-jupyter-lab">Start Jupyter Lab</a></li>
-  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User interface</a></li>
-  <li><a href="#create-a-new-notebook" id="toc-create-a-new-notebook" class="nav-link" data-scroll-target="#create-a-new-notebook">Create a new notebook</a></li>
-  <li><a href="#notebook" id="toc-notebook" class="nav-link" data-scroll-target="#notebook">Notebook</a></li>
-  <li><a href="#notebook-cells" id="toc-notebook-cells" class="nav-link" data-scroll-target="#notebook-cells">Notebook Cells</a>
-  <ul class="collapse">
-  <li><a href="#code-cells" id="toc-code-cells" class="nav-link" data-scroll-target="#code-cells">Code Cells</a></li>
-  <li><a href="#markdown-cells" id="toc-markdown-cells" class="nav-link" data-scroll-target="#markdown-cells">Markdown Cells</a></li>
-  <li><a href="#raw-cells" id="toc-raw-cells" class="nav-link" data-scroll-target="#raw-cells">Raw Cells</a></li>
-  </ul></li>
-  <li><a href="#saving-and-exporting-your-jupyter-notebook" id="toc-saving-and-exporting-your-jupyter-notebook" class="nav-link" data-scroll-target="#saving-and-exporting-your-jupyter-notebook">Saving and Exporting Your Jupyter Notebook</a></li>
-  <li><a href="#closing-the-jupyter-lab-notebook" id="toc-closing-the-jupyter-lab-notebook" class="nav-link" data-scroll-target="#closing-the-jupyter-lab-notebook">Closing the Jupyter Lab Notebook</a></li>
-  <li><a href="#most-important-commands" id="toc-most-important-commands" class="nav-link" data-scroll-target="#most-important-commands">Most important commands</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="jupyter-notebooks-tutorial-for-beginners" class="level1">
-<h1>Jupyter Notebooks Tutorial For Beginners</h1>
-<p>Jupyter Lab Notebook is a very powerful tool, combining both code and rich text elements - paragraphs, equations, figures, links, etc. This makes it ideal for data cleaning and transformation, numerical simulation, statistical modeling, machine learning, and much more. This tutorial will guide you on how to use Jupyter Lab Notebook as a beginner.</p>
-<section id="start-jupyter-lab" class="level2">
-<h2 class="anchored" data-anchor-id="start-jupyter-lab">Start Jupyter Lab</h2>
-<p>The simplest way to run Jupyter Lab is by running the following command in your terminal:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A browser window should immediately open with the Jupyter Lab interface.</p>
-</section>
-<section id="user-interface" class="level2">
-<h2 class="anchored" data-anchor-id="user-interface">User interface</h2>
-<p>Once launched, Jupyter Lab presents an interface with a file browser on the left side (Navigator pane), and a main working area (Workspace) on the right. In the Workspace area, you can create new notebooks or files, and open existing ones by double-clicking on them in the Navigator.</p>
-</section>
-<section id="create-a-new-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-new-notebook">Create a new notebook</h2>
-<p>To create a new Jupyter notebook, click on the “+” button at the top left of the interface. This will launch a new Launcher tab in the Workspace. Here, you can choose the type of file you want to create - in this case, choose Python 3 under the Notebooks section.</p>
-</section>
-<section id="notebook" class="level2">
-<h2 class="anchored" data-anchor-id="notebook">Notebook</h2>
-</section>
-<section id="notebook-cells" class="level2">
-<h2 class="anchored" data-anchor-id="notebook-cells">Notebook Cells</h2>
-<p>A notebook is a list of cells. A cell is a multiline text input field, and its contents can be executed using <code>Shift-Enter</code>, or by clicking either the <code>Play</code> button at the top, or <code>Cell &gt; Run Cells</code> in the menu bar. There are three types of cells: * Code cells * Markdown cells * Raw cells</p>
-<p>You can change the type of cells using the drop-down menu in the toolbar, or with keyboard shortcuts.</p>
-<section id="code-cells" class="level3">
-<h3 class="anchored" data-anchor-id="code-cells">Code Cells</h3>
-<p>Code cells allow you to input and run Python code with the output displayed underneath.</p>
-</section>
-<section id="markdown-cells" class="level3">
-<h3 class="anchored" data-anchor-id="markdown-cells">Markdown Cells</h3>
-<p>Markdown cells provide the narrative text around the code, using markup language to format the text.</p>
-<p>For example, for a level 1 heading, you use <code># Heading 1</code>, and for a level 2 heading, you use <code>## Heading 2</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># H1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## H2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### H3</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">#### H4</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">##### H5</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">###### H6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To create bullet points:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bullet 1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bullet 2</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bullet 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create numbered lists:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Numbered list item 1</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Numbered list item 2</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Numbered list item 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Links can be created with: <code>[Link](www.link.com)</code></p>
-<p>Images can be added with: <code>![Image](image.jpg)</code></p>
-</section>
-<section id="raw-cells" class="level3">
-<h3 class="anchored" data-anchor-id="raw-cells">Raw Cells</h3>
-<p>Raw cells, unlike all other Jupyter notebook cells, have no input-output distinction. This means that they are not formatted in any way and appear as they were typed.</p>
-</section>
-</section>
-<section id="saving-and-exporting-your-jupyter-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="saving-and-exporting-your-jupyter-notebook">Saving and Exporting Your Jupyter Notebook</h2>
-<p>To save your notebook, click on the <code>Save</code> icon in the toolbar at the top, or you can hit <code>CTRL + S</code>.</p>
-<p>Jupyter Lab provides a functionality to export your notebook into different formats like PDF, HTML, .py file etc. Click <code>File &gt; Export Notebook As...</code> to save the notebook in another format.</p>
-</section>
-<section id="closing-the-jupyter-lab-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="closing-the-jupyter-lab-notebook">Closing the Jupyter Lab Notebook</h2>
-<p>Once you are done, you can close the browser window and shut down the jupyter server by using <code>CTRL + C</code> in the terminal.</p>
-<p>That is your basic rundown on how to use Jupyter Lab Notebook. Experiment, play around and get comfortable with it!</p>
-</section>
-<section id="most-important-commands" class="level2">
-<h2 class="anchored" data-anchor-id="most-important-commands">Most important commands</h2>
-<table class="table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Enter</code></td>
-<td>Enter into <code>edit mode</code></td>
-</tr>
-<tr class="even">
-<td><code>Esc</code></td>
-<td>Switch to <code>command mode</code> where you can navigate around your notebook with arrow keys</td>
-</tr>
-<tr class="odd">
-<td><code>y</code></td>
-<td>Change the cell type to code</td>
-</tr>
-<tr class="even">
-<td><code>m</code></td>
-<td>Change the cell type to markdown</td>
-</tr>
-<tr class="odd">
-<td><code>a</code></td>
-<td>Insert a new cell above the current cell</td>
-</tr>
-<tr class="even">
-<td><code>b</code></td>
-<td>Insert a new cell below the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>x</code></td>
-<td>Cut the current cell</td>
-</tr>
-<tr class="even">
-<td><code>c</code></td>
-<td>Copy the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>v</code></td>
-<td>Paste the copied/cut cell</td>
-</tr>
-<tr class="even">
-<td><code>dd</code></td>
-<td>Delete the current cell</td>
-</tr>
-<tr class="odd">
-<td><code>z</code></td>
-<td>Undo the last cell operation</td>
-</tr>
-<tr class="even">
-<td><code>f</code></td>
-<td>Find and replace on your code but not the outputs</td>
-</tr>
-<tr class="odd">
-<td><code>Shift + Enter</code></td>
-<td>Run the current cell and select the next cell</td>
-</tr>
-<tr class="even">
-<td><code>s</code></td>
-<td>Save the notebook</td>
-</tr>
-<tr class="odd">
-<td><code>h</code></td>
-<td>Display the keyboard shortcuts help dialog</td>
-</tr>
-</tbody>
-</table>
-<p>Note: The character-based commands have to be run in the <code>command mode</code>. If you are in the <code>edit mode</code>. Press <code>ESC</code> and then <code>a</code> to insert a new cell below.</p>
-<p>All along this course we will collect the most important commands as a quick reference in this <a href="../../cheatsheets.html#jupyter-notebook">“CheatSheet”</a> page.</p>
-<p>If something is missing please, let us know in a GitHub issue or do a pull request. Thanks!</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -666,15 +467,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../tutorials/lecture_02/02_python_basics.html" class="pagination-link">
-        <span class="nav-page-text">Python basics</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
