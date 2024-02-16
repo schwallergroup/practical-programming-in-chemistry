@@ -1,4 +1,5 @@
 # Matplotlib
+https://matplotlib.org
 
 Creating visualizations is a crucial part of understanding and presenting data in chemistry. Matplotlib, a versatile plotting library in Python, allows for detailed and customized visualizations. This tutorial will guide you through the basics of Matplotlib, focusing on chemistry-related data visualization. By the end, you'll know how to create line plots, bar charts, and scatter plots, which are commonly used in chemistry for displaying trends, comparisons, and relationships in data.
 
@@ -169,8 +170,6 @@ plt.yticks(fontsize=12, color='blue')
 
 plt.title('Molecular Weights of Compounds', fontsize=16)
 plt.xlabel('Compound', fontsize=14)
-plt.ylabel('Molecular Weight (g/mol)', fontsize=14)
-plt.show()
 ```
 
 ## Using Colormaps
@@ -189,7 +188,6 @@ plt.title('Molecular Weight vs. Boiling Point by Density')
 plt.xlabel('Molecular Weight (g/mol)')
 plt.ylabel('Boiling Point (°C)')
 plt.grid(True)
-plt.show()
 ```
 
 Next, we will look at `seaborn`, which is built on top of `matplotlib` and makes it straightforward to beautify plots. 
