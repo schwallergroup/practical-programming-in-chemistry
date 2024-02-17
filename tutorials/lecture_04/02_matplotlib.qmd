@@ -1,5 +1,5 @@
 # Matplotlib
-https://matplotlib.org
+> [https://matplotlib.org](https://matplotlib.org)
 
 Creating visualizations is a crucial part of understanding and presenting data in chemistry. Matplotlib, a versatile plotting library in Python, allows for detailed and customized visualizations. This tutorial will guide you through the basics of Matplotlib, focusing on chemistry-related data visualization. By the end, you'll know how to create line plots, bar charts, and scatter plots, which are commonly used in chemistry for displaying trends, comparisons, and relationships in data.
 
@@ -19,7 +19,7 @@ pip install pandas
 ## Importing Libraries
 Start by importing the necessary libraries:
 
-```python
+```{python}
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 ## Example Data
 Let's create a DataFrame with some chemistry-related data:
 
-```python
+```{python}
 data = {
     'Compound': ['Water', 'Ethanol', 'Acetic Acid', 'Acetone', 'Methanol'],
     'Boiling Point (°C)': [100, 78.37, 118.1, 56.05, 64.7],
@@ -40,7 +40,7 @@ df
 ## Creating a Line Plot
 A line plot is useful for visualizing changes in a variable, such as the boiling point or molecular weight of compounds.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))  # Set the figure size
 plt.plot(df['Compound'], df['Boiling Point (°C)'], marker='o', linestyle='-', color='blue')
 plt.title('Boiling Points of Compounds')
@@ -54,7 +54,7 @@ plt.show()
 ## Creating a Bar Chart
 Bar charts are great for comparing values across different categories, like comparing the molecular weights of various compounds.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))
 plt.bar(df['Compound'], df['Molecular Weight (g/mol)'], color='green')
 plt.title('Molecular Weights of Compounds')
@@ -67,7 +67,7 @@ plt.show()
 ## Creating a Scatter Plot
 Scatter plots help visualize the relationship between two variables. Let's plot the relationship between molecular weight and boiling point.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))
 plt.scatter(df['Molecular Weight (g/mol)'], df['Boiling Point (°C)'], color='red')
 plt.title('Relationship Between Molecular Weight and Boiling Point')
@@ -95,7 +95,7 @@ plt.savefig('plot.png')  # Saves the last plotted figure
 ## Subplots
 Subplots allow you to display multiple plots in a single figure. This is useful for comparing different datasets or aspects of your data side by side.
 
-```python
+```{python}
 fig, ax = plt.subplots(1, 2, figsize=(14, 6))  # 1 row, 2 columns
 
 # First subplot
@@ -120,7 +120,7 @@ Note the `tight_layout()`, which might be required to have nice looking non-over
 ## Customizing Line Styles and Markers
 You can customize the appearance of lines and markers to make your plots clearer and more visually distinct.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))
 plt.plot(df['Compound'], df['Boiling Point (°C)'],
          color='darkred', linestyle='--', marker='^', markersize=10, linewidth=2,
@@ -137,7 +137,7 @@ plt.show()
 ## Adding Annotations
 Annotations can be used to highlight specific points or features in your plots, such as identifying a compound with an unusually high or low boiling point.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))
 plt.scatter(df['Molecular Weight (g/mol)'], df['Boiling Point (°C)'], color='purple')
 
@@ -157,7 +157,7 @@ plt.grid(True)
 ## Customizing Axes
 Customizing the axes of your plot can improve readability and focus the viewer's attention on the most relevant parts of your data.
 
-```python
+```{python}
 plt.figure(figsize=(10, 6))
 plt.bar(df['Compound'], df['Molecular Weight (g/mol)'], color='teal')
 
@@ -175,7 +175,7 @@ plt.xlabel('Compound', fontsize=14)
 ## Using Colormaps
 Colormaps can be used to add a color gradient to your plots, which is particularly useful for scatter plots to indicate density or another variable.
 
-```python
+```{python}
 # Assuming an additional 'Density (g/mL)' column in the DataFrame
 df['Density (g/mL)'] = [1.0, 0.789, 1.049, 0.790, 0.791]  # Example densities
 

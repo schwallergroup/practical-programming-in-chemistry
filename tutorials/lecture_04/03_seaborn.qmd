@@ -1,5 +1,10 @@
+---
+format: html
+jupyter: python3
+---
+
 # Seaborn
-https://seaborn.pydata.org
+> [https://seaborn.pydata.org](https://seaborn.pydata.org)
 
 Seaborn is a Python visualization library based on Matplotlib that offers a higher level of abstraction for creating attractive and informative statistical graphics. It's designed to work well with Pandas DataFrames, making it an excellent tool for chemistry and other scientific data visualizations. Let's extend our tutorial by incorporating Seaborn to make our plots more appealing with minimal effort.
 
@@ -13,7 +18,7 @@ pip install seaborn
 ## Importing Libraries
 After installation, import Seaborn alongside Pandas and Matplotlib:
 
-```python
+```{python}
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -24,7 +29,8 @@ Seaborn automatically improves the aesthetics of the plots and provides a number
 ## Example Data
 Let's use the same chemistry-related DataFrame from before:
 
-```python
+```{python}
+#| fig-width: 6
 data = {
     'Compound': ['Water', 'Ethanol', 'Acetic Acid', 'Acetone', 'Methanol'],
     'Boiling Point (°C)': [100, 78.37, 118.1, 56.05, 64.7],
@@ -37,7 +43,8 @@ df = pd.DataFrame(data)
 ## Creating a Bar Plot with Seaborn
 Seaborn's barplot offers a quick way to create bar plots that include bootstrap confidence intervals.
 
-```python
+```{python}
+#| fig-width: 6
 plt.figure(figsize=(10, 6))
 sns.barplot(x='Compound', y='Molecular Weight (g/mol)', data=df, palette='coolwarm')
 plt.title('Molecular Weights of Compounds')
@@ -47,7 +54,8 @@ plt.xticks(rotation=45)
 ## Creating a Scatter Plot with Seaborn
 Seaborn's scatterplot function adds more options for customization and automatically adjusts aesthetics.
 
-```python
+```{python}
+#| fig-width: 6
 plt.figure(figsize=(10, 6))
 sns.scatterplot(x='Molecular Weight (g/mol)', y='Boiling Point (°C)', data=df, hue='Density (g/mL)', palette='viridis', size='Density (g/mL)', sizes=(50, 200))
 plt.title('Molecular Weight vs. Boiling Point by Density')
@@ -56,7 +64,8 @@ plt.title('Molecular Weight vs. Boiling Point by Density')
 ## Enhancing Plots with Pairplot
 Seaborn's pairplot function creates a matrix of scatter plots for quick exploration of relationships between multiple variables. This is especially useful in chemistry for identifying trends and correlations between different properties.
 
-```python
+```{python}
+#| fig-width: 6
 sns.pairplot(df, hue='Compound', palette='plasma')
 ```
 
@@ -67,7 +76,8 @@ Seaborn works seamlessly with Matplotlib, meaning you can use Matplotlib's funct
 - **Contexts:** With `sns.set_context()`, you can adjust the scale of plot elements and labels to best suit your presentation or publication needs.
 - **Color Palettes:** Seaborn has a wide range of color palettes to make your plots more attractive and informative. Use `sns.color_palette()` to explore and set different palettes.
 
-```python
+```{python}
+#| fig-width: 6
 sns.set_theme(style='whitegrid')
 sns.set_context('talk')
 plt.figure(figsize=(10, 6))
@@ -77,4 +87,4 @@ plt.title('Molecular Weight vs. Boiling Point')
 
 Seaborn significantly simplifies the process of creating beautiful and informative plots with Python. Its integration with Pandas DataFrames and the underlying power of Matplotlib make it an excellent choice for visualizing chemistry-related data. By leveraging Seaborn's high-level plotting functions and customization options, you can quickly create plots that are both visually appealing and rich in information, suitable for analysis, presentations, and publications.
 
-More examples can be found in the gallery: https://seaborn.pydata.org/examples/index.html. 
+More examples can be found in the gallery: [https://seaborn.pydata.org/examples/index.html]. 

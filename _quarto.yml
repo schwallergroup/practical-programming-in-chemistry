@@ -49,8 +49,10 @@ website:
         - section: Lecture 04
         - text: "Pandas"
           href: tutorials/lecture_04/01_pandas.qmd
-        - text: "Matplotlib and Seaborn"
+        - text: "Matplotlib"
           href: tutorials/lecture_04/02_matplotlib.qmd
+        - text: "Seaborn"
+          href: tutorials/lecture_04/03_seaborn.qmd
         - ---
 format:
   html:
