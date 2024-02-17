@@ -94,6 +94,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -266,9 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pandas" id="toc-pandas" class="nav-link active" data-scroll-target="#pandas">Pandas</a>
-  <ul class="collapse">
-  <li><a href="#setting-up-your-environment" id="toc-setting-up-your-environment" class="nav-link" data-scroll-target="#setting-up-your-environment">Setting Up Your Environment</a></li>
+  <li><a href="#setting-up-your-environment" id="toc-setting-up-your-environment" class="nav-link active" data-scroll-target="#setting-up-your-environment">Setting Up Your Environment</a></li>
   <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries">Importing Libraries</a></li>
   <li><a href="#creating-a-series" id="toc-creating-a-series" class="nav-link" data-scroll-target="#creating-a-series">Creating a Series</a></li>
   <li><a href="#creating-a-dataframe" id="toc-creating-a-dataframe" class="nav-link" data-scroll-target="#creating-a-dataframe">Creating a DataFrame</a></li>
@@ -302,19 +303,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#bar-plot" id="toc-bar-plot" class="nav-link" data-scroll-target="#bar-plot">Bar Plot</a></li>
   <li><a href="#transition-to-matplotlib-for-more-customization" id="toc-transition-to-matplotlib-for-more-customization" class="nav-link" data-scroll-target="#transition-to-matplotlib-for-more-customization">Transition to Matplotlib for More Customization</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pandas</h1>
+</div>
 
 
-<section id="pandas" class="level1">
-<h1>Pandas</h1>
-<p>Pandas is a powerful library for data manipulation and analysis in Python, making it a valuable tool for chemists looking to process experimental data, chemical properties, or any structured data related to their research.</p>
-<p>It’s like the Excel in Python.</p>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<blockquote class="blockquote">
+<p><a href="https://pandas.pydata.org">https://pandas.pydata.org</a></p>
+</blockquote>
+<p>Pandas is a powerful library for data manipulation and analysis in Python, making it a valuable tool for chemists looking to process experimental data, chemical properties, or any structured data related to their research. It’s like the Excel spreadsheets in Python.</p>
 <section id="setting-up-your-environment" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-your-environment">Setting Up Your Environment</h2>
 <p>First, ensure you are in a conda environment. You can then install Pandas and Numpy using pip:</p>
@@ -326,25 +341,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importing-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="importing-libraries">Importing Libraries</h2>
 <p>Start your Python script or Jupyter notebook by importing Pandas and Numpy:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="creating-a-series" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-series">Creating a Series</h2>
 <p>A Series in pandas is one of the core data structures in the Python pandas library. It represents a one-dimensional array-like object containing a sequence of values and an associated array of data labels, called its index. The Series can hold any data type—integers, strings, floating point numbers, Python objects, and so on. It’s similar to a column in a spreadsheet or a table in a database.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> pd.Series([<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>])</span>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> pd.Series([<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>compounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0              Water
+1            Ethanol
+2            Glucose
+3    Sodium Chloride
+4            Methane
+dtype: object</code></pre>
+</div>
+</div>
 <pre><code></code></pre>
 </section>
 <section id="creating-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-dataframe">Creating a DataFrame</h2>
 <p>A DataFrame is a two-dimensional, size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). For a chemistry application, let’s consider a simple example where we have a dataset of several compounds with their molecular weights and melting points.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>],</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">180.16</span>, <span class="fl">58.44</span>, <span class="fl">16.04</span>],</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>, <span class="dv">146</span>, <span class="dv">801</span>, <span class="op">-</span><span class="fl">182.5</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">180.16</span>, <span class="fl">58.44</span>, <span class="fl">16.04</span>],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>, <span class="dv">146</span>, <span class="dv">801</span>, <span class="op">-</span><span class="fl">182.5</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="basic-data-inspection" class="level2">
 <h2 class="anchored" data-anchor-id="basic-data-inspection">Basic Data Inspection</h2>
@@ -358,9 +387,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="accessing-data" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-data">Accessing Data</h2>
 <p>You can access specific columns using their labels:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mw <span class="op">=</span> df[<span class="st">"Molecular Weight"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mw <span class="op">=</span> df[<span class="st">"Molecular Weight"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Or use conditions to filter data:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solids <span class="op">=</span> df[df[<span class="st">"Melting Point (°C)"</span>] <span class="op">&gt;</span> <span class="dv">25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>solids <span class="op">=</span> df[df[<span class="st">"Melting Point (°C)"</span>] <span class="op">&gt;</span> <span class="dv">25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="indexing" class="level2">
 <h2 class="anchored" data-anchor-id="indexing">Indexing</h2>
@@ -373,135 +406,679 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="examples-using-.loc">Examples using <code>.loc</code>:</h3>
 <p><strong>Selecting a Single Row by Label</strong></p>
 <p>If the DataFrame uses the default integer index, the “label” is the integer index value.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the row for Ethanol (index 1)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the row for Ethanol (index 1)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>Compound              Ethanol
+Molecular Weight        46.07
+Melting Point (°C)     -114.1
+Name: 1, dtype: object</code></pre>
+</div>
+</div>
 <p>This will display the row for Ethanol with all its properties.</p>
 <p><strong>Selecting Multiple Rows by Label</strong></p>
 <p>You can also select multiple rows by passing a list of index labels.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows for Water and Glucose</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[[<span class="dv">0</span>, <span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows for Water and Glucose</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.loc[[<span class="dv">0</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p><strong>Selecting Rows and Columns by Label</strong></p>
 <p>You can specify both rows and columns using <code>.loc</code>. If you want specific columns, you pass the column names.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the Molecular Weight and Melting Point for Ethanol and Glucose</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="st">"Molecular Weight"</span>, <span class="st">"Melting Point (°C)"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the Molecular Weight and Melting Point for Ethanol and Glucose</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df.loc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="st">"Molecular Weight"</span>, <span class="st">"Melting Point (°C)"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>46.07</td>
+<td>-114.1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>180.16</td>
+<td>146.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="examples-using-.iloc" class="level3">
 <h3 class="anchored" data-anchor-id="examples-using-.iloc">Examples using <code>.iloc</code>:</h3>
 <p><strong>Selecting a Single Row by Integer Position</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the row for Ethanol (second row, so index 1)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.iloc[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the row for Ethanol (second row, so index 1)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>Compound              Ethanol
+Molecular Weight        46.07
+Melting Point (°C)     -114.1
+Name: 1, dtype: object</code></pre>
+</div>
+</div>
 <p>This will display the same Ethanol row but accessed by its integer position instead of the label.</p>
 <p><strong>Selecting Multiple Rows by Integer Position</strong></p>
 <p>You can select multiple rows by passing a list of integer positions.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows for Water and Glucose</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.iloc[[<span class="dv">0</span>, <span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows for Water and Glucose</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df.iloc[[<span class="dv">0</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p><strong>Selecting Rows and Columns by Integer Position</strong></p>
 <p>With <code>.iloc</code>, you can select specific rows and columns by their integer positions.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the Molecular Weight and Melting Point for Ethanol and Glucose</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.iloc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the Molecular Weight and Melting Point for Ethanol and Glucose</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df.iloc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>46.07</td>
+<td>-114.1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>180.16</td>
+<td>146.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>In this case, [1, 2] specifies rows for Ethanol and Glucose, while [1, 2] specifies the “Molecular Weight” and “Melting Point (°C)” columns by their integer positions.</p>
 </section>
 </section>
 <section id="operations" class="level2">
 <h2 class="anchored" data-anchor-id="operations">Operations</h2>
 <p>Pandas supports various operations that can be useful in chemistry, such as calculating the mean, median, or applying more complex functions:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>average_molecular_weight <span class="op">=</span> df[<span class="st">"Molecular Weight"</span>].mean()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average Molecular Weight: </span><span class="sc">{</span>average_molecular_weight<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>average_molecular_weight <span class="op">=</span> df[<span class="st">"Molecular Weight"</span>].mean()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average Molecular Weight: </span><span class="sc">{</span>average_molecular_weight<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Molecular Weight: 63.75</code></pre>
+</div>
+</div>
 <p>Or</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>min_melting_point <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">min</span>()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>max_melting_point <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">max</span>()</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Minimum Melting Point: </span><span class="sc">{</span>min_melting_point<span class="sc">}</span><span class="ss"> °C"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Maximum Melting Point: </span><span class="sc">{</span>max_melting_point<span class="sc">}</span><span class="ss"> °C"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>min_melting_point <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">min</span>()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>max_melting_point <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">max</span>()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Minimum Melting Point: </span><span class="sc">{</span>min_melting_point<span class="sc">}</span><span class="ss"> °C"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Maximum Melting Point: </span><span class="sc">{</span>max_melting_point<span class="sc">}</span><span class="ss"> °C"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Minimum Melting Point: -182.5 °C
+Maximum Melting Point: 801.0 °C</code></pre>
+</div>
+</div>
 <p>You can also apply functions to transform data, such as converting temperatures:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Melting Point (°F)"</span>] <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">+</span> <span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Melting Point (°F)"</span>] <span class="op">=</span> df[<span class="st">"Melting Point (°C)"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">+</span> <span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>You could sort the by values in a column. The default is <code>ascending=True</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">"Molecular Weight"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted by Molecular Weight:"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">"Molecular Weight"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted by Molecular Weight:"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sorted by Molecular Weight:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Methane</td>
+<td>16.040</td>
+<td>-182.5</td>
+<td>-296.50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+<td>32.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>-114.1</td>
+<td>-173.38</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>801.0</td>
+<td>1473.80</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+<td>294.80</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>But you can set <code>ascending=False</code> and have it sorted from the largest molecular weight to the lowest..</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">"Molecular Weight"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted by Molecular Weight (descending):"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">"Molecular Weight"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted by Molecular Weight (descending):"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sorted_by_weight_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sorted by Molecular Weight (descending):</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+<td>294.80</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>801.0</td>
+<td>1473.80</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>-114.1</td>
+<td>-173.38</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+<td>32.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Methane</td>
+<td>16.040</td>
+<td>-182.5</td>
+<td>-296.50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="adding-and-modifying-columns" class="level2">
 <h2 class="anchored" data-anchor-id="adding-and-modifying-columns">Adding and Modifying Columns</h2>
 <p><strong>Calculate Moles for a Given Mass</strong></p>
 <p>Suppose you want to add a column showing how many moles of each compound you’d have if you had 100 grams of each.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Moles (in 100g)"</span>] <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> df[<span class="st">"Molecular Weight"</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Moles (in 100g)"</span>] <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> df[<span class="st">"Molecular Weight"</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°F)</th>
+<th data-quarto-table-cell-role="th">Moles (in 100g)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+<td>32.00</td>
+<td>5.550930</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>-114.1</td>
+<td>-173.38</td>
+<td>2.170610</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+<td>294.80</td>
+<td>0.555062</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>801.0</td>
+<td>1473.80</td>
+<td>1.711157</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Methane</td>
+<td>16.040</td>
+<td>-182.5</td>
+<td>-296.50</td>
+<td>6.234414</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="conditional-operations-and-data-filtering" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-operations-and-data-filtering">Conditional Operations and Data Filtering</h2>
 <p>Advanced filtering techniques using <code>.query()</code> can make data filtering more intuitive and concise. This is handy when dealing with complex conditions.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df.query(<span class="st">'`Molecular Weight` &gt; 30 and `Melting Point (°C)` &lt; 100'</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>filtered_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df.query(<span class="st">'`Molecular Weight` &gt; 30 or `Melting Point (°C)` &gt; 100'</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>filtered_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df.query(<span class="st">'`Molecular Weight` &gt; 30 and `Melting Point (°C)` &lt; 100'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>filtered_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°F)</th>
+<th data-quarto-table-cell-role="th">Moles (in 100g)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.07</td>
+<td>-114.1</td>
+<td>-173.38</td>
+<td>2.17061</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df.query(<span class="st">'`Molecular Weight` &gt; 30 or `Melting Point (°C)` &gt; 100'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>filtered_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°F)</th>
+<th data-quarto-table-cell-role="th">Moles (in 100g)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.07</td>
+<td>-114.1</td>
+<td>-173.38</td>
+<td>2.170610</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.16</td>
+<td>146.0</td>
+<td>294.80</td>
+<td>0.555062</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.44</td>
+<td>801.0</td>
+<td>1473.80</td>
+<td>1.711157</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="combining-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="combining-dataframes">Combining DataFrames</h2>
 <section id="merging-dataframes" class="level3">
 <h3 class="anchored" data-anchor-id="merging-dataframes">Merging DataFrames</h3>
 <p>Merging two DataFrames representing different sets of properties for a selection of compounds.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of physical properties</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_physical <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>],</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="op">-</span><span class="fl">161.5</span>],</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Density (g/mL)"</span>: [<span class="fl">1.0</span>, <span class="fl">0.789</span>, <span class="fl">0.000656</span>]</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of chemical properties</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>df_chemical <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>],</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Flammability"</span>: [<span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span>]</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging on 'Compound'</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>df_merged <span class="op">=</span> pd.merge(df_physical, df_chemical, on<span class="op">=</span><span class="st">"Compound"</span>)</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>df_merged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of physical properties</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_physical <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>],</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="op">-</span><span class="fl">161.5</span>],</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Density (g/mL)"</span>: [<span class="fl">1.0</span>, <span class="fl">0.789</span>, <span class="fl">0.000656</span>]</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of chemical properties</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>df_chemical <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>],</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Flammability"</span>: [<span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span>]</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging on 'Compound'</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>df_merged <span class="op">=</span> pd.merge(df_physical, df_chemical, on<span class="op">=</span><span class="st">"Compound"</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>df_merged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Boiling Point (°C)</th>
+<th data-quarto-table-cell-role="th">Density (g/mL)</th>
+<th data-quarto-table-cell-role="th">Flammability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>100.00</td>
+<td>1.000000</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>78.37</td>
+<td>0.789000</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Methane</td>
+<td>-161.50</td>
+<td>0.000656</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="concatenating-dataframes" class="level3">
 <h3 class="anchored" data-anchor-id="concatenating-dataframes">Concatenating DataFrames</h3>
 <p>Concatenating DataFrames containing properties of different compounds to create a single, comprehensive DataFrame.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds set 1</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_set1 <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>],</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>],</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>]</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds set 2</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>df_set2 <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>],</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">180.16</span>, <span class="fl">58.44</span>],</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">146</span>, <span class="dv">801</span>]</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenating vertically</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>df_concatenated <span class="op">=</span> pd.concat([df_set1, df_set2], axis<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>df_concatenated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds set 1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_set1 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>],</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>],</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>]</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds set 2</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>df_set2 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>],</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight"</span>: [<span class="fl">180.16</span>, <span class="fl">58.44</span>],</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">146</span>, <span class="dv">801</span>]</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenating vertically</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>df_concatenated <span class="op">=</span> pd.concat([df_set1, df_set2], axis<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>df_concatenated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>-114.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>146.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>801.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="combining-dataframes-with-join" class="level3">
 <h3 class="anchored" data-anchor-id="combining-dataframes-with-join">Combining DataFrames with join</h3>
 <p>Combining DataFrames with different information about compounds based on their index. This is useful when the indices represent a shared order or when aligning datasets based on their order rather than a specific key.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df_compounds <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>]</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>}).set_index(<span class="st">"Compound"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of boiling points</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>df_bp <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="op">-</span><span class="fl">161.5</span>]</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>])</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of melting points</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>df_mp <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>, <span class="op">-</span><span class="fl">182.5</span>]</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>])</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining using join</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>df_combined <span class="op">=</span> df_compounds.join([df_bp, df_mp])</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_combined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of compounds</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df_compounds <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>]</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>}).set_index(<span class="st">"Compound"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of boiling points</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>df_bp <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="op">-</span><span class="fl">161.5</span>]</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>])</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame of melting points</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>df_mp <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Melting Point (°C)"</span>: [<span class="dv">0</span>, <span class="op">-</span><span class="fl">114.1</span>, <span class="op">-</span><span class="fl">182.5</span>]</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Methane"</span>])</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining using join</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>df_combined <span class="op">=</span> df_compounds.join([df_bp, df_mp])</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>df_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Boiling Point (°C)</th>
+<th data-quarto-table-cell-role="th">Melting Point (°C)</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Water</td>
+<td>100.00</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Ethanol</td>
+<td>78.37</td>
+<td>-114.1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Methane</td>
+<td>-161.50</td>
+<td>-182.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>These examples illustrate how to use Pandas for managing and analyzing chemistry-related data, showcasing the creation and manipulation of DataFrames through merging, concatenating, and combining operations.</p>
 </section>
 </section>
@@ -511,78 +1088,283 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="example-1-converting-molecular-weight-from-gmol-to-kgmol" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-converting-molecular-weight-from-gmol-to-kgmol">Example 1: Converting Molecular Weight from g/mol to kg/mol</h3>
 <p>Suppose we have a DataFrame containing compounds and their molecular weights in grams per mole (g/mol). We can use a lambda function to convert these weights to kilograms per mole (kg/mol).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>],</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight (g/mol)"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">180.16</span>, <span class="fl">58.44</span>, <span class="fl">16.04</span>]</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Molecular Weight from g/mol to kg/mol using a lambda function</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molecular Weight (kg/mol)'</span>] <span class="op">=</span> df[<span class="st">'Molecular Weight (g/mol)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">/</span> <span class="dv">1000</span>)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>, <span class="st">"Glucose"</span>, <span class="st">"Sodium Chloride"</span>, <span class="st">"Methane"</span>],</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecular Weight (g/mol)"</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">180.16</span>, <span class="fl">58.44</span>, <span class="fl">16.04</span>]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Molecular Weight from g/mol to kg/mol using a lambda function</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molecular Weight (kg/mol)'</span>] <span class="op">=</span> df[<span class="st">'Molecular Weight (g/mol)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">/</span> <span class="dv">1000</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight (g/mol)</th>
+<th data-quarto-table-cell-role="th">Molecular Weight (kg/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.018015</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>0.046070</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>0.180160</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>0.058440</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Methane</td>
+<td>16.040</td>
+<td>0.016040</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>Alternatively, you could have written a function with <code>def</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to convert Molecular Weight from g/mol to kg/mol</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_kg_per_mol(weight_g_per_mol):</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weight_g_per_mol <span class="op">/</span> <span class="dv">1000</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'Molecular Weight (g/mol)' column</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molecular Weight (kg/mol)'</span>] <span class="op">=</span> df[<span class="st">'Molecular Weight (g/mol)'</span>].<span class="bu">apply</span>(convert_to_kg_per_mol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to convert Molecular Weight from g/mol to kg/mol</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_kg_per_mol(weight_g_per_mol):</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weight_g_per_mol <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'Molecular Weight (g/mol)' column</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molecular Weight (kg/mol)'</span>] <span class="op">=</span> df[<span class="st">'Molecular Weight (g/mol)'</span>].<span class="bu">apply</span>(convert_to_kg_per_mol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Using a defined function instead of a lambda function can make your code more readable and maintainable, especially for those who may not be familiar with the syntax of lambda functions. It’s also beneficial when the operation you need to perform is too complex for a one-liner lambda function.</p>
 </section>
 <section id="example-2-calculating-molarity-from-mass-and-volume" class="level3">
 <h3 class="anchored" data-anchor-id="example-2-calculating-molarity-from-mass-and-volume">Example 2: Calculating Molarity from Mass and Volume</h3>
 <p>For a DataFrame containing the mass of solutes (in grams) and the volume of solutions (in liters), we can calculate the molarity (mol/L) given the molecular weight. This example assumes the molecular weight is also provided in the DataFrame.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding mass of solute (in grams) and volume of solution (in liters) to the DataFrame</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Mass (g)'</span>] <span class="op">=</span> [<span class="dv">18</span>, <span class="dv">46</span>, <span class="dv">180</span>, <span class="dv">58</span>, <span class="dv">16</span>]  <span class="co"># Example masses</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Volume (L)'</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>]  <span class="co"># Example volumes</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate molarity using molecular weight, mass, and volume</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molarity (mol/L)'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row[<span class="st">'Mass (g)'</span>] <span class="op">/</span> row[<span class="st">'Molecular Weight (g/mol)'</span>] <span class="op">/</span> row[<span class="st">'Volume (L)'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding mass of solute (in grams) and volume of solution (in liters) to the DataFrame</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Mass (g)'</span>] <span class="op">=</span> [<span class="dv">18</span>, <span class="dv">46</span>, <span class="dv">180</span>, <span class="dv">58</span>, <span class="dv">16</span>]  <span class="co"># Example masses</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Volume (L)'</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>]  <span class="co"># Example volumes</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate molarity using molecular weight, mass, and volume</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molarity (mol/L)'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row[<span class="st">'Mass (g)'</span>] <span class="op">/</span> row[<span class="st">'Molecular Weight (g/mol)'</span>] <span class="op">/</span> row[<span class="st">'Volume (L)'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molecular Weight (g/mol)</th>
+<th data-quarto-table-cell-role="th">Molecular Weight (kg/mol)</th>
+<th data-quarto-table-cell-role="th">Mass (g)</th>
+<th data-quarto-table-cell-role="th">Volume (L)</th>
+<th data-quarto-table-cell-role="th">Molarity (mol/L)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>18.015</td>
+<td>0.018015</td>
+<td>18</td>
+<td>1.0</td>
+<td>0.999167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>46.070</td>
+<td>0.046070</td>
+<td>46</td>
+<td>0.5</td>
+<td>1.996961</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Glucose</td>
+<td>180.160</td>
+<td>0.180160</td>
+<td>180</td>
+<td>1.0</td>
+<td>0.999112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sodium Chloride</td>
+<td>58.440</td>
+<td>0.058440</td>
+<td>58</td>
+<td>0.5</td>
+<td>1.984942</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Methane</td>
+<td>16.040</td>
+<td>0.016040</td>
+<td>16</td>
+<td>1.0</td>
+<td>0.997506</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>The alternative with <code>def</code>.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to calculate molarity</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_molarity(row):</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    mass_g <span class="op">=</span> row[<span class="st">'Mass (g)'</span>]</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    molecular_weight_g_per_mol <span class="op">=</span> row[<span class="st">'Molecular Weight (g/mol)'</span>]</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    volume_L <span class="op">=</span> row[<span class="st">'Volume (L)'</span>]</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    molarity <span class="op">=</span> mass_g <span class="op">/</span> molecular_weight_g_per_mol <span class="op">/</span> volume_L</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> molarity</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the DataFrame to calculate molarity</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molarity (mol/L)'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(calculate_molarity, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to calculate molarity</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_molarity(row):</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    mass_g <span class="op">=</span> row[<span class="st">'Mass (g)'</span>]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    molecular_weight_g_per_mol <span class="op">=</span> row[<span class="st">'Molecular Weight (g/mol)'</span>]</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    volume_L <span class="op">=</span> row[<span class="st">'Volume (L)'</span>]</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    molarity <span class="op">=</span> mass_g <span class="op">/</span> molecular_weight_g_per_mol <span class="op">/</span> volume_L</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> molarity</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the DataFrame to calculate molarity</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Molarity (mol/L)'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(calculate_molarity, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>What does <strong>axis</strong> mean? In pandas DataFrames: - <strong>axis=0</strong>: Perform the operation vertically (downwards across rows, column by column). - <strong>axis=1</strong>: Perform the operation horizontally (across columns, row by row).</p>
 <p>The default is <strong>axis=0</strong>, that’s why we have to specify <strong>axis=1</strong> in those examples.</p>
 </section>
 <section id="example-3-adjusting-ph-measurements" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-adjusting-ph-measurements">Example 3: Adjusting pH Measurements</h3>
 <p>If you have a DataFrame with pH measurements that need to be adjusted by a fixed value (e.g., due to calibration error), you can use a lambda function to apply this correction.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example pH measurements</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_pH <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sample ID"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pH Measurement"</span>: [<span class="fl">7.0</span>, <span class="fl">4.5</span>, <span class="fl">8.2</span>, <span class="fl">5.5</span>]</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust pH measurements by subtracting 0.1 due to calibration error</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>df_pH[<span class="st">'Adjusted pH'</span>] <span class="op">=</span> df_pH[<span class="st">'pH Measurement'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">-</span> <span class="fl">0.1</span>)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>df_pH</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example pH measurements</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_pH <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sample ID"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pH Measurement"</span>: [<span class="fl">7.0</span>, <span class="fl">4.5</span>, <span class="fl">8.2</span>, <span class="fl">5.5</span>]</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust pH measurements by subtracting 0.1 due to calibration error</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>df_pH[<span class="st">'Adjusted pH'</span>] <span class="op">=</span> df_pH[<span class="st">'pH Measurement'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">-</span> <span class="fl">0.1</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>df_pH</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Sample ID</th>
+<th data-quarto-table-cell-role="th">pH Measurement</th>
+<th data-quarto-table-cell-role="th">Adjusted pH</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>7.0</td>
+<td>6.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>4.5</td>
+<td>4.4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>8.2</td>
+<td>8.1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>5.5</td>
+<td>5.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="example-4-converting-temperature-units" class="level3">
 <h3 class="anchored" data-anchor-id="example-4-converting-temperature-units">Example 4: Converting Temperature Units</h3>
 <p>A common task in chemistry is converting temperature measurements from Celsius to Fahrenheit or Kelvin. This can easily be done with lambda functions.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example temperature data in Celsius</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_temp <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>],</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>]</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Celsius to Fahrenheit</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>df_temp[<span class="st">'Boiling Point (°F)'</span>] <span class="op">=</span> df_temp[<span class="st">'Boiling Point (°C)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span> <span class="dv">32</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Celsius to Kelvin</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>df_temp[<span class="st">'Boiling Point (K)'</span>] <span class="op">=</span> df_temp[<span class="st">'Boiling Point (°C)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">+</span> <span class="fl">273.15</span>)</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>df_temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example temperature data in Celsius</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_temp <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: [<span class="st">"Water"</span>, <span class="st">"Ethanol"</span>],</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Boiling Point (°C)"</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>]</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Celsius to Fahrenheit</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>df_temp[<span class="st">'Boiling Point (°F)'</span>] <span class="op">=</span> df_temp[<span class="st">'Boiling Point (°C)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span> <span class="dv">32</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Celsius to Kelvin</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>df_temp[<span class="st">'Boiling Point (K)'</span>] <span class="op">=</span> df_temp[<span class="st">'Boiling Point (°C)'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">+</span> <span class="fl">273.15</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>df_temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Boiling Point (°C)</th>
+<th data-quarto-table-cell-role="th">Boiling Point (°F)</th>
+<th data-quarto-table-cell-role="th">Boiling Point (K)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Water</td>
+<td>100.00</td>
+<td>212.000</td>
+<td>373.15</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Ethanol</td>
+<td>78.37</td>
+<td>173.066</td>
+<td>351.52</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <p>These examples demonstrate the versatility of lambda functions and the apply method in Pandas for performing quick, element-wise operations. They are particularly useful in chemistry for unit conversions, calculations based on multiple columns, and data adjustments.</p>
 </section>
 </section>
@@ -591,33 +1373,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Pandas plotting is built on Matplotlib, so you’ll need to have Matplotlib installed to make plots (<code>pip install matplotlib</code>). Let’s create a chemistry-related DataFrame and make some basic plots directly with Pandas.</p>
 <section id="example-data" class="level3">
 <h3 class="anchored" data-anchor-id="example-data">Example data</h3>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample chemistry-related data</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Compound'</span>: [<span class="st">'Water'</span>, <span class="st">'Ethanol'</span>, <span class="st">'Acetic Acid'</span>, <span class="st">'Acetone'</span>, <span class="st">'Methanol'</span>],</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Molecular Weight (g/mol)'</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">60.052</span>, <span class="fl">58.08</span>, <span class="fl">32.04</span>],</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Boiling Point (°C)'</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="fl">118.1</span>, <span class="fl">56.05</span>, <span class="fl">64.7</span>]</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample chemistry-related data</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Compound'</span>: [<span class="st">'Water'</span>, <span class="st">'Ethanol'</span>, <span class="st">'Acetic Acid'</span>, <span class="st">'Acetone'</span>, <span class="st">'Methanol'</span>],</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Molecular Weight (g/mol)'</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">60.052</span>, <span class="fl">58.08</span>, <span class="fl">32.04</span>],</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Boiling Point (°C)'</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="fl">118.1</span>, <span class="fl">56.05</span>, <span class="fl">64.7</span>]</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="basic-line-plot" class="level3">
 <h3 class="anchored" data-anchor-id="basic-line-plot">Basic Line Plot</h3>
 <p>Let’s create a line plot of the boiling points.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'Compound'</span>, y<span class="op">=</span><span class="st">'Boiling Point (°C)'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, title<span class="op">=</span><span class="st">'Boiling Points of Compounds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'Compound'</span>, y<span class="op">=</span><span class="st">'Boiling Point (°C)'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, title<span class="op">=</span><span class="st">'Boiling Points of Compounds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>&lt;Axes: title={'center': 'Boiling Points of Compounds'}, xlabel='Compound'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="01_pandas_files/figure-html/cell-31-output-2.png" width="582" height="449"></p>
+</div>
+</div>
 </section>
 <section id="bar-plot" class="level3">
 <h3 class="anchored" data-anchor-id="bar-plot">Bar Plot</h3>
 <p>A bar plot can be useful for comparing molecular weights.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'Compound'</span>, y<span class="op">=</span><span class="st">'Molecular Weight (g/mol)'</span>, title<span class="op">=</span><span class="st">'Molecular Weights of Compounds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">'Compound'</span>, y<span class="op">=</span><span class="st">'Molecular Weight (g/mol)'</span>, title<span class="op">=</span><span class="st">'Molecular Weights of Compounds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>&lt;Axes: title={'center': 'Molecular Weights of Compounds'}, xlabel='Compound'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="01_pandas_files/figure-html/cell-32-output-2.png" width="566" height="510"></p>
+</div>
+</div>
 </section>
 <section id="transition-to-matplotlib-for-more-customization" class="level3">
 <h3 class="anchored" data-anchor-id="transition-to-matplotlib-for-more-customization">Transition to Matplotlib for More Customization</h3>
 <p>While Pandas plotting is convenient for quick and straightforward plots, Matplotlib provides more control and flexibility for customizing plots. This will be the next topic.</p>
 
 
-</section>
 </section>
 </section>
 
