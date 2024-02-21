@@ -98,20 +98,20 @@ Replace 'branch-name' with the name of the branch you want to switch to.
 
 ### Basic Exercises
 
-::: {.callout-tip}
+<!-- ::: {.callout-tip}
 ## Exercise 1: 
 Clone the following [GitHub repository](https://github.com/schwallergroup/ch200-expectations), make a new branch, copy the `expectations_template.txt` file, rename it, make changes to a file, commit those changes, do another pull, and then push them to GitHub.
-:::
+::: -->
 
-::: {.callout-tip}
-## Exercise 2: 
+<!-- ::: {.callout-tip}
+## Exercise 1: 
 On your own GitHub `test_demo` repository (that you should have created in the [configuration tutorial](01_setup.qmd)), add a new file, then add and commit that new file before pushing the changes to GitHub.
 :::
 
 ::: {.callout-tip}
 ## Exercise 3: 
 From the cloned `ch200-expectations` repository, download the changes made by other students using `git pull`.
-:::
+::: -->
 
 If you run into any issues, remember: your best friends are often the documentation, a quick web search (StackOverflow) or ChatGPT. The answers are almost always out there!
 

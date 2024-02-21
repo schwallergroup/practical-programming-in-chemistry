@@ -87,4 +87,4 @@ plt.title('Molecular Weight vs. Boiling Point')
 
 Seaborn significantly simplifies the process of creating beautiful and informative plots with Python. Its integration with Pandas DataFrames and the underlying power of Matplotlib make it an excellent choice for visualizing chemistry-related data. By leveraging Seaborn's high-level plotting functions and customization options, you can quickly create plots that are both visually appealing and rich in information, suitable for analysis, presentations, and publications.
 
-More examples can be found in the gallery: [https://seaborn.pydata.org/examples/index.html]. 
+More examples can be found in the gallery: [https://seaborn.pydata.org/examples/index.html](https://seaborn.pydata.org/examples/index.html). 

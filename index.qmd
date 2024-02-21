@@ -10,7 +10,18 @@ This course provides a comprehensive and practical introduction to computer prog
 
 The course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots.
 
-<!-- | Week | Topic | Slides | Tutorials |
-|--|--|--|--|
-|  |Getting started| [Slides 01](slides/lecture_01/){target="_blank"} | [Basic setup](tutorials/lecture_01/01_setup.qmd)|
-|  |  |  |[GitHub intro](tutorials/lecture_01/02_github.qmd)| -->
+## Contributors / TAs
+
+- [Rebecca Neeser](https://github.com/rneeser)
+- [Daniel Armstrong](https://github.com/danielparm)
+- [Sarina Kopf](https://github.com/Sarina-kopf)
+- [Joe Abbott](https://github.com/jwa7)
+
+## Important links
+
+- [Exercises](https://github.com/schwallergroup/practical-programming-in-chemistry-exercises)
+- [Personal Milestones](https://github.com/schwallergroup/practical-programming-in-chemistry-milestones)
+- Slides will be on Moodle
+
+## Questions? 
+- Google, StackOverflow, ChatGPT/CodeLLama or our [discussion forum](https://github.com/schwallergroup/practical-programming-in-chemistry/discussions)
