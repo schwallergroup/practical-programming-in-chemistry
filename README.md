@@ -14,9 +14,9 @@ The course format consists lessons on diverse topics and hands-on exercise sessi
 ## Important links
 
 - [Handout](https://schwallergroup.github.io/practical-programming-in-chemistry/)
-- [Exercises]()
-- [Personal Milestones]()
-- Slides are on Moodle
+- [Exercises](https://github.com/schwallergroup/practical-programming-in-chemistry-exercises)
+- [Personal Milestones](https://github.com/schwallergroup/practical-programming-in-chemistry-milestones)
+- Slides will be on Moodle
 
 ## Questions? 
 - Google, StackOverflow, ChatGPT/CodeLLama or our [discussion forum](https://github.com/schwallergroup/practical-programming-in-chemistry/discussions)
