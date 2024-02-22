@@ -81,6 +81,7 @@ Establishing a specific 'git' folder within your home directory is a great step 
 
 Now you have a dedicated 'git' folder in your home directory where you can clone, create and manage your repositories. This organization can help streamline your workflow and make working with Git a more enjoyable experience!
 
+
 ## Common Command Line Commands
 
 The command line is a powerful tool that allows users to interact directly with their operating system. Here's a table featuring common command line commands for macOS/Linux and Windows:
@@ -146,18 +147,18 @@ By using Anaconda and taking advantage of virtual environments, you can create a
 
 ::: {.callout-tip}
 ## Exercise: Create course conda environment
-- Use the commands above to create an environment with the name `ch200` with `python=3.10`.
+- Use the commands above to create an environment with the name `ppchem` with `python=3.10`.
 - Activate the created environment. 
-- And install the package `jupyter`. 
+- And install the package `jupyterlab`. 
 :::
 
 ::: {.callout-note collapse="true"}
 ## Solution: Create course conda environment
 In the command line tool:
 ```
-conda create --name ch200 python=3.10
-conda activate ch200
-conda install jupyter
+conda create --name ppchem python=3.10
+conda activate ppchem
+conda install jupyterlab
 ```
 :::
 
