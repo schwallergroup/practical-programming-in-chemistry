@@ -266,19 +266,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#iterations-and-list-comprehensions-in-python" id="toc-iterations-and-list-comprehensions-in-python" class="nav-link active" data-scroll-target="#iterations-and-list-comprehensions-in-python">Iterations and List Comprehensions in Python</a></li>
-  <li><a href="#iterations-in-python" id="toc-iterations-in-python" class="nav-link" data-scroll-target="#iterations-in-python">Iterations in Python</a>
+  <li><a href="#iterations-in-python" id="toc-iterations-in-python" class="nav-link active" data-scroll-target="#iterations-in-python">Iterations in Python</a>
   <ul class="collapse">
   <li><a href="#for-loop" id="toc-for-loop" class="nav-link" data-scroll-target="#for-loop">For Loop</a></li>
   <li><a href="#while-loop" id="toc-while-loop" class="nav-link" data-scroll-target="#while-loop">While Loop</a></li>
   <li><a href="#loop-control-statements" id="toc-loop-control-statements" class="nav-link" data-scroll-target="#loop-control-statements">Loop Control Statements</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul></li>
   <li><a href="#list-comprehensions-in-python" id="toc-list-comprehensions-in-python" class="nav-link" data-scroll-target="#list-comprehensions-in-python">List Comprehensions in Python</a>
   <ul class="collapse">
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
-  <li><a href="#solutions-1" id="toc-solutions-1" class="nav-link" data-scroll-target="#solutions-1">Solutions</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#code-1" id="toc-code-1" class="nav-link" data-scroll-target="#code-1">Code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -286,12 +285,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Iterations and List Comprehensions in Python</h1>
+</div>
 
 
-<section id="iterations-and-list-comprehensions-in-python" class="level1">
-<h1>Iterations and List Comprehensions in Python</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p>Iterations play a crucial role in Python, allowing us to execute code repeatedly which can save a significant amount of time and effort. In Python, the most common forms of iteration are <code>for</code> and <code>while</code> loops. However, Python offers an even more concise and readable way to perform iterations, especially on lists — this is through list comprehensions. A list comprehension consists of brackets containing an expression followed by a <code>for</code> statement, and possible <code>if</code> clauses. It provides a neat way to take an existing list, perform an operation on each element, and return the results in a new list. It is a very Pythonic way to generate or transform lists in a single line of code.</p>
-</section>
 <section id="iterations-in-python" class="level1">
 <h1>Iterations in Python</h1>
 <p>In Python, “iteration” means executing the same block of code over and over, potentially many times. Structures used for iteration are “loops”. Python provides two basic types of loop - <code>for</code> loop and <code>while</code> loop.</p>
@@ -299,20 +310,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="for-loop">For Loop</h3>
 <p>A <code>for</code> loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string). Each item in the sequence is assigned to the iteration variable, and the statement(s) are executed until the entire sequence is processed.</p>
 <p>Here is an example of a <code>for</code> loop that iterates over a list of elements:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list_of_elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>]</span>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list_of_elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> element <span class="kw">in</span> list_of_elements:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(element)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hydrogen
+Helium
+Lithium
+Beryllium</code></pre>
+</div>
+</div>
 <p>For each iteration, the value of <code>element</code> will be updated to the next value in the list. So, the <code>print()</code> function will print each element from the list.</p>
 </section>
 <section id="while-loop" class="level3">
 <h3 class="anchored" data-anchor-id="while-loop">While Loop</h3>
 <p>A <code>while</code> loop repeatedly tests an expression (the loop condition), and keeps executing the loop body while the expression is <code>True</code>. Here is an example of a <code>while</code> loop:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="dv">25</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> temperature <span class="op">&gt;</span> <span class="dv">20</span>:</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The reaction is too fast!"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    temperature <span class="op">=</span> temperature <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> temperature <span class="op">&gt;</span> <span class="dv">20</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>temperature<span class="sc">}</span><span class="ss"> °C : The reaction is too fast!"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    temperature <span class="op">=</span> temperature <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>25 °C : The reaction is too fast!
+24 °C : The reaction is too fast!
+23 °C : The reaction is too fast!
+22 °C : The reaction is too fast!
+21 °C : The reaction is too fast!</code></pre>
+</div>
+</div>
 <p>The loop will continue to print “The reaction is too fast!” and subtract 1 from the temperature, as long as the temperature is strictly greater than 20.</p>
 </section>
 <section id="loop-control-statements" class="level3">
@@ -323,8 +351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>continue</code> statement: Causes the loop to skip the rest of its body for this iteration and immediately retest its condition prior to reiterating.</li>
 </ul>
 </section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
 <ol type="1">
 <li>Using a <code>for</code> loop, print the atomic number for each element in your list of five elements from the previous exercise.</li>
 <li>Using a <code>while</code> loop, keep dividing a pressure of 100 atm by 2 until it is less than 1 atm, and print the current pressure at each step.</li>
@@ -332,36 +360,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Also in the <code>while</code> loop above, add a <code>continue</code> statement to skip the loop iteration when the pressure is exactly 10 atm and not print the pressure at this step.</li>
 </ol>
 </section>
-<section id="solutions" class="level3">
-<h3 class="anchored" data-anchor-id="solutions">Solutions</h3>
+<section id="code" class="level3">
+<h3 class="anchored" data-anchor-id="code">Code</h3>
 <p>Solution 1:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>list_of_elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>list_of_atomic_numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(list_of_elements)):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The atomic number of"</span>, list_of_elements[i], <span class="st">"is"</span>, list_of_atomic_numbers[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>list_of_elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>list_of_atomic_numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(list_of_elements)):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The atomic number of"</span>, list_of_elements[i], <span class="st">"is"</span>, list_of_atomic_numbers[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The atomic number of Hydrogen is 1
+The atomic number of Helium is 2
+The atomic number of Lithium is 3
+The atomic number of Beryllium is 4</code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>list_of_elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>list_of_atomic_numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> element, atomic_number <span class="kw">in</span> <span class="bu">zip</span>(list_of_elements, list_of_atomic_numbers):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The atomic number of"</span>, list_of_elements[i], <span class="st">"is"</span>, list_of_atomic_numbers[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The atomic number of Beryllium is 4
+The atomic number of Beryllium is 4
+The atomic number of Beryllium is 4
+The atomic number of Beryllium is 4</code></pre>
+</div>
+</div>
 <p>Solution 2:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100
+50.0
+25.0
+12.5
+6.25
+3.125
+1.5625</code></pre>
+</div>
+</div>
 <p>Solution 3:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pressure <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pressure <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100
+50.0
+25.0
+12.5
+6.25</code></pre>
+</div>
+</div>
 <p>Solution 4:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pressure <span class="op">==</span> <span class="dv">10</span>:</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> pressure <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    pressure <span class="op">=</span> pressure <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pressure <span class="op">==</span> <span class="dv">10</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50.0
+25.0
+12.5
+6.25
+3.125
+1.5625
+0.78125</code></pre>
+</div>
+</div>
 <p>By controlling flow in Python, you can execute complex algorithms that can respond to varied conditions and perform intricate tasks at a high level.</p>
 </section>
 </section>
@@ -370,44 +451,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>List comprehension is an elegant and concise way to create a new list from an existing list in Python.</p>
 <p>A list comprehension consists of an expression followed by a <code>for</code> statement inside square brackets.</p>
 <p>Here is an example to make a list with each item being increasing power of 2.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>powers_of_two <span class="op">=</span> [<span class="dv">2</span> <span class="op">**</span> x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(powers_of_two) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will output:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>, <span class="dv">128</span>, <span class="dv">256</span>, <span class="dv">512</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>powers_of_two <span class="op">=</span> [<span class="dv">2</span> <span class="op">**</span> x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(powers_of_two) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]</code></pre>
+</div>
+</div>
 <p>We can also create more advanced list comprehensions which include a conditional statement on the iterable. Let’s square only the positive numbers in the following list.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">7</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="cf">if</span> n <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will output:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">36</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">7</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="cf">if</span> n <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 9, 36]</code></pre>
+</div>
+</div>
 <p>In the context of Chemistry, let’s say we had a list of various elements and we wanted a new list which only included the elements with an atomic number less than 3.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> [(<span class="st">'Hydrogen'</span>, <span class="dv">1</span>), (<span class="st">'Helium'</span>, <span class="dv">2</span>), (<span class="st">'Lithium'</span>, <span class="dv">3</span>), (<span class="st">'Beryllium'</span>, <span class="dv">4</span>), (<span class="st">'Boron'</span>, <span class="dv">5</span>)]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>light_elements <span class="op">=</span> [name <span class="cf">for</span> name, atomic_number <span class="kw">in</span> elements <span class="cf">if</span> atomic_number <span class="op">&lt;</span> <span class="dv">3</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(light_elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will output:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="exercises-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> [(<span class="st">'Hydrogen'</span>, <span class="dv">1</span>), (<span class="st">'Helium'</span>, <span class="dv">2</span>), (<span class="st">'Lithium'</span>, <span class="dv">3</span>), (<span class="st">'Beryllium'</span>, <span class="dv">4</span>), (<span class="st">'Boron'</span>, <span class="dv">5</span>)]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>light_elements <span class="op">=</span> [name <span class="cf">for</span> name, atomic_number <span class="kw">in</span> elements <span class="cf">if</span> atomic_number <span class="op">&lt;</span> <span class="dv">3</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(light_elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hydrogen', 'Helium']</code></pre>
+</div>
+</div>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <ol type="1">
 <li>Take a list of charges of ions and create a new list squared charges.</li>
 <li>Create a list of atomic weights and make a new list consisting only those atomic weights which are greater than 2.</li>
 <li>Use list comprehension to create a list of molecules with atomic mass less than 10 from the given list.</li>
 </ol>
 </section>
-<section id="solutions-1" class="level3">
-<h3 class="anchored" data-anchor-id="solutions-1">Solutions</h3>
+<section id="code-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-1">Code</h3>
 <p>Solution 1:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>charges <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>squared_charges <span class="op">=</span> [charge <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> charge <span class="kw">in</span> charges]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared_charges)  <span class="co">#Output: [1, 4, 9, 4, 1, 4]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>charges <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>squared_charges <span class="op">=</span> [charge <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> charge <span class="kw">in</span> charges]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared_charges)  <span class="co">#Output: [1, 4, 9, 4, 1, 4]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 4, 9, 4, 1, 4]</code></pre>
+</div>
+</div>
 <p>Solution 2:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> [<span class="fl">1.0079</span>, <span class="fl">4.0026</span>, <span class="fl">6.94</span>, <span class="fl">9.0122</span>, <span class="fl">10.81</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>weights_gt_2 <span class="op">=</span> [weight <span class="cf">for</span> weight <span class="kw">in</span> weights <span class="cf">if</span> weight <span class="op">&gt;</span> <span class="dv">2</span>]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weights_gt_2)  <span class="co">#Output: [4.0026, 6.94, 9.0122, 10.81]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 3:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>molecules <span class="op">=</span> [(<span class="st">'Hydrogen'</span>, <span class="fl">1.0079</span>), (<span class="st">'Helium'</span>, <span class="fl">4.0026</span>), (<span class="st">'Lithium'</span>, <span class="fl">6.94</span>), (<span class="st">'Beryllium'</span>, <span class="fl">9.0122</span>), (<span class="st">'Boron'</span>, <span class="fl">10.81</span>)]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>light_molecules <span class="op">=</span> [name <span class="cf">for</span> name, weight <span class="kw">in</span> molecules <span class="cf">if</span> weight <span class="op">&lt;</span> <span class="dv">10</span>]</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(light_molecules)  <span class="co">#Output: ['Hydrogen', 'Helium', 'Lithium']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> [<span class="fl">1.0079</span>, <span class="fl">4.0026</span>, <span class="fl">6.94</span>, <span class="fl">9.0122</span>, <span class="fl">10.81</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>weights_gt_2 <span class="op">=</span> [weight <span class="cf">for</span> weight <span class="kw">in</span> weights <span class="cf">if</span> weight <span class="op">&gt;</span> <span class="dv">2</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weights_gt_2)  <span class="co">#Output: [4.0026, 6.94, 9.0122, 10.81]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[4.0026, 6.94, 9.0122, 10.81]</code></pre>
+</div>
+</div>
 <p>List comprehension is a powerful tool that makes your code more efficient and easier to read. It can be used whenever you need to transform or filter a list in Python.</p>
 
 

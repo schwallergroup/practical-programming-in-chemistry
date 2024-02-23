@@ -267,18 +267,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lists-sets-tuples-and-dictionaries" id="toc-lists-sets-tuples-and-dictionaries" class="nav-link active" data-scroll-target="#lists-sets-tuples-and-dictionaries">Lists, sets, tuples, and dictionaries</a></li>
-  <li><a href="#lists-in-python" id="toc-lists-in-python" class="nav-link" data-scroll-target="#lists-in-python">Lists in Python</a>
+  <li><a href="#lists-in-python" id="toc-lists-in-python" class="nav-link active" data-scroll-target="#lists-in-python">Lists in Python</a>
   <ul class="collapse">
   <li><a href="#creating-a-list" id="toc-creating-a-list" class="nav-link" data-scroll-target="#creating-a-list">Creating a List</a></li>
   <li><a href="#accessing-elements-in-a-list" id="toc-accessing-elements-in-a-list" class="nav-link" data-scroll-target="#accessing-elements-in-a-list">Accessing Elements in a List</a></li>
   <li><a href="#modifying-a-list" id="toc-modifying-a-list" class="nav-link" data-scroll-target="#modifying-a-list">Modifying a List</a></li>
   <li><a href="#adding-elements" id="toc-adding-elements" class="nav-link" data-scroll-target="#adding-elements">Adding Elements</a></li>
-  <li><a href="#removing-elements" id="toc-removing-elements" class="nav-link" data-scroll-target="#removing-elements">Removing Elements</a>
-  <ul class="collapse">
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
-  </ul></li>
+  <li><a href="#removing-elements" id="toc-removing-elements" class="nav-link" data-scroll-target="#removing-elements">Removing Elements</a></li>
   </ul></li>
   <li><a href="#tuples-and-sets-in-python" id="toc-tuples-and-sets-in-python" class="nav-link" data-scroll-target="#tuples-and-sets-in-python">Tuples and Sets in Python</a>
   <ul class="collapse">
@@ -293,8 +288,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-a-set" id="toc-creating-a-set" class="nav-link" data-scroll-target="#creating-a-set">Creating a Set</a></li>
   <li><a href="#adding-items-to-a-set" id="toc-adding-items-to-a-set" class="nav-link" data-scroll-target="#adding-items-to-a-set">Adding Items to a Set</a></li>
   <li><a href="#removing-items-from-a-set" id="toc-removing-items-from-a-set" class="nav-link" data-scroll-target="#removing-items-from-a-set">Removing Items from a Set</a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
-  <li><a href="#solutions-1" id="toc-solutions-1" class="nav-link" data-scroll-target="#solutions-1">Solutions</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#dictionaries-in-python" id="toc-dictionaries-in-python" class="nav-link" data-scroll-target="#dictionaries-in-python">Dictionaries in Python</a>
@@ -303,11 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#accessing-elements-in-a-dictionary" id="toc-accessing-elements-in-a-dictionary" class="nav-link" data-scroll-target="#accessing-elements-in-a-dictionary">Accessing elements in a dictionary</a></li>
   <li><a href="#changing-values-in-a-dictionary" id="toc-changing-values-in-a-dictionary" class="nav-link" data-scroll-target="#changing-values-in-a-dictionary">Changing values in a dictionary</a></li>
   <li><a href="#adding-items-in-a-dictionary" id="toc-adding-items-in-a-dictionary" class="nav-link" data-scroll-target="#adding-items-in-a-dictionary">Adding items in a dictionary</a></li>
-  <li><a href="#removing-items-in-a-dictionary" id="toc-removing-items-in-a-dictionary" class="nav-link" data-scroll-target="#removing-items-in-a-dictionary">Removing items in a dictionary</a>
-  <ul class="collapse">
-  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2">Exercises</a></li>
-  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2">Solutions</a></li>
-  </ul></li>
+  <li><a href="#removing-items-in-a-dictionary" id="toc-removing-items-in-a-dictionary" class="nav-link" data-scroll-target="#removing-items-in-a-dictionary">Removing items in a dictionary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -315,85 +304,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lists, sets, tuples, and dictionaries</h1>
+</div>
 
 
-<section id="lists-sets-tuples-and-dictionaries" class="level1">
-<h1>Lists, sets, tuples, and dictionaries</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p>In Python, there are four built-in data structures: lists, sets, tuples, and dictionaries.</p>
 <ol type="1">
-<li><p>Lists: These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets <code>[]</code>.</p></li>
-<li><p>Sets: Sets are unordered collections of unique elements. That means they don’t maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces <code>{}</code> (but not key-value pairs).</p></li>
-<li><p>Tuples: Tuples are ordered, immutable collections, thus you can’t change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses <code>()</code>.</p></li>
-<li><p>Dictionaries: Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces <code>{}</code>, where key and value are separated by a colon <code>:</code>.</p></li>
+<li><p><strong>Lists:</strong> These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets <code>[]</code>.</p></li>
+<li><p><strong>Sets:</strong> Sets are unordered collections of unique elements. That means they don’t maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces <code>{}</code> (but not key-value pairs).</p></li>
+<li><p><strong>Tuples:</strong> Tuples are ordered, immutable collections, thus you can’t change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses <code>()</code>.</p></li>
+<li><p><strong>Dictionaries:</strong> Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces <code>{}</code>, where key and value are separated by a colon <code>:</code>.</p></li>
 </ol>
-</section>
 <section id="lists-in-python" class="level1">
 <h1>Lists in Python</h1>
 <p>A list in Python is a collection of items that are ordered and changeable. Lists are written with square brackets <code>[]</code>.</p>
 <section id="creating-a-list" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-list">Creating a List</h2>
 <p>You can create a list simply by enclosing a comma-separated sequence of items in square brackets <code>[]</code>. These items can be of different types: integers, floats, strings, and even other lists!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>, <span class="st">'Boron'</span>]</span>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>, <span class="st">'Boron'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will output:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>, <span class="st">'Boron'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']</code></pre>
+</div>
+</div>
 </section>
 <section id="accessing-elements-in-a-list" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-elements-in-a-list">Accessing Elements in a List</h2>
 <p>In Python, you can access list items by referring to their index number. Indexes in Python start from 0 for the first element.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first_element <span class="op">=</span> elements[<span class="dv">0</span>]</span>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first_element <span class="op">=</span> elements[<span class="dv">0</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_element) <span class="co">#Output: Hydrogen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hydrogen</code></pre>
+</div>
+</div>
 <p>Negative indexing can be used to access items from the end of the list. For example, <code>elements[-1]</code> will return the last element: ‘Boron’.</p>
 </section>
 <section id="modifying-a-list" class="level2">
 <h2 class="anchored" data-anchor-id="modifying-a-list">Modifying a List</h2>
 <p>You can change the value of a specific item in the list by referring to its index number.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Noble gas'</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Noble gas'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']</code></pre>
+</div>
+</div>
 </section>
 <section id="adding-elements" class="level2">
 <h2 class="anchored" data-anchor-id="adding-elements">Adding Elements</h2>
 <p>To add an item to the end of the list, use the <code>append()</code> method. To add an item at a specific position, use the <code>insert()</code> method.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elements.append(<span class="st">'Carbon'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>elements.insert(<span class="dv">1</span>, <span class="st">'Helium'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elements.append(<span class="st">'Carbon'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>elements.insert(<span class="dv">1</span>, <span class="st">'Helium'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
+['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</code></pre>
+</div>
+</div>
 </section>
 <section id="removing-elements" class="level2">
 <h2 class="anchored" data-anchor-id="removing-elements">Removing Elements</h2>
 <p>The <code>remove()</code> method removes the first occurrence of the specified element.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Noble gas'</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>Create a list of five elements.</li>
-<li>Print out the second and fourth element of the list.</li>
-<li>Replace the third element of your list with the string ‘Metal’.</li>
-<li>Add another element to your list.</li>
-<li>Remove the first element of the list.</li>
-</ol>
-</section>
-<section id="solutions" class="level3">
-<h3 class="anchored" data-anchor-id="solutions">Solutions</h3>
-<p>Solution 1:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> [<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>, <span class="st">'Boron'</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 2:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements[<span class="dv">1</span>])</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 3:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">2</span>] <span class="op">=</span> <span class="st">'Metal'</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 4:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>elements.append(<span class="st">'Carbon'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 5:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Hydrogen'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Noble gas'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']</code></pre>
+</div>
+</div>
+<!-- ### Exercises 
+
+1. Create a list of five elements.
+2. Print out the second and fourth element of the list.
+3. Replace the third element of your list with the string 'Metal'.
+4. Add another element to your list.
+5. Remove the first element of the list.
+
+### Solutions 
+
+Solution 1:
+
+```python
+elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
+print(elements)
+```
+
+Solution 2:
+
+```python
+print(elements[1])
+print(elements[3])
+```
+
+Solution 3:
+
+```python
+elements[2] = 'Metal'
+print(elements)
+```
+
+Solution 4:
+
+```python
+elements.append('Carbon')
+print(elements)
+```
+
+Solution 5:
+
+```python
+elements.remove('Hydrogen')
+print(elements)
+``` -->
 <p>The ability to create and manipulate lists is an important part of managing data. Lists are very flexible and can hold entirely different kinds of elements.</p>
-</section>
 </section>
 </section>
 <section id="tuples-and-sets-in-python" class="level1">
@@ -404,21 +445,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-a-tuple" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-tuple">Creating a Tuple</h3>
 <p>A tuple is created by placing all the items inside parentheses <code>()</code>, separated by commas.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> (<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ('Hydrogen', 'Helium', 'Lithium')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> (<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ('Hydrogen', 'Helium', 'Lithium')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('Hydrogen', 'Helium', 'Lithium')</code></pre>
+</div>
+</div>
 </section>
 <section id="accessing-elements-in-a-tuple" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-elements-in-a-tuple">Accessing Elements in a Tuple</h3>
 <p>You can access tuple items by referring to their index, inside square brackets.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements[<span class="dv">0</span>]) <span class="co">#Output: Hydrogen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements[<span class="dv">0</span>]) <span class="co">#Output: Hydrogen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hydrogen</code></pre>
+</div>
+</div>
 </section>
 <section id="modifying-a-tuple" class="level3">
 <h3 class="anchored" data-anchor-id="modifying-a-tuple">Modifying a Tuple</h3>
 <p>As mentioned before, tuples are unchangeable, or immutable. But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">list</span>(elements)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Noble gas'</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">tuple</span>(elements)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ('Hydrogen', 'Noble gas', 'Lithium')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">list</span>(elements)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Noble gas'</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">tuple</span>(elements)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ('Hydrogen', 'Noble gas', 'Lithium')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('Hydrogen', 'Noble gas', 'Lithium')</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="sets" class="level2">
@@ -427,52 +483,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-a-set" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-set">Creating a Set</h3>
 <p>You can create a set by using the built-in <code>set()</code> function with a list or a tuple, or you can use curly braces<code>{}</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> {<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>}</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Helium', 'Lithium'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> {<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Helium', 'Lithium'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Lithium', 'Helium', 'Hydrogen'}</code></pre>
+</div>
+</div>
 </section>
 <section id="adding-items-to-a-set" class="level3">
 <h3 class="anchored" data-anchor-id="adding-items-to-a-set">Adding Items to a Set</h3>
 <p>You can add single items using the <code>add()</code> method, and multiple items using the <code>update()</code> method.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>elements.add(<span class="st">'Beryllium'</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>elements.update([<span class="st">'Boron'</span>, <span class="st">'Carbon'</span>])</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>elements.add(<span class="st">'Beryllium'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>elements.update([<span class="st">'Boron'</span>, <span class="st">'Carbon'</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Lithium', 'Helium', 'Hydrogen', 'Beryllium'}
+{'Helium', 'Lithium', 'Carbon', 'Boron', 'Hydrogen', 'Beryllium'}</code></pre>
+</div>
+</div>
 </section>
 <section id="removing-items-from-a-set" class="level3">
 <h3 class="anchored" data-anchor-id="removing-items-from-a-set">Removing Items from a Set</h3>
 <p>To remove an item in a set, you can use the <code>remove()</code>, or the <code>discard()</code> method.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Beryllium'</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exercises-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
-<ol type="1">
-<li>Create a tuple of four elements.</li>
-<li>Print out the third element from your tuple.</li>
-<li>Modify the second element of your tuple.</li>
-<li>Create a set of three elements.</li>
-<li>Add another element to your set.</li>
-</ol>
-</section>
-<section id="solutions-1" class="level3">
-<h3 class="anchored" data-anchor-id="solutions-1">Solutions</h3>
-<p>Solution 1:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> (<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>, <span class="st">'Beryllium'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 2:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements[<span class="dv">2</span>]) <span class="co">#Output: Lithium</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 3:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">list</span>(elements)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>elements[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Noble gas'</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> <span class="bu">tuple</span>(elements)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: ('Hydrogen', 'Noble gas', 'Lithium', 'Beryllium')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 4:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> {<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>}</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Helium', 'Lithium'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 5:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>elements.add(<span class="st">'Beryllium'</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Beryllium'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Helium', 'Lithium', 'Carbon', 'Boron', 'Hydrogen'}</code></pre>
+</div>
+</div>
+<!-- ### Exercises 
+
+1. Create a tuple of four elements.
+2. Print out the third element from your tuple.
+3. Modify the second element of your tuple.
+4. Create a set of three elements.
+5. Add another element to your set.
+
+### Solutions 
+
+Solution 1:
+
+```python
+elements = ('Hydrogen', 'Helium', 'Lithium', 'Beryllium')
+print(elements)
+```
+
+Solution 2:
+
+```python
+print(elements[2]) #Output: Lithium
+```
+
+Solution 3:
+
+```python
+elements = list(elements)
+elements[1] = 'Noble gas'
+elements = tuple(elements)
+print(elements) #Output: ('Hydrogen', 'Noble gas', 'Lithium', 'Beryllium')
+```
+
+Solution 4:
+
+```python
+elements = {'Hydrogen', 'Helium', 'Lithium'}
+print(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}
+```
+
+Solution 5:
+
+```python
+elements.add('Beryllium')
+print(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}
+``` -->
 <p>Tuples and sets are valuable constructs when you need to store multiple items in a single variable, just like lists. Try to work with different types of data structures in Python and understand their strengths and weaknesses.</p>
 </section>
 </section>
@@ -484,7 +572,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="creating-a-dictionary">Creating a dictionary</h2>
 <p>Dictionaries are defined by curly braces <code>{}</code>. A dictionary contains keys and values separated by a colon <code>:</code>. Each key-value pair in a dictionary is separated by a comma.</p>
 <p>Let’s make a dictionary to represent an element in the periodic table:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>carbon <span class="op">=</span> {</span>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>carbon <span class="op">=</span> {</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"atomic_number"</span>: <span class="dv">6</span>,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"symbol"</span>: <span class="st">"C"</span>,</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Carbon"</span>,</span>
@@ -492,68 +581,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"period"</span>: <span class="dv">2</span>,</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"group"</span>: <span class="dv">14</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="accessing-elements-in-a-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-elements-in-a-dictionary">Accessing elements in a dictionary</h2>
 <p>You can access the items of a dictionary by referring to its key name, inside square brackets:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon[<span class="st">"name"</span>]) <span class="co">#Output: Carbon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon[<span class="st">"name"</span>]) <span class="co">#Output: Carbon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Carbon</code></pre>
+</div>
+</div>
 <p>There’s also a method called <code>get()</code> that will give you the same result:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon.get(<span class="st">"name"</span>)) <span class="co">#Output: Carbon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon.get(<span class="st">"name"</span>)) <span class="co">#Output: Carbon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Carbon</code></pre>
+</div>
+</div>
 </section>
 <section id="changing-values-in-a-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="changing-values-in-a-dictionary">Changing values in a dictionary</h2>
 <p>You can change the value of a specific item by referring to its key name:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>carbon[<span class="st">"period"</span>] <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon[<span class="st">"period"</span>]) <span class="co">#Output: 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon[<span class="st">"period"</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>carbon[<span class="st">"period"</span>] <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon[<span class="st">"period"</span>]) <span class="co">#Output: 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2
+3</code></pre>
+</div>
+</div>
 </section>
 <section id="adding-items-in-a-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="adding-items-in-a-dictionary">Adding items in a dictionary</h2>
 <p>Adding an item to the dictionary is done by using a new index key and assigning a value to it:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>carbon[<span class="st">"discovery"</span>] <span class="op">=</span> <span class="dv">3750</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>carbon[<span class="st">"discovery"</span>] <span class="op">=</span> <span class="dv">3750</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'atomic_number': 6, 'symbol': 'C', 'name': 'Carbon', 'atomic_weight': 12.01, 'period': 3, 'group': 14, 'discovery': 3750}</code></pre>
+</div>
+</div>
 </section>
 <section id="removing-items-in-a-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="removing-items-in-a-dictionary">Removing items in a dictionary</h2>
 <p>The <code>pop()</code> method removes the item with the specified key name:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>carbon.pop(<span class="st">"discovery"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="exercises-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercises-2">Exercises</h3>
-<ol type="1">
-<li>Create a dictionary representing another chemical element.</li>
-<li>Access the <code>name</code> and <code>atomic_number</code> of the element.</li>
-<li>Change the <code>atomic_weight</code> of the element.</li>
-<li>Add a new key-value pair <code>group_block</code> to your dictionary representing the group block of the element.</li>
-<li>Remove the <code>group_block</code> from your dictionary.</li>
-</ol>
-</section>
-<section id="solutions-2" class="level3">
-<h3 class="anchored" data-anchor-id="solutions-2">Solutions</h3>
-<p>Solution 1:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>oxygen <span class="op">=</span> {</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"atomic_number"</span>: <span class="dv">8</span>,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"symbol"</span>: <span class="st">"O"</span>,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Oxygen"</span>,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"atomic_weight"</span>: <span class="fl">15.999</span>,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"period"</span>: <span class="dv">2</span>,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"group"</span>: <span class="dv">16</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 2:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(oxygen[<span class="st">"name"</span>]) <span class="co">#Output: Oxygen</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(oxygen[<span class="st">"atomic_number"</span>]) <span class="co">#Output: 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 3:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>oxygen[<span class="st">"atomic_weight"</span>] <span class="op">=</span> <span class="fl">16.00</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(oxygen[<span class="st">"atomic_weight"</span>]) <span class="co">#Output: 16.00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 4:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>oxygen[<span class="st">"group_block"</span>] <span class="op">=</span> <span class="st">"p-block"</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(oxygen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Solution 5:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>oxygen.pop(<span class="st">"group_block"</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(oxygen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>carbon.pop(<span class="st">"discovery"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'atomic_number': 6, 'symbol': 'C', 'name': 'Carbon', 'atomic_weight': 12.01, 'period': 3, 'group': 14}</code></pre>
+</div>
+</div>
+<!-- ### Exercises 
+
+1. Create a dictionary representing another chemical element.
+2. Access the `name` and `atomic_number` of the element.
+3. Change the `atomic_weight` of the element.
+4. Add a new key-value pair `group_block` to your dictionary representing the group block of the element.
+5. Remove the `group_block` from your dictionary.
+
+### Solutions 
+
+Solution 1:
+
+```python
+oxygen = {
+    "atomic_number": 8,
+    "symbol": "O",
+    "name": "Oxygen",
+    "atomic_weight": 15.999,
+    "period": 2,
+    "group": 16
+}
+```
+
+Solution 2:
+
+```python
+print(oxygen["name"]) #Output: Oxygen
+print(oxygen["atomic_number"]) #Output: 8
+```
+
+Solution 3:
+
+```python
+oxygen["atomic_weight"] = 16.00
+print(oxygen["atomic_weight"]) #Output: 16.00
+```
+
+Solution 4:
+
+```python
+oxygen["group_block"] = "p-block"
+print(oxygen)
+```
+
+Solution 5:
+
+```python
+oxygen.pop("group_block")
+print(oxygen)
+``` -->
 <p>A dictionary in Python is a great tool that helps you store a variety of data types and structures. They are optimized for retrieving data. You must know the key to retrieve the value.</p>
 
 
-</section>
 </section>
 </section>
 
