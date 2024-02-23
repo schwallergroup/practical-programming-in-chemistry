@@ -13,6 +13,12 @@ jupyter lab
 
 A browser window should immediately open with the Jupyter Lab interface.
 
+::: {.callout-warning}
+## Remember
+It's best to already have your conda environment activated (`conda activate your_environment`) before starting jupyter lab. Replace `your_environment`.
+:::
+
+
 ## User interface
 
 Once launched, Jupyter Lab presents an interface with a file browser on the left side (Navigator pane), and a main working area (Workspace) on the right. In the Workspace area, you can create new notebooks or files, and open existing ones by double-clicking on them in the Navigator.

@@ -12,36 +12,22 @@ An Integer variable holds integer values. In Python, you don't have to specify t
 
 Let's see an example:
 
-```python
+```{python}
 atom_count = 6
 print(atom_count)
 print(type(atom_count))
 ```
 
-This will output: 
-
-```python
-6
-<class 'int'>
-```
-
-In chemistry, there are many times when we use integers. For example, number of moles, number of atoms etc.
+In chemistry, there are many times when we use integers. For example, number of atoms, electrons etc.
 
 ### Float 
 
 Float stands for 'floating point number'. You can use it for rational numbers, usually ending with a decimal figure, such as 1.11 or 3.14.
 
-```python
+```{python}
 atomic_weight_carbon = 12.01
 print(atomic_weight_carbon)
 print(type(atomic_weight_carbon))
-```
-
-This will output: 
-
-```python
-12.01
-<class 'float'>
 ```
 
 In chemistry, atomic weights, concentration values etc are commonly represented as floating point numbers.
@@ -50,74 +36,60 @@ In chemistry, atomic weights, concentration values etc are commonly represented 
 
 In Python, String variables are used to store textual data, a sequence of characters.
 
-```python
+```{python}
 element_name = "Carbon"
 print(element_name)
 print(type(element_name))
 ```
 
-This will output: 
-
-```python
-Carbon
-<class 'str'>
-```
-
 In chemistry, we often deal with strings when handling names of compounds, elements etc.
 
-### Exercises
+### Examples
 
 Now that we have learned about Variables and Types in Python, let's test your understanding with the following exercises:
 
 1. Create an integer variable named `molecule_count` and assign it a value of 20. Print its value and type.
 
-2. Create a float variable named `molar_mass_oxygen` and assign it a value of 16.00. Print its value and type.
-
-3. Create a string variable named `chemical_formula_water` and assign it a value of "H2O". Print its value and type.
-
-4. Change the value of `molecule_count` to 50. Print the new value.
-
-5. Change the `chemical_formula_water` to "D2O". Print the new value.
-
-### Solutions
-
-Solution 1:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 molecule_count = 20
 print(molecule_count)
 print(type(molecule_count))
 ```
+:::
 
-Solution 2:
+2. Create a float variable named `molar_mass_oxygen` and assign it a value of 16.00. Print its value and type.
 
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 molar_mass_oxygen = 16.00
 print(molar_mass_oxygen)
 print(type(molar_mass_oxygen))
 ```
+:::
 
-Solution 3:
+3. Create a string variable named `chemical_formula_water` and assign it a value of "H2O". Print its value and type.
 
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 chemical_formula_water = "H2O"
 print(chemical_formula_water)
 print(type(chemical_formula_water))
 ```
+:::
 
-Solution 4:
+4. Change the value of `molecule_count` to 50. Print the new value.
 
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 molecule_count = 50
 print(molecule_count)
 ```
-
-Solution 5:
-
-```python
-chemical_formula_water = "D2O"
-print(chemical_formula_water)
-```
+:::
 
 
 # Operators in Python
@@ -132,7 +104,7 @@ Operators are used to perform operations on variables and values. Python divides
 
 Arithmetic operators are used to perform mathematical operations like addition, subtraction, multiplication and division.
 
-```python
+```{python}
 number_of_atoms = 12
 # Addition
 print(number_of_atoms + 5) #Output: 17
@@ -151,7 +123,7 @@ print(number_of_atoms / 3) #Output: 4.0
 
 Assignment operators are used in Python to assign values to variables. There are various types of assignment operators in Python.
 
-```python
+```{python}
 x = 5  # x is now 5
 print(x)
 
@@ -172,7 +144,7 @@ print(x)
 
 Comparison operators are used in Python to compare values. It either returns True or False according to the condition.
 
-```python
+```{python}
 #Suppose we have two variables
 a = 5
 b = 10
@@ -191,69 +163,44 @@ print(a >= b) #Output: False
 ```
 In chemistry, comparison operators could be useful in checking equivalences, for example, if two volumes or two masses are equal, or if one is greater or smaller than the other.
 
-### Exercises 
+### Examples 
 
 1. Calculate the atomic weight of CO2 (C=12.01, O=16.00).
-2. Create a variable containing number of moles of oxygen and calculate the weight.
-3. Check if the weight of five moles of carbon is equal to the weight of 10 moles.
-4. Perform an operation with assignment operator on a mole variable.
-5. Check if the weight of a mole of hydrogen is less than the weight of a mole of helium (H=1.01, He=4.00).
 
-### Solutions
+::: {.callout-note collapse="true"}
+## Code
+```{python}
+weight_C = 12.01
+weight_O = 16.00
 
-Solution 1:
-
-```python
-C = 12.01
-O = 16.00
-
-CO2 = C + (O * 2)
-print(CO2)  #Output: 44.01
+weight_CO2 = weight_C + (weight_O * 2)
+print(weight_CO2)
 ```
+:::
+2. Create a variable containing a number of moles of oxygen and calculate the weight.
 
-Solution 2:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 # Lets assume we have 6 moles of oxygen
 moles_of_oxygen = 6
-weight = moles_of_oxygen * O
+total_weight = moles_of_oxygen * weight_O
 
-print(weight) #Output: 96.0
+print(total_weight) 
 ```
+:::
 
-Solution 3:
+3. Check if the weight of 4 moles of hydrogen is less than the weight of a mole of helium (H=1.01, He=4.00).
 
-```python
-# Carbon weight for 5 moles
-carbon_weight_for_5_moles = 5 * C
-
-# Carbon weight for 10 moles
-carbon_weight_for_10_moles = 10 * C
-
-print(carbon_weight_for_5_moles == carbon_weight_for_10_moles) #Output: False
-```
-
-Solution 4:
-
-```python
-# Initial mole value
-moles_of_hydrogen = 10
-
-# Perform assignment operation
-moles_of_hydrogen *= 2  # Same as moles_of_hydrogen = moles_of_hydrogen * 2
-
-print(moles_of_hydrogen) #Output: 20
-```
-
-Solution 5:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 H = 1.01  # Atomic weight of Hydrogen
 He = 4.00  # Atomic weight of Helium
 
-print(H < He)  #Output: True
-``` 
-
+print(4*H < He)  #Output: False
+```
+:::
 
 # Handling Floating Point Numbers in Python
 
@@ -261,10 +208,10 @@ Indeed, performing operations on floating point numbers may sometimes yield unex
 
 Here's an example to illustrate this issue:
 
-```python
+```{python}
 x = 0.1 + 0.1 + 0.1
 y = 0.3
-print(x == y)  #Output: False
+print(x == y)  
 ```
 
 You might expect the output to be `True` since `0.1 + 0.1 + 0.1` is `0.3`. But it's not!
@@ -277,17 +224,17 @@ Enter the `round()` function!
 
 The `round()` function rounds a floating point number to the nearest integer if no number of digits is specified, otherwise it rounds to the specified number of digits.
 
-```python
+```{python}
 x = round(0.1 + 0.1 + 0.1, 2)
 y = round(0.3, 2)
-print(x == y)  #Output: True
+print(x == y) 
 ```
 
 Use the `round()` function when you need precise calculation with floating point numbers.
 
 Another solution is to use the `math.isclose()` function, which checks whether two values are close enough (within some tolerance) to consider them equal:
 
-```python
+```{python}
 import math
 
 x = 0.1 + 0.1 + 0.1
@@ -300,7 +247,7 @@ In this code snippet, we use the `isclose()` function to check if `x` and `y` ar
 
 Another important note: If precision really matters in your calculations and rounding or checking closeness still doesn't seem acceptable, you may want to look into using the `decimal` module in Python, which was designed specifically to handle more precise floating-point arithmetic.
 
-### Practice
+### More examples
 
 Try to calculate the molar mass of benzene with a precision up to 3 decimal places, given that:
 
@@ -309,15 +256,17 @@ Try to calculate the molar mass of benzene with a precision up to 3 decimal plac
 
 Benzene's formula is C6H6.
 
-### Solution
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 C = 12.0096
 H = 1.0079
 
 benzene_molar_mass = round((C * 6) + (H * 6), 3)
 print(benzene_molar_mass)  #Output: 78.114
 ```
+:::
+
 In this code snippet, the `round()` function helps prevent any unwanted inaccuracies.
 
 
@@ -329,8 +278,7 @@ Conditionals are used to perform different computations or actions depending on 
 
 In Python, `if` statement is used for conditional execution.
 
-```python
-
+```{python}
 temperature = 25
 
 if temperature > 20:
@@ -343,7 +291,7 @@ In this example, the message `It's warm outside` is printed to the screen if the
 
 Python supports multiple conditions in one if statement using `elif` (abbreviation of else if). The `else` clause serves as a default condition; its block is executed when none of the conditions is true.
 
-```python
+```{python}
 pH = 3
 
 if pH < 7:
@@ -360,7 +308,7 @@ In this example, information about the nature of a solution given its pH is prin
 
 Logical operators (`and`, `or`, `not`) allow to build more complex conditional statements.
 
-```python
+```{python}
 temperature = 25
 pressure = 2
 
@@ -377,26 +325,20 @@ In these examples, a message about reaction rate is printed to the screen if bot
 
 Python supports one more conditional expression which is called ternary operator:
 
-```python
+```{python}
 message = "It's warm outside" if temperature > 20 else "It's cold outside"
 print(message)
 ```
 
 Here, the message about the weather is chosen based on the temperature.
 
-### Exercises 
+### Example 
 
 1. Write a program that prints out whether a solution with a given pH is acidic, alkaline or neutral.
-2. Write a program that prints out whether a reaction will be feasible given its enthalpy (∆H) and entropy (∆S). A reaction is feasible if ∆H < 0 and ∆S > 0.
-3. Write a program that prints out whether a substance is solid, liquid or gas given its boiling point and the current temperature.
-4. Write a program that uses logical operators to print out whether the reaction rate will be high given temperature and pressure.
-5. Use a ternary operator to print out whether a reaction is exothermic or endothermic given its ∆H.
 
-### Solutions
-
-Solution 1:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 pH = 8
 
 if pH < 7:
@@ -406,22 +348,13 @@ elif pH > 7:
 else:
     print("Solution is neutral")
 ```
+:::
 
-Solution 2:
+2. Write a program that prints out whether a substance is solid, liquid or gas given its boiling point and the current temperature.
 
-```python
-delta_H = -30
-delta_S = 10
-
-if delta_H < 0 and delta_S > 0:
-    print("Reaction is feasible!") 
-else:
-    print("Reaction is not feasible!")
-```
-
-Solution 3:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 boiling_point = 100
 temperature = 50
 
@@ -430,27 +363,34 @@ if temperature < boiling_point:
 else:
     print("Substance is gas!")
 ```
+:::
+3. Write a program that uses logical operators to print out whether the reaction rate will be high given temperature and pressure.
 
-Solution 4:
+::: {.callout-note collapse="true"}
+## Code
+```{python}
+pH = 8
 
-```python
-temperature = 25
-pressure = 2
-
-if temperature > 20 and pressure > 1:
-    print("Reaction rate will be high!") 
+if pH < 7:
+    print("Solution is acidic") 
+elif pH > 7:
+    print("Solution is alkaline")
 else:
-    print("Reaction rate will be moderate or low!")
+    print("Solution is neutral")
 ```
+:::
+4. Use a ternary operator to print out whether a reaction is exothermic or endothermic given its ∆H.
 
-Solution 5:
-
-```python
+::: {.callout-note collapse="true"}
+## Code
+```{python}
 delta_H = -10
 
 message = "Reaction is exothermic" if delta_H < 0 else "Reaction is endothermic"
 print(message)
-``` 
+```
+:::
+
 
 # Type Conversion in Python
 
@@ -464,7 +404,7 @@ In applications like Chemistry, type conversion becomes handy while doing mathem
 
 To convert a value to an integer, you use the `int()` function. For example:
 
-```python
+```{python}
 x = "123"
 y = int(x)
 print(y) #Output: 123
@@ -475,7 +415,7 @@ print(type(y)) #Output: <class 'int'>
 
 To convert a value to a float, you use the `float()` function. For example:
 
-```python
+```{python}
 x = "123.45"
 y = float(x)
 print(y) #Output: 123.45
@@ -486,7 +426,7 @@ print(type(y)) #Output: <class 'float'>
 
 To convert a value to a string, you use the `str()` function:
 
-```python
+```{python}
 x = 123
 y = str(x)
 print(y) #Output: '123'
@@ -495,72 +435,14 @@ print(type(y)) #Output: <class 'str'>
 
 This conversion is especially helpful when you want to concatenate some text with a number:
 
-```python
+```{python}
 x = "The atomic number of Carbon is: " + str(6)
 print(x) #Output: The atomic number of Carbon is: 6
 ```
 
-### Exercises 
 
-1. Convert the string `'6.02'` to float.
-2. Convert the float `1.0079` to string.
-3. Print the sentence: "The atomic weight of Hydrogen is: " and then the atomic weight, provided as a float.
-4. Convert the string `'78'` to integer.
-5. Print the sentence: "The atomic number of Oxygen is: ", and then atomic number, provided as an integer.
+As seen from these examples, type conversion is an valuable utility in Python as working between different data types is quite common. Keep in mind that each of the type conversion functions (float, str, etc.) returns a new object and does not modify the original object.
 
-### Solutions 
-
-Solution 1:
-
-```python
-x = "6.02"
-y = float(x)
-print(y) #Output: 6.02
-```
-
-Solution 2:
-
-```python
-x = 1.0079
-y = str(x)
-print(y) #Output: '1.0079'
-```
-
-Solution 3:
-
-```python
-atomic_weight_hydrogen = 1.0079
-message = "The atomic weight of Hydrogen is: " + str(atomic_weight_hydrogen)
-print(message) #Output: The atomic weight of Hydrogen is: 1.0079
-```
-
-Solution 4:
-
-```python
-x = "78"
-y = int(x)
-print(y) #Output: 78
-```
-
-Solution 5:
-
-```python
-atomic_number_oxygen = 8
-message = "The atomic number of Oxygen is: " + str(atomic_number_oxygen)
-print(message) #Output: The atomic number of Oxygen is: 8
-```
-As seen from these examples, type conversion is an essential utility in Python as working between different data types is quite common. Keep in mind that each of the type conversion functions (float, str, etc.) returns a new object and does not modify the original object.
-
-
-# Assignment/Increment Operators
-
-Assignment operators are used in Python to assign values to variables. One of the simplest forms of assignment operator is `=`, for example:
-
-```python
-x = 5
-```
-
-Here, `5` is assigned to the variable `x`.
 
 ## Increment Operator
 
@@ -572,7 +454,7 @@ But Python provides a shorthand to do the same, `x += 1`.
 
 Here are some examples:
 
-```python
+```{python}
 x = 5
 
 # incrementing the value
@@ -597,7 +479,7 @@ In addition to `+=`, there are other arithmetic assignment operators:
 
 Here are examples of using these operators:
 
-```python
+```{python}
 x = 10
 x -= 2  # equivalent to x = x - 2
 print(x) # Output: 8
@@ -624,59 +506,3 @@ print(x) # Output: 2
 ```
 
 Experiment with these different assignment operators to become familiar with them, they can simplify your code and make it easier to read.
-
-### Exercises 
-
-1. Start with a variable x with a value of 4. Increment its value by 3.
-
-2. Start with a variable y with a value of 10. Decrease its value by 6.
-
-3. Start with a variable z with a value of 9. Multiply its value by 5.
-
-4. Start with a variable a with a value of 100. Divide its value by 20.
-
-5. Start with a variable b with a value of 5. Raise its value to the power of 3.
-
-### Solutions
-
-Solution 1:
-
-```python
-x = 4
-x += 3
-print(x) # Output: 7
-```
-
-Solution 2:
-
-```python
-y = 10
-y -= 6
-print(y) # Output: 4
-```
-
-Solution 3:
-
-```python
-z = 9
-z *= 5
-print(z) # Output: 45
-```
-
-Solution 4:
-
-```python
-a = 100
-a /= 20
-print(a) # Output: 5.0
-```
-
-Solution 5:
-
-```python
-b = 5
-b **= 3
-print(b) # Output: 125
-```
-
-Through these exercises, you learn how to assign and modify variables using the different types of assignment operators available in Python. They can ease your code writing, making it simpler and more efficient.

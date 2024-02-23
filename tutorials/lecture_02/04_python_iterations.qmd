@@ -14,7 +14,7 @@ A `for` loop is used for iterating over a sequence (that is either a list, a tup
 
 Here is an example of a `for` loop that iterates over a list of elements:
 
-```python
+```{python}
 list_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
 
 for element in list_of_elements:
@@ -27,11 +27,11 @@ For each iteration, the value of `element` will be updated to the next value in 
 
 A `while` loop repeatedly tests an expression (the loop condition), and keeps executing the loop body while the expression is `True`. Here is an example of a `while` loop:
 
-```python
+```{python}
 temperature = 25
 
 while temperature > 20:
-    print("The reaction is too fast!")
+    print(f"{temperature} °C : The reaction is too fast!")
     temperature = temperature - 1
 ```
 
@@ -44,18 +44,18 @@ Loop control statements change the execution of a loop from its normal sequence.
 - `break` statement: Terminates the loop and transfers execution to the statement immediately following the loop.
 - `continue` statement: Causes the loop to skip the rest of its body for this iteration and immediately retest its condition prior to reiterating.
 
-### Exercises 
+### Example 
 
 1. Using a `for` loop, print the atomic number for each element in your list of five elements from the previous exercise. 
 2. Using a `while` loop, keep dividing a pressure of 100 atm by 2 until it is less than 1 atm, and print the current pressure at each step.
 3. In the `while` loop above, add a `break` statement to exit the loop when the pressure is less than 5 atm.
 4. Also in the `while` loop above, add a `continue` statement to skip the loop iteration when the pressure is exactly 10 atm and not print the pressure at this step.
 
-### Solutions
+### Code
 
 Solution 1:
 
-```python
+```{python}
 list_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
 list_of_atomic_numbers = [1, 2, 3, 4]
 
@@ -63,9 +63,19 @@ for i in range(len(list_of_elements)):
     print("The atomic number of", list_of_elements[i], "is", list_of_atomic_numbers[i])
 ```
 
+or
+
+```{python}
+list_of_elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
+list_of_atomic_numbers = [1, 2, 3, 4]
+
+for element, atomic_number in zip(list_of_elements, list_of_atomic_numbers):
+    print("The atomic number of", list_of_elements[i], "is", list_of_atomic_numbers[i])
+```
+
 Solution 2:
 
-```python
+```{python}
 pressure = 100
 
 while pressure >= 1:
@@ -75,7 +85,7 @@ while pressure >= 1:
 
 Solution 3:
 
-```python
+```{python}
 pressure = 100
 
 while pressure >= 1:
@@ -87,7 +97,7 @@ while pressure >= 1:
 
 Solution 4:
 
-```python
+```{python}
 pressure = 100
 
 while pressure >= 1:
@@ -107,56 +117,39 @@ A list comprehension consists of an expression followed by a `for` statement ins
 
 Here is an example to make a list with each item being increasing power of 2.
 
-```python
+```{python}
 powers_of_two = [2 ** x for x in range(10)]
 print(powers_of_two) 
 ```
 
-This will output: 
-
-```python
-[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
-```
-
 We can also create more advanced list comprehensions which include a conditional statement on the iterable. Let's square only the positive numbers in the following list.
 
-```python
+```{python}
 numbers = [1, -2, 3, -4, -5, 6, -7]
 squared = [n ** 2 for n in numbers if n > 0]
 print(squared)
 ```
 
-This will output: 
-
-```python
-[1, 9, 36]
-```
-
 In the context of Chemistry, let’s say we had a list of various elements and we wanted a new list which only included the elements with an atomic number less than 3.
 
-```python
+```{python}
 elements = [('Hydrogen', 1), ('Helium', 2), ('Lithium', 3), ('Beryllium', 4), ('Boron', 5)]
 light_elements = [name for name, atomic_number in elements if atomic_number < 3]
 print(light_elements)
 ```
 
-This will output: 
 
-```python
-['Hydrogen', 'Helium']
-```
-
-### Exercises
+### Examples
 
 1. Take a list of charges of ions and create a new list squared charges.
 2. Create a list of atomic weights and make a new list consisting only those atomic weights which are greater than 2. 
 3. Use list comprehension to create a list of molecules with atomic mass less than 10 from the given list.
 
-### Solutions
+### Code
 
 Solution 1:
 
-```python
+```{python}
 charges = [-1, 2, -3, 2, 1, -2]
 squared_charges = [charge ** 2 for charge in charges]
 print(squared_charges)  #Output: [1, 4, 9, 4, 1, 4]
@@ -164,18 +157,10 @@ print(squared_charges)  #Output: [1, 4, 9, 4, 1, 4]
 
 Solution 2:
 
-```python
+```{python}
 weights = [1.0079, 4.0026, 6.94, 9.0122, 10.81]
 weights_gt_2 = [weight for weight in weights if weight > 2]
 print(weights_gt_2)  #Output: [4.0026, 6.94, 9.0122, 10.81]
-```
-
-Solution 3:
-
-```python
-molecules = [('Hydrogen', 1.0079), ('Helium', 4.0026), ('Lithium', 6.94), ('Beryllium', 9.0122), ('Boron', 10.81)]
-light_molecules = [name for name, weight in molecules if weight < 10]
-print(light_molecules)  #Output: ['Hydrogen', 'Helium', 'Lithium']
 ```
 
 List comprehension is a powerful tool that makes your code more efficient and easier to read. It can be used whenever you need to transform or filter a list in Python.

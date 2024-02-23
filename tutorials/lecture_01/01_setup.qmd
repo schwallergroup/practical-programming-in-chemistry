@@ -27,10 +27,6 @@ Here are the simple steps to set up a new GitHub account:
 7. That's it! You should now have a GitHub account.
 8. (Optional) The GitHub Student Developer Pack is a free offer from GitHub specially for students. It provides access to a variety of premium development tools and services free of charge for as long as you're a student. [GitHub Student Developer Pack](https://education.github.com/pack)
 
-::: {.callout-tip}
-## Exercise: Share your GitHub handle
-Share your GitHub handle/name on our Slack workspace, so we can add you to private repositories.
-:::
 
 ## Configuring your computer
 
@@ -146,7 +142,7 @@ Now, any packages that you install while this environment is activated will only
 By using Anaconda and taking advantage of virtual environments, you can create a more organized, conflict-free coding setup, making your data science or programming projects significantly smoother and more manageable.
 
 ::: {.callout-tip}
-## Exercise: Create course conda environment
+## Example: Create course conda environment
 - Use the commands above to create an environment with the name `ppchem` with `python=3.10`.
 - Activate the created environment. 
 - And install the package `jupyterlab`. 

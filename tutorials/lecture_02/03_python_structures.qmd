@@ -2,13 +2,13 @@
 
 In Python, there are four built-in data structures: lists, sets, tuples, and dictionaries.
 
-1. Lists: These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets `[]`.
+1. **Lists:** These are ordered, mutable collections, which means you can add, remove, or change elements after the list creation. Lists can contain elements of different data types and duplicate values are allowed. They are defined by elements separated by commas inside square brackets `[]`.
 
-2. Sets: Sets are unordered collections of unique elements. That means they don't maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces `{}` (but not key-value pairs).
+2. **Sets:** Sets are unordered collections of unique elements. That means they don't maintain elements in any specific order and duplicate values are not allowed. Sets are particularly useful for keeping track of distinct elements. They are defined by elements separated by commas inside curly braces `{}` (but not key-value pairs).
 
-3. Tuples: Tuples are ordered, immutable collections, thus you can't change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses `()`.
+3. **Tuples:** Tuples are ordered, immutable collections, thus you can't change them after their creation (no addition or removal of elements). Elements can be of different types, and duplicate values are allowed. They are often used for related pieces of data, such as a set of coordinates, or a data record. They are defined by elements separated by commas inside parentheses `()`.
 
-4. Dictionaries: Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces `{}`, where key and value are separated by a colon `:`.
+4. **Dictionaries:** Dictionaries, also known as hash tables or associative arrays, are unordered collections of key-value pairs. That means they hold data items that are unordered and cannot be sorted. Each key in the dictionary should be unique, and keys map to values which can be of any data type. Dictionaries are defined by key-value pairs separated by commas inside curly braces `{}`, where key and value are separated by a colon `:`.
 
 # Lists in Python
 
@@ -18,22 +18,17 @@ A list in Python is a collection of items that are ordered and changeable. Lists
 
 You can create a list simply by enclosing a comma-separated sequence of items in square brackets `[]`. These items can be of different types: integers, floats, strings, and even other lists!
 
-```python
+```{python}
 elements = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
 print(elements)
 ```
 
-This will output:
-
-```python
-['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron']
-```
 
 ## Accessing Elements in a List
 
 In Python, you can access list items by referring to their index number. Indexes in Python start from 0 for the first element.
 
-```python
+```{python}
 first_element = elements[0]
 print(first_element) #Output: Hydrogen
 ```
@@ -44,7 +39,7 @@ Negative indexing can be used to access items from the end of the list. For exam
 
 You can change the value of a specific item in the list by referring to its index number.
 
-```python
+```{python}
 elements[1] = 'Noble gas'
 print(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron']
 ```
@@ -53,7 +48,7 @@ print(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boro
 
 To add an item to the end of the list, use the `append()` method. To add an item at a specific position, use the `insert()` method.
 
-```python
+```{python}
 elements.append('Carbon')
 print(elements) #Output: ['Hydrogen', 'Noble gas', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
 
@@ -65,12 +60,12 @@ print(elements) #Output: ['Hydrogen', 'Helium', 'Noble gas', 'Lithium', 'Berylli
 
 The `remove()` method removes the first occurrence of the specified element.
 
-```python
+```{python}
 elements.remove('Noble gas')
 print(elements) #Output: ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon']
 ```
 
-### Exercises 
+<!-- ### Exercises 
 
 1. Create a list of five elements.
 2. Print out the second and fourth element of the list.
@@ -113,7 +108,7 @@ Solution 5:
 ```python
 elements.remove('Hydrogen')
 print(elements)
-```
+``` -->
 
 The ability to create and manipulate lists is an important part of managing data. Lists are very flexible and can hold entirely different kinds of elements.
 
@@ -127,7 +122,7 @@ A tuple is another sequence data type that is similar to the list. A tuple consi
 
 A tuple is created by placing all the items inside parentheses `()`, separated by commas.
 
-```python
+```{python}
 elements = ('Hydrogen', 'Helium', 'Lithium')
 print(elements) #Output: ('Hydrogen', 'Helium', 'Lithium')
 ```
@@ -136,14 +131,14 @@ print(elements) #Output: ('Hydrogen', 'Helium', 'Lithium')
 
 You can access tuple items by referring to their index, inside square brackets.
 
-```python
+```{python}
 print(elements[0]) #Output: Hydrogen
 ```
 
 ### Modifying a Tuple
 As mentioned before, tuples are unchangeable, or immutable. But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
 
-```python
+```{python}
 elements = list(elements)
 elements[1] = 'Noble gas'
 elements = tuple(elements)
@@ -158,7 +153,7 @@ A set is an unordered collection of items where every item is unique (no duplica
 
 You can create a set by using the built-in `set()` function with a list or a tuple, or you can use curly braces`{}`.
 
-```python
+```{python}
 elements = {'Hydrogen', 'Helium', 'Lithium'}
 print(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}
 ```
@@ -167,7 +162,7 @@ print(elements) #Output: {'Hydrogen', 'Helium', 'Lithium'}
 
 You can add single items using the `add()` method, and multiple items using the `update()` method.
 
-```python
+```{python}
 elements.add('Beryllium')
 print(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}
 
@@ -179,12 +174,12 @@ print(elements) #Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium',
 
 To remove an item in a set, you can use the `remove()`, or the `discard()` method.
 
-```python
+```{python}
 elements.remove('Beryllium')
 print(elements) #Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}
 ```
 
-### Exercises 
+<!-- ### Exercises 
 
 1. Create a tuple of four elements.
 2. Print out the third element from your tuple.
@@ -228,7 +223,7 @@ Solution 5:
 ```python
 elements.add('Beryllium')
 print(elements) #Output: {'Beryllium', 'Hydrogen', 'Lithium', 'Helium'}
-```
+``` -->
 Tuples and sets are valuable constructs when you need to store multiple items in a single variable, just like lists. Try to work with different types of data structures in Python and understand their strengths and weaknesses.
 
 # Dictionaries in Python
@@ -241,7 +236,7 @@ Dictionaries are defined by curly braces `{}`. A dictionary contains keys and va
 
 Let's make a dictionary to represent an element in the periodic table:
 
-```python
+```{python}
 carbon = {
     "atomic_number": 6,
     "symbol": "C",
@@ -256,13 +251,13 @@ carbon = {
 
 You can access the items of a dictionary by referring to its key name, inside square brackets:
 
-```python
+```{python}
 print(carbon["name"]) #Output: Carbon
 ```
 
 There's also a method called `get()` that will give you the same result:
 
-```python
+```{python}
 print(carbon.get("name")) #Output: Carbon
 ```
 
@@ -270,7 +265,8 @@ print(carbon.get("name")) #Output: Carbon
 
 You can change the value of a specific item by referring to its key name:
 
-```python
+```{python}
+print(carbon["period"])
 carbon["period"] = 3
 print(carbon["period"]) #Output: 3
 ```
@@ -279,7 +275,7 @@ print(carbon["period"]) #Output: 3
 
 Adding an item to the dictionary is done by using a new index key and assigning a value to it:
 
-```python
+```{python}
 carbon["discovery"] = 3750
 print(carbon)
 ```
@@ -288,12 +284,12 @@ print(carbon)
 
 The `pop()` method removes the item with the specified key name:
 
-```python
+```{python}
 carbon.pop("discovery")
 print(carbon)
 ```
 
-### Exercises 
+<!-- ### Exercises 
 
 1. Create a dictionary representing another chemical element.
 2. Access the `name` and `atomic_number` of the element.
@@ -342,6 +338,6 @@ Solution 5:
 ```python
 oxygen.pop("group_block")
 print(oxygen)
-```
+``` -->
 
 A dictionary in Python is a great tool that helps you store a variety of data types and structures. They are optimized for retrieving data. You must know the key to retrieve the value.
