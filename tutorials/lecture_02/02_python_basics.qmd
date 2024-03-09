@@ -2,6 +2,16 @@
 
 In this tutorial, we will learn the basics of Python, which is an incredibly versatile and powerful programming language. Python is widely used in all fields of science, including Chemistry, due to its simplicity and flexibility. Specifically, we will focus on the concept of variables and types, then comparison and conditional operators.
 
+::: {.callout-tip}
+## Note: Other resources
+Lecture 02 and 03 do not cover all Python functionality, but give you a concise overview with examples. 
+There are a lot of resources online, if you want to learn more. 
+- [RealPython](https://realpython.com/search?kind=course&level=basics&order=newest) 
+- [SIB Swiss - first steps](https://github.com/sib-swiss/first-steps-with-python-training)
+- [Kaggle Learn - Python](https://www.kaggle.com/learn/python)
+:::
+
+
 ## Variables and Types
 
 A large part of programming involves manipulating variables - containers that hold data. A variable can be of different types - integer, float, string, among others. Python automatically assigns a variable the type that is appropriate for its value.

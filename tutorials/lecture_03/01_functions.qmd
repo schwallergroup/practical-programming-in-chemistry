@@ -99,7 +99,7 @@ def dilute(C1, V1, V2):
 print(dilute(0.5, 5, 10))  
 ```
 
-### Exercises 
+### Examples 
 
 1. Write a function to calculate the pH of a solution given the concentration of H+ ions.
 2. Write a function that returns the concentration of OH- ions given the concentration of H+ ions.
@@ -107,7 +107,7 @@ print(dilute(0.5, 5, 10))
 4. Write a function that calculates and returns the molar mass of a hydrocarbon given numbers of H, C and O atoms.
 5. Write a function that calculates mass percent of an element in a compound given the molar mass of the element and the compound.
 
-### Solutions 
+### Code 
 
 Solution 1:
 
