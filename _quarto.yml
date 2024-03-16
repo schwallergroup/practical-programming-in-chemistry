@@ -54,6 +54,14 @@ website:
         - text: "Seaborn"
           href: tutorials/lecture_04/03_seaborn.qmd
         - ---
+        - section: Lecture 05
+        - text: "Cheminformatics and RDKit basics"
+          href: tutorials/lecture_05/01_rdkit_basics.qmd
+        - text: "Descriptors"
+          href: tutorials/lecture_05/02_rdkit_descriptors.qmd
+        - text: "Fingerprints"
+          href: tutorials/lecture_05/03_rdkit_fingerprints.qmd
+        - ---
 format:
   html:
     theme: cosmo

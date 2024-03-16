@@ -1,0 +1,93 @@
+# Molecular Descriptors and Fingerprints in RDKit
+
+## Molecular Descriptors
+
+Molecular descriptors are numerical representations of chemical structures and properties. RDKit provides a wide range of descriptors that can be used for various applications, such as QSAR modeling, virtual screening, and property prediction.
+
+### Calculating Molecular Descriptors
+
+You can calculate molecular descriptors using the `Descriptors` module in RDKit. Here's an example:
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+
+# Create a molecule from SMILES
+mol = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+
+# Calculate descriptors
+mw = Descriptors.MolWt(mol)
+logp = Descriptors.MolLogP(mol)
+tpsa = Descriptors.TPSA(mol)
+
+print(f"Molecular Weight: {mw:.2f}")
+print(f"LogP: {logp:.2f}")
+print(f"Topological Polar Surface Area: {tpsa:.2f}")
+```
+
+**LogP**, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.
+
+RDKit provides many other descriptors, including:
+
+- `Descriptors.NumRotatableBonds(mol)`: Number of rotatable bonds
+- `Descriptors.HeavyAtomCount(mol)`: Number of heavy atoms
+- `Descriptors.NumHAcceptors(mol)`: Number of hydrogen bond acceptors
+- `Descriptors.NumHDonors(mol)`: Number of hydrogen bond donors
+- `Descriptors.MolWt(mol)`: Molecular weight
+- `Descriptors.MolLogP(mol)`: LogP value
+- `Descriptors.TPSA(mol)`: Topological polar surface area
+
+You can explore the complete list of 210 available descriptors from this [Greg Landrum blog post](https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html).
+
+To list them all use the following:
+
+```{python}
+from rdkit.Chem import Descriptors
+[print(descriptor) for descriptor in Descriptors._descList[:10]] # truncated to 10 entries
+print(len(Descriptors._descList))
+```
+
+
+## Mordred Descriptors
+
+[Mordred](https://github.com/mordred-descriptor/mordred) is a comprehensive, open-source chemical descriptor calculation tool designed for use in cheminformatics, drug discovery, and materials science. It can compute a vast array of descriptors based on molecular structure, ranging from simple atomic counts to more complex 3D geometry calculations. Mordred is compatible with the RDKit library, allowing for seamless integration into Python-based cheminformatics workflows. Here, we'll cover some key aspects of Mordred descriptors.
+
+### Overview
+Chemical descriptors are numerical values that represent chemical information encoded within a molecular structure. These descriptors play a crucial role in the quantitative analysis of chemical compounds, enabling researchers to apply statistical and machine learning models to predict physicochemical properties, biological activity, environmental fate, and more.
+
+### Types of Descriptors
+Mordred calculates over a thousand descriptors, which can be broadly categorized into several types:
+
+- **Constitutional Descriptors**: Basic counts of atoms, bonds, molecular size, and other simple characteristics of the molecule's constitution.
+- **Topological Descriptors**: Derived from the molecule's graph representation, including connectivity, branching, and molecular shape indices.
+- **Geometrical Descriptors**: Relate to the 3D structure of the molecule, including distances, angles, and molecular volume.
+- **Electronic Descriptors**: Reflect the electronic distribution and potential energy surface characteristics, often used in quantum chemical calculations.
+- **Hydrophobicity and Hydrophilicity Descriptors**: Capture the molecule's partitioning behavior between hydrophobic and hydrophilic environments, which is critical in drug design for understanding solubility and permeability.
+
+### Installation and Usage
+Mordred is easy to install using pip:
+
+```sh
+pip install mordred
+```
+To use Mordred, you need a molecule object from RDKit. Here's a simple example:
+
+```{python}
+from mordred import Calculator, descriptors
+from rdkit import Chem
+
+# Create a molecule object
+mol = Chem.MolFromSmiles("CN1C=NC2=C1C(=O)N(C(=O)N2C)C")
+
+# Create a calculator with all descriptors
+calc = Calculator(descriptors, ignore_3D=True)
+
+# Calculate descriptors for the molecule
+result = calc(mol)
+
+# Convert the result to a dictionary
+descriptors_dict = result.asdict()
+descriptors_dict
+```
+
+RDKit and Mordred offers a comprehensive toolkit for the calculation of chemical descriptors, making it an invaluable resource for researchers and professionals in the field of cheminformatics and beyond. Mordred's wide range of descriptors, ease of use, and integration with RDKit facilitates the exploration and prediction of chemical properties, aiding in the discovery and development of new compounds and materials.

@@ -1,0 +1,242 @@
+# Cheminformatics and RDKit: An Introduction
+
+## What is Cheminformatics?
+
+Cheminformatics is a interdisciplinary field that combines chemistry, computer science, and information technology. It involves the application of computational techniques to handle and analyze chemical data, such as molecular structures, properties, and reactions. Cheminformatics plays a crucial role in various areas of chemistry, including drug discovery, materials science, and environmental research.
+
+In the era of big data and high-throughput experimentation, cheminformatics has become an essential tool for chemists. It enables efficient data management, analysis, and visualization of large chemical datasets. Additionally, cheminformatics provides powerful methods for virtual screening, molecular modeling, and property prediction, accelerating the discovery process and reducing experimental costs.
+
+## RDKit: A Powerful Cheminformatics Toolkit
+
+RDKit (The RDKit: Open-Source Cheminformatics Software) is a popular open-source cheminformatics toolkit written in C++ and Python. It provides a wide range of functionalities for working with chemical data, including:
+
+- Reading and writing molecular file formats (e.g., SMILES, MOL, SDF)
+- Substructure searching and molecular fingerprinting
+- 2D and 3D molecular operations (e.g., conformer generation, energy minimization)
+- Descriptors calculation and property prediction
+- Reaction handling and transformation
+- Visualization and depiction of molecules
+
+## Getting Started with RDKit in Python
+
+To start using RDKit in Python, you need to install the `rdkit` package (the code has been tested with `rdkit=2023.9.5`). You can install it using `pip` or `conda` package managers, here is how you can do it with `pip`:
+
+```
+pip install rdkit
+```
+
+Once installed, you can import the RDKit modules in your Python scripts:
+
+```python
+from rdkit import Chem
+```
+
+Here's a simple example that reads a SMILES string, generates a 2D molecular depiction, and displays it:
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import Draw
+
+# Read a SMILES string
+mol = Chem.MolFromSmiles('c1ccccc1')
+
+# Generate a 2D depiction
+mol_image = Draw.MolToImage(mol)
+
+# Display the image
+mol_image
+```
+
+This is just a glimpse into the capabilities of RDKit. With its extensive documentation and active community, you can explore more advanced features and applications, such as virtual screening, QSAR modeling, and reaction transformation.
+
+## Learning Resources
+
+If you're new to cheminformatics and RDKit, here are some useful resources to get you started:
+
+- RDKit Documentation (-> Getting Started): [https://www.rdkit.org/docs/](https://www.rdkit.org/docs/GettingStartedInPython.html)
+- RDKit Tutorials: [https://greglandrum.github.io/rdkit-blog/](https://greglandrum.github.io/rdkit-blog/)
+
+With the power of cheminformatics and RDKit, you can unlock new possibilities in chemical research and discovery.
+
+
+## Creating a molecule (RWMol, not recommended but motivating examples)
+
+Although it's not recommended for production code, you can create an ethanol molecule from scratch using RWMol:
+
+```{python}
+# import rdkit 
+from rdkit import Chem
+
+# Create an empty molecule
+mol = Chem.RWMol()
+
+# Add atoms to the molecule
+mol.AddAtom(Chem.Atom(6))  # Carbon atom
+mol.AddAtom(Chem.Atom(6))  # Carbon atom
+mol.AddAtom(Chem.Atom(8))  # Oxygen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+mol.AddAtom(Chem.Atom(1))  # Hydrogen atom
+
+# Add bonds between atoms
+mol.AddBond(0, 1, Chem.BondType.SINGLE)  # Single bond between two carbon atoms
+mol.AddBond(1, 2, Chem.BondType.SINGLE)  # Single bond between carbon and oxygen atoms
+mol.AddBond(0, 3, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+mol.AddBond(0, 4, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+mol.AddBond(0, 5, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+mol.AddBond(1, 6, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+mol.AddBond(1, 7, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+mol.AddBond(2, 8, Chem.BondType.SINGLE)  # Single bond between carbon and hydrogen atoms
+
+# # Convert the RWmol to an RDKit molecule
+# rdkit_mol = mol.toRWMol()
+mol
+```
+
+Within RDKit, molecules are represented as `mol` objects. 
+
+It's generally more convenient to use SMILES or other file formats to create `mol` objects.
+This was just to show you how cumbersome creating molecules from scratch would be. 
+
+## Simplified Molecular Input Line Entry System (SMILES)
+
+Simplified Molecular Input Line Entry System (SMILES) is a linear notation system (plain text) used to represent molecular structures in a compact and human-readable form. It is widely used in computational chemistry, cheminformatics, and related fields.
+
+The SMILES notation provides a way to represent the connectivity and structural features of molecules using a linear sequence of characters, symbols, and numbers. It encodes information about the atoms, bonds, rings, aromaticity, and other molecular features in a standardized way.
+Here are some key features of SMILES:
+
+- **Atom representation**: Atoms are represented by their atomic symbols (e.g., C for carbon, N for nitrogen).
+- **Bond representation**: Bonds are represented by symbols indicating their order (single, double `=`, triple `#`, or aromatic).
+- **Branching**: Parentheses `()` are used to indicate branching in the molecular structure.
+- **Ring notation**: Rings are represented using numbers `1 ... 1` to indicate the atoms involved in the ring.
+- **Stereochemistry**: Specific notation is used to represent stereochemical information, such as chirality `@` and `@@` and double bond configurations `\ ... \` and `/ ... /`.
+
+More on the SMILES notation can be found in the [OpenSMILES specification](http://opensmiles.org/opensmiles.html) and [Daylight](https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html).
+
+SMILES notation is widely used for storing and exchanging molecular information in databases, computational tools, and chemical software. It is a compact and efficient way to represent molecular structures, facilitating various tasks such as substructure searching, similarity calculations, and molecular property predictions.
+
+SMILES was invented in the late 1980s by *David Weininger*, a chemist working for the U.S. Environmental Protection Agency (EPA). The development of SMILES was motivated by the need for a simple and efficient way to represent and store chemical structures in computer databases.
+Prior to SMILES, other linear notations for chemical structures existed, such as the Wiswesser Line Notation (WLN) and the IUPAC nomenclature system. However, these systems were often complex, difficult to read, and not well-suited for computational purposes.
+
+In 1986, David Weininger published a paper titled "SMILES, a Chemical Language and Information System. 1. Introduction to Methodology and Encoding Rules" in the Journal of Chemical Information and Computer Sciences. In this paper, he introduced the SMILES notation and described the rules and algorithms for encoding and decoding molecular structures using this system.
+The key principles behind the design of SMILES were:
+
+- **Simplicity**: SMILES was designed to be easy for humans to read and write, as well as for computers to interpret and process.
+- **Compactness**: SMILES aimed to represent molecular structures in a concise and compact form, reducing storage requirements and facilitating data exchange.
+- **Compatibility**: SMILES was designed to be compatible with existing chemical information systems and databases, enabling seamless integration and data migration.
+
+After its initial publication, SMILES gained widespread adoption in the chemical informatics community due to its simplicity, versatility, and compatibility with various software tools and databases. It became a de facto standard for representing and exchanging molecular structures in computational chemistry and related fields.
+
+
+RDKit provides an easy way to create molecules from SMILES strings:
+
+```{python}
+from rdkit import Chem
+
+# Create molecule from SMILES
+mol = Chem.MolFromSmiles('CCO')
+mol
+```
+
+
+
+## Where do I get SMILES for a molecule from
+
+SMILES strings can be obtained from various sources, such as:
+
+- Chemical databases (e.g., [PubChem](https://pubchem.ncbi.nlm.nih.gov), ChEMBL)
+- Molecular drawing software (e.g., ChemDraw)
+- Wikipedia in the panel on the right (e.g. [Aspirin](https://en.wikipedia.org/wiki/Aspirin))
+
+Many online tools and resources are available for converting molecular structures to SMILES format.
+
+## Canonicalization
+
+It's important to note that the same molecular structure can be represented by different SMILES strings. For example, `c1ccccc1`, `C1=CC=CC=C1` and `c(c1)cccc1` represent the same benzene molecule.
+
+To ensure a unique and consistent representation of a molecular structure, RDKit provides a canonicalization function:
+
+```{python}
+from rdkit import Chem
+
+# Create molecule from SMILES
+mol = Chem.MolFromSmiles('C1=CC=CC=C1')
+
+# Get canonical SMILES
+canonical_smiles = Chem.MolToSmiles(mol)
+canonical_smiles
+```
+
+Canonicalization is essential for tasks like searching and database indexing.
+
+## Export to different formats
+
+RDKit supports various molecular file formats for input and output. You can export a molecule to different formats using the appropriate writer function:
+
+```{python}
+from rdkit import Chem
+
+# Create molecule from SMILES
+mol = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+
+# Export to different formats
+mol_sdf = Chem.MolToMolBlock(mol)  # SDF format
+print(mol_sdf)
+```
+
+And with 3D coordinates:
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import AllChem # you need to import additional functionality for 3D
+
+# Create molecule from SMILES
+mol = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+
+mol = Chem.AddHs(mol) # Adding explicit Hydrogen atoms (optional)
+AllChem.EmbedMolecule(mol)  # Needed for 3D coordinates
+
+mol_sdf3d = Chem.MolToMolBlock(mol)  # SDF format with 3D coordinates
+print(mol_sdf3d)
+
+# Save the molecule to a file
+with open("caffeine_3d.sdf", "w") as file:
+    file.write(mol_sdf3d)
+
+```
+
+
+
+
+## Load molecule from Molfile
+
+You can also load molecules from Molfiles, which are a common file format for storing chemical structures:
+
+```{python}
+from rdkit import Chem
+
+# Load molecule from Molfile
+with open('caffeine_3d.sdf', 'r') as molfile:
+    mol = Chem.MolFromMolBlock(molfile.read())
+mol
+```
+
+Or with explicit hydrogen atoms. 
+
+```{python}
+from rdkit import Chem
+
+# Load molecule from Molfile
+with open('caffeine_3d.sdf', 'r') as molfile:
+    mol = Chem.MolFromMolBlock(molfile.read(), removeHs=False)
+mol
+```
+
+This covers the additional sections you requested, providing examples and explanations for working with molecules in RDKit using different representations and file formats.
+
+
+
+

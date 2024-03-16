@@ -1,0 +1,230 @@
+# RDKit Fingerprints Tutorial
+
+## Introduction
+
+Fingerprints are a way to represent molecules as bit vectors or count vectors, which can be useful for various tasks such as similarity searching, clustering, and machine learning. The RDKit provides several different fingerprinting algorithms and fingerprint types. In this tutorial, we'll learn how to generate and use fingerprints with RDKit.
+
+## Generating Fingerprints
+
+RDKit provides a consistent interface for generating different types of fingerprints through the `rdFingerprintGenerator` module. Here's how to generate Morgan fingerprints:
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import rdFingerprintGenerator
+
+# Create a Morgan fingerprint generator
+mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=256)
+
+# Get a molecule
+mol = Chem.MolFromSmiles('Cn1cnc2c1c(=O)n(C)c(=O)n2C')
+
+# Generate fingerprints
+fp = mfpgen.GetFingerprint(mol)  # Bit vector
+fp.ToList()[:10] # showing the 10 bits of the 256
+```
+
+## Fingerprint types
+
+The differences between those fingerprint types are:
+
+1. **Bit Vector** (fp):
+   - Represented as a dense bit vector (array of 0s and 1s)
+   - Fixed length determined by the `fpSize` parameter when creating the generator
+   - Each bit position corresponds to the presence (1) or absence (0) of a particular molecular substructure/pattern
+   - Efficient for storage and computation, but can suffer from bit collisions
+
+2. **Count Vector** (cfp):
+   - Represented as an array of counts (non-negative integers)
+   - Fixed length determined by the `fpSize` parameter
+   - Each position stores the count of a particular molecular substructure/pattern
+   - Provides more information than bit vectors, but requires more storage space
+
+<!-- 3. **Sparse Bit Vector** (sfp):
+   - Represented as a sparse vector (only non-zero elements are stored)
+   - Variable length, can be very large (up to 2^64 bits)
+   - Stores only the bit positions that are set (1)
+   - Efficient for storage and computation when fingerprints are sparse (few bits set)
+
+4. **Sparse Count Vector** (scfp):
+   - Represented as a sparse vector of counts
+   - Variable length, can be very large (up to 2^64 elements)
+   - Stores only the positions with non-zero counts
+   - Provides more information than sparse bit vectors, but requires more storage space -->
+
+The choice between these fingerprint types depends on your specific use case and computational requirements. Bit vectors are efficient and widely used, but can suffer from bit collisions. Count vectors provide more information but require more storage. Moreover, it is possible to compute sparse representations are useful when the fingerprints are sparse (few bits/counts set) to save space and computation time.
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import rdFingerprintGenerator
+
+# Create a Morgan fingerprint generator
+mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
+
+# Get a molecule (Paclitaxel)
+mol = Chem.MolFromSmiles('CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C')
+
+# Generate fingerprints
+fp = mfpgen.GetFingerprint(mol)  # Bit vector
+cfp = mfpgen.GetCountFingerprint(mol)  # Count vector
+
+print(f'First entries of bit vector: {fp.ToList()[:10]}')
+print(f'First entries of count vector: {cfp.ToList()[:10]}')
+```
+
+## Comparison to other fingerprints
+
+Other fingerprints than the Morgan one, such as RDKit, Atom Pairs, and Topological Torsions, can be generated similarly:
+
+```python
+rdkgen = rdFingerprintGenerator.GetRDKitFPGenerator(fpSize=2048)
+apgen = rdFingerprintGenerator.GetAtomPairGenerator(fpSize=2048)
+ttgen = rdFingerprintGenerator.GetTopologicalTorsionGenerator(fpSize=2048)
+```
+
+**1. Morgan Fingerprint:**
+The Morgan fingerprint is a circular fingerprint, which means it captures the local environment around each atom up to a specified radius. It is also known as the Extended Connectivity Fingerprint (ECFP).
+
+The algorithm works by:
+- Assigning an initial invariant value (atom type) to each atom
+- Iteratively updating each atom's invariant by combining it with the invariants of its neighbors
+- At each iteration, the radius of the neighborhood considered is increased by one bond
+- The final invariants for each atom, after the specified radius is reached, are hashed to generate the fingerprint
+- In the usual version, which is the extended connectivity fingerprint, initial atom invariants are based on connectivity information (e.g., atomic number, number of connected atoms, etc.)
+
+Morgan fingerprints are widely used due to their ability to capture structural information in a compact representation. They are well-suited for similarity searching and machine learning tasks.
+
+**2. RDKit Fingerprint:**
+The RDKit fingerprint is a path-based fingerprint that enumerates all linear and branched subgraphs (paths) up to a specified maximum length. It is inspired by the Daylight fingerprint.
+
+The algorithm works by:
+- Enumerating all linear and branched paths up to a maximum length (default is 7 bonds)
+- Optionally including bond orders, ring information, and hydrogen atoms
+- Hashing each path to generate the fingerprint
+
+The RDKit fingerprint is a widely used and efficient fingerprint type in the RDKit. It is particularly useful for substructure searching and similarity calculations.
+
+**3. Atom Pairs Fingerprint:**
+The Atom Pairs fingerprint is a topological fingerprint that captures information about the distances between pairs of atoms in a molecule.
+
+The algorithm works by:
+- Enumerating all pairs of non-hydrogen atoms in the molecule
+- Computing the shortest path distance (number of bonds) between each pair
+- Hashing each (atom type, atom type, distance) tuple to generate the fingerprint
+
+Atom Pairs fingerprints are particularly useful for capturing shape and topology information, making them suitable for applications such as virtual screening and similarity searching.
+
+**4. Topological Torsion Fingerprint:**
+The Topological Torsion fingerprint is a variant of the Atom Pairs fingerprint that captures information about the angles (torsions) between pairs of atoms in a molecule.
+
+The algorithm works by:
+- Enumerating all paths of length 4 (torsions) in the molecule
+- Optionally including bond orders and ring information
+- Hashing each (atom1, atom2, atom3, atom4) tuple to generate the fingerprint
+
+Topological Torsion fingerprints are useful for capturing more detailed shape and topological information compared to Atom Pairs fingerprints, making them suitable for applications such as 3D similarity searching and conformer generation.
+
+All of these fingerprint types have their strengths and weaknesses, and the choice of which one to use depends on the specific application and the trade-off between computational cost, storage requirements, and the desired level of structural information capture.
+
+You can customize the fingerprint parameters when creating the generator (e.g., `radius`, `maxPath`, `useHs`, etc.). More information on fingerprints generation can be found on this [RDKit blogpost](https://greglandrum.github.io/rdkit-blog/posts/2023-01-18-fingerprint-generator-tutorial.html).
+
+
+## Tanimoto Similarity
+
+The Tanimoto similarity (or Jaccard index) is a widely used metric for comparing fingerprints. It ranges from 0 (no bits in common) to 1 (identical fingerprints).
+
+Here's an example of computing Tanimoto similarity between caffeine and theophylline:
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import rdFingerprintGenerator, DataStructs
+
+caffeine = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+theophylline = Chem.MolFromSmiles('CN1C2=C(C(=O)N(C1=O)C)NC=N2')
+
+mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
+caffeine_fp = mfpgen.GetFingerprint(caffeine)
+theophylline_fp = mfpgen.GetFingerprint(theophylline)
+
+tanimoto_sim = DataStructs.TanimotoSimilarity(caffeine_fp, theophylline_fp)
+print(f"Tanimoto similarity between caffeine and theophylline: {tanimoto_sim:.2f}")
+```
+
+The RDKit provides a `BulkTanimotoSimilarity` function for efficiently computing Tanimoto similarities between many fingerprints.
+<!-- 
+## Explaining Fingerprint Bits
+
+The fingerprint generators can provide information to "explain" the meaning of each bit set in the fingerprint. This is done using the `additionalOutput` argument:
+
+```{python}
+ibuprofen = Chem.MolFromSmiles('CC(C)Cc1ccc(cc1)[C@@H](C)C(=O)O')
+mfp1gen = rdFingerprintGenerator.GetMorganGenerator(radius=1)
+
+ao = rdFingerprintGenerator.AdditionalOutput()
+ao.AllocateAtomCounts()
+ao.AllocateAtomToBits()
+ao.AllocateBitInfoMap()
+
+fp = mfp1gen.GetFingerprint(ibuprofen, additionalOutput=ao)
+
+# Mapping of bit numbers to central atom and radius
+print(ao.GetBitInfoMap())
+
+# Number of bits each atom sets
+print(ao.GetAtomCounts())
+
+# Which bits each atom sets
+print(ao.GetAtomToBits())
+```
+
+The information provided by `additionalOutput` varies for different fingerprint types. For example, Morgan fingerprints provide `(center atom, radius)` tuples, while RDKit fingerprints provide bond indices involved in the subgraphs.
+ -->
+
+## Visualizing Fingerprint Bits
+
+Visualizing the bits of molecular fingerprints can be incredibly helpful for understanding the chemical features they represent. RDKit provides functionality to visualize these bits directly on the molecules. Here’s how you can do it for both Morgan and RDKit (path-based) fingerprints.
+
+### Morgan Fingerprints
+Morgan fingerprints, also known as circular fingerprints, are based on the connectivity of atoms up to a certain radius. To visualize which parts of a molecule correspond to specific bits in a Morgan fingerprint, we can use the Draw.DrawMorganBit function.
+
+```{python}
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import AllChem
+
+# Create a molecule from SMILES
+mol = Chem.MolFromSmiles('c1ccccc1CC1CC1')
+mol
+```
+
+```{python}
+# Generate Morgan fingerprint with bit information
+bi = {}
+fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, bitInfo=bi, nBits=256)
+
+# Visualize a specific bit (e.g., bit 64)
+print(bi)
+mfp2_svg = Draw.DrawMorganBit(mol, 64, bi, useSVG=True)
+mfp2_svg
+```
+
+In the example above, bi will contain a mapping of bit indices to the atoms they correspond to, allowing DrawMorganBit to highlight the relevant substructure in the molecule.
+
+### RDKit Fingerprints
+RDKit fingerprints are path-based fingerprints that consider paths through the molecular graph. To visualize which paths correspond to specific bits, use the Draw.DrawRDKitBit function.
+
+```{python}
+# Generate RDKit fingerprint with bit information
+rdkbi = {}
+rdkfp = Chem.RDKFingerprint(mol, maxPath=5, bitInfo=rdkbi, fpSize=256)
+
+print(rdkbi)
+# Visualize a specific bit (e.g., bit 2)
+rdk_svg = Draw.DrawRDKitBit(mol, 13, rdkbi, useSVG=True)
+rdk_svg
+```
+This will illustrate the part of the molecule that corresponds to the selected bit in the RDKit fingerprint.
+
+
+## Conclusion
+
+In this tutorial, we learned how to generate different types of fingerprints using the `rdFingerprintGenerator` module in RDKit. We explored methods for explaining fingerprint bits, discussed bit clashing and its impact, and demonstrated how to compute Tanimoto similarity between molecules. Fingerprints are a powerful tool for representing and comparing molecules, and RDKit provides a flexible and efficient implementation of various fingerprinting algorithms.
