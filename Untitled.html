@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry - Practical Programming for Chemistry</title>
+<title>Practical programming in Chemistry – untitled</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -252,68 +286,270 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#content" id="toc-content" class="nav-link active" data-scroll-target="#content">Content</a></li>
-  <li><a href="#contributors-tas" id="toc-contributors-tas" class="nav-link" data-scroll-target="#contributors-tas">Contributors / TAs</a></li>
-  <li><a href="#important-links" id="toc-important-links" class="nav-link" data-scroll-target="#important-links">Important links</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions?</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Practical Programming for Chemistry</h1>
-<p class="subtitle lead">CH-200, EPFL</p>
+
+
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lsmagic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Available line magics:
+%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %code_wrap  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %mamba  %man  %matplotlib  %micromamba  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+
+Available cell magics:
+%%!  %%HTML  %%SVG  %%bash  %%capture  %%code_wrap  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+
+Automagic is ON, % prefix IS NOT needed for line magics.</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty molecule</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.RWMol()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms to the molecule</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">6</span>))  <span class="co"># Carbon atom</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">6</span>))  <span class="co"># Carbon atom</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">8</span>))  <span class="co"># Oxygen atom</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds between atoms</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">1</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between two carbon atoms</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">2</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and oxygen atoms</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">3</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">4</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">5</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">6</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">7</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">2</span>, <span class="dv">8</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># # Convert the RWmol to an RDKit molecule</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># rdkit_mol = mol.toRWMol()</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>mol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<p><img src="Untitled_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(mol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>['AddAtom',
+ 'AddBond',
+ 'AddConformer',
+ 'BeginBatchEdit',
+ 'ClearComputedProps',
+ 'ClearProp',
+ 'CommitBatchEdit',
+ 'Debug',
+ 'GetAromaticAtoms',
+ 'GetAtomWithIdx',
+ 'GetAtoms',
+ 'GetAtomsMatchingQuery',
+ 'GetBondBetweenAtoms',
+ 'GetBondWithIdx',
+ 'GetBonds',
+ 'GetBoolProp',
+ 'GetConformer',
+ 'GetConformers',
+ 'GetDoubleProp',
+ 'GetIntProp',
+ 'GetMol',
+ 'GetNumAtoms',
+ 'GetNumBonds',
+ 'GetNumConformers',
+ 'GetNumHeavyAtoms',
+ 'GetProp',
+ 'GetPropNames',
+ 'GetPropsAsDict',
+ 'GetRingInfo',
+ 'GetStereoGroups',
+ 'GetSubstructMatch',
+ 'GetSubstructMatches',
+ 'GetUnsignedProp',
+ 'HasProp',
+ 'HasQuery',
+ 'HasSubstructMatch',
+ 'InsertMol',
+ 'NeedsUpdatePropertyCache',
+ 'RemoveAllConformers',
+ 'RemoveAtom',
+ 'RemoveBond',
+ 'RemoveConformer',
+ 'ReplaceAtom',
+ 'ReplaceBond',
+ 'RollbackBatchEdit',
+ 'SetBoolProp',
+ 'SetDoubleProp',
+ 'SetIntProp',
+ 'SetProp',
+ 'SetStereoGroups',
+ 'SetUnsignedProp',
+ 'ToBinary',
+ 'UpdatePropertyCache',
+ '__DebugMol',
+ '__GetSubstructMatch',
+ '__GetSubstructMatches',
+ '__class__',
+ '__copy__',
+ '__deepcopy__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__enter__',
+ '__eq__',
+ '__exit__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getinitargs__',
+ '__getstate__',
+ '__getstate_manages_dict__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__instance_size__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__safe_for_unpickling__',
+ '__setattr__',
+ '__setstate__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '_repr_html_',
+ '_repr_png_',
+ '_repr_svg_']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> rdFingerprintGenerator</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Morgan fingerprint generator</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mfpgen <span class="op">=</span> rdFingerprintGenerator.GetMorganGenerator(radius<span class="op">=</span><span class="dv">2</span>, fpSize<span class="op">=</span><span class="dv">2048</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a molecule (Paclitaxel)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CC1=C2[C@@]([C@]([C@H]([C@@H]3[C@]4([C@H](OC4)C[C@@H]([C@]3(C(=O)[C@@H]2OC(=O)C)C)O)OC(=O)C)OC(=O)c5ccccc5)(C[C@@H]1OC(=O)[C@H](O)[C@@H](NC(=O)c6ccccc6)c7ccccc7)O)(C)C'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fingerprints</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> mfpgen.GetFingerprint(mol)  <span class="co"># Bit vector</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>cfp <span class="op">=</span> mfpgen.GetCountFingerprint(mol)  <span class="co"># Count vector</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>sfp <span class="op">=</span> mfpgen.GetSparseFingerprint(mol)  <span class="co"># Sparse bit vector</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>scfp <span class="op">=</span> mfpgen.GetSparseCountFingerprint(mol)  <span class="co"># Sparse count vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>['FromBase64',
+ 'GetBit',
+ 'GetNumBits',
+ 'GetNumOffBits',
+ 'GetNumOnBits',
+ 'GetOnBits',
+ 'SetBit',
+ 'SetBitsFromList',
+ 'ToBase64',
+ 'ToBinary',
+ 'ToBitString',
+ 'ToList',
+ 'UnSetBit',
+ 'UnSetBitsFromList',
+ '__add__',
+ '__and__',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getinitargs__',
+ '__getitem__',
+ '__getstate__',
+ '__getstate_manages_dict__',
+ '__gt__',
+ '__hash__',
+ '__iadd__',
+ '__init__',
+ '__init_subclass__',
+ '__instance_size__',
+ '__invert__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__or__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__safe_for_unpickling__',
+ '__setattr__',
+ '__setitem__',
+ '__setstate__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '__xor__']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> rdFingerprintGenerator</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define two molecules: ethanol and dimethyl ether</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ethanol_smiles <span class="op">=</span> <span class="st">"CCO"</span>  <span class="co"># Ethanol</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>dimethyl_ether_smiles <span class="op">=</span> <span class="st">"COC"</span>  <span class="co"># Dimethyl ether</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ethanol <span class="op">=</span> Chem.MolFromSmiles(ethanol_smiles)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>dimethyl_ether <span class="op">=</span> Chem.MolFromSmiles(dimethyl_ether_smiles)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Morgan fingerprints with a very small size to force a hash collision</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>fp_size <span class="op">=</span> <span class="dv">1024</span>  <span class="co"># Extremely small fingerprint size</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>radius <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>fpgen <span class="op">=</span> rdFingerprintGenerator.GetMorganGenerator(radius<span class="op">=</span>radius, fpSize<span class="op">=</span>fp_size)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>ethanol_fp <span class="op">=</span> fpgen.GetFingerprint(ethanol)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>dimethyl_ether_fp <span class="op">=</span> fpgen.GetFingerprint(dimethyl_ether)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare fingerprints</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>common_bits <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(fp_size) <span class="cf">if</span> ethanol_fp.GetBit(i) <span class="kw">and</span> dimethyl_ether_fp.GetBit(i))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>ethanol_bits <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(fp_size) <span class="cf">if</span> ethanol_fp.GetBit(i))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>dimethyl_ether_bits <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(fp_size) <span class="cf">if</span> dimethyl_ether_fp.GetBit(i))</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ethanol fingerprint bits set: </span><span class="sc">{</span>ethanol_bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dimethyl ether fingerprint bits set: </span><span class="sc">{</span>dimethyl_ether_bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Common bits: </span><span class="sc">{</span>common_bits<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ethanol fingerprint bits set: 6
+Dimethyl ether fingerprint bits set: 4
+Common bits: 1</code></pre>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="content" class="level2">
-<h2 class="anchored" data-anchor-id="content">Content</h2>
-<p>This course provides a comprehensive and practical introduction to computer programming with a specific focus on its application for chemists and chemical engineers. The course assumes little programming experience and primarily uses Python as the teaching language. The content covers crucial programming concepts like data types, control structures, string processing, functions, and input/output operations. These concepts are taught within the context of chemical tasks.</p>
-<p>The course format consists lessons on diverse topics and hands-on exercise sessions. We will cover the basics of configuring a computer and an introduction to Jupyter(Lab), a popular tool used in data science and cheminformatics. The course will teach basic command line skills, usage of variables, operators, and types, more about operators and conditionals, lists and tuples, iteration, and functions. Lessons cover string methods, dictionaries, packages and modules, file I/O, the use of Git for version control, errors and exception handling, style, comprehensions, and an introduction to Pandas and RDKit for chemical data manipulation. The course will also contain lessons on managing and cleaning data, along with making plots.</p>
-</section>
-<section id="contributors-tas" class="level2">
-<h2 class="anchored" data-anchor-id="contributors-tas">Contributors / TAs</h2>
-<ul>
-<li><a href="https://github.com/rneeser">Rebecca Neeser</a></li>
-<li><a href="https://github.com/danielparm">Daniel Armstrong</a></li>
-<li><a href="https://github.com/Sarina-kopf">Sarina Kopf</a></li>
-<li><a href="https://github.com/jwa7">Joe Abbott</a></li>
-</ul>
-</section>
-<section id="important-links" class="level2">
-<h2 class="anchored" data-anchor-id="important-links">Important links</h2>
-<ul>
-<li><a href="https://github.com/schwallergroup/practical-programming-in-chemistry-exercises">Exercises</a></li>
-<li><a href="https://github.com/schwallergroup/practical-programming-in-chemistry-milestones">Personal Milestones</a></li>
-<li>Slides will be on Moodle</li>
-</ul>
-</section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions?</h2>
-<ul>
-<li>Google, StackOverflow, ChatGPT/CodeLLama or our <a href="https://github.com/schwallergroup/practical-programming-in-chemistry/discussions">discussion forum</a></li>
-</ul>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical programming in Chemistry – seaborn</title>
+<title>Practical programming in Chemistry – rdkit_fp_and_desc</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../tutorials/lecture_04/02_matplotlib.html" rel="prev">
+<link href="../../tutorials/lecture_05/01_rdkit_basics.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_04/03_seaborn.html">Seaborn</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_05/02_rdkit_fp_and_desc.html">Descriptors and fingerprints</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_04/03_seaborn.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/lecture_04/03_seaborn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Seaborn</span></a>
   </div>
 </li>
@@ -268,14 +268,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Descriptors</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fingerprints</span></a>
+  <a href="../../tutorials/lecture_05/02_rdkit_fp_and_desc.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Descriptors and fingerprints</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -289,13 +283,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-your-environment" id="toc-setting-up-your-environment" class="nav-link active" data-scroll-target="#setting-up-your-environment">Setting Up Your Environment</a></li>
-  <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries">Importing Libraries</a></li>
-  <li><a href="#example-data" id="toc-example-data" class="nav-link" data-scroll-target="#example-data">Example Data</a></li>
-  <li><a href="#creating-a-bar-plot-with-seaborn" id="toc-creating-a-bar-plot-with-seaborn" class="nav-link" data-scroll-target="#creating-a-bar-plot-with-seaborn">Creating a Bar Plot with Seaborn</a></li>
-  <li><a href="#creating-a-scatter-plot-with-seaborn" id="toc-creating-a-scatter-plot-with-seaborn" class="nav-link" data-scroll-target="#creating-a-scatter-plot-with-seaborn">Creating a Scatter Plot with Seaborn</a></li>
-  <li><a href="#enhancing-plots-with-pairplot" id="toc-enhancing-plots-with-pairplot" class="nav-link" data-scroll-target="#enhancing-plots-with-pairplot">Enhancing Plots with Pairplot</a></li>
-  <li><a href="#advanced-customization-with-seaborn" id="toc-advanced-customization-with-seaborn" class="nav-link" data-scroll-target="#advanced-customization-with-seaborn">Advanced Customization with Seaborn</a></li>
+  <li><a href="#molecular-descriptors" id="toc-molecular-descriptors" class="nav-link active" data-scroll-target="#molecular-descriptors">Molecular Descriptors</a>
+  <ul class="collapse">
+  <li><a href="#calculating-molecular-descriptors" id="toc-calculating-molecular-descriptors" class="nav-link" data-scroll-target="#calculating-molecular-descriptors">Calculating Molecular Descriptors</a></li>
+  </ul></li>
+  <li><a href="#molecular-fingerprints" id="toc-molecular-fingerprints" class="nav-link" data-scroll-target="#molecular-fingerprints">Molecular Fingerprints</a>
+  <ul class="collapse">
+  <li><a href="#generating-molecular-fingerprints" id="toc-generating-molecular-fingerprints" class="nav-link" data-scroll-target="#generating-molecular-fingerprints">Generating Molecular Fingerprints</a></li>
+  <li><a href="#fingerprint-operations" id="toc-fingerprint-operations" class="nav-link" data-scroll-target="#fingerprint-operations">Fingerprint Operations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -304,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Seaborn</h1>
+<h1 class="title">Molecular Descriptors and Fingerprints in RDKit</h1>
 </div>
 
 
@@ -319,116 +315,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<blockquote class="blockquote">
-<p><a href="https://seaborn.pydata.org">https://seaborn.pydata.org</a></p>
-</blockquote>
-<p>Seaborn is a Python visualization library based on Matplotlib that offers a higher level of abstraction for creating attractive and informative statistical graphics. It’s designed to work well with Pandas DataFrames, making it an excellent tool for chemistry and other scientific data visualizations. Let’s extend our tutorial by incorporating Seaborn to make our plots more appealing with minimal effort.</p>
-<section id="setting-up-your-environment" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-your-environment">Setting Up Your Environment</h2>
-<p>First, ensure you have Seaborn installed. If not, you can install it using pip:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install seaborn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="importing-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="importing-libraries">Importing Libraries</h2>
-<p>After installation, import Seaborn alongside Pandas and Matplotlib:</p>
+<section id="molecular-descriptors" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-descriptors">Molecular Descriptors</h2>
+<p>Molecular descriptors are numerical representations of chemical structures and properties. RDKit provides a wide range of descriptors that can be used for various applications, such as QSAR modeling, virtual screening, and property prediction.</p>
+<section id="calculating-molecular-descriptors" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-molecular-descriptors">Calculating Molecular Descriptors</h3>
+<p>You can calculate molecular descriptors using the <code>Descriptors</code> module in RDKit. Here’s an example:</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Seaborn automatically improves the aesthetics of the plots and provides a number of high-level functions to create common types of plots.</p>
-</section>
-<section id="example-data" class="level2">
-<h2 class="anchored" data-anchor-id="example-data">Example Data</h2>
-<p>Let’s use the same chemistry-related DataFrame from before:</p>
-<div class="cell" data-fig-width="6" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Compound'</span>: [<span class="st">'Water'</span>, <span class="st">'Ethanol'</span>, <span class="st">'Acetic Acid'</span>, <span class="st">'Acetone'</span>, <span class="st">'Methanol'</span>],</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Boiling Point (°C)'</span>: [<span class="dv">100</span>, <span class="fl">78.37</span>, <span class="fl">118.1</span>, <span class="fl">56.05</span>, <span class="fl">64.7</span>],</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Molecular Weight (g/mol)'</span>: [<span class="fl">18.015</span>, <span class="fl">46.07</span>, <span class="fl">60.052</span>, <span class="fl">58.08</span>, <span class="fl">32.04</span>],</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Density (g/mL)'</span>: [<span class="fl">1.0</span>, <span class="fl">0.789</span>, <span class="fl">1.049</span>, <span class="fl">0.790</span>, <span class="fl">0.791</span>]  <span class="co"># Adding density for more examples</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="creating-a-bar-plot-with-seaborn" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-bar-plot-with-seaborn">Creating a Bar Plot with Seaborn</h2>
-<p>Seaborn’s barplot offers a quick way to create bar plots that include bootstrap confidence intervals.</p>
-<div class="cell" data-fig-width="6" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'Compound'</span>, y<span class="op">=</span><span class="st">'Molecular Weight (g/mol)'</span>, data<span class="op">=</span>df, palette<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Molecular Weights of Compounds'</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/pf/vqvpsq2s5qj_883cdbj9_vcm0000gn/T/ipykernel_59329/2403332906.py:2: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(x='Compound', y='Molecular Weight (g/mol)', data=df, palette='coolwarm')</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>([0, 1, 2, 3, 4],
- [Text(0, 0, 'Water'),
-  Text(1, 0, 'Ethanol'),
-  Text(2, 0, 'Acetic Acid'),
-  Text(3, 0, 'Acetone'),
-  Text(4, 0, 'Methanol')])</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="03_seaborn_files/figure-html/cell-4-output-3.png" width="808" height="571"></p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Descriptors</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a molecule from SMILES</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'c1ccccc1'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptors</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mw <span class="op">=</span> Descriptors.MolWt(mol)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>logp <span class="op">=</span> Descriptors.MolLogP(mol)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tpsa <span class="op">=</span> Descriptors.TPSA(mol)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Molecular Weight: </span><span class="sc">{</span>mw<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LogP: </span><span class="sc">{</span>logp<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Topological Polar Surface Area: </span><span class="sc">{</span>tpsa<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Molecular Weight: 78.11
+LogP: 1.69
+Topological Polar Surface Area: 0.00</code></pre>
 </div>
 </div>
-</section>
-<section id="creating-a-scatter-plot-with-seaborn" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-scatter-plot-with-seaborn">Creating a Scatter Plot with Seaborn</h2>
-<p>Seaborn’s scatterplot function adds more options for customization and automatically adjusts aesthetics.</p>
-<div class="cell" data-fig-width="6" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">'Molecular Weight (g/mol)'</span>, y<span class="op">=</span><span class="st">'Boiling Point (°C)'</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">'Density (g/mL)'</span>, palette<span class="op">=</span><span class="st">'viridis'</span>, size<span class="op">=</span><span class="st">'Density (g/mL)'</span>, sizes<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">200</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Molecular Weight vs. Boiling Point by Density'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>Text(0.5, 1.0, 'Molecular Weight vs. Boiling Point by Density')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="03_seaborn_files/figure-html/cell-5-output-2.png" width="816" height="523"></p>
-</div>
-</div>
-</section>
-<section id="enhancing-plots-with-pairplot" class="level2">
-<h2 class="anchored" data-anchor-id="enhancing-plots-with-pairplot">Enhancing Plots with Pairplot</h2>
-<p>Seaborn’s pairplot function creates a matrix of scatter plots for quick exploration of relationships between multiple variables. This is especially useful in chemistry for identifying trends and correlations between different properties.</p>
-<div class="cell" data-fig-width="6" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(df, hue<span class="op">=</span><span class="st">'Compound'</span>, palette<span class="op">=</span><span class="st">'plasma'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="03_seaborn_files/figure-html/cell-6-output-1.png" width="839" height="711"></p>
-</div>
-</div>
-</section>
-<section id="advanced-customization-with-seaborn" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-customization-with-seaborn">Advanced Customization with Seaborn</h2>
-<p>Seaborn works seamlessly with Matplotlib, meaning you can use Matplotlib’s functions for fine-tuning. However, Seaborn itself offers advanced customization options:</p>
+<p><strong>LogP</strong>, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.</p>
+<p>RDKit provides many other descriptors, including:</p>
 <ul>
-<li><strong>Themes:</strong> Use <code>sns.set_theme()</code> to set the aesthetic style of the plots.</li>
-<li><strong>Contexts:</strong> With <code>sns.set_context()</code>, you can adjust the scale of plot elements and labels to best suit your presentation or publication needs.</li>
-<li><strong>Color Palettes:</strong> Seaborn has a wide range of color palettes to make your plots more attractive and informative. Use <code>sns.color_palette()</code> to explore and set different palettes.</li>
+<li><code>Descriptors.NumRotatableBonds(mol)</code>: Number of rotatable bonds</li>
+<li><code>Descriptors.HeavyAtomCount(mol)</code>: Number of heavy atoms</li>
+<li><code>Descriptors.NumHAcceptors(mol)</code>: Number of hydrogen bond acceptors</li>
+<li><code>Descriptors.NumHDonors(mol)</code>: Number of hydrogen bond donors</li>
+<li><code>Descriptors.MolWt(mol)</code>: Molecular weight</li>
+<li><code>Descriptors.MolLogP(mol)</code>: LogP value</li>
+<li><code>Descriptors.TPSA(mol)</code>: Topological polar surface area</li>
 </ul>
-<div class="cell" data-fig-width="6" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">'whitegrid'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">'talk'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">'Molecular Weight (g/mol)'</span>, y<span class="op">=</span><span class="st">'Boiling Point (°C)'</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">'Compound'</span>, palette<span class="op">=</span><span class="st">'cool'</span>, s<span class="op">=</span><span class="dv">100</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Molecular Weight vs. Boiling Point'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>Text(0.5, 1.0, 'Molecular Weight vs. Boiling Point')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="03_seaborn_files/figure-html/cell-7-output-2.png" width="845" height="553"></p>
-</div>
-</div>
-<p>Seaborn significantly simplifies the process of creating beautiful and informative plots with Python. Its integration with Pandas DataFrames and the underlying power of Matplotlib make it an excellent choice for visualizing chemistry-related data. By leveraging Seaborn’s high-level plotting functions and customization options, you can quickly create plots that are both visually appealing and rich in information, suitable for analysis, presentations, and publications.</p>
-<p>More examples can be found in the gallery: <a href="https://seaborn.pydata.org/examples/index.html">https://seaborn.pydata.org/examples/index.html</a>.</p>
+<p>You can explore the complete list of 208 available descriptors from this <a href="https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html">Greg Landrum blog post</a>.</p>
+</section>
+</section>
+<section id="molecular-fingerprints" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-fingerprints">Molecular Fingerprints</h2>
+<p>Molecular fingerprints are binary or count-based representations of molecular structures, used for similarity searching, clustering, and other cheminformatics tasks.</p>
+<section id="generating-molecular-fingerprints" class="level3">
+<h3 class="anchored" data-anchor-id="generating-molecular-fingerprints">Generating Molecular Fingerprints</h3>
+<p>RDKit supports various types of fingerprints, including Morgan fingerprints, RDKit fingerprints, and MACCS keys. Here’s an example of generating and comparing Morgan fingerprints:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem, DataStructs</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> AllChem</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create molecules from SMILES</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mol1 <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'c1ccccc1'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mol2 <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'c1ccccc1C'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Morgan fingerprints</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>fp1 <span class="op">=</span> AllChem.GetMorganFingerprintAsBitVect(mol1, <span class="dv">2</span>, nBits<span class="op">=</span><span class="dv">2048</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>fp2 <span class="op">=</span> AllChem.GetMorganFingerprintAsBitVect(mol2, <span class="dv">2</span>, nBits<span class="op">=</span><span class="dv">2048</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Tanimoto similarity</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> DataStructs.TanimotoSimilarity(fp1, fp2)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tanimoto Similarity: </span><span class="sc">{</span>similarity<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Output:</p>
+<pre><code>Tanimoto Similarity: 0.86</code></pre>
+<p>In this example, we generate Morgan fingerprints with a radius of 2 and a bit vector size of 2048 for two molecules. We then calculate the Tanimoto similarity between the fingerprints, which measures the similarity between the molecular structures.</p>
+<p>You can also generate other types of fingerprints, such as RDKit fingerprints and MACCS keys:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RDKit fingerprint</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rdkit_fp <span class="op">=</span> Chem.RDKFingerprint(mol, maxPath<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># MACCS keys</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>maccs_fp <span class="op">=</span> Chem.MACCSkeys.GenMACCSKeys(mol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fingerprint-operations" class="level3">
+<h3 class="anchored" data-anchor-id="fingerprint-operations">Fingerprint Operations</h3>
+<p>RDKit provides several functions for working with fingerprints, including:</p>
+<ul>
+<li><code>DataStructs.FingerprintSimilarity(fp1, fp2, metric=DataStructs.TanimotoSimilarity)</code>: Calculate fingerprint similarity using different metrics (e.g., Tanimoto, Dice, Cosine)</li>
+<li><code>DataStructs.BulkTanimotoSimilarity(fps, bulkfps)</code>: Calculate Tanimoto similarities between a set of fingerprints and a bulk set of fingerprints</li>
+<li><code>DataStructs.FingerprintDensity(fp)</code>: Calculate the density (fraction of bits set) of a fingerprint</li>
+<li><code>DataStructs.UnionBitVects(fp1, fp2)</code>: Compute the union of two fingerprints</li>
+<li><code>DataStructs.IntersectionBitVects(fp1, fp2)</code>: Compute the intersection of two fingerprints</li>
+<li><code>DataStructs.FoldFingerprint(fp, nbits)</code>: Fold a fingerprint to a smaller size</li>
+</ul>
+<p>These operations enable various applications, such as similarity searching, clustering, and fingerprint analysis.</p>
+<p>This section basics of molecular descriptors and fingerprints in RDKit, including examples of how to calculate descriptors, generate different types of fingerprints, and perform fingerprint operations like similarity calculations and folding. With these tools, you can explore and analyze molecular structures for various cheminformatics tasks.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -667,8 +640,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../tutorials/lecture_04/02_matplotlib.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Matplotlib</span>
+      <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cheminformatics and RDKit basics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Practical programming in Chemistry – rdkit_descriptors</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" rel="next">
+<link href="../../tutorials/lecture_05/01_rdkit_basics.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_05/02_rdkit_descriptors.html">Descriptors</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Home</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands summary</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 01</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: Configuration</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: GitHub Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: SSH Connection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Next steps: Fork and Code</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 02</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python iterations</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 03</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File IO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/03_seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seaborn</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 05</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheminformatics and RDKit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Descriptors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fingerprints</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#molecular-descriptors" id="toc-molecular-descriptors" class="nav-link active" data-scroll-target="#molecular-descriptors">Molecular Descriptors</a>
+  <ul class="collapse">
+  <li><a href="#calculating-molecular-descriptors" id="toc-calculating-molecular-descriptors" class="nav-link" data-scroll-target="#calculating-molecular-descriptors">Calculating Molecular Descriptors</a></li>
+  </ul></li>
+  <li><a href="#mordred-descriptors" id="toc-mordred-descriptors" class="nav-link" data-scroll-target="#mordred-descriptors">Mordred Descriptors</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#types-of-descriptors" id="toc-types-of-descriptors" class="nav-link" data-scroll-target="#types-of-descriptors">Types of Descriptors</a></li>
+  <li><a href="#installation-and-usage" id="toc-installation-and-usage" class="nav-link" data-scroll-target="#installation-and-usage">Installation and Usage</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Molecular Descriptors and Fingerprints in RDKit</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="molecular-descriptors" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-descriptors">Molecular Descriptors</h2>
+<p>Molecular descriptors are numerical representations of chemical structures and properties. RDKit provides a wide range of descriptors that can be used for various applications, such as QSAR modeling, virtual screening, and property prediction.</p>
+<section id="calculating-molecular-descriptors" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-molecular-descriptors">Calculating Molecular Descriptors</h3>
+<p>You can calculate molecular descriptors using the <code>Descriptors</code> module in RDKit. Here’s an example:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Descriptors</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a molecule from SMILES</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptors</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mw <span class="op">=</span> Descriptors.MolWt(mol)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>logp <span class="op">=</span> Descriptors.MolLogP(mol)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tpsa <span class="op">=</span> Descriptors.TPSA(mol)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Molecular Weight: </span><span class="sc">{</span>mw<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LogP: </span><span class="sc">{</span>logp<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Topological Polar Surface Area: </span><span class="sc">{</span>tpsa<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Molecular Weight: 194.19
+LogP: -1.03
+Topological Polar Surface Area: 61.82</code></pre>
+</div>
+</div>
+<p><strong>LogP</strong>, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.</p>
+<p>RDKit provides many other descriptors, including:</p>
+<ul>
+<li><code>Descriptors.NumRotatableBonds(mol)</code>: Number of rotatable bonds</li>
+<li><code>Descriptors.HeavyAtomCount(mol)</code>: Number of heavy atoms</li>
+<li><code>Descriptors.NumHAcceptors(mol)</code>: Number of hydrogen bond acceptors</li>
+<li><code>Descriptors.NumHDonors(mol)</code>: Number of hydrogen bond donors</li>
+<li><code>Descriptors.MolWt(mol)</code>: Molecular weight</li>
+<li><code>Descriptors.MolLogP(mol)</code>: LogP value</li>
+<li><code>Descriptors.TPSA(mol)</code>: Topological polar surface area</li>
+</ul>
+<p>You can explore the complete list of 210 available descriptors from this <a href="https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html">Greg Landrum blog post</a>.</p>
+<p>To list them all use the following:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Descriptors</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="bu">print</span>(descriptor) <span class="cf">for</span> descriptor <span class="kw">in</span> Descriptors._descList[:<span class="dv">10</span>]] <span class="co"># truncated to 10 entries</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(Descriptors._descList))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('MaxAbsEStateIndex', &lt;function MaxAbsEStateIndex at 0x14b007ac0&gt;)
+('MaxEStateIndex', &lt;function MaxEStateIndex at 0x14b0079a0&gt;)
+('MinAbsEStateIndex', &lt;function MinAbsEStateIndex at 0x14b007b50&gt;)
+('MinEStateIndex', &lt;function MinEStateIndex at 0x14b007a30&gt;)
+('qed', &lt;function qed at 0x14b0467a0&gt;)
+('SPS', &lt;function SPS at 0x14b046b00&gt;)
+('MolWt', &lt;function &lt;lambda&gt; at 0x14b047130&gt;)
+('HeavyAtomMolWt', &lt;function HeavyAtomMolWt at 0x14b0471c0&gt;)
+('ExactMolWt', &lt;function &lt;lambda&gt; at 0x14b047250&gt;)
+('NumValenceElectrons', &lt;function NumValenceElectrons at 0x14b0472e0&gt;)
+210</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="mordred-descriptors" class="level2">
+<h2 class="anchored" data-anchor-id="mordred-descriptors">Mordred Descriptors</h2>
+<p><a href="https://github.com/mordred-descriptor/mordred">Mordred</a> is a comprehensive, open-source chemical descriptor calculation tool designed for use in cheminformatics, drug discovery, and materials science. It can compute a vast array of descriptors based on molecular structure, ranging from simple atomic counts to more complex 3D geometry calculations. Mordred is compatible with the RDKit library, allowing for seamless integration into Python-based cheminformatics workflows. Here, we’ll cover some key aspects of Mordred descriptors.</p>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>Chemical descriptors are numerical values that represent chemical information encoded within a molecular structure. These descriptors play a crucial role in the quantitative analysis of chemical compounds, enabling researchers to apply statistical and machine learning models to predict physicochemical properties, biological activity, environmental fate, and more.</p>
+</section>
+<section id="types-of-descriptors" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-descriptors">Types of Descriptors</h3>
+<p>Mordred calculates over a thousand descriptors, which can be broadly categorized into several types:</p>
+<ul>
+<li><strong>Constitutional Descriptors</strong>: Basic counts of atoms, bonds, molecular size, and other simple characteristics of the molecule’s constitution.</li>
+<li><strong>Topological Descriptors</strong>: Derived from the molecule’s graph representation, including connectivity, branching, and molecular shape indices.</li>
+<li><strong>Geometrical Descriptors</strong>: Relate to the 3D structure of the molecule, including distances, angles, and molecular volume.</li>
+<li><strong>Electronic Descriptors</strong>: Reflect the electronic distribution and potential energy surface characteristics, often used in quantum chemical calculations.</li>
+<li><strong>Hydrophobicity and Hydrophilicity Descriptors</strong>: Capture the molecule’s partitioning behavior between hydrophobic and hydrophilic environments, which is critical in drug design for understanding solubility and permeability.</li>
+</ul>
+</section>
+<section id="installation-and-usage" class="level3">
+<h3 class="anchored" data-anchor-id="installation-and-usage">Installation and Usage</h3>
+<p>Mordred is easy to install using pip:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mordred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To use Mordred, you need a molecule object from RDKit. Here’s a simple example:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mordred <span class="im">import</span> Calculator, descriptors</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a molecule object</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">"CN1C=NC2=C1C(=O)N(C(=O)N2C)C"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a calculator with all descriptors</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>calc <span class="op">=</span> Calculator(descriptors, ignore_3D<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptors for the molecule</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> calc(mol)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the result to a dictionary</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>descriptors_dict <span class="op">=</span> result.asdict()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>descriptors_dict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>{'ABC': &lt;mordred.error.Error at 0x105e42590&gt;,
+ 'ABCGG': &lt;mordred.error.Error at 0x14c79c7f0&gt;,
+ 'nAcid': 0,
+ 'nBase': 0,
+ 'SpAbs_A': 17.668228976605832,
+ 'SpMax_A': 2.504976898746481,
+ 'SpDiam_A': 4.932792612901732,
+ 'SpAD_A': 17.668228976605832,
+ 'SpMAD_A': 1.262016355471845,
+ 'LogEE_A': 3.5865898111484813,
+ 'VE1_A': 3.4560842310452404,
+ 'VE2_A': 0.2468631593603743,
+ 'VE3_A': 1.5766084596749437,
+ 'VR1_A': 57.28665037374301,
+ 'VR2_A': 4.0919035981245,
+ 'VR3_A': 4.384539855427742,
+ 'nAromAtom': 9,
+ 'nAromBond': 10,
+ 'nAtom': 24,
+ 'nHeavyAtom': 14,
+ 'nSpiro': 0,
+ 'nBridgehead': 0,
+ 'nHetero': 6,
+ 'nH': 10,
+ 'nB': 0,
+ 'nC': 8,
+ 'nN': 4,
+ 'nO': 2,
+ 'nS': 0,
+ 'nP': 0,
+ 'nF': 0,
+ 'nCl': 0,
+ 'nBr': 0,
+ 'nI': 0,
+ 'nX': 0,
+ 'ATS0dv': 248.0,
+ 'ATS1dv': 245.0,
+ 'ATS2dv': 384.0,
+ 'ATS3dv': 353.0,
+ 'ATS4dv': 278.0,
+ 'ATS5dv': 68.0,
+ 'ATS6dv': 6.0,
+ 'ATS7dv': 0.0,
+ 'ATS8dv': 0.0,
+ 'ATS0d': 86.0,
+ 'ATS1d': 105.0,
+ 'ATS2d': 172.0,
+ 'ATS3d': 167.0,
+ 'ATS4d': 146.0,
+ 'ATS5d': 92.0,
+ 'ATS6d': 51.0,
+ 'ATS7d': 24.0,
+ 'ATS8d': 0.0,
+ 'ATS0s': 156.11111111111111,
+ 'ATS1s': 92.55555555555557,
+ 'ATS2s': 155.66666666666669,
+ 'ATS3s': 207.11111111111114,
+ 'ATS4s': 311.6666666666667,
+ 'ATS5s': 148.99999999999997,
+ 'ATS6s': 100.0,
+ 'ATS7s': 42.0,
+ 'ATS8s': 0.0,
+ 'ATS0Z': 622.0,
+ 'ATS1Z': 690.0,
+ 'ATS2Z': 1055.0,
+ 'ATS3Z': 1210.0,
+ 'ATS4Z': 1101.0,
+ 'ATS5Z': 563.0,
+ 'ATS6Z': 227.0,
+ 'ATS7Z': 45.0,
+ 'ATS8Z': 0.0,
+ 'ATS0m': 2460.993806,
+ 'ATS1m': 2644.5459470000005,
+ 'ATS2m': 4045.596023,
+ 'ATS3m': 4595.614281000002,
+ 'ATS4m': 3920.8300550000004,
+ 'ATS5m': 1807.5967239999995,
+ 'ATS6m': 541.2565649999999,
+ 'ATS7m': 69.71832,
+ 'ATS8m': 0.0,
+ 'ATS0v': 5105.010905119388,
+ 'ATS1v': 6130.97316380809,
+ 'ATS2v': 9221.165269254125,
+ 'ATS3v': 10674.856578381183,
+ 'ATS4v': 9553.424246224444,
+ 'ATS5v': 6259.132199731515,
+ 'ATS6v': 3444.683193490577,
+ 'ATS7v': 898.7995249259359,
+ 'ATS8v': 0.0,
+ 'ATS0se': 195.018744,
+ 'ATS1se': 202.80308400000007,
+ 'ATS2se': 353.98422000000005,
+ 'ATS3se': 375.96122000000014,
+ 'ATS4se': 484.5447,
+ 'ATS5se': 337.180872,
+ 'ATS6se': 288.61167600000005,
+ 'ATS7se': 169.501248,
+ 'ATS8se': 0.0,
+ 'ATS0pe': 161.0536,
+ 'ATS1pe': 171.92100000000005,
+ 'ATS2pe': 295.28509999999994,
+ 'ATS3pe': 316.9378000000001,
+ 'ATS4pe': 400.29449999999997,
+ 'ATS5pe': 274.3496,
+ 'ATS6pe': 223.77800000000002,
+ 'ATS7pe': 124.34400000000002,
+ 'ATS8pe': 0.0,
+ 'ATS0are': 160.59959999999998,
+ 'ATS1are': 169.425,
+ 'ATS2are': 294.2387,
+ 'ATS3are': 312.9198,
+ 'ATS4are': 400.5819,
+ 'ATS5are': 273.02199999999993,
+ 'ATS6are': 222.392,
+ 'ATS7are': 124.74000000000002,
+ 'ATS8are': 0.0,
+ 'ATS0p': 32.88373704849,
+ 'ATS1p': 39.59892310000001,
+ 'ATS2p': 59.548551443641,
+ 'ATS3p': 69.32841051000001,
+ 'ATS4p': 63.642290518547,
+ 'ATS5p': 47.157945114,
+ 'ATS6p': 32.171525592188,
+ 'ATS7p': 10.941174959828999,
+ 'ATS8p': 0.0,
+ 'ATS0i': 4079.3941918074897,
+ 'ATS1i': 3891.7424346690004,
+ 'ATS2i': 7432.182669187542,
+ 'ATS3i': 7143.074099610902,
+ 'ATS4i': 9847.760635090197,
+ 'ATS5i': 7088.603621110799,
+ 'ATS6i': 6615.344057254588,
+ 'ATS7i': 4438.823522597679,
+ 'ATS8i': 0.0,
+ 'AATS0dv': 10.333333333333334,
+ 'AATS1dv': 9.8,
+ 'AATS2dv': 8.930232558139535,
+ 'AATS3dv': 7.673913043478261,
+ 'AATS4dv': 4.87719298245614,
+ 'AATS5dv': 1.619047619047619,
+ 'AATS6dv': 0.15384615384615385,
+ 'AATS7dv': 0.0,
+ 'AATS8dv': &lt;mordred.error.Missing at 0x14c79c8b0&gt;,
+ 'AATS0d': 3.5833333333333335,
+ 'AATS1d': 4.2,
+ 'AATS2d': 4.0,
+ 'AATS3d': 3.630434782608696,
+ 'AATS4d': 2.56140350877193,
+ 'AATS5d': 2.1904761904761907,
+ 'AATS6d': 1.3076923076923077,
+ 'AATS7d': 1.0,
+ 'AATS8d': &lt;mordred.error.Missing at 0x14c79c940&gt;,
+ 'AATS0s': 6.50462962962963,
+ 'AATS1s': 3.7022222222222227,
+ 'AATS2s': 3.6201550387596906,
+ 'AATS3s': 4.5024154589371985,
+ 'AATS4s': 5.4678362573099415,
+ 'AATS5s': 3.547619047619047,
+ 'AATS6s': 2.5641025641025643,
+ 'AATS7s': 1.75,
+ 'AATS8s': &lt;mordred.error.Missing at 0x14c79c9a0&gt;,
+ 'AATS0Z': 25.916666666666668,
+ 'AATS1Z': 27.6,
+ 'AATS2Z': 24.53488372093023,
+ 'AATS3Z': 26.304347826086957,
+ 'AATS4Z': 19.31578947368421,
+ 'AATS5Z': 13.404761904761905,
+ 'AATS6Z': 5.82051282051282,
+ 'AATS7Z': 1.875,
+ 'AATS8Z': &lt;mordred.error.Missing at 0x14c79ca00&gt;,
+ 'AATS0m': 102.54140858333334,
+ 'AATS1m': 105.78183788000003,
+ 'AATS2m': 94.08362844186047,
+ 'AATS3m': 99.90465828260874,
+ 'AATS4m': 68.78649219298246,
+ 'AATS5m': 43.03801723809523,
+ 'AATS6m': 13.878373461538459,
+ 'AATS7m': 2.9049300000000002,
+ 'AATS8m': &lt;mordred.error.Missing at 0x14c79ca60&gt;,
+ 'AATS0v': 212.70878771330783,
+ 'AATS1v': 245.23892655232362,
+ 'AATS2v': 214.44570393614242,
+ 'AATS3v': 232.0620995300257,
+ 'AATS4v': 167.60393414428847,
+ 'AATS5v': 149.02695713646466,
+ 'AATS6v': 88.32521008950198,
+ 'AATS7v': 37.44998020524733,
+ 'AATS8v': &lt;mordred.error.Missing at 0x14c79cac0&gt;,
+ 'AATS0se': 8.125781,
+ 'AATS1se': 8.112123360000004,
+ 'AATS2se': 8.232191162790699,
+ 'AATS3se': 8.173070000000003,
+ 'AATS4se': 8.500784210526316,
+ 'AATS5se': 8.028116,
+ 'AATS6se': 7.400299384615386,
+ 'AATS7se': 7.062552,
+ 'AATS8se': &lt;mordred.error.Missing at 0x14c79cb20&gt;,
+ 'AATS0pe': 6.710566666666666,
+ 'AATS1pe': 6.876840000000002,
+ 'AATS2pe': 6.867095348837208,
+ 'AATS3pe': 6.889952173913046,
+ 'AATS4pe': 7.022710526315789,
+ 'AATS5pe': 6.532133333333333,
+ 'AATS6pe': 5.737897435897437,
+ 'AATS7pe': 5.181000000000001,
+ 'AATS8pe': &lt;mordred.error.Missing at 0x14c79cb80&gt;,
+ 'AATS0are': 6.691649999999999,
+ 'AATS1are': 6.777,
+ 'AATS2are': 6.842760465116279,
+ 'AATS3are': 6.802604347826088,
+ 'AATS4are': 7.027752631578948,
+ 'AATS5are': 6.500523809523808,
+ 'AATS6are': 5.702358974358974,
+ 'AATS7are': 5.197500000000001,
+ 'AATS8are': &lt;mordred.error.Missing at 0x14c79cbe0&gt;,
+ 'AATS0p': 1.3701557103537498,
+ 'AATS1p': 1.5839569240000002,
+ 'AATS2p': 1.3848500335730465,
+ 'AATS3p': 1.5071393589130437,
+ 'AATS4p': 1.1165314126060877,
+ 'AATS5p': 1.122808217,
+ 'AATS6p': 0.8249109126202051,
+ 'AATS7p': 0.45588228999287495,
+ 'AATS8p': &lt;mordred.error.Missing at 0x14c79cc40&gt;,
+ 'AATS0i': 169.97475799197875,
+ 'AATS1i': 155.66969738676002,
+ 'AATS2i': 172.8414574229661,
+ 'AATS3i': 155.28421955675873,
+ 'AATS4i': 172.7677304401789,
+ 'AATS5i': 168.77627669311428,
+ 'AATS6i': 169.62420659627148,
+ 'AATS7i': 184.95098010823662,
+ 'AATS8i': &lt;mordred.error.Missing at 0x14c79cca0&gt;,
+ 'ATSC0c': 0.7148225324330465,
+ 'ATSC1c': -0.5255256355213916,
+ 'ATSC2c': 0.19926374915905842,
+ 'ATSC3c': 0.018659211194084008,
+ 'ATSC4c': 0.009489195458824033,
+ 'ATSC5c': -0.08563765764407708,
+ 'ATSC6c': 0.007605606789622789,
+ 'ATSC7c': 0.018734264347356255,
+ 'ATSC8c': 0.0,
+ 'ATSC0dv': 126.5,
+ 'ATSC1dv': 65.5625,
+ 'ATSC2dv': 61.6875,
+ 'ATSC3dv': -28.375,
+ 'ATSC4dv': -144.4375,
+ 'ATSC5dv': -122.125,
+ 'ATSC6dv': 23.4375,
+ 'ATSC7dv': 81.0,
+ 'ATSC8dv': 0.0,
+ 'ATSC0d': 19.333333333333336,
+ 'ATSC1d': 12.777777777777779,
+ 'ATSC2d': 3.111111111111108,
+ 'ATSC3d': -13.555555555555559,
+ 'ATSC4d': -17.333333333333336,
+ 'ATSC5d': -14.666666666666668,
+ 'ATSC6d': 9.333333333333337,
+ 'ATSC7d': 10.66666666666667,
+ 'ATSC8d': 0.0,
+ 'ATSC0s': 61.43981481481481,
+ 'ATSC1s': -3.4673996913580236,
+ 'ATSC2s': 6.184220679012349,
+ 'ATSC3s': -1.3753858024691386,
+ 'ATSC4s': -9.669560185185206,
+ 'ATSC5s': -17.667824074074073,
+ 'ATSC6s': -10.311921296296289,
+ 'ATSC7s': 5.5879629629629735,
+ 'ATSC8s': 0.0,
+ 'ATSC0Z': 188.5,
+ 'ATSC1Z': 15.3125,
+ 'ATSC2Z': 114.6875,
+ 'ATSC3Z': 13.625,
+ 'ATSC4Z': -151.6875,
+ 'ATSC5Z': -221.125,
+ 'ATSC6Z': -50.3125,
+ 'ATSC7Z': 185.25,
+ 'ATSC8Z': 0.0,
+ 'ATSC0m': 889.6892378333333,
+ 'ATSC1m': 70.12755184027789,
+ 'ATSC2m': 551.8834603819446,
+ 'ATSC3m': 51.54076090277802,
+ 'ATSC4m': -712.4789795208333,
+ 'ATSC5m': -1047.3665955416666,
+ 'ATSC6m': -244.1833193958334,
+ 'ATSC7m': 885.6325024166663,
+ 'ATSC8m': 0.0,
+ 'ATSC0v': 1043.7159360880908,
+ 'ATSC1v': -206.65861744242875,
+ 'ATSC2v': 1060.3030270452648,
+ 'ATSC3v': -553.3984949497792,
+ 'ATSC4v': -464.2313979430995,
+ 'ATSC5v': -978.5212886026682,
+ 'ATSC6v': -501.7056088010689,
+ 'ATSC7v': 1122.3544126497345,
+ 'ATSC8v': 0.0,
+ 'ATSC0se': 2.5107113333333326,
+ 'ATSC1se': -0.26279397222222256,
+ 'ATSC2se': 0.7030541944444426,
+ 'ATSC3se': 0.2620389444444432,
+ 'ATSC4se': -1.127984750000004,
+ 'ATSC5se': -1.4131494999999996,
+ 'ATSC6se': -0.03567024999999585,
+ 'ATSC7se': 0.6191496666666703,
+ 'ATSC8se': 0.0,
+ 'ATSC0pe': 3.767199999999999,
+ 'ATSC1pe': -0.03420000000000079,
+ 'ATSC2pe': 1.1922999999999988,
+ 'ATSC3pe': 0.8545999999999991,
+ 'ATSC4pe': -2.4446999999999988,
+ 'ATSC5pe': -3.0519999999999987,
+ 'ATSC6pe': -0.1707999999999991,
+ 'ATSC7pe': 1.7711999999999986,
+ 'ATSC8pe': 0.0,
+ 'ATSC0are': 4.131333333333332,
+ 'ATSC1are': -0.20995555555555534,
+ 'ATSC2are': 1.2266777777777778,
+ 'ATSC3are': 0.8343777777777778,
+ 'ATSC4are': -2.4362333333333295,
+ 'ATSC5are': -3.018866666666664,
+ 'ATSC6are': -0.07993333333333524,
+ 'ATSC7are': 1.6182666666666632,
+ 'ATSC8are': 0.0,
+ 'ATSC0p': 4.6478462349525,
+ 'ATSC1p': -1.9928731119359373,
+ 'ATSC2p': 5.136984753136936,
+ 'ATSC3p': -4.162027909481875,
+ 'ATSC4p': -0.33842219680518765,
+ 'ATSC5p': -2.724747738836876,
+ 'ATSC6p': -2.264122891001062,
+ 'ATSC7p': 4.021285977447752,
+ 'ATSC8p': 0.0,
+ 'ATSC0i': 37.95851385545248,
+ 'ATSC1i': -36.3868298934984,
+ 'ATSC2i': 42.3440084284619,
+ 'ATSC3i': -30.650837563194305,
+ 'ATSC4i': 4.686816028732293,
+ 'ATSC5i': 3.9495018118256304,
+ 'ATSC6i': -12.237863495476052,
+ 'ATSC7i': 9.315947755422705,
+ 'ATSC8i': 0.0,
+ 'AATSC0c': 0.029784272184710272,
+ 'AATSC1c': -0.021021025420855665,
+ 'AATSC2c': 0.004634040678117637,
+ 'AATSC3c': 0.000405635025958348,
+ 'AATSC4c': 0.00016647711331270235,
+ 'AATSC5c': -0.0020389918486685018,
+ 'AATSC6c': 0.00019501555870827665,
+ 'AATSC7c': 0.0007805943478065106,
+ 'AATSC8c': &lt;mordred.error.Missing at 0x14c79cd00&gt;,
+ 'AATSC0dv': 5.270833333333333,
+ 'AATSC1dv': 2.6225,
+ 'AATSC2dv': 1.434593023255814,
+ 'AATSC3dv': -0.6168478260869565,
+ 'AATSC4dv': -2.5339912280701755,
+ 'AATSC5dv': -2.9077380952380953,
+ 'AATSC6dv': 0.6009615384615384,
+ 'AATSC7dv': 3.375,
+ 'AATSC8dv': &lt;mordred.error.Missing at 0x14c79cd90&gt;,
+ 'AATSC0d': 0.8055555555555557,
+ 'AATSC1d': 0.5111111111111112,
+ 'AATSC2d': 0.07235142118863042,
+ 'AATSC3d': -0.29468599033816434,
+ 'AATSC4d': -0.304093567251462,
+ 'AATSC5d': -0.34920634920634924,
+ 'AATSC6d': 0.2393162393162394,
+ 'AATSC7d': 0.4444444444444446,
+ 'AATSC8d': &lt;mordred.error.Missing at 0x14c79cdc0&gt;,
+ 'AATSC0s': 2.559992283950617,
+ 'AATSC1s': -0.13869598765432095,
+ 'AATSC2s': 0.14381908555842673,
+ 'AATSC3s': -0.02989969135802475,
+ 'AATSC4s': -0.1696414067576352,
+ 'AATSC5s': -0.4206624779541446,
+ 'AATSC6s': -0.2644082383665715,
+ 'AATSC7s': 0.23283179012345723,
+ 'AATSC8s': &lt;mordred.error.Missing at 0x14c79ce20&gt;,
+ 'AATSC0Z': 7.854166666666667,
+ 'AATSC1Z': 0.6125,
+ 'AATSC2Z': 2.667151162790698,
+ 'AATSC3Z': 0.296195652173913,
+ 'AATSC4Z': -2.661184210526316,
+ 'AATSC5Z': -5.2648809523809526,
+ 'AATSC6Z': -1.2900641025641026,
+ 'AATSC7Z': 7.71875,
+ 'AATSC8Z': &lt;mordred.error.Missing at 0x14c79ce80&gt;,
+ 'AATSC0m': 37.07038490972222,
+ 'AATSC1m': 2.8051020736111156,
+ 'AATSC2m': 12.834499078649873,
+ 'AATSC3m': 1.1204513239734353,
+ 'AATSC4m': -12.499631219663742,
+ 'AATSC5m': -24.937299893849204,
+ 'AATSC6m': -6.261110753739318,
+ 'AATSC7m': 36.90135426736109,
+ 'AATSC8m': &lt;mordred.error.Missing at 0x14c79cee0&gt;,
+ 'AATSC0v': 43.48816400367045,
+ 'AATSC1v': -8.26634469769715,
+ 'AATSC2v': 24.658209931285228,
+ 'AATSC3v': -12.030402064125635,
+ 'AATSC4v': -8.144410490229816,
+ 'AATSC5v': -23.298125919111147,
+ 'AATSC6v': -12.864246379514586,
+ 'AATSC7v': 46.76476719373894,
+ 'AATSC8v': &lt;mordred.error.Missing at 0x14c79cf40&gt;,
+ 'AATSC0se': 0.1046129722222222,
+ 'AATSC1se': -0.010511758888888903,
+ 'AATSC2se': 0.016350097545219596,
+ 'AATSC3se': 0.005696498792270505,
+ 'AATSC4se': -0.019789206140350946,
+ 'AATSC5se': -0.03364641666666666,
+ 'AATSC6se': -0.0009146217948716884,
+ 'AATSC7se': 0.025797902777777926,
+ 'AATSC8se': &lt;mordred.error.Missing at 0x14c79cfa0&gt;,
+ 'AATSC0pe': 0.15696666666666662,
+ 'AATSC1pe': -0.0013680000000000317,
+ 'AATSC2pe': 0.027727906976744158,
+ 'AATSC3pe': 0.0185782608695652,
+ 'AATSC4pe': -0.042889473684210505,
+ 'AATSC5pe': -0.07266666666666663,
+ 'AATSC6pe': -0.0043794871794871565,
+ 'AATSC7pe': 0.07379999999999994,
+ 'AATSC8pe': &lt;mordred.error.Missing at 0x14c79d000&gt;,
+ 'AATSC0are': 0.17213888888888884,
+ 'AATSC1are': -0.008398222222222213,
+ 'AATSC2are': 0.02852739018087855,
+ 'AATSC3are': 0.018138647342995168,
+ 'AATSC4are': -0.04274093567251455,
+ 'AATSC5are': -0.07187777777777772,
+ 'AATSC6are': -0.0020495726495726985,
+ 'AATSC7are': 0.06742777777777763,
+ 'AATSC8are': &lt;mordred.error.Missing at 0x14c79d060&gt;,
+ 'AATSC0p': 0.19366025978968748,
+ 'AATSC1p': -0.0797149244774375,
+ 'AATSC2p': 0.11946476170085897,
+ 'AATSC3p': -0.09047886759743207,
+ 'AATSC4p': -0.005937231522898029,
+ 'AATSC5p': -0.06487494616278276,
+ 'AATSC6p': -0.05805443310259133,
+ 'AATSC7p': 0.16755358239365634,
+ 'AATSC8p': &lt;mordred.error.Missing at 0x14c79d0c0&gt;,
+ 'AATSC0i': 1.5816047439771868,
+ 'AATSC1i': -1.455473195739936,
+ 'AATSC2i': 0.9847443820572535,
+ 'AATSC3i': -0.6663225557216154,
+ 'AATSC4i': 0.08222484260933847,
+ 'AATSC5i': 0.09403575742441977,
+ 'AATSC6i': -0.3137913716788731,
+ 'AATSC7i': 0.38816448980927937,
+ 'AATSC8i': &lt;mordred.error.Missing at 0x14c79d120&gt;,
+ 'MATS1c': -0.7057760314064947,
+ 'MATS2c': 0.15558683621272162,
+ 'MATS3c': 0.013619101499031437,
+ 'MATS4c': 0.005589430296643717,
+ 'MATS5c': -0.06845867631156072,
+ 'MATS6c': 0.006547601952428695,
+ 'MATS7c': 0.026208273378834756,
+ 'MATS8c': &lt;mordred.error.Missing at 0x14c79cd00&gt;,
+ 'MATS1dv': 0.4975494071146245,
+ 'MATS2dv': 0.27217575144774336,
+ 'MATS3dv': -0.11703041759752535,
+ 'MATS4dv': -0.4807572290409819,
+ 'MATS5dv': -0.5516657255787691,
+ 'MATS6dv': 0.11401641836424445,
+ 'MATS7dv': 0.6403162055335968,
+ 'MATS8dv': &lt;mordred.error.Missing at 0x14c79cd90&gt;,
+ 'MATS1d': 0.6344827586206897,
+ 'MATS2d': 0.08981555733761017,
+ 'MATS3d': -0.36581709145427294,
+ 'MATS4d': -0.37749546279491836,
+ 'MATS5d': -0.4334975369458128,
+ 'MATS6d': 0.297082228116711,
+ 'MATS7d': 0.5517241379310346,
+ 'MATS8d': &lt;mordred.error.Missing at 0x14c79cdc0&gt;,
+ 'MATS1s': -0.054178283475246766,
+ 'MATS2s': 0.056179499625867255,
+ 'MATS3s': -0.011679602140004545,
+ 'MATS4s': -0.06626637424697318,
+ 'MATS5s': -0.1643217757301097,
+ 'MATS6s': -0.10328477942071485,
+ 'MATS7s': 0.09095019214829345,
+ 'MATS8s': &lt;mordred.error.Missing at 0x14c79ce20&gt;,
+ 'MATS1Z': 0.07798408488063661,
+ 'MATS2Z': 0.33958423292825857,
+ 'MATS3Z': 0.03771191327413216,
+ 'MATS4Z': -0.3388245148680721,
+ 'MATS5Z': -0.6703296703296704,
+ 'MATS6Z': -0.16425219342991226,
+ 'MATS7Z': 0.9827586206896551,
+ 'MATS8Z': &lt;mordred.error.Missing at 0x14c79ce80&gt;,
+ 'MATS1m': 0.07566962362118444,
+ 'MATS2m': 0.3462197414433603,
+ 'MATS3m': 0.03022497140782537,
+ 'MATS4m': -0.337186442765679,
+ 'MATS5m': -0.6727014017949691,
+ 'MATS6m': -0.1688979159236422,
+ 'MATS7m': 0.9954402781958491,
+ 'MATS8m': &lt;mordred.error.Missing at 0x14c79cee0&gt;,
+ 'MATS1v': -0.19008263252961108,
+ 'MATS2v': 0.567009679442987,
+ 'MATS3v': -0.2766362374624566,
+ 'MATS4v': -0.18727878439619616,
+ 'MATS5v': -0.5357348706913624,
+ 'MATS6v': -0.2958102894026253,
+ 'MATS7v': 1.0753447119494846,
+ 'MATS8v': &lt;mordred.error.Missing at 0x14c79cf40&gt;,
+ 'MATS1se': -0.10048236528983702,
+ 'MATS2se': 0.1562913011446439,
+ 'MATS3se': 0.05445308235932559,
+ 'MATS4se': -0.18916589138022089,
+ 'MATS5se': -0.32162757593000874,
+ 'MATS6se': -0.008742909941692698,
+ 'MATS7se': 0.2466032866648431,
+ 'MATS8se': &lt;mordred.error.Missing at 0x14c79cfa0&gt;,
+ 'MATS1pe': -0.008715226162667438,
+ 'MATS2pe': 0.17664837742669887,
+ 'MATS3pe': 0.1183580008679032,
+ 'MATS4pe': -0.27323937365179773,
+ 'MATS5pe': -0.46294330006370765,
+ 'MATS6pe': -0.027900746524658047,
+ 'MATS7pe': 0.47016351667020573,
+ 'MATS8pe': &lt;mordred.error.Missing at 0x14c79d000&gt;,
+ 'MATS1are': -0.0487874778118444,
+ 'MATS2are': 0.16572309932412913,
+ 'MATS3are': 0.10537216465190032,
+ 'MATS4are': -0.24829331680014916,
+ 'MATS5are': -0.41755688236243327,
+ 'MATS6are': -0.011906505629274998,
+ 'MATS7are': 0.39170566403098195,
+ 'MATS8are': &lt;mordred.error.Missing at 0x14c79d060&gt;,
+ 'MATS1p': -0.411622521646965,
+ 'MATS2p': 0.6168780411148687,
+ 'MATS3p': -0.4672041011185823,
+ 'MATS4p': -0.030657975618465994,
+ 'MATS5p': -0.3349935925586184,
+ 'MATS6p': -0.2997746319541122,
+ 'MATS7p': 0.8651934195256029,
+ 'MATS8p': &lt;mordred.error.Missing at 0x14c79d0c0&gt;,
+ 'MATS1i': -0.920250904205008,
+ 'MATS2i': 0.6226235636983254,
+ 'MATS3i': -0.421295243491775,
+ 'MATS4i': 0.0519882372144203,
+ 'MATS5i': 0.05945591512829716,
+ 'MATS6i': -0.19840062624609786,
+ 'MATS7i': 0.2454244597377601,
+ 'MATS8i': &lt;mordred.error.Missing at 0x14c79d120&gt;,
+ 'GATS1c': 1.8170617371551947,
+ 'GATS2c': 1.114642951731469,
+ 'GATS3c': 1.278260063585561,
+ 'GATS4c': 1.070652466366404,
+ 'GATS5c': 1.018518433544571,
+ 'GATS6c': 0.40296698268121167,
+ 'GATS7c': 0.1801320668919547,
+ 'GATS8c': &lt;mordred.error.Missing at 0x14c79c880&gt;,
+ 'GATS1dv': 0.32,
+ 'GATS2dv': 0.7145877378435518,
+ 'GATS3dv': 0.9901185770750989,
+ 'GATS4dv': 1.5789473684210527,
+ 'GATS5dv': 1.4696969696969697,
+ 'GATS6dv': 0.7738927738927739,
+ 'GATS7dv': 0.4090909090909091,
+ 'GATS8dv': &lt;mordred.error.Missing at 0x14c79d180&gt;,
+ 'GATS1d': 0.5472413793103448,
+ 'GATS2d': 1.1481555733761026,
+ 'GATS3d': 1.5646551724137931,
+ 'GATS4d': 1.3044464609800364,
+ 'GATS5d': 1.3312807881773399,
+ 'GATS6d': 0.2745358090185676,
+ 'GATS7d': 0.0,
+ 'GATS8d': &lt;mordred.error.Missing at 0x14c79d1e0&gt;,
+ 'GATS1s': 0.5257538994800693,
+ 'GATS2s': 0.532989399862964,
+ 'GATS3s': 0.9426569211061713,
+ 'GATS4s': 1.6342242087019976,
+ 'GATS5s': 1.0973013122059916,
+ 'GATS6s': 0.9518730835888548,
+ 'GATS7s': 0.8422876949740035,
+ 'GATS8s': &lt;mordred.error.Missing at 0x14c79d240&gt;,
+ 'GATS1Z': 0.656445623342175,
+ 'GATS2Z': 0.5788662019616311,
+ 'GATS3Z': 0.7466843501326261,
+ 'GATS4Z': 1.3432453813579042,
+ 'GATS5Z': 1.5963748894783378,
+ 'GATS6Z': 1.2248520710059172,
+ 'GATS7Z': 0.37367374005305043,
+ 'GATS8Z': &lt;mordred.error.Missing at 0x14c79d2a0&gt;,
+ 'GATS1m': 0.6650575837929187,
+ 'GATS2m': 0.5730793268761836,
+ 'GATS3m': 0.7568764717103909,
+ 'GATS4m': 1.3326362849603726,
+ 'GATS5m': 1.5983335295294028,
+ 'GATS6m': 1.2335914195087874,
+ 'GATS7m': 0.36310374195851214,
+ 'GATS8m': &lt;mordred.error.Missing at 0x14c79d300&gt;,
+ 'GATS1v': 1.142857959211769,
+ 'GATS2v': 0.3243970620195643,
+ 'GATS3v': 1.2438485710695468,
+ 'GATS4v': 1.0125857332151786,
+ 'GATS5v': 1.4590107933198735,
+ 'GATS6v': 1.397647595047046,
+ 'GATS7v': 0.11493111517211142,
+ 'GATS8v': &lt;mordred.error.Missing at 0x14c79d360&gt;,
+ 'GATS1se': 0.7500514674858414,
+ 'GATS2se': 0.6869740507339835,
+ 'GATS3se': 0.8251864611011965,
+ 'GATS4se': 1.5655700034852778,
+ 'GATS5se': 1.2745474257361855,
+ 'GATS6se': 0.8072800943469469,
+ 'GATS7se': 0.6457435900635862,
+ 'GATS8se': &lt;mordred.error.Missing at 0x14c79d3c0&gt;,
+ 'GATS1pe': 0.6655176258228925,
+ 'GATS2pe': 0.72654849447125,
+ 'GATS3pe': 0.6926961669144192,
+ 'GATS4pe': 1.5477868992932533,
+ 'GATS5pe': 1.409313725490196,
+ 'GATS6pe': 0.8912842837773818,
+ 'GATS7pe': 0.5867222340199617,
+ 'GATS8pe': &lt;mordred.error.Missing at 0x14c79d420&gt;,
+ 'GATS1are': 0.7208312086493462,
+ 'GATS2are': 0.7447826405124758,
+ 'GATS3are': 0.7260973051476519,
+ 'GATS4are': 1.549237321963938,
+ 'GATS5are': 1.3679098757463284,
+ 'GATS6are': 0.8379864326411041,
+ 'GATS7are': 0.5880365499435211,
+ 'GATS8are': &lt;mordred.error.Missing at 0x14c79d480&gt;,
+ 'GATS1p': 1.4989084057718611,
+ 'GATS2p': 0.270942721094218,
+ 'GATS3p': 1.5825492332649038,
+ 'GATS4p': 0.875273862901861,
+ 'GATS5p': 1.2690959048583463,
+ 'GATS6p': 1.3013116500149522,
+ 'GATS7p': 0.005653982434448177,
+ 'GATS8p': &lt;mordred.error.Missing at 0x14c79d4e0&gt;,
+ 'GATS1i': 2.2259555032244336,
+ 'GATS2i': 0.5023203892310287,
+ 'GATS3i': 1.6532332404616255,
+ 'GATS4i': 0.8820733708954345,
+ 'GATS5i': 0.916063172785491,
+ 'GATS6i': 0.870497995274731,
+ 'GATS7i': 1.455864480211079e-05,
+ 'GATS8i': &lt;mordred.error.Missing at 0x14c79d540&gt;,
+ 'BCUTc-1h': 0.508801028593496,
+ 'BCUTc-1l': -0.441541559363848,
+ 'BCUTdv-1h': 6.023837127408669,
+ 'BCUTdv-1l': 0.996016858317193,
+ 'BCUTd-1h': 3.330902038701082,
+ 'BCUTd-1l': 0.9772509300420725,
+ 'BCUTs-1h': 7.009369872445504,
+ 'BCUTs-1l': 1.4017692035903715,
+ 'BCUTZ-1h': 8.023847065898149,
+ 'BCUTZ-1l': 5.758121866125204,
+ 'BCUTm-1h': 16.01125751971541,
+ 'BCUTm-1l': 11.783410490104144,
+ 'BCUTv-1h': 20.80022836876684,
+ 'BCUTv-1l': 14.701775845996998,
+ 'BCUTse-1h': 3.709254934413759,
+ 'BCUTse-1l': 2.4762050864813285,
+ 'BCUTpe-1h': 3.4975333255962413,
+ 'BCUTpe-1l': 2.2830274435141105,
+ 'BCUTare-1h': 3.5505178176331214,
+ 'BCUTare-1l': 2.238808132023029,
+ 'BCUTp-1h': 1.942217835359535,
+ 'BCUTp-1l': 0.7436548856994604,
+ 'BCUTi-1h': 14.565371975573356,
+ 'BCUTi-1l': 11.036008848605398,
+ 'BalabanJ': 2.226351040051458,
+ 'SpAbs_DzZ': 45.61729150216757,
+ 'SpMax_DzZ': 23.33924607289872,
+ 'SpDiam_DzZ': 31.55340874121671,
+ 'SpAD_DzZ': 46.52543092130765,
+ 'SpMAD_DzZ': 3.3232450658076895,
+ 'LogEE_DzZ': 23.339246073448013,
+ 'SM1_DzZ': 1.0714285714285716,
+ 'VE1_DzZ': 3.6830273368034154,
+ 'VE2_DzZ': 0.263073381200244,
+ 'VE3_DzZ': 1.6402072964848915,
+ 'VR1_DzZ': 62.207769114045036,
+ 'VR2_DzZ': 4.443412079574645,
+ 'VR3_DzZ': 4.46695213393682,
+ 'SpAbs_Dzm': 45.63760499172331,
+ 'SpMax_Dzm': 23.34803746407596,
+ 'SpDiam_Dzm': 31.56485028241015,
+ 'SpAD_Dzm': 46.543427517848194,
+ 'SpMAD_Dzm': 3.324530536989157,
+ 'LogEE_Dzm': 23.348037464620237,
+ 'SM1_Dzm': 1.0685318721261376,
+ 'VE1_Dzm': 3.683016751594227,
+ 'VE2_Dzm': 0.26307262511387336,
+ 'VE3_Dzm': 1.6402044224295476,
+ 'VR1_Dzm': 62.208938413708175,
+ 'VR2_Dzm': 4.443495600979156,
+ 'VR3_Dzm': 4.4669709304423115,
+ 'SpAbs_Dzv': 69.61925384788265,
+ 'SpMax_Dzv': 33.77198318939643,
+ 'SpDiam_Dzv': 45.32511712379403,
+ 'SpAD_Dzv': 67.93974313694727,
+ 'SpMAD_Dzv': 4.8528387954962335,
+ 'LogEE_Dzv': 33.771983189396444,
+ 'SM1_Dzv': -2.0752874690897665,
+ 'VE1_Dzv': 3.6698099995037214,
+ 'VE2_Dzv': 0.26212928567883725,
+ 'VE3_Dzv': 1.6366121260951225,
+ 'VR1_Dzv': 63.31367307785813,
+ 'VR2_Dzv': 4.522405219847009,
+ 'VR3_Dzv': 4.484573546835298,
+ 'SpAbs_Dzse': 45.74392563259963,
+ 'SpMax_Dzse': 23.39646058847029,
+ 'SpDiam_Dzse': 31.62901749915784,
+ 'SpAD_Dzse': 46.641772380813975,
+ 'SpMAD_Dzse': 3.331555170058141,
+ 'LogEE_Dzse': 23.39646058898808,
+ 'SM1_Dzse': 1.0580415728862167,
+ 'VE1_Dzse': 3.6829466593206965,
+ 'VE2_Dzse': 0.2630676185229069,
+ 'VE3_Dzse': 1.6401853910361988,
+ 'VR1_Dzse': 62.213289749927085,
+ 'VR2_Dzse': 4.443806410709078,
+ 'VR3_Dzse': 4.467040875118354,
+ 'SpAbs_Dzpe': 44.73491903952384,
+ 'SpMax_Dzpe': 22.938454533190782,
+ 'SpDiam_Dzpe': 31.023352783437208,
+ 'SpAD_Dzpe': 45.71088353744294,
+ 'SpMAD_Dzpe': 3.2650631098173526,
+ 'LogEE_Dzpe': 22.938454534021453,
+ 'SM1_Dzpe': 1.1621787025703796,
+ 'VE1_Dzpe': 3.6836057662372474,
+ 'VE2_Dzpe': 0.2631146975883748,
+ 'VE3_Dzpe': 1.6403643368660072,
+ 'VR1_Dzpe': 62.169725779431666,
+ 'VR2_Dzpe': 4.440694698530833,
+ 'VR3_Dzpe': 4.466340394074518,
+ 'SpAbs_Dzare': 43.479156264856684,
+ 'SpMax_Dzare': 22.37647088450874,
+ 'SpDiam_Dzare': 30.28601000420825,
+ 'SpAD_Dzare': 44.5652132574174,
+ 'SpMAD_Dzare': 3.183229518386957,
+ 'LogEE_Dzare': 22.376470885997485,
+ 'SM1_Dzare': 1.3140995812005585,
+ 'VE1_Dzare': 3.6843866844228965,
+ 'VE2_Dzare': 0.2631704774587783,
+ 'VE3_Dzare': 1.6405763127044197,
+ 'VR1_Dzare': 62.104883020946765,
+ 'VR2_Dzare': 4.436063072924769,
+ 'VR3_Dzare': 4.4652968540465885,
+ 'SpAbs_Dzp': 82.06014752384527,
+ 'SpMax_Dzp': 38.91141586121984,
+ 'SpDiam_Dzp': 52.07065771310336,
+ 'SpAD_Dzp': 78.74617907821332,
+ 'SpMAD_Dzp': 5.624727077015237,
+ 'LogEE_Dzp': 38.91141586121984,
+ 'SM1_Dzp': -4.237315801405576,
+ 'VE1_Dzp': 3.665309952133242,
+ 'VE2_Dzp': 0.261807853723803,
+ 'VE3_Dzp': 1.6353851392251826,
+ 'VR1_Dzp': 63.83261841594284,
+ 'VR2_Dzp': 4.559472743995917,
+ 'VR3_Dzp': 4.4927365567608435,
+ 'SpAbs_Dzi': 42.33224539509504,
+ 'SpMax_Dzi': 21.743897964290348,
+ 'SpDiam_Dzi': 29.406607547891483,
+ 'SpAD_Dzi': 43.309614969496806,
+ 'SpMAD_Dzi': 3.093543926392629,
+ 'LogEE_Dzi': 21.743897967094043,
+ 'SM1_Dzi': 1.247266713587194,
+ 'VE1_Dzi': 3.685606775628119,
+ 'VE2_Dzi': 0.2632576268305799,
+ 'VE3_Dzi': 1.6409074096648126,
+ 'VR1_Dzi': 62.130269168024924,
+ 'VR2_Dzi': 4.437876369144638,
+ 'VR3_Dzi': 4.465705533023258,
+ 'BertzCT': 616.5285919942219,
+ 'nBonds': 25,
+ 'nBondsO': 15,
+ 'nBondsS': 13,
+ 'nBondsD': 2,
+ 'nBondsT': 0,
+ 'nBondsA': 10,
+ 'nBondsM': 12,
+ 'nBondsKS': 21,
+ 'nBondsKD': 4,
+ 'RNCG': 0.20477820150858778,
+ 'RPCG': 0.20717658230579564,
+ 'C1SP1': 0,
+ 'C2SP1': 0,
+ 'C1SP2': 2,
+ 'C2SP2': 1,
+ 'C3SP2': 0,
+ 'C1SP3': 0,
+ 'C2SP3': 0,
+ 'C3SP3': 0,
+ 'C4SP3': 0,
+ 'HybRatio': 0.375,
+ 'FCSP3': 0.375,
+ 'Xch-3d': 0.0,
+ 'Xch-4d': 0.0,
+ 'Xch-5d': 0.09622504486493763,
+ 'Xch-6d': 0.24437319301308577,
+ 'Xch-7d': 0.5141678985825737,
+ 'Xch-3dv': 0.0,
+ 'Xch-4dv': 0.0,
+ 'Xch-5dv': 0.028867513459481287,
+ 'Xch-6dv': 0.06871121467657999,
+ 'Xch-7dv': 0.11189766609447724,
+ 'Xc-3d': 1.2526964939140826,
+ 'Xc-4d': 0.0,
+ 'Xc-5d': 0.5999791246696204,
+ 'Xc-6d': 0.0,
+ 'Xc-3dv': 0.5450763175662043,
+ 'Xc-4dv': 0.0,
+ 'Xc-5dv': 0.14230801064325888,
+ 'Xc-6dv': 0.0,
+ 'Xpc-4d': 3.705282686564005,
+ 'Xpc-5d': 5.934886903808752,
+ 'Xpc-6d': 9.180826914822779,
+ 'Xpc-4dv': 1.1569690317434556,
+ 'Xpc-5dv': 1.4620837281571322,
+ 'Xpc-6dv': 1.8377934548131751,
+ 'Xp-0d': 10.455665446700477,
+ 'Xp-1d': 6.5365812602091875,
+ 'Xp-2d': 6.232306058679036,
+ 'Xp-3d': 5.877297755014281,
+ 'Xp-4d': 4.481843313399569,
+ 'Xp-5d': 3.12427422333721,
+ 'Xp-6d': 1.9704672305326136,
+ 'Xp-7d': 1.0544600321456803,
+ 'AXp-0d': 0.7468332461928913,
+ 'AXp-1d': 0.43577208401394585,
+ 'AXp-2d': 0.27096982863821895,
+ 'AXp-3d': 0.17809993197012972,
+ 'AXp-4d': 0.10671055508094211,
+ 'AXp-5d': 0.06647391964547254,
+ 'AXp-6d': 0.04283624414201334,
+ 'AXp-7d': 0.027748948214360008,
+ 'Xp-0dv': 8.182701232117184,
+ 'Xp-1dv': 4.107927642957933,
+ 'Xp-2dv': 3.233448965575619,
+ 'Xp-3dv': 2.3165128954882377,
+ 'Xp-4dv': 1.4711798853237625,
+ 'Xp-5dv': 0.867061889648703,
+ 'Xp-6dv': 0.41639574652854383,
+ 'Xp-7dv': 0.1738111306992107,
+ 'AXp-0dv': 0.5844786594369417,
+ 'AXp-1dv': 0.2738618428638622,
+ 'AXp-2dv': 0.14058473763372256,
+ 'AXp-3dv': 0.07019736046934054,
+ 'AXp-4dv': 0.03502809250770863,
+ 'AXp-5dv': 0.018448125311674533,
+ 'AXp-6dv': 0.009052081446272692,
+ 'AXp-7dv': 0.00457397712366344,
+ 'SZ': 17.0,
+ 'Sm': 16.16801265506619,
+ 'Sv': 15.17059149196011,
+ 'Sse': 24.75309541150765,
+ 'Spe': 24.094117647058827,
+ 'Sare': 24.512,
+ 'Sp': 15.587982035928146,
+ 'Si': 27.658173405681907,
+ 'MZ': 0.7083333333333334,
+ 'Mm': 0.6736671939610912,
+ 'Mv': 0.6321079788316712,
+ 'Mse': 1.0313789754794855,
+ 'Mpe': 1.0039215686274512,
+ 'Mare': 1.0213333333333334,
+ 'Mp': 0.649499251497006,
+ 'Mi': 1.1524238919034129,
+ 'SpAbs_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpMax_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpDiam_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpAD_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpMAD_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'LogEE_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SM1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VE1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VE2_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VE3_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VR1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VR2_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'VR3_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'DetourIndex': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpAbs_D': 75.7252150767091,
+ 'SpMax_D': 37.862607538354546,
+ 'SpDiam_D': 51.548373758998906,
+ 'SpAD_D': 75.7252150767091,
+ 'SpMAD_D': 5.40894393405065,
+ 'LogEE_D': 37.862607538354546,
+ 'VE1_D': 3.695035722110452,
+ 'VE2_D': 0.26393112300788946,
+ 'VE3_D': 1.6434624586635374,
+ 'VR1_D': 61.71972944897972,
+ 'VR2_D': 4.408552103498551,
+ 'VR3_D': 4.459075880583878,
+ 'NsLi': 0,
+ 'NssBe': 0,
+ 'NssssBe': 0,
+ 'NssBH': 0,
+ 'NsssB': 0,
+ 'NssssB': 0,
+ 'NsCH3': 3,
+ 'NdCH2': 0,
+ 'NssCH2': 0,
+ 'NtCH': 0,
+ 'NdsCH': 0,
+ 'NaaCH': 1,
+ 'NsssCH': 0,
+ 'NddC': 0,
+ 'NtsC': 0,
+ 'NdssC': 0,
+ 'NaasC': 0,
+ 'NaaaC': 2,
+ 'NssssC': 0,
+ 'NsNH3': 0,
+ 'NsNH2': 0,
+ 'NssNH2': 0,
+ 'NdNH': 0,
+ 'NssNH': 0,
+ 'NaaNH': 0,
+ 'NtN': 0,
+ 'NsssNH': 0,
+ 'NdsN': 0,
+ 'NaaN': 1,
+ 'NsssN': 0,
+ 'NddsN': 0,
+ 'NaasN': 3,
+ 'NssssN': 0,
+ 'NsOH': 0,
+ 'NdO': 2,
+ 'NssO': 0,
+ 'NaaO': 0,
+ 'NsF': 0,
+ 'NsSiH3': 0,
+ 'NssSiH2': 0,
+ 'NsssSiH': 0,
+ 'NssssSi': 0,
+ 'NsPH2': 0,
+ 'NssPH': 0,
+ 'NsssP': 0,
+ 'NdsssP': 0,
+ 'NsssssP': 0,
+ 'NsSH': 0,
+ 'NdS': 0,
+ 'NssS': 0,
+ 'NaaS': 0,
+ 'NdssS': 0,
+ 'NddssS': 0,
+ 'NsCl': 0,
+ 'NsGeH3': 0,
+ 'NssGeH2': 0,
+ 'NsssGeH': 0,
+ 'NssssGe': 0,
+ 'NsAsH2': 0,
+ 'NssAsH': 0,
+ 'NsssAs': 0,
+ 'NsssdAs': 0,
+ 'NsssssAs': 0,
+ 'NsSeH': 0,
+ 'NdSe': 0,
+ 'NssSe': 0,
+ 'NaaSe': 0,
+ 'NdssSe': 0,
+ 'NddssSe': 0,
+ 'NsBr': 0,
+ 'NsSnH3': 0,
+ 'NssSnH2': 0,
+ 'NsssSnH': 0,
+ 'NssssSn': 0,
+ 'NsI': 0,
+ 'NsPbH3': 0,
+ 'NssPbH2': 0,
+ 'NsssPbH': 0,
+ 'NssssPb': 0,
+ 'SsLi': 0,
+ 'SssBe': 0,
+ 'SssssBe': 0,
+ 'SssBH': 0,
+ 'SsssB': 0,
+ 'SssssB': 0,
+ 'SsCH3': 4.773236961451246,
+ 'SdCH2': 0,
+ 'SssCH2': 0,
+ 'StCH': 0,
+ 'SdsCH': 0,
+ 'SaaCH': 1.5193518518518518,
+ 'SsssCH': 0,
+ 'SddC': 0,
+ 'StsC': 0,
+ 'SdssC': 0,
+ 'SaasC': 0,
+ 'SaaaC': 0.8566666666666671,
+ 'SssssC': 0,
+ 'SsNH3': 0,
+ 'SsNH2': 0,
+ 'SssNH2': 0,
+ 'SdNH': 0,
+ 'SssNH': 0,
+ 'SaaNH': 0,
+ 'StN': 0,
+ 'SsssNH': 0,
+ 'SdsN': 0,
+ 'SaaN': 3.993148148148148,
+ 'SsssN': 0,
+ ...}</code></pre>
+</div>
+</div>
+<p>RDKit and Mordred offers a comprehensive toolkit for the calculation of chemical descriptors, making it an invaluable resource for researchers and professionals in the field of cheminformatics and beyond. Mordred’s wide range of descriptors, ease of use, and integration with RDKit facilitates the exploration and prediction of chemical properties, aiding in the discovery and development of new compounds and materials.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Cheminformatics and RDKit basics</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="pagination-link">
+        <span class="nav-page-text">Fingerprints</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

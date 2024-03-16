@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../tutorials/lecture_05/02_rdkit_descriptors.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,9 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Home
-      </li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_05/01_rdkit_basics.html">Cheminformatics and RDKit basics</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -223,21 +256,382 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 05</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cheminformatics and RDKit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descriptors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fingerprints</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-cheminformatics" id="toc-what-is-cheminformatics" class="nav-link active" data-scroll-target="#what-is-cheminformatics">What is Cheminformatics?</a></li>
+  <li><a href="#rdkit-a-powerful-cheminformatics-toolkit" id="toc-rdkit-a-powerful-cheminformatics-toolkit" class="nav-link" data-scroll-target="#rdkit-a-powerful-cheminformatics-toolkit">RDKit: A Powerful Cheminformatics Toolkit</a></li>
+  <li><a href="#getting-started-with-rdkit-in-python" id="toc-getting-started-with-rdkit-in-python" class="nav-link" data-scroll-target="#getting-started-with-rdkit-in-python">Getting Started with RDKit in Python</a></li>
+  <li><a href="#learning-resources" id="toc-learning-resources" class="nav-link" data-scroll-target="#learning-resources">Learning Resources</a></li>
+  <li><a href="#creating-a-molecule-rwmol-not-recommended-but-motivating-examples" id="toc-creating-a-molecule-rwmol-not-recommended-but-motivating-examples" class="nav-link" data-scroll-target="#creating-a-molecule-rwmol-not-recommended-but-motivating-examples">Creating a molecule (RWMol, not recommended but motivating examples)</a></li>
+  <li><a href="#simplified-molecular-input-line-entry-system-smiles" id="toc-simplified-molecular-input-line-entry-system-smiles" class="nav-link" data-scroll-target="#simplified-molecular-input-line-entry-system-smiles">Simplified Molecular Input Line Entry System (SMILES)</a></li>
+  <li><a href="#where-do-i-get-smiles-for-a-molecule-from" id="toc-where-do-i-get-smiles-for-a-molecule-from" class="nav-link" data-scroll-target="#where-do-i-get-smiles-for-a-molecule-from">Where do I get SMILES for a molecule from</a></li>
+  <li><a href="#canonicalization" id="toc-canonicalization" class="nav-link" data-scroll-target="#canonicalization">Canonicalization</a></li>
+  <li><a href="#export-to-different-formats" id="toc-export-to-different-formats" class="nav-link" data-scroll-target="#export-to-different-formats">Export to different formats</a></li>
+  <li><a href="#load-molecule-from-molfile" id="toc-load-molecule-from-molfile" class="nav-link" data-scroll-target="#load-molecule-from-molfile">Load molecule from Molfile</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cheminformatics and RDKit: An Introduction</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-cheminformatics" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-cheminformatics">What is Cheminformatics?</h2>
+<p>Cheminformatics is a interdisciplinary field that combines chemistry, computer science, and information technology. It involves the application of computational techniques to handle and analyze chemical data, such as molecular structures, properties, and reactions. Cheminformatics plays a crucial role in various areas of chemistry, including drug discovery, materials science, and environmental research.</p>
+<p>In the era of big data and high-throughput experimentation, cheminformatics has become an essential tool for chemists. It enables efficient data management, analysis, and visualization of large chemical datasets. Additionally, cheminformatics provides powerful methods for virtual screening, molecular modeling, and property prediction, accelerating the discovery process and reducing experimental costs.</p>
+</section>
+<section id="rdkit-a-powerful-cheminformatics-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="rdkit-a-powerful-cheminformatics-toolkit">RDKit: A Powerful Cheminformatics Toolkit</h2>
+<p>RDKit (The RDKit: Open-Source Cheminformatics Software) is a popular open-source cheminformatics toolkit written in C++ and Python. It provides a wide range of functionalities for working with chemical data, including:</p>
+<ul>
+<li>Reading and writing molecular file formats (e.g., SMILES, MOL, SDF)</li>
+<li>Substructure searching and molecular fingerprinting</li>
+<li>2D and 3D molecular operations (e.g., conformer generation, energy minimization)</li>
+<li>Descriptors calculation and property prediction</li>
+<li>Reaction handling and transformation</li>
+<li>Visualization and depiction of molecules</li>
+</ul>
+</section>
+<section id="getting-started-with-rdkit-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-with-rdkit-in-python">Getting Started with RDKit in Python</h2>
+<p>To start using RDKit in Python, you need to install the <code>rdkit</code> package (the code has been tested with <code>rdkit=2023.9.5</code>). You can install it using <code>pip</code> or <code>conda</code> package managers, here is how you can do it with <code>pip</code>:</p>
+<pre><code>pip install rdkit</code></pre>
+<p>Once installed, you can import the RDKit modules in your Python scripts:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s a simple example that reads a SMILES string, generates a 2D molecular depiction, and displays it:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Draw</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a SMILES string</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'c1ccccc1'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a 2D depiction</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mol_image <span class="op">=</span> Draw.MolToImage(mol)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the image</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>mol_image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<p><img src="01_rdkit_basics_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>This is just a glimpse into the capabilities of RDKit. With its extensive documentation and active community, you can explore more advanced features and applications, such as virtual screening, QSAR modeling, and reaction transformation.</p>
+</section>
+<section id="learning-resources" class="level2">
+<h2 class="anchored" data-anchor-id="learning-resources">Learning Resources</h2>
+<p>If you’re new to cheminformatics and RDKit, here are some useful resources to get you started:</p>
+<ul>
+<li>RDKit Documentation (-&gt; Getting Started): <a href="https://www.rdkit.org/docs/GettingStartedInPython.html">https://www.rdkit.org/docs/</a></li>
+<li>RDKit Tutorials: <a href="https://greglandrum.github.io/rdkit-blog/">https://greglandrum.github.io/rdkit-blog/</a></li>
+</ul>
+<p>With the power of cheminformatics and RDKit, you can unlock new possibilities in chemical research and discovery.</p>
+</section>
+<section id="creating-a-molecule-rwmol-not-recommended-but-motivating-examples" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-molecule-rwmol-not-recommended-but-motivating-examples">Creating a molecule (RWMol, not recommended but motivating examples)</h2>
+<p>Although it’s not recommended for production code, you can create an ethanol molecule from scratch using RWMol:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import rdkit </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty molecule</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.RWMol()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms to the molecule</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">6</span>))  <span class="co"># Carbon atom</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">6</span>))  <span class="co"># Carbon atom</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">8</span>))  <span class="co"># Oxygen atom</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>mol.AddAtom(Chem.Atom(<span class="dv">1</span>))  <span class="co"># Hydrogen atom</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds between atoms</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">1</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between two carbon atoms</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">2</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and oxygen atoms</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">3</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">4</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">0</span>, <span class="dv">5</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">6</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">1</span>, <span class="dv">7</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>mol.AddBond(<span class="dv">2</span>, <span class="dv">8</span>, Chem.BondType.SINGLE)  <span class="co"># Single bond between carbon and hydrogen atoms</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># # Convert the RWmol to an RDKit molecule</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># rdkit_mol = mol.toRWMol()</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>mol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<p><img src="01_rdkit_basics_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Within RDKit, molecules are represented as <code>mol</code> objects.</p>
+<p>It’s generally more convenient to use SMILES or other file formats to create <code>mol</code> objects. This was just to show you how cumbersome creating molecules from scratch would be.</p>
+</section>
+<section id="simplified-molecular-input-line-entry-system-smiles" class="level2">
+<h2 class="anchored" data-anchor-id="simplified-molecular-input-line-entry-system-smiles">Simplified Molecular Input Line Entry System (SMILES)</h2>
+<p>Simplified Molecular Input Line Entry System (SMILES) is a linear notation system (plain text) used to represent molecular structures in a compact and human-readable form. It is widely used in computational chemistry, cheminformatics, and related fields.</p>
+<p>The SMILES notation provides a way to represent the connectivity and structural features of molecules using a linear sequence of characters, symbols, and numbers. It encodes information about the atoms, bonds, rings, aromaticity, and other molecular features in a standardized way. Here are some key features of SMILES:</p>
+<ul>
+<li><strong>Atom representation</strong>: Atoms are represented by their atomic symbols (e.g., C for carbon, N for nitrogen).</li>
+<li><strong>Bond representation</strong>: Bonds are represented by symbols indicating their order (single, double <code>=</code>, triple <code>#</code>, or aromatic).</li>
+<li><strong>Branching</strong>: Parentheses <code>()</code> are used to indicate branching in the molecular structure.</li>
+<li><strong>Ring notation</strong>: Rings are represented using numbers <code>1 ... 1</code> to indicate the atoms involved in the ring.</li>
+<li><strong>Stereochemistry</strong>: Specific notation is used to represent stereochemical information, such as chirality <code>@</code> and <code>@@</code> and double bond configurations <code>\ ... \</code> and <code>/ ... /</code>.</li>
+</ul>
+<p>More on the SMILES notation can be found in the <a href="http://opensmiles.org/opensmiles.html">OpenSMILES specification</a> and <a href="https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html">Daylight</a>.</p>
+<p>SMILES notation is widely used for storing and exchanging molecular information in databases, computational tools, and chemical software. It is a compact and efficient way to represent molecular structures, facilitating various tasks such as substructure searching, similarity calculations, and molecular property predictions.</p>
+<p>SMILES was invented in the late 1980s by <em>David Weininger</em>, a chemist working for the U.S. Environmental Protection Agency (EPA). The development of SMILES was motivated by the need for a simple and efficient way to represent and store chemical structures in computer databases. Prior to SMILES, other linear notations for chemical structures existed, such as the Wiswesser Line Notation (WLN) and the IUPAC nomenclature system. However, these systems were often complex, difficult to read, and not well-suited for computational purposes.</p>
+<p>In 1986, David Weininger published a paper titled “SMILES, a Chemical Language and Information System. 1. Introduction to Methodology and Encoding Rules” in the Journal of Chemical Information and Computer Sciences. In this paper, he introduced the SMILES notation and described the rules and algorithms for encoding and decoding molecular structures using this system. The key principles behind the design of SMILES were:</p>
+<ul>
+<li><strong>Simplicity</strong>: SMILES was designed to be easy for humans to read and write, as well as for computers to interpret and process.</li>
+<li><strong>Compactness</strong>: SMILES aimed to represent molecular structures in a concise and compact form, reducing storage requirements and facilitating data exchange.</li>
+<li><strong>Compatibility</strong>: SMILES was designed to be compatible with existing chemical information systems and databases, enabling seamless integration and data migration.</li>
+</ul>
+<p>After its initial publication, SMILES gained widespread adoption in the chemical informatics community due to its simplicity, versatility, and compatibility with various software tools and databases. It became a de facto standard for representing and exchanging molecular structures in computational chemistry and related fields.</p>
+<p>RDKit provides an easy way to create molecules from SMILES strings:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create molecule from SMILES</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CCO'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<p><img src="01_rdkit_basics_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="where-do-i-get-smiles-for-a-molecule-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-do-i-get-smiles-for-a-molecule-from">Where do I get SMILES for a molecule from</h2>
+<p>SMILES strings can be obtained from various sources, such as:</p>
+<ul>
+<li>Chemical databases (e.g., <a href="https://pubchem.ncbi.nlm.nih.gov">PubChem</a>, ChEMBL)</li>
+<li>Molecular drawing software (e.g., ChemDraw)</li>
+<li>Wikipedia in the panel on the right (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Aspirin">Aspirin</a>)</li>
+</ul>
+<p>Many online tools and resources are available for converting molecular structures to SMILES format.</p>
+</section>
+<section id="canonicalization" class="level2">
+<h2 class="anchored" data-anchor-id="canonicalization">Canonicalization</h2>
+<p>It’s important to note that the same molecular structure can be represented by different SMILES strings. For example, <code>c1ccccc1</code>, <code>C1=CC=CC=C1</code> and <code>c(c1)cccc1</code> represent the same benzene molecule.</p>
+<p>To ensure a unique and consistent representation of a molecular structure, RDKit provides a canonicalization function:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create molecule from SMILES</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'C1=CC=CC=C1'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get canonical SMILES</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>canonical_smiles <span class="op">=</span> Chem.MolToSmiles(mol)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>canonical_smiles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>'c1ccccc1'</code></pre>
+</div>
+</div>
+<p>Canonicalization is essential for tasks like searching and database indexing.</p>
+</section>
+<section id="export-to-different-formats" class="level2">
+<h2 class="anchored" data-anchor-id="export-to-different-formats">Export to different formats</h2>
+<p>RDKit supports various molecular file formats for input and output. You can export a molecule to different formats using the appropriate writer function:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create molecule from SMILES</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Export to different formats</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>mol_sdf <span class="op">=</span> Chem.MolToMolBlock(mol)  <span class="co"># SDF format</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mol_sdf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     RDKit          2D
+
+ 14 15  0  0  0  0  0  0  0  0999 V2000
+    2.7760    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2760    0.0000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3943    1.2135    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0323    0.7500    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0323   -0.7500    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3943   -1.2135    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7062   -2.6807    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1328   -3.1443    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4086   -3.6844    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8351   -3.2209    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9499   -4.2246    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1470   -1.7537    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.5736   -1.2902    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0967   -5.1517    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0
+  2  3  1  0
+  3  4  2  0
+  4  5  1  0
+  5  6  2  0
+  6  7  1  0
+  7  8  2  0
+  7  9  1  0
+  9 10  1  0
+ 10 11  2  0
+ 10 12  1  0
+ 12 13  1  0
+  9 14  1  0
+  6  2  1  0
+ 12  5  1  0
+M  END
+</code></pre>
+</div>
+</div>
+<p>And with 3D coordinates:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> AllChem <span class="co"># you need to import additional functionality for 3D</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create molecule from SMILES</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.AddHs(mol) <span class="co"># Adding explicit Hydrogen atoms (optional)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>AllChem.EmbedMolecule(mol)  <span class="co"># Needed for 3D coordinates</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>mol_sdf3d <span class="op">=</span> Chem.MolToMolBlock(mol)  <span class="co"># SDF format with 3D coordinates</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mol_sdf3d)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the molecule to a file</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"caffeine_3d.sdf"</span>, <span class="st">"w"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(mol_sdf3d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     RDKit          3D
+
+ 24 25  0  0  0  0  0  0  0  0999 V2000
+    3.1953    0.6830   -0.2178 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1441   -0.2991   -0.2633 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2143   -1.6078   -0.4670 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9789   -2.1554   -0.4293 N   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0983   -1.1675   -0.1950 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8334   -0.0022   -0.0912 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.1596    1.1816    0.1524 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7952    2.2561    0.2522 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.1774    1.2009    0.2853 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8632    0.0526    0.1792 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.1148    0.0834    0.3055 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2387   -1.1335   -0.0600 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.9586   -2.3736   -0.1765 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.9181    2.4300    0.5422 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1369    0.1530    0.1023 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3489    1.2163   -1.1683 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0147    1.4340    0.5966 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1673   -2.1340   -0.6388 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.3691   -3.2424    0.1880 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8324   -2.3053    0.5351 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.3874   -2.5573   -1.1632 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.7346    2.2735    1.2581 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.2819    2.7987   -0.4463 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2108    3.2151    0.9198 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0
+  2  3  1  0
+  3  4  2  0
+  4  5  1  0
+  5  6  2  0
+  6  7  1  0
+  7  8  2  0
+  7  9  1  0
+  9 10  1  0
+ 10 11  2  0
+ 10 12  1  0
+ 12 13  1  0
+  9 14  1  0
+  6  2  1  0
+ 12  5  1  0
+  1 15  1  0
+  1 16  1  0
+  1 17  1  0
+  3 18  1  0
+ 13 19  1  0
+ 13 20  1  0
+ 13 21  1  0
+ 14 22  1  0
+ 14 23  1  0
+ 14 24  1  0
+M  END
+</code></pre>
+</div>
+</div>
+</section>
+<section id="load-molecule-from-molfile" class="level2">
+<h2 class="anchored" data-anchor-id="load-molecule-from-molfile">Load molecule from Molfile</h2>
+<p>You can also load molecules from Molfiles, which are a common file format for storing chemical structures:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load molecule from Molfile</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'caffeine_3d.sdf'</span>, <span class="st">'r'</span>) <span class="im">as</span> molfile:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    mol <span class="op">=</span> Chem.MolFromMolBlock(molfile.read())</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>mol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<p><img src="01_rdkit_basics_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Or with explicit hydrogen atoms.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load molecule from Molfile</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'caffeine_3d.sdf'</span>, <span class="st">'r'</span>) <span class="im">as</span> molfile:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    mol <span class="op">=</span> Chem.MolFromMolBlock(molfile.read(), removeHs<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>mol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<p><img src="01_rdkit_basics_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>This covers the additional sections you requested, providing examples and explanations for working with molecules in RDKit using different representations and file formats.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -473,6 +867,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="pagination-link">
+        <span class="nav-page-text">Descriptors</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -257,6 +257,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 05</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheminformatics and RDKit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descriptors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fingerprints</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
     </ul>
     </div>
 </nav>
@@ -487,7 +510,7 @@ print(elements)
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>elements <span class="op">=</span> {<span class="st">'Hydrogen'</span>, <span class="st">'Helium'</span>, <span class="st">'Lithium'</span>}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Helium', 'Lithium'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Lithium', 'Helium', 'Hydrogen'}</code></pre>
+<pre><code>{'Helium', 'Hydrogen', 'Lithium'}</code></pre>
 </div>
 </div>
 </section>
@@ -501,8 +524,8 @@ print(elements)
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>elements.update([<span class="st">'Boron'</span>, <span class="st">'Carbon'</span>])</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Beryllium', 'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Lithium', 'Helium', 'Hydrogen', 'Beryllium'}
-{'Helium', 'Lithium', 'Carbon', 'Boron', 'Hydrogen', 'Beryllium'}</code></pre>
+<pre><code>{'Helium', 'Beryllium', 'Hydrogen', 'Lithium'}
+{'Carbon', 'Helium', 'Beryllium', 'Lithium', 'Boron', 'Hydrogen'}</code></pre>
 </div>
 </div>
 </section>
@@ -513,7 +536,7 @@ print(elements)
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>elements.remove(<span class="st">'Beryllium'</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elements) <span class="co">#Output: {'Hydrogen', 'Boron', 'Lithium', 'Helium', 'Carbon'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'Helium', 'Lithium', 'Carbon', 'Boron', 'Hydrogen'}</code></pre>
+<pre><code>{'Carbon', 'Helium', 'Lithium', 'Boron', 'Hydrogen'}</code></pre>
 </div>
 </div>
 <!-- ### Exercises 
