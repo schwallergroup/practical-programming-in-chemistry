@@ -408,16 +408,38 @@ First entries of count vector: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0]</code></pre>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>apgen <span class="op">=</span> rdFingerprintGenerator.GetAtomPairGenerator(fpSize<span class="op">=</span><span class="dv">2048</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ttgen <span class="op">=</span> rdFingerprintGenerator.GetTopologicalTorsionGenerator(fpSize<span class="op">=</span><span class="dv">2048</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>1. Morgan Fingerprint:</strong> The Morgan fingerprint is a circular fingerprint, which means it captures the local environment around each atom up to a specified radius. It is also known as the Extended Connectivity Fingerprint (ECFP).</p>
-<p>The algorithm works by: - Assigning an initial invariant value (atom type) to each atom - Iteratively updating each atom’s invariant by combining it with the invariants of its neighbors - At each iteration, the radius of the neighborhood considered is increased by one bond - The final invariants for each atom, after the specified radius is reached, are hashed to generate the fingerprint - In the usual version, which is the extended connectivity fingerprint, initial atom invariants are based on connectivity information (e.g., atomic number, number of connected atoms, etc.)</p>
+<p>The algorithm works by:</p>
+<ul>
+<li>Assigning an initial invariant value (e.g., atom type) to each atom</li>
+<li>Iteratively updating each atom’s invariant by combining it with the invariants of its neighbors</li>
+<li>At each iteration, the radius of the neighborhood considered is increased by one bond</li>
+<li>The final invariants for each atom, after the specified radius is reached, are hashed to generate the fingerprint</li>
+<li>In the usual version, which is the extended connectivity fingerprint, initial atom invariants are based on connectivity information (e.g., atomic number, number of connected atoms, etc.)</li>
+</ul>
 <p>Morgan fingerprints are widely used due to their ability to capture structural information in a compact representation. They are well-suited for similarity searching and machine learning tasks.</p>
 <p><strong>2. RDKit Fingerprint:</strong> The RDKit fingerprint is a path-based fingerprint that enumerates all linear and branched subgraphs (paths) up to a specified maximum length. It is inspired by the Daylight fingerprint.</p>
-<p>The algorithm works by: - Enumerating all linear and branched paths up to a maximum length (default is 7 bonds) - Optionally including bond orders, ring information, and hydrogen atoms - Hashing each path to generate the fingerprint</p>
+<p>The algorithm works by:</p>
+<ul>
+<li>Enumerating all linear and branched paths up to a maximum length (default is 7 bonds)</li>
+<li>Optionally including bond orders, ring information, and hydrogen atoms</li>
+<li>Hashing each path to generate the fingerprint</li>
+</ul>
 <p>The RDKit fingerprint is a widely used and efficient fingerprint type in the RDKit. It is particularly useful for substructure searching and similarity calculations.</p>
 <p><strong>3. Atom Pairs Fingerprint:</strong> The Atom Pairs fingerprint is a topological fingerprint that captures information about the distances between pairs of atoms in a molecule.</p>
-<p>The algorithm works by: - Enumerating all pairs of non-hydrogen atoms in the molecule - Computing the shortest path distance (number of bonds) between each pair - Hashing each (atom type, atom type, distance) tuple to generate the fingerprint</p>
+<p>The algorithm works by:</p>
+<ul>
+<li>Enumerating all pairs of non-hydrogen atoms in the molecule</li>
+<li>Computing the shortest path distance (number of bonds) between each pair</li>
+<li>Hashing each (atom type, atom type, distance) tuple to generate the fingerprint</li>
+</ul>
 <p>Atom Pairs fingerprints are particularly useful for capturing shape and topology information, making them suitable for applications such as virtual screening and similarity searching.</p>
 <p><strong>4. Topological Torsion Fingerprint:</strong> The Topological Torsion fingerprint is a variant of the Atom Pairs fingerprint that captures information about the angles (torsions) between pairs of atoms in a molecule.</p>
-<p>The algorithm works by: - Enumerating all paths of length 4 (torsions) in the molecule - Optionally including bond orders and ring information - Hashing each (atom1, atom2, atom3, atom4) tuple to generate the fingerprint</p>
+<p>The algorithm works by:</p>
+<ul>
+<li>Enumerating all paths of length 4 (torsions) in the molecule</li>
+<li>Optionally including bond orders and ring information</li>
+<li>Hashing each (atom1, atom2, atom3, atom4) tuple to generate the fingerprint</li>
+</ul>
 <p>Topological Torsion fingerprints are useful for capturing more detailed shape and topological information compared to Atom Pairs fingerprints, making them suitable for applications such as 3D similarity searching and conformer generation.</p>
 <p>All of these fingerprint types have their strengths and weaknesses, and the choice of which one to use depends on the specific application and the trade-off between computational cost, storage requirements, and the desired level of structural information capture.</p>
 <p>You can customize the fingerprint parameters when creating the generator (e.g., <code>radius</code>, <code>maxPath</code>, <code>useHs</code>, etc.). More information on fingerprints generation can be found on this <a href="https://greglandrum.github.io/rdkit-blog/posts/2023-01-18-fingerprint-generator-tutorial.html">RDKit blogpost</a>.</p>
@@ -432,15 +454,20 @@ First entries of count vector: [0, 2, 0, 0, 0, 0, 0, 0, 0, 0]</code></pre>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>caffeine <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>theophylline <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C2=C(C(=O)N(C1=O)C)NC=N2'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>mfpgen <span class="op">=</span> rdFingerprintGenerator.GetMorganGenerator(radius<span class="op">=</span><span class="dv">2</span>, fpSize<span class="op">=</span><span class="dv">2048</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>caffeine_fp <span class="op">=</span> mfpgen.GetFingerprint(caffeine)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>theophylline_fp <span class="op">=</span> mfpgen.GetFingerprint(theophylline)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>tanimoto_sim <span class="op">=</span> DataStructs.TanimotoSimilarity(caffeine_fp, theophylline_fp)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tanimoto similarity between caffeine and theophylline: </span><span class="sc">{</span>tanimoto_sim<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>aspirin <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CC(=O)OC1=CC=CC=C1C(=O)O'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>mfpgen <span class="op">=</span> rdFingerprintGenerator.GetMorganGenerator(radius<span class="op">=</span><span class="dv">2</span>, fpSize<span class="op">=</span><span class="dv">2048</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>caffeine_fp <span class="op">=</span> mfpgen.GetFingerprint(caffeine)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>theophylline_fp <span class="op">=</span> mfpgen.GetFingerprint(theophylline)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>aspirin_fp <span class="op">=</span>mfpgen.GetFingerprint(aspirin)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>tanimoto_sim <span class="op">=</span> DataStructs.TanimotoSimilarity(caffeine_fp, theophylline_fp)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tanimoto similarity between caffeine and theophylline: </span><span class="sc">{</span>tanimoto_sim<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>tanimoto_sim <span class="op">=</span> DataStructs.TanimotoSimilarity(caffeine_fp, aspirin_fp)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tanimoto similarity between caffeine and aspirin: </span><span class="sc">{</span>tanimoto_sim<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Tanimoto similarity between caffeine and theophylline: 0.46</code></pre>
+<pre><code>Tanimoto similarity between caffeine and theophylline: 0.46
+Tanimoto similarity between caffeine and aspirin: 0.09</code></pre>
 </div>
 </div>
 <p>The RDKit provides a <code>BulkTanimotoSimilarity</code> function for efficiently computing Tanimoto similarities between many fingerprints. <!-- 
@@ -543,7 +570,7 @@ The information provided by `additionalOutput` varies for different fingerprint 
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>In this tutorial, we learned how to generate different types of fingerprints using the <code>rdFingerprintGenerator</code> module in RDKit. We explored methods for explaining fingerprint bits, discussed bit clashing and its impact, and demonstrated how to compute Tanimoto similarity between molecules. Fingerprints are a powerful tool for representing and comparing molecules, and RDKit provides a flexible and efficient implementation of various fingerprinting algorithms.</p>
+<p>In this tutorial, we learned how to generate different types of fingerprints using the <code>rdFingerprintGenerator</code> module in RDKit. We explored methods for explaining fingerprint bits and demonstrated how to compute Tanimoto similarity between molecules. Fingerprints are a powerful tool for representing and comparing molecules, and RDKit provides a flexible and efficient implementation of various fingerprinting algorithms.</p>
 
 
 </section>

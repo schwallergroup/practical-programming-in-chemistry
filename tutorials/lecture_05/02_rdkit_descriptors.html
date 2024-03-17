@@ -337,20 +337,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptors</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mw <span class="op">=</span> Descriptors.MolWt(mol)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>logp <span class="op">=</span> Descriptors.MolLogP(mol)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tpsa <span class="op">=</span> Descriptors.TPSA(mol)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Molecular Weight: </span><span class="sc">{</span>mw<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LogP: </span><span class="sc">{</span>logp<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Topological Polar Surface Area: </span><span class="sc">{</span>tpsa<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>molecular_weight <span class="op">=</span> Descriptors.MolWt(mol)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>heavy_atoms <span class="op">=</span> Descriptors.HeavyAtomCount(mol)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>hydrogen_acceptors <span class="op">=</span> Descriptors.NumHAcceptors(mol)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>hydrogen_donors <span class="op">=</span> Descriptors.NumHDonors(mol)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Molecular Weight: </span><span class="sc">{</span>molecular_weight<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Heavy Atom Count: </span><span class="sc">{</span>heavy_atoms<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hydrogen Acceptors: </span><span class="sc">{</span>hydrogen_acceptors<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hydrogen Donors: </span><span class="sc">{</span>hydrogen_donors<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Molecular Weight: 194.19
-LogP: -1.03
-Topological Polar Surface Area: 61.82</code></pre>
+Heavy Atom Count: 14
+Hydrogen Acceptors: 6
+Hydrogen Donors: 0</code></pre>
 </div>
 </div>
-<p><strong>LogP</strong>, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.</p>
 <p>RDKit provides many other descriptors, including:</p>
 <ul>
 <li><code>Descriptors.NumRotatableBonds(mol)</code>: Number of rotatable bonds</li>
@@ -361,6 +364,7 @@ Topological Polar Surface Area: 61.82</code></pre>
 <li><code>Descriptors.MolLogP(mol)</code>: LogP value</li>
 <li><code>Descriptors.TPSA(mol)</code>: Topological polar surface area</li>
 </ul>
+<p><strong>LogP</strong>, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.</p>
 <p>You can explore the complete list of 210 available descriptors from this <a href="https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html">Greg Landrum blog post</a>.</p>
 <p>To list them all use the following:</p>
 <div class="cell" data-execution_count="2">
@@ -368,16 +372,16 @@ Topological Polar Surface Area: 61.82</code></pre>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="bu">print</span>(descriptor) <span class="cf">for</span> descriptor <span class="kw">in</span> Descriptors._descList[:<span class="dv">10</span>]] <span class="co"># truncated to 10 entries</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(Descriptors._descList))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>('MaxAbsEStateIndex', &lt;function MaxAbsEStateIndex at 0x14b007ac0&gt;)
-('MaxEStateIndex', &lt;function MaxEStateIndex at 0x14b0079a0&gt;)
-('MinAbsEStateIndex', &lt;function MinAbsEStateIndex at 0x14b007b50&gt;)
-('MinEStateIndex', &lt;function MinEStateIndex at 0x14b007a30&gt;)
-('qed', &lt;function qed at 0x14b0467a0&gt;)
-('SPS', &lt;function SPS at 0x14b046b00&gt;)
-('MolWt', &lt;function &lt;lambda&gt; at 0x14b047130&gt;)
-('HeavyAtomMolWt', &lt;function HeavyAtomMolWt at 0x14b0471c0&gt;)
-('ExactMolWt', &lt;function &lt;lambda&gt; at 0x14b047250&gt;)
-('NumValenceElectrons', &lt;function NumValenceElectrons at 0x14b0472e0&gt;)
+<pre><code>('MaxAbsEStateIndex', &lt;function MaxAbsEStateIndex at 0x14c5a3ac0&gt;)
+('MaxEStateIndex', &lt;function MaxEStateIndex at 0x14c5a39a0&gt;)
+('MinAbsEStateIndex', &lt;function MinAbsEStateIndex at 0x14c5a3b50&gt;)
+('MinEStateIndex', &lt;function MinEStateIndex at 0x14c5a3a30&gt;)
+('qed', &lt;function qed at 0x14c5de7a0&gt;)
+('SPS', &lt;function SPS at 0x14c5deb00&gt;)
+('MolWt', &lt;function &lt;lambda&gt; at 0x14c5df130&gt;)
+('HeavyAtomMolWt', &lt;function HeavyAtomMolWt at 0x14c5df1c0&gt;)
+('ExactMolWt', &lt;function &lt;lambda&gt; at 0x14c5df250&gt;)
+('NumValenceElectrons', &lt;function NumValenceElectrons at 0x14c5df2e0&gt;)
 210</code></pre>
 </div>
 </div>
@@ -423,8 +427,8 @@ Topological Polar Surface Area: 61.82</code></pre>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>descriptors_dict <span class="op">=</span> result.asdict()</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>descriptors_dict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>{'ABC': &lt;mordred.error.Error at 0x105e42590&gt;,
- 'ABCGG': &lt;mordred.error.Error at 0x14c79c7f0&gt;,
+<pre><code>{'ABC': &lt;mordred.error.Error at 0x105875e10&gt;,
+ 'ABCGG': &lt;mordred.error.Error at 0x14d59c7f0&gt;,
  'nAcid': 0,
  'nBase': 0,
  'SpAbs_A': 17.668228976605832,
@@ -565,7 +569,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5dv': 1.619047619047619,
  'AATS6dv': 0.15384615384615385,
  'AATS7dv': 0.0,
- 'AATS8dv': &lt;mordred.error.Missing at 0x14c79c8b0&gt;,
+ 'AATS8dv': &lt;mordred.error.Missing at 0x14d59c8b0&gt;,
  'AATS0d': 3.5833333333333335,
  'AATS1d': 4.2,
  'AATS2d': 4.0,
@@ -574,7 +578,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5d': 2.1904761904761907,
  'AATS6d': 1.3076923076923077,
  'AATS7d': 1.0,
- 'AATS8d': &lt;mordred.error.Missing at 0x14c79c940&gt;,
+ 'AATS8d': &lt;mordred.error.Missing at 0x14d59c940&gt;,
  'AATS0s': 6.50462962962963,
  'AATS1s': 3.7022222222222227,
  'AATS2s': 3.6201550387596906,
@@ -583,7 +587,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5s': 3.547619047619047,
  'AATS6s': 2.5641025641025643,
  'AATS7s': 1.75,
- 'AATS8s': &lt;mordred.error.Missing at 0x14c79c9a0&gt;,
+ 'AATS8s': &lt;mordred.error.Missing at 0x14d59c9a0&gt;,
  'AATS0Z': 25.916666666666668,
  'AATS1Z': 27.6,
  'AATS2Z': 24.53488372093023,
@@ -592,7 +596,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5Z': 13.404761904761905,
  'AATS6Z': 5.82051282051282,
  'AATS7Z': 1.875,
- 'AATS8Z': &lt;mordred.error.Missing at 0x14c79ca00&gt;,
+ 'AATS8Z': &lt;mordred.error.Missing at 0x14d59ca00&gt;,
  'AATS0m': 102.54140858333334,
  'AATS1m': 105.78183788000003,
  'AATS2m': 94.08362844186047,
@@ -601,7 +605,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5m': 43.03801723809523,
  'AATS6m': 13.878373461538459,
  'AATS7m': 2.9049300000000002,
- 'AATS8m': &lt;mordred.error.Missing at 0x14c79ca60&gt;,
+ 'AATS8m': &lt;mordred.error.Missing at 0x14d59ca60&gt;,
  'AATS0v': 212.70878771330783,
  'AATS1v': 245.23892655232362,
  'AATS2v': 214.44570393614242,
@@ -610,7 +614,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5v': 149.02695713646466,
  'AATS6v': 88.32521008950198,
  'AATS7v': 37.44998020524733,
- 'AATS8v': &lt;mordred.error.Missing at 0x14c79cac0&gt;,
+ 'AATS8v': &lt;mordred.error.Missing at 0x14d59cac0&gt;,
  'AATS0se': 8.125781,
  'AATS1se': 8.112123360000004,
  'AATS2se': 8.232191162790699,
@@ -619,7 +623,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5se': 8.028116,
  'AATS6se': 7.400299384615386,
  'AATS7se': 7.062552,
- 'AATS8se': &lt;mordred.error.Missing at 0x14c79cb20&gt;,
+ 'AATS8se': &lt;mordred.error.Missing at 0x14d59cb20&gt;,
  'AATS0pe': 6.710566666666666,
  'AATS1pe': 6.876840000000002,
  'AATS2pe': 6.867095348837208,
@@ -628,7 +632,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5pe': 6.532133333333333,
  'AATS6pe': 5.737897435897437,
  'AATS7pe': 5.181000000000001,
- 'AATS8pe': &lt;mordred.error.Missing at 0x14c79cb80&gt;,
+ 'AATS8pe': &lt;mordred.error.Missing at 0x14d59cb80&gt;,
  'AATS0are': 6.691649999999999,
  'AATS1are': 6.777,
  'AATS2are': 6.842760465116279,
@@ -637,7 +641,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5are': 6.500523809523808,
  'AATS6are': 5.702358974358974,
  'AATS7are': 5.197500000000001,
- 'AATS8are': &lt;mordred.error.Missing at 0x14c79cbe0&gt;,
+ 'AATS8are': &lt;mordred.error.Missing at 0x14d59cbe0&gt;,
  'AATS0p': 1.3701557103537498,
  'AATS1p': 1.5839569240000002,
  'AATS2p': 1.3848500335730465,
@@ -646,7 +650,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5p': 1.122808217,
  'AATS6p': 0.8249109126202051,
  'AATS7p': 0.45588228999287495,
- 'AATS8p': &lt;mordred.error.Missing at 0x14c79cc40&gt;,
+ 'AATS8p': &lt;mordred.error.Missing at 0x14d59cc40&gt;,
  'AATS0i': 169.97475799197875,
  'AATS1i': 155.66969738676002,
  'AATS2i': 172.8414574229661,
@@ -655,7 +659,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATS5i': 168.77627669311428,
  'AATS6i': 169.62420659627148,
  'AATS7i': 184.95098010823662,
- 'AATS8i': &lt;mordred.error.Missing at 0x14c79cca0&gt;,
+ 'AATS8i': &lt;mordred.error.Missing at 0x14d59cca0&gt;,
  'ATSC0c': 0.7148225324330465,
  'ATSC1c': -0.5255256355213916,
  'ATSC2c': 0.19926374915905842,
@@ -772,7 +776,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5c': -0.0020389918486685018,
  'AATSC6c': 0.00019501555870827665,
  'AATSC7c': 0.0007805943478065106,
- 'AATSC8c': &lt;mordred.error.Missing at 0x14c79cd00&gt;,
+ 'AATSC8c': &lt;mordred.error.Missing at 0x14d59cd00&gt;,
  'AATSC0dv': 5.270833333333333,
  'AATSC1dv': 2.6225,
  'AATSC2dv': 1.434593023255814,
@@ -781,7 +785,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5dv': -2.9077380952380953,
  'AATSC6dv': 0.6009615384615384,
  'AATSC7dv': 3.375,
- 'AATSC8dv': &lt;mordred.error.Missing at 0x14c79cd90&gt;,
+ 'AATSC8dv': &lt;mordred.error.Missing at 0x14d59cd90&gt;,
  'AATSC0d': 0.8055555555555557,
  'AATSC1d': 0.5111111111111112,
  'AATSC2d': 0.07235142118863042,
@@ -790,7 +794,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5d': -0.34920634920634924,
  'AATSC6d': 0.2393162393162394,
  'AATSC7d': 0.4444444444444446,
- 'AATSC8d': &lt;mordred.error.Missing at 0x14c79cdc0&gt;,
+ 'AATSC8d': &lt;mordred.error.Missing at 0x14d59cdc0&gt;,
  'AATSC0s': 2.559992283950617,
  'AATSC1s': -0.13869598765432095,
  'AATSC2s': 0.14381908555842673,
@@ -799,7 +803,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5s': -0.4206624779541446,
  'AATSC6s': -0.2644082383665715,
  'AATSC7s': 0.23283179012345723,
- 'AATSC8s': &lt;mordred.error.Missing at 0x14c79ce20&gt;,
+ 'AATSC8s': &lt;mordred.error.Missing at 0x14d59ce20&gt;,
  'AATSC0Z': 7.854166666666667,
  'AATSC1Z': 0.6125,
  'AATSC2Z': 2.667151162790698,
@@ -808,7 +812,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5Z': -5.2648809523809526,
  'AATSC6Z': -1.2900641025641026,
  'AATSC7Z': 7.71875,
- 'AATSC8Z': &lt;mordred.error.Missing at 0x14c79ce80&gt;,
+ 'AATSC8Z': &lt;mordred.error.Missing at 0x14d59ce80&gt;,
  'AATSC0m': 37.07038490972222,
  'AATSC1m': 2.8051020736111156,
  'AATSC2m': 12.834499078649873,
@@ -817,7 +821,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5m': -24.937299893849204,
  'AATSC6m': -6.261110753739318,
  'AATSC7m': 36.90135426736109,
- 'AATSC8m': &lt;mordred.error.Missing at 0x14c79cee0&gt;,
+ 'AATSC8m': &lt;mordred.error.Missing at 0x14d59cee0&gt;,
  'AATSC0v': 43.48816400367045,
  'AATSC1v': -8.26634469769715,
  'AATSC2v': 24.658209931285228,
@@ -826,7 +830,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5v': -23.298125919111147,
  'AATSC6v': -12.864246379514586,
  'AATSC7v': 46.76476719373894,
- 'AATSC8v': &lt;mordred.error.Missing at 0x14c79cf40&gt;,
+ 'AATSC8v': &lt;mordred.error.Missing at 0x14d59cf40&gt;,
  'AATSC0se': 0.1046129722222222,
  'AATSC1se': -0.010511758888888903,
  'AATSC2se': 0.016350097545219596,
@@ -835,7 +839,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5se': -0.03364641666666666,
  'AATSC6se': -0.0009146217948716884,
  'AATSC7se': 0.025797902777777926,
- 'AATSC8se': &lt;mordred.error.Missing at 0x14c79cfa0&gt;,
+ 'AATSC8se': &lt;mordred.error.Missing at 0x14d59cfa0&gt;,
  'AATSC0pe': 0.15696666666666662,
  'AATSC1pe': -0.0013680000000000317,
  'AATSC2pe': 0.027727906976744158,
@@ -844,7 +848,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5pe': -0.07266666666666663,
  'AATSC6pe': -0.0043794871794871565,
  'AATSC7pe': 0.07379999999999994,
- 'AATSC8pe': &lt;mordred.error.Missing at 0x14c79d000&gt;,
+ 'AATSC8pe': &lt;mordred.error.Missing at 0x14d59d000&gt;,
  'AATSC0are': 0.17213888888888884,
  'AATSC1are': -0.008398222222222213,
  'AATSC2are': 0.02852739018087855,
@@ -853,7 +857,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5are': -0.07187777777777772,
  'AATSC6are': -0.0020495726495726985,
  'AATSC7are': 0.06742777777777763,
- 'AATSC8are': &lt;mordred.error.Missing at 0x14c79d060&gt;,
+ 'AATSC8are': &lt;mordred.error.Missing at 0x14d59d060&gt;,
  'AATSC0p': 0.19366025978968748,
  'AATSC1p': -0.0797149244774375,
  'AATSC2p': 0.11946476170085897,
@@ -862,7 +866,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5p': -0.06487494616278276,
  'AATSC6p': -0.05805443310259133,
  'AATSC7p': 0.16755358239365634,
- 'AATSC8p': &lt;mordred.error.Missing at 0x14c79d0c0&gt;,
+ 'AATSC8p': &lt;mordred.error.Missing at 0x14d59d0c0&gt;,
  'AATSC0i': 1.5816047439771868,
  'AATSC1i': -1.455473195739936,
  'AATSC2i': 0.9847443820572535,
@@ -871,7 +875,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'AATSC5i': 0.09403575742441977,
  'AATSC6i': -0.3137913716788731,
  'AATSC7i': 0.38816448980927937,
- 'AATSC8i': &lt;mordred.error.Missing at 0x14c79d120&gt;,
+ 'AATSC8i': &lt;mordred.error.Missing at 0x14d59d120&gt;,
  'MATS1c': -0.7057760314064947,
  'MATS2c': 0.15558683621272162,
  'MATS3c': 0.013619101499031437,
@@ -879,7 +883,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5c': -0.06845867631156072,
  'MATS6c': 0.006547601952428695,
  'MATS7c': 0.026208273378834756,
- 'MATS8c': &lt;mordred.error.Missing at 0x14c79cd00&gt;,
+ 'MATS8c': &lt;mordred.error.Missing at 0x14d59cd00&gt;,
  'MATS1dv': 0.4975494071146245,
  'MATS2dv': 0.27217575144774336,
  'MATS3dv': -0.11703041759752535,
@@ -887,7 +891,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5dv': -0.5516657255787691,
  'MATS6dv': 0.11401641836424445,
  'MATS7dv': 0.6403162055335968,
- 'MATS8dv': &lt;mordred.error.Missing at 0x14c79cd90&gt;,
+ 'MATS8dv': &lt;mordred.error.Missing at 0x14d59cd90&gt;,
  'MATS1d': 0.6344827586206897,
  'MATS2d': 0.08981555733761017,
  'MATS3d': -0.36581709145427294,
@@ -895,7 +899,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5d': -0.4334975369458128,
  'MATS6d': 0.297082228116711,
  'MATS7d': 0.5517241379310346,
- 'MATS8d': &lt;mordred.error.Missing at 0x14c79cdc0&gt;,
+ 'MATS8d': &lt;mordred.error.Missing at 0x14d59cdc0&gt;,
  'MATS1s': -0.054178283475246766,
  'MATS2s': 0.056179499625867255,
  'MATS3s': -0.011679602140004545,
@@ -903,7 +907,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5s': -0.1643217757301097,
  'MATS6s': -0.10328477942071485,
  'MATS7s': 0.09095019214829345,
- 'MATS8s': &lt;mordred.error.Missing at 0x14c79ce20&gt;,
+ 'MATS8s': &lt;mordred.error.Missing at 0x14d59ce20&gt;,
  'MATS1Z': 0.07798408488063661,
  'MATS2Z': 0.33958423292825857,
  'MATS3Z': 0.03771191327413216,
@@ -911,7 +915,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5Z': -0.6703296703296704,
  'MATS6Z': -0.16425219342991226,
  'MATS7Z': 0.9827586206896551,
- 'MATS8Z': &lt;mordred.error.Missing at 0x14c79ce80&gt;,
+ 'MATS8Z': &lt;mordred.error.Missing at 0x14d59ce80&gt;,
  'MATS1m': 0.07566962362118444,
  'MATS2m': 0.3462197414433603,
  'MATS3m': 0.03022497140782537,
@@ -919,7 +923,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5m': -0.6727014017949691,
  'MATS6m': -0.1688979159236422,
  'MATS7m': 0.9954402781958491,
- 'MATS8m': &lt;mordred.error.Missing at 0x14c79cee0&gt;,
+ 'MATS8m': &lt;mordred.error.Missing at 0x14d59cee0&gt;,
  'MATS1v': -0.19008263252961108,
  'MATS2v': 0.567009679442987,
  'MATS3v': -0.2766362374624566,
@@ -927,7 +931,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5v': -0.5357348706913624,
  'MATS6v': -0.2958102894026253,
  'MATS7v': 1.0753447119494846,
- 'MATS8v': &lt;mordred.error.Missing at 0x14c79cf40&gt;,
+ 'MATS8v': &lt;mordred.error.Missing at 0x14d59cf40&gt;,
  'MATS1se': -0.10048236528983702,
  'MATS2se': 0.1562913011446439,
  'MATS3se': 0.05445308235932559,
@@ -935,7 +939,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5se': -0.32162757593000874,
  'MATS6se': -0.008742909941692698,
  'MATS7se': 0.2466032866648431,
- 'MATS8se': &lt;mordred.error.Missing at 0x14c79cfa0&gt;,
+ 'MATS8se': &lt;mordred.error.Missing at 0x14d59cfa0&gt;,
  'MATS1pe': -0.008715226162667438,
  'MATS2pe': 0.17664837742669887,
  'MATS3pe': 0.1183580008679032,
@@ -943,7 +947,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5pe': -0.46294330006370765,
  'MATS6pe': -0.027900746524658047,
  'MATS7pe': 0.47016351667020573,
- 'MATS8pe': &lt;mordred.error.Missing at 0x14c79d000&gt;,
+ 'MATS8pe': &lt;mordred.error.Missing at 0x14d59d000&gt;,
  'MATS1are': -0.0487874778118444,
  'MATS2are': 0.16572309932412913,
  'MATS3are': 0.10537216465190032,
@@ -951,7 +955,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5are': -0.41755688236243327,
  'MATS6are': -0.011906505629274998,
  'MATS7are': 0.39170566403098195,
- 'MATS8are': &lt;mordred.error.Missing at 0x14c79d060&gt;,
+ 'MATS8are': &lt;mordred.error.Missing at 0x14d59d060&gt;,
  'MATS1p': -0.411622521646965,
  'MATS2p': 0.6168780411148687,
  'MATS3p': -0.4672041011185823,
@@ -959,7 +963,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5p': -0.3349935925586184,
  'MATS6p': -0.2997746319541122,
  'MATS7p': 0.8651934195256029,
- 'MATS8p': &lt;mordred.error.Missing at 0x14c79d0c0&gt;,
+ 'MATS8p': &lt;mordred.error.Missing at 0x14d59d0c0&gt;,
  'MATS1i': -0.920250904205008,
  'MATS2i': 0.6226235636983254,
  'MATS3i': -0.421295243491775,
@@ -967,7 +971,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'MATS5i': 0.05945591512829716,
  'MATS6i': -0.19840062624609786,
  'MATS7i': 0.2454244597377601,
- 'MATS8i': &lt;mordred.error.Missing at 0x14c79d120&gt;,
+ 'MATS8i': &lt;mordred.error.Missing at 0x14d59d120&gt;,
  'GATS1c': 1.8170617371551947,
  'GATS2c': 1.114642951731469,
  'GATS3c': 1.278260063585561,
@@ -975,7 +979,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5c': 1.018518433544571,
  'GATS6c': 0.40296698268121167,
  'GATS7c': 0.1801320668919547,
- 'GATS8c': &lt;mordred.error.Missing at 0x14c79c880&gt;,
+ 'GATS8c': &lt;mordred.error.Missing at 0x14d59c880&gt;,
  'GATS1dv': 0.32,
  'GATS2dv': 0.7145877378435518,
  'GATS3dv': 0.9901185770750989,
@@ -983,7 +987,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5dv': 1.4696969696969697,
  'GATS6dv': 0.7738927738927739,
  'GATS7dv': 0.4090909090909091,
- 'GATS8dv': &lt;mordred.error.Missing at 0x14c79d180&gt;,
+ 'GATS8dv': &lt;mordred.error.Missing at 0x14d59d180&gt;,
  'GATS1d': 0.5472413793103448,
  'GATS2d': 1.1481555733761026,
  'GATS3d': 1.5646551724137931,
@@ -991,7 +995,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5d': 1.3312807881773399,
  'GATS6d': 0.2745358090185676,
  'GATS7d': 0.0,
- 'GATS8d': &lt;mordred.error.Missing at 0x14c79d1e0&gt;,
+ 'GATS8d': &lt;mordred.error.Missing at 0x14d59d1e0&gt;,
  'GATS1s': 0.5257538994800693,
  'GATS2s': 0.532989399862964,
  'GATS3s': 0.9426569211061713,
@@ -999,7 +1003,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5s': 1.0973013122059916,
  'GATS6s': 0.9518730835888548,
  'GATS7s': 0.8422876949740035,
- 'GATS8s': &lt;mordred.error.Missing at 0x14c79d240&gt;,
+ 'GATS8s': &lt;mordred.error.Missing at 0x14d59d240&gt;,
  'GATS1Z': 0.656445623342175,
  'GATS2Z': 0.5788662019616311,
  'GATS3Z': 0.7466843501326261,
@@ -1007,7 +1011,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5Z': 1.5963748894783378,
  'GATS6Z': 1.2248520710059172,
  'GATS7Z': 0.37367374005305043,
- 'GATS8Z': &lt;mordred.error.Missing at 0x14c79d2a0&gt;,
+ 'GATS8Z': &lt;mordred.error.Missing at 0x14d59d2a0&gt;,
  'GATS1m': 0.6650575837929187,
  'GATS2m': 0.5730793268761836,
  'GATS3m': 0.7568764717103909,
@@ -1015,7 +1019,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5m': 1.5983335295294028,
  'GATS6m': 1.2335914195087874,
  'GATS7m': 0.36310374195851214,
- 'GATS8m': &lt;mordred.error.Missing at 0x14c79d300&gt;,
+ 'GATS8m': &lt;mordred.error.Missing at 0x14d59d300&gt;,
  'GATS1v': 1.142857959211769,
  'GATS2v': 0.3243970620195643,
  'GATS3v': 1.2438485710695468,
@@ -1023,7 +1027,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5v': 1.4590107933198735,
  'GATS6v': 1.397647595047046,
  'GATS7v': 0.11493111517211142,
- 'GATS8v': &lt;mordred.error.Missing at 0x14c79d360&gt;,
+ 'GATS8v': &lt;mordred.error.Missing at 0x14d59d360&gt;,
  'GATS1se': 0.7500514674858414,
  'GATS2se': 0.6869740507339835,
  'GATS3se': 0.8251864611011965,
@@ -1031,7 +1035,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5se': 1.2745474257361855,
  'GATS6se': 0.8072800943469469,
  'GATS7se': 0.6457435900635862,
- 'GATS8se': &lt;mordred.error.Missing at 0x14c79d3c0&gt;,
+ 'GATS8se': &lt;mordred.error.Missing at 0x14d59d3c0&gt;,
  'GATS1pe': 0.6655176258228925,
  'GATS2pe': 0.72654849447125,
  'GATS3pe': 0.6926961669144192,
@@ -1039,7 +1043,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5pe': 1.409313725490196,
  'GATS6pe': 0.8912842837773818,
  'GATS7pe': 0.5867222340199617,
- 'GATS8pe': &lt;mordred.error.Missing at 0x14c79d420&gt;,
+ 'GATS8pe': &lt;mordred.error.Missing at 0x14d59d420&gt;,
  'GATS1are': 0.7208312086493462,
  'GATS2are': 0.7447826405124758,
  'GATS3are': 0.7260973051476519,
@@ -1047,7 +1051,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5are': 1.3679098757463284,
  'GATS6are': 0.8379864326411041,
  'GATS7are': 0.5880365499435211,
- 'GATS8are': &lt;mordred.error.Missing at 0x14c79d480&gt;,
+ 'GATS8are': &lt;mordred.error.Missing at 0x14d59d480&gt;,
  'GATS1p': 1.4989084057718611,
  'GATS2p': 0.270942721094218,
  'GATS3p': 1.5825492332649038,
@@ -1055,7 +1059,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5p': 1.2690959048583463,
  'GATS6p': 1.3013116500149522,
  'GATS7p': 0.005653982434448177,
- 'GATS8p': &lt;mordred.error.Missing at 0x14c79d4e0&gt;,
+ 'GATS8p': &lt;mordred.error.Missing at 0x14d59d4e0&gt;,
  'GATS1i': 2.2259555032244336,
  'GATS2i': 0.5023203892310287,
  'GATS3i': 1.6532332404616255,
@@ -1063,7 +1067,7 @@ Topological Polar Surface Area: 61.82</code></pre>
  'GATS5i': 0.916063172785491,
  'GATS6i': 0.870497995274731,
  'GATS7i': 1.455864480211079e-05,
- 'GATS8i': &lt;mordred.error.Missing at 0x14c79d540&gt;,
+ 'GATS8i': &lt;mordred.error.Missing at 0x14d59d540&gt;,
  'BCUTc-1h': 0.508801028593496,
  'BCUTc-1l': -0.441541559363848,
  'BCUTdv-1h': 6.023837127408669,
@@ -1288,20 +1292,20 @@ Topological Polar Surface Area: 61.82</code></pre>
  'Mare': 1.0213333333333334,
  'Mp': 0.649499251497006,
  'Mi': 1.1524238919034129,
- 'SpAbs_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'SpMax_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'SpDiam_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'SpAD_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'SpMAD_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'LogEE_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'SM1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VE1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VE2_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VE3_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VR1_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VR2_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'VR3_Dt': &lt;mordred.error.Error at 0x14c7ed840&gt;,
- 'DetourIndex': &lt;mordred.error.Error at 0x14c7ed840&gt;,
+ 'SpAbs_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'SpMax_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'SpDiam_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'SpAD_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'SpMAD_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'LogEE_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'SM1_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VE1_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VE2_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VE3_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VR1_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VR2_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'VR3_Dt': &lt;mordred.error.Error at 0x14d5ed840&gt;,
+ 'DetourIndex': &lt;mordred.error.Error at 0x14d5ed840&gt;,
  'SpAbs_D': 75.7252150767091,
  'SpMax_D': 37.862607538354546,
  'SpDiam_D': 51.548373758998906,

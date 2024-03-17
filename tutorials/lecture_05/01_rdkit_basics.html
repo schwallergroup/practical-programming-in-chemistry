@@ -299,6 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#canonicalization" id="toc-canonicalization" class="nav-link" data-scroll-target="#canonicalization">Canonicalization</a></li>
   <li><a href="#export-to-different-formats" id="toc-export-to-different-formats" class="nav-link" data-scroll-target="#export-to-different-formats">Export to different formats</a></li>
   <li><a href="#load-molecule-from-molfile" id="toc-load-molecule-from-molfile" class="nav-link" data-scroll-target="#load-molecule-from-molfile">Load molecule from Molfile</a></li>
+  <li><a href="#iterate-through-atoms-and-get-properties" id="toc-iterate-through-atoms-and-get-properties" class="nav-link" data-scroll-target="#iterate-through-atoms-and-get-properties">Iterate through atoms and get properties</a></li>
   </ul>
 </nav>
     </div>
@@ -629,6 +630,125 @@ M  END
 </div>
 </div>
 <p>This covers the additional sections you requested, providing examples and explanations for working with molecules in RDKit using different representations and file formats.</p>
+</section>
+<section id="iterate-through-atoms-and-get-properties" class="level2">
+<h2 class="anchored" data-anchor-id="iterate-through-atoms-and-get-properties">Iterate through atoms and get properties</h2>
+<p>You can iterate through the atoms of a caffeine molecule (or any other molecule) using RDKit, accessing a wealth of information about each atom.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>caffeine_smiles <span class="op">=</span> <span class="st">"CN1C=NC2=C1C(=O)N(C(=O)N2C)C"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>caffeine_molecule <span class="op">=</span> Chem.MolFromSmiles(caffeine_smiles)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> atom <span class="kw">in</span> caffeine_molecule.GetAtoms():</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Atom: </span><span class="sc">{</span>atom<span class="sc">.</span>GetSymbol()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Atomic Number: </span><span class="sc">{</span>atom<span class="sc">.</span>GetAtomicNum()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Atom Index: </span><span class="sc">{</span>atom<span class="sc">.</span>GetIdx()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Degree (number of neighbors): </span><span class="sc">{</span>atom<span class="sc">.</span>GetDegree()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Valence: </span><span class="sc">{</span>atom<span class="sc">.</span>GetTotalValence()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hybridization: </span><span class="sc">{</span>atom<span class="sc">.</span>GetHybridization()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-----------------------------------------"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Atom: C
+Atomic Number: 6
+Atom Index: 0
+Degree (number of neighbors): 1
+Valence: 4
+Hybridization: SP3
+-----------------------------------------
+Atom: N
+Atomic Number: 7
+Atom Index: 1
+Degree (number of neighbors): 3
+Valence: 3
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 2
+Degree (number of neighbors): 2
+Valence: 4
+Hybridization: SP2
+-----------------------------------------
+Atom: N
+Atomic Number: 7
+Atom Index: 3
+Degree (number of neighbors): 2
+Valence: 3
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 4
+Degree (number of neighbors): 3
+Valence: 4
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 5
+Degree (number of neighbors): 3
+Valence: 4
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 6
+Degree (number of neighbors): 3
+Valence: 4
+Hybridization: SP2
+-----------------------------------------
+Atom: O
+Atomic Number: 8
+Atom Index: 7
+Degree (number of neighbors): 1
+Valence: 2
+Hybridization: SP2
+-----------------------------------------
+Atom: N
+Atomic Number: 7
+Atom Index: 8
+Degree (number of neighbors): 3
+Valence: 3
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 9
+Degree (number of neighbors): 3
+Valence: 4
+Hybridization: SP2
+-----------------------------------------
+Atom: O
+Atomic Number: 8
+Atom Index: 10
+Degree (number of neighbors): 1
+Valence: 2
+Hybridization: SP2
+-----------------------------------------
+Atom: N
+Atomic Number: 7
+Atom Index: 11
+Degree (number of neighbors): 3
+Valence: 3
+Hybridization: SP2
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 12
+Degree (number of neighbors): 1
+Valence: 4
+Hybridization: SP3
+-----------------------------------------
+Atom: C
+Atomic Number: 6
+Atom Index: 13
+Degree (number of neighbors): 1
+Valence: 4
+Hybridization: SP3
+-----------------------------------------</code></pre>
+</div>
+</div>
 
 
 </section>
