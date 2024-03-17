@@ -16,16 +16,17 @@ from rdkit.Chem import Descriptors
 mol = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
 
 # Calculate descriptors
-mw = Descriptors.MolWt(mol)
-logp = Descriptors.MolLogP(mol)
-tpsa = Descriptors.TPSA(mol)
+molecular_weight = Descriptors.MolWt(mol)
+heavy_atoms = Descriptors.HeavyAtomCount(mol)
+hydrogen_acceptors = Descriptors.NumHAcceptors(mol)
+hydrogen_donors = Descriptors.NumHDonors(mol)
 
-print(f"Molecular Weight: {mw:.2f}")
-print(f"LogP: {logp:.2f}")
-print(f"Topological Polar Surface Area: {tpsa:.2f}")
+
+print(f"Molecular Weight: {molecular_weight:.2f}")
+print(f"Heavy Atom Count: {heavy_atoms}")
+print(f"Hydrogen Acceptors: {hydrogen_acceptors}")
+print(f"Hydrogen Donors: {hydrogen_donors}")
 ```
-
-**LogP**, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.
 
 RDKit provides many other descriptors, including:
 
@@ -36,6 +37,8 @@ RDKit provides many other descriptors, including:
 - `Descriptors.MolWt(mol)`: Molecular weight
 - `Descriptors.MolLogP(mol)`: LogP value
 - `Descriptors.TPSA(mol)`: Topological polar surface area
+
+**LogP**, also known as the partition coefficient, is a crucial parameter in chemistry, particularly in drug discovery and development. It represents the logarithm of the partition coefficient of a solute between octanol and water at near infinite dilution. LogP is a measure of the preference of a compound to dissolve in either water or an organic solvent, such as octanol, when uncharged.
 
 You can explore the complete list of 210 available descriptors from this [Greg Landrum blog post](https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html).
 

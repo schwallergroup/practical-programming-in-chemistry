@@ -85,7 +85,8 @@ ttgen = rdFingerprintGenerator.GetTopologicalTorsionGenerator(fpSize=2048)
 The Morgan fingerprint is a circular fingerprint, which means it captures the local environment around each atom up to a specified radius. It is also known as the Extended Connectivity Fingerprint (ECFP).
 
 The algorithm works by:
-- Assigning an initial invariant value (atom type) to each atom
+
+- Assigning an initial invariant value (e.g., atom type) to each atom
 - Iteratively updating each atom's invariant by combining it with the invariants of its neighbors
 - At each iteration, the radius of the neighborhood considered is increased by one bond
 - The final invariants for each atom, after the specified radius is reached, are hashed to generate the fingerprint
@@ -97,6 +98,7 @@ Morgan fingerprints are widely used due to their ability to capture structural i
 The RDKit fingerprint is a path-based fingerprint that enumerates all linear and branched subgraphs (paths) up to a specified maximum length. It is inspired by the Daylight fingerprint.
 
 The algorithm works by:
+
 - Enumerating all linear and branched paths up to a maximum length (default is 7 bonds)
 - Optionally including bond orders, ring information, and hydrogen atoms
 - Hashing each path to generate the fingerprint
@@ -107,6 +109,7 @@ The RDKit fingerprint is a widely used and efficient fingerprint type in the RDK
 The Atom Pairs fingerprint is a topological fingerprint that captures information about the distances between pairs of atoms in a molecule.
 
 The algorithm works by:
+
 - Enumerating all pairs of non-hydrogen atoms in the molecule
 - Computing the shortest path distance (number of bonds) between each pair
 - Hashing each (atom type, atom type, distance) tuple to generate the fingerprint
@@ -117,6 +120,7 @@ Atom Pairs fingerprints are particularly useful for capturing shape and topology
 The Topological Torsion fingerprint is a variant of the Atom Pairs fingerprint that captures information about the angles (torsions) between pairs of atoms in a molecule.
 
 The algorithm works by:
+
 - Enumerating all paths of length 4 (torsions) in the molecule
 - Optionally including bond orders and ring information
 - Hashing each (atom1, atom2, atom3, atom4) tuple to generate the fingerprint
@@ -140,13 +144,17 @@ from rdkit.Chem import rdFingerprintGenerator, DataStructs
 
 caffeine = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
 theophylline = Chem.MolFromSmiles('CN1C2=C(C(=O)N(C1=O)C)NC=N2')
+aspirin = Chem.MolFromSmiles('CC(=O)OC1=CC=CC=C1C(=O)O')
 
 mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
 caffeine_fp = mfpgen.GetFingerprint(caffeine)
 theophylline_fp = mfpgen.GetFingerprint(theophylline)
+aspirin_fp =mfpgen.GetFingerprint(aspirin)
 
 tanimoto_sim = DataStructs.TanimotoSimilarity(caffeine_fp, theophylline_fp)
 print(f"Tanimoto similarity between caffeine and theophylline: {tanimoto_sim:.2f}")
+tanimoto_sim = DataStructs.TanimotoSimilarity(caffeine_fp, aspirin_fp)
+print(f"Tanimoto similarity between caffeine and aspirin: {tanimoto_sim:.2f}")
 ```
 
 The RDKit provides a `BulkTanimotoSimilarity` function for efficiently computing Tanimoto similarities between many fingerprints.
@@ -227,4 +235,4 @@ This will illustrate the part of the molecule that corresponds to the selected b
 
 ## Conclusion
 
-In this tutorial, we learned how to generate different types of fingerprints using the `rdFingerprintGenerator` module in RDKit. We explored methods for explaining fingerprint bits, discussed bit clashing and its impact, and demonstrated how to compute Tanimoto similarity between molecules. Fingerprints are a powerful tool for representing and comparing molecules, and RDKit provides a flexible and efficient implementation of various fingerprinting algorithms.
+In this tutorial, we learned how to generate different types of fingerprints using the `rdFingerprintGenerator` module in RDKit. We explored methods for explaining fingerprint bits and demonstrated how to compute Tanimoto similarity between molecules. Fingerprints are a powerful tool for representing and comparing molecules, and RDKit provides a flexible and efficient implementation of various fingerprinting algorithms.

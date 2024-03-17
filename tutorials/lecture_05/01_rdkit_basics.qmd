@@ -238,5 +238,23 @@ mol
 This covers the additional sections you requested, providing examples and explanations for working with molecules in RDKit using different representations and file formats.
 
 
+## Iterate through atoms and get properties
 
+You can iterate through the atoms of a caffeine molecule (or any other molecule) using RDKit, accessing a wealth of information about each atom. 
+
+```{python}
+from rdkit import Chem
+
+caffeine_smiles = "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
+caffeine_molecule = Chem.MolFromSmiles(caffeine_smiles)
+
+for atom in caffeine_molecule.GetAtoms():
+    print(f"Atom: {atom.GetSymbol()}")
+    print(f"Atomic Number: {atom.GetAtomicNum()}")
+    print(f"Atom Index: {atom.GetIdx()}")
+    print(f"Degree (number of neighbors): {atom.GetDegree()}")
+    print(f"Valence: {atom.GetTotalValence()}")
+    print(f"Hybridization: {atom.GetHybridization()}")
+    print("-----------------------------------------")
+```
 
