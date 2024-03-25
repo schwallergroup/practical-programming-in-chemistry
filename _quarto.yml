@@ -57,10 +57,16 @@ website:
         - section: Lecture 05
         - text: "Cheminformatics and RDKit basics"
           href: tutorials/lecture_05/01_rdkit_basics.qmd
-        - text: "Descriptors"
+        - text: "RDkit descriptors"
           href: tutorials/lecture_05/02_rdkit_descriptors.qmd
-        - text: "Fingerprints"
+        - text: "RDKit fingerprints"
           href: tutorials/lecture_05/03_rdkit_fingerprints.qmd
+        - ---
+        - section: Lecture 06
+        - text: "Regular expressions"
+          href: tutorials/lecture_06/01_regex.qmd
+        - text: "RDKit SMARTS"
+          href: tutorials/lecture_06/02_rdkit_smarts.qmd
         - ---
 format:
   html:

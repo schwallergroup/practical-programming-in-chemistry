@@ -1,0 +1,283 @@
+# Regular expressions in python 
+
+Regex, short for Regular Expressions, are powerful patterns used for text manipulation and searching. They provide a concise and flexible way to search, match, and manipulate text based on specific patterns. Regular expressions are widely used in various programming languages, including Python.
+
+In Python, regular expressions are supported through the built-in `re` module. Here's how they are used:
+
+### Importing the `re` module
+
+```{python}
+import re
+```
+
+### Basic Pattern Matching
+
+```{python}
+text = "Hello, World!"
+pattern = r"Hello"
+match = re.search(pattern, text)
+if match:
+    print("Match found:", match.group())
+else:
+    print("No match found")
+```
+
+In this example, `re.search` searches for the pattern `"Hello"` in the `text` string. If a match is found, it returns a match object; otherwise, it returns `None`.
+
+### Using Regex Metacharacters
+
+Regular expressions use metacharacters to define patterns. Some common metacharacters are:
+
+- `.` (dot): matches any character except a newline
+- `\d`: matches a digit character
+- `\w`: matches a word character (letter, digit, or underscore)
+- `\s`: matches a whitespace character
+- `^`: matches the start of a string
+- `$`: matches the end of a string
+- `[]`: matches any character inside the brackets
+- `|`: matches either the expression before or after the `|`
+- `*`: matches zero or more occurrences of the preceding pattern
+- `+`: matches one or more occurrences of the preceding pattern
+- `?`: matches zero or one occurrence of the preceding pattern
+
+```{python}
+email_pattern = r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}'
+email = "example@example.com"
+if re.match(email_pattern, email):
+    print("Valid email address")
+else:
+    print("Invalid email address")
+```
+
+In this example, the regex pattern `email_pattern` matches a valid email address.
+
+### Regex Functions in Python
+
+The `re` module provides several useful functions for working with regular expressions:
+
+- `re.search`: searches for the first location where the pattern matches
+- `re.match`: checks if the pattern matches at the beginning of the string
+- `re.findall`: returns a list of all non-overlapping matches
+- `re.split`: splits the string by the occurrences of the pattern
+- `re.sub`: substitutes occurrences of the pattern with a replacement string
+
+```{python}
+text = "Hello, World! Hello, Python!"
+pattern = r"Hello"
+replacements = re.sub(pattern, "Hi", text)
+print(replacements)  # Output: "Hi, World! Hi, Python!"
+```
+
+In this example, `re.sub` replaces all occurrences of `"Hello"` with `"Hi"` in the `text` string.
+
+Regular expressions in Python offer a powerful and flexible way to work with text data. They are widely used in various applications, such as data cleaning, text parsing, validation, and string manipulation.
+
+If you ever need to build your own regex, [Regex101](https://regex101.com) is a super useful, or ask ChatGPT or another code LLM for help. 
+
+## Breaking down the email regex
+
+Let's break down the components of the regular expression `[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}` used to match email addresses:
+
+1. `[A-Za-z0-9._%+-]+`
+   - `[A-Za-z0-9._%+-]` is a character class that matches any single character that is either a letter (uppercase or lowercase), a digit, a period (`.`), an underscore (`_`), a percent sign (`%`), a plus sign (`+`), or a hyphen (`-`).
+   - The `+` quantifier after the character class means that the preceding pattern (the character class) must match one or more times.
+   - This part of the regex matches the user part of an email address, which can contain letters, digits, and certain special characters.
+
+2. `@`
+   - This is a literal `@` symbol, which separates the user part from the domain part in an email address.
+
+3. `[A-Za-z0-9.-]+`
+   - `[A-Za-z0-9.-]` is another character class that matches any single character that is either a letter (uppercase or lowercase), a digit, a period (`.`), or a hyphen (`-`).
+   - The `+` quantifier after the character class means that the preceding pattern (the character class) must match one or more times.
+   - This part of the regex matches the domain part of an email address, which can contain letters, digits, periods, and hyphens.
+
+4. `\.`
+   - This is a literal period (`.`) preceded by a backslash (`\`) to escape it, as the period has a special meaning in regular expressions.
+
+5. `[A-Za-z]{2,}`
+   - `[A-Za-z]` is a character class that matches any single letter (uppercase or lowercase).
+   - The `{2,}` quantifier after the character class means that the preceding pattern (the character class) must match two or more times.
+   - This part of the regex matches the top-level domain (TLD) of the email address, which must consist of at least two letters (e.g., `.com`, `.org`, `.net`, `.edu`, etc.).
+
+In summary, this regular expression matches email addresses that follow the standard format: a user part consisting of letters, digits, and certain special characters, followed by the `@` symbol, then a domain part consisting of letters, digits, periods, and hyphens, and finally a top-level domain with at least two letters.
+
+Here are some examples of email addresses that would match this regular expression:
+
+- `example@example.com`
+- `john.doe@company.org`
+- `hello123@subdomain.example.co.uk`
+
+And some examples that would not match:
+
+- `invalid@email` (missing the top-level domain)
+- `invalid@email.1` (top-level domain with less than two letters)
+- `invalid@example.` (missing the top-level domain)
+
+Here some code, if you want to use regex in Python:
+
+```{python}
+import re
+
+def is_valid_email(email):
+    """
+    Checks if the provided string is a valid email address.
+    
+    Args:
+        email (str): The string to be validated as an email address.
+        
+    Returns:
+        bool: True if the string is a valid email address, False otherwise.
+    """
+    email_regex = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+    return bool(re.match(email_regex, email))
+
+# Test the function with some examples
+print(is_valid_email("example@example.com"))  # True
+print(is_valid_email("john.doe@company.org"))  # True
+print(is_valid_email("hello123@subdomain.example.co.uk"))  # True
+print(is_valid_email("invalid@email"))  # False
+print(is_valid_email("invalid@email.1"))  # False
+print(is_valid_email("invalid@example."))  # False
+```
+
+
+## Why use an `r" "` string (raw string) for the regex?
+
+In Python, we use raw strings (denoted by `r""` or `r''`) for regular expressions to avoid having to escape backslash characters (`\`) explicitly. Regular expressions often use backslashes for special character sequences, and using a raw string allows the regular expression to be written more naturally without the need for additional escaping.
+
+Here's an example to illustrate the difference:
+
+```python
+# Without a raw string
+regex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+# This would cause a syntax error because \. and \+ are interpreted as
+# escape sequences for a literal period and plus sign, respectively.
+
+# With a raw string
+regex = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+# This works as intended because the backslashes are treated literally
+# and not as escape characters.
+```
+
+In the first example, Python would interpret `\.` and `\+` as escape sequences, which is not the intended behavior for a regular expression pattern. The `\` is used to escape special characters in regular expressions, like the period (`.`) and the plus sign (`+`).
+
+By using a raw string (`r"..."` or `r'...'`), Python treats the backslash (`\`) as a literal character instead of an escape character. This means that you don't have to escape backslashes in your regular expression patterns, making them more readable and easier to write.
+
+While it's possible to use regular strings for regular expressions and escape the backslashes manually (e.g., `"[A-Za-z0-9.\_%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"`), using raw strings is the recommended and more Pythonic way of writing regular expressions, as it improves readability and reduces the risk of introducing errors due to incorrect escaping.
+
+> Raw strings are used for regular expressions in Python to avoid having to escape backslashes manually, making the regular expression patterns more readable and easier to write and maintain.
+
+## Regex in Chemistry: SMILES Tokenizer
+
+In the realm of cheminformatics, regular expressions have found their way into various applications, including the processing and manipulation of chemical data. One example is the work done by the [Molecular Transformer](https://pubs.acs.org/doi/full/10.1021/acscentsci.9b00576) project, which leverages regex to tokenize SMILES (Simplified Molecular-Input Line-Entry System) strings.
+
+SMILES is a linear notation system used to represent molecular structures, where each character or combination of characters represents a specific atom or bond. To effectively process and analyze SMILES data, it is often necessary to break them down into individual tokens or components.
+
+The `smiles_tokenizer` function provided in the question is designed to perform this tokenization task using a carefully constructed regular expression pattern. Let's break down the different components of this function:
+
+```python
+def smiles_tokenizer(smiles):
+    """
+    Tokenize a SMILES molecule or reaction
+    """
+    import re
+    pattern =  "(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|\\\\|\/|:|~|@|\?|>|\*|\$|\%[0-9]{2}|[0-9])"
+    regex = re.compile(pattern)
+    tokens = [token for token in regex.findall(smiles)]
+    assert smiles == ''.join(tokens)
+    return ' '.join(tokens)
+```
+
+1. `pattern = "(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|\\\\|\/|:|~|@|\?|>|\*|\$|\%[0-9]{2}|[0-9])"`
+   - This regular expression pattern is designed to match various components of a SMILES string.
+   - `(\[[^\]]+])` matches any sequence of characters enclosed within square brackets, which is commonly used to represent atoms with specific properties or isotopes.
+   - `Br?`, `Cl?`, `N`, `O`, `S`, `P`, `F`, `I`, `b`, `c`, `n`, `o`, `s`, `p` match single-character representations of atoms or their aromatic counterparts.
+   - `\(`, `\)`, `\.`, `=`, `#`, `-`, `\+`, `\\\\`, `\/`, `:`, `~`, `@`, `\?`, `>`, `\*`, `\$` match various special characters and bond types used in SMILES notation.
+   - `\%[0-9]{2}` matches percentage signs followed by two digits and `[0-9]` matches individual digits, which can represent ring opening/closures.
+
+2. `regex = re.compile(pattern)`
+   - This line compiles the regular expression pattern into a regex object, which can be used for efficient pattern matching.
+
+3. `tokens = [token for token in regex.findall(smi)]`
+   - The `regex.findall(smi)` method finds all occurrences of the pattern in the input SMILES string `smi` and returns them as a list.
+   - The list comprehension `[token for token in regex.findall(smi)]` creates a new list `tokens` containing all the matched tokens.
+
+4. `assert smiles == ''.join(tokens)`
+   - This line asserts that the original SMILES string `smiles` is equal to the concatenation of all the tokens in the `tokens` list.
+   - This assertion is used to ensure that the tokenization process did not miss or add any characters, and that the original SMILES string can be reconstructed from the tokens.
+
+5. `return ' '.join(tokens)`
+   - Finally, the function returns a string where all the tokens are joined together with a space character. This is a common format for tokenized input in natural language processing tasks, and it allows for easy processing and manipulation of the tokenized SMILES data.
+
+Here is a Python code example:
+
+```{python}
+import re
+
+def smiles_tokenizer(smiles):
+    """
+    Tokenize a SMILES molecule or reaction
+    """
+    import re
+    pattern =  "(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|\\\\|\/|:|~|@|\?|>|\*|\$|\%[0-9]{2}|[0-9])"
+    regex = re.compile(pattern)
+    tokens = [token for token in regex.findall(smiles)]
+    assert smiles == ''.join(tokens)
+    return ' '.join(tokens)
+
+# List of molecules
+smiles_list = [
+    'C',                                    # Methane
+    'CCO',                                  # Ethanol
+    'CC(=O)O',                              # Acetic acid
+    'c1ccccc1',                             # Benzene
+    'N',                                    # Ammonia
+    'S',                                    # Hydrogen sulfide
+    'P',                                    # Phosphine
+    'ClC(Cl)Cl',                            # Chloroform
+    'C1CCCCC1',                             # Cyclohexane
+    'c1ccc2ccccc2c1',                       # Naphthalene
+    'C1C2CC3CC1CC(C2)C3',                   # Adamantane
+    '[NH4+]',                               # Ammonium ion
+    'CC(=O)[O-].[Na+]',                     # Sodium acetate
+    '[NH2+]=C([NH2+])[NH2+]',               # Guanidinium
+    '[2H]C([2H])([2H])[2H]',                # Deuterated methane
+    '[13CH3][13CH2]O',                      # Carbon-13 labeled ethanol
+    'CC(=O)OC1=CC=CC=C1C(=O)O',             # Aspirin
+    'CC1(C(=O)NC(C(=O)N2C(C(=O)O)CS2)=C(O)C3=CC=CC=C3)C(=O)N(C)C(=O)N1',  # Penicillin G
+    'Cl[Ir](Cl)(P(C3CCCCC3)3)=C(Cl)Cl',     # Vaska's complex
+    'C1=CC=CC=C1.C=C=C=C>>C1C2=CC=CC=C2C3C=CC=CC3C1',  # Diels-Alder reaction
+    '[NH3+]CC(=O)[O-].[CH3+]>>CC(=O)N.O'    # Nucleophilic substitution
+]
+
+# Test the tokenizer
+for smiles in smiles_list:
+    tokens = smiles_tokenizer(smiles)
+    print(f"SMILES: {smiles}")
+    print(f"Tokenized: {tokens}")
+    print()
+```
+
+By tokenizing SMILES strings using this regular expression pattern, the Molecular Transformer project and other cheminformatics applications can effectively break down molecular structures into their constituent components. This preprocessing step is crucial for tasks such as molecular property prediction, reaction prediction, and other machine learning applications in the field of chemistry.
+
+## Language models in chemistry
+
+The tokenized SMILES sequences generated by the `smiles_tokenizer` function can serve as input to language models, similar to how subwords or letters are used in natural language processing tasks.
+
+Just as language models are trained on sequences of words, characters, or subword units to learn patterns and relationships in natural language, molecular language models can be trained on sequences of SMILES tokens to learn patterns and relationships in molecular structures.
+
+By breaking down SMILES strings into their constituent tokens (atoms, bonds, rings, and other special characters), we essentially create a "vocabulary" of molecular building blocks. These tokens can be treated as the "letters" or "subwords" of the molecular "language," allowing language models to capture the intrinsic grammar and syntax of molecular representations.
+
+For example, a molecular language model trained on tokenized SMILES data could learn that certain sequences of tokens are more likely to appear together, representing common molecular substructures or functional groups. It could also learn about the valid ways atoms and bonds can be combined, effectively learning the "rules" of molecular structure.
+
+This approach has been successfully applied in various cheminformatics tasks, such as:
+
+1. **Molecular Property Prediction**: Language models can be trained to predict properties like drug-likeness, solubility, or toxicity based on the sequence of SMILES tokens, similar to how language models predict the next word in a sentence.
+
+2. **Molecular Generation**: Language models can be used to generate novel molecular structures by sampling from the learned distribution of SMILES token sequences, potentially leading to the discovery of new compounds with desired properties.
+
+3. **Reaction Prediction**: By training on sequences of reactants and products, language models can learn to predict the outcome of chemical reactions, aiding in retrosynthesis planning and synthesis route prediction.
+
+4. **Molecular Representation Learning**: The learned representations from molecular language models can be used as input features for other machine learning tasks, capturing relevant chemical information in a data-driven manner.
+
+The tokenization step provided by the `smiles_tokenizer` function is enabling this translation of molecular structures into a format suitable for language modeling techniques. By treating SMILES tokens as the "letters" of the molecular "language," we can leverage the power of modern language models and adapt them to the chemical domain, opening up new avenues for computational chemistry and drug discovery.
