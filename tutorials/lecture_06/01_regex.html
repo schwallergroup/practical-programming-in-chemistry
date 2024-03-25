@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Practical programming in Chemistry – regex</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../tutorials/lecture_06/02_rdkit_smarts.html" rel="next">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_06/01_regex.html">Regular expressions</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Home</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands summary</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 01</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: Configuration</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: GitHub Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: SSH Connection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Next steps: Fork and Code</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 02</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python iterations</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 03</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File IO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/03_seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seaborn</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 05</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheminformatics and RDKit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RDkit descriptors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RDKit fingerprints</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 06</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_06/01_regex.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Regular expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_06/02_rdkit_smarts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RDKit SMARTS</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#importing-the-re-module" id="toc-importing-the-re-module" class="nav-link active" data-scroll-target="#importing-the-re-module">Importing the <code>re</code> module</a></li>
+  <li><a href="#basic-pattern-matching" id="toc-basic-pattern-matching" class="nav-link" data-scroll-target="#basic-pattern-matching">Basic Pattern Matching</a></li>
+  <li><a href="#using-regex-metacharacters" id="toc-using-regex-metacharacters" class="nav-link" data-scroll-target="#using-regex-metacharacters">Using Regex Metacharacters</a></li>
+  <li><a href="#regex-functions-in-python" id="toc-regex-functions-in-python" class="nav-link" data-scroll-target="#regex-functions-in-python">Regex Functions in Python</a></li>
+  <li><a href="#breaking-down-the-email-regex" id="toc-breaking-down-the-email-regex" class="nav-link" data-scroll-target="#breaking-down-the-email-regex">Breaking down the email regex</a></li>
+  <li><a href="#why-use-an-r-string-raw-string-for-the-regex" id="toc-why-use-an-r-string-raw-string-for-the-regex" class="nav-link" data-scroll-target="#why-use-an-r-string-raw-string-for-the-regex">Why use an <code>r" "</code> string (raw string) for the regex?</a></li>
+  <li><a href="#regex-in-chemistry-smiles-tokenizer" id="toc-regex-in-chemistry-smiles-tokenizer" class="nav-link" data-scroll-target="#regex-in-chemistry-smiles-tokenizer">Regex in Chemistry: SMILES Tokenizer</a></li>
+  <li><a href="#language-models-in-chemistry" id="toc-language-models-in-chemistry" class="nav-link" data-scroll-target="#language-models-in-chemistry">Language models in chemistry</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Regular expressions in python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Regex, short for Regular Expressions, are powerful patterns used for text manipulation and searching. They provide a concise and flexible way to search, match, and manipulate text based on specific patterns. Regular expressions are widely used in various programming languages, including Python.</p>
+<p>In Python, regular expressions are supported through the built-in <code>re</code> module. Here’s how they are used:</p>
+<section id="importing-the-re-module" class="level3">
+<h3 class="anchored" data-anchor-id="importing-the-re-module">Importing the <code>re</code> module</h3>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="basic-pattern-matching" class="level3">
+<h3 class="anchored" data-anchor-id="basic-pattern-matching">Basic Pattern Matching</h3>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> <span class="vs">r"Hello"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>match <span class="op">=</span> re.search(pattern, text)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> match:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Match found:"</span>, match.group())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No match found"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match found: Hello</code></pre>
+</div>
+</div>
+<p>In this example, <code>re.search</code> searches for the pattern <code>"Hello"</code> in the <code>text</code> string. If a match is found, it returns a match object; otherwise, it returns <code>None</code>.</p>
+</section>
+<section id="using-regex-metacharacters" class="level3">
+<h3 class="anchored" data-anchor-id="using-regex-metacharacters">Using Regex Metacharacters</h3>
+<p>Regular expressions use metacharacters to define patterns. Some common metacharacters are:</p>
+<ul>
+<li><code>.</code> (dot): matches any character except a newline</li>
+<li><code>\d</code>: matches a digit character</li>
+<li><code>\w</code>: matches a word character (letter, digit, or underscore)</li>
+<li><code>\s</code>: matches a whitespace character</li>
+<li><code>^</code>: matches the start of a string</li>
+<li><code>$</code>: matches the end of a string</li>
+<li><code>[]</code>: matches any character inside the brackets</li>
+<li><code>|</code>: matches either the expression before or after the <code>|</code></li>
+<li><code>*</code>: matches zero or more occurrences of the preceding pattern</li>
+<li><code>+</code>: matches one or more occurrences of the preceding pattern</li>
+<li><code>?</code>: matches zero or one occurrence of the preceding pattern</li>
+</ul>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>email_pattern <span class="op">=</span> <span class="vs">r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> <span class="st">"example@example.com"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> re.match(email_pattern, email):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Valid email address"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Invalid email address"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Valid email address</code></pre>
+</div>
+</div>
+<p>In this example, the regex pattern <code>email_pattern</code> matches a valid email address.</p>
+</section>
+<section id="regex-functions-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="regex-functions-in-python">Regex Functions in Python</h3>
+<p>The <code>re</code> module provides several useful functions for working with regular expressions:</p>
+<ul>
+<li><code>re.search</code>: searches for the first location where the pattern matches</li>
+<li><code>re.match</code>: checks if the pattern matches at the beginning of the string</li>
+<li><code>re.findall</code>: returns a list of all non-overlapping matches</li>
+<li><code>re.split</code>: splits the string by the occurrences of the pattern</li>
+<li><code>re.sub</code>: substitutes occurrences of the pattern with a replacement string</li>
+</ul>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Hello, World! Hello, Python!"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> <span class="vs">r"Hello"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>replacements <span class="op">=</span> re.sub(pattern, <span class="st">"Hi"</span>, text)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(replacements)  <span class="co"># Output: "Hi, World! Hi, Python!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hi, World! Hi, Python!</code></pre>
+</div>
+</div>
+<p>In this example, <code>re.sub</code> replaces all occurrences of <code>"Hello"</code> with <code>"Hi"</code> in the <code>text</code> string.</p>
+<p>Regular expressions in Python offer a powerful and flexible way to work with text data. They are widely used in various applications, such as data cleaning, text parsing, validation, and string manipulation.</p>
+<p>If you ever need to build your own regex, <a href="https://regex101.com">Regex101</a> is a super useful, or ask ChatGPT or another code LLM for help.</p>
+</section>
+<section id="breaking-down-the-email-regex" class="level2">
+<h2 class="anchored" data-anchor-id="breaking-down-the-email-regex">Breaking down the email regex</h2>
+<p>Let’s break down the components of the regular expression <code>[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}</code> used to match email addresses:</p>
+<ol type="1">
+<li><code>[A-Za-z0-9._%+-]+</code>
+<ul>
+<li><code>[A-Za-z0-9._%+-]</code> is a character class that matches any single character that is either a letter (uppercase or lowercase), a digit, a period (<code>.</code>), an underscore (<code>_</code>), a percent sign (<code>%</code>), a plus sign (<code>+</code>), or a hyphen (<code>-</code>).</li>
+<li>The <code>+</code> quantifier after the character class means that the preceding pattern (the character class) must match one or more times.</li>
+<li>This part of the regex matches the user part of an email address, which can contain letters, digits, and certain special characters.</li>
+</ul></li>
+<li><code>@</code>
+<ul>
+<li>This is a literal <code>@</code> symbol, which separates the user part from the domain part in an email address.</li>
+</ul></li>
+<li><code>[A-Za-z0-9.-]+</code>
+<ul>
+<li><code>[A-Za-z0-9.-]</code> is another character class that matches any single character that is either a letter (uppercase or lowercase), a digit, a period (<code>.</code>), or a hyphen (<code>-</code>).</li>
+<li>The <code>+</code> quantifier after the character class means that the preceding pattern (the character class) must match one or more times.</li>
+<li>This part of the regex matches the domain part of an email address, which can contain letters, digits, periods, and hyphens.</li>
+</ul></li>
+<li><code>\.</code>
+<ul>
+<li>This is a literal period (<code>.</code>) preceded by a backslash (<code>\</code>) to escape it, as the period has a special meaning in regular expressions.</li>
+</ul></li>
+<li><code>[A-Za-z]{2,}</code>
+<ul>
+<li><code>[A-Za-z]</code> is a character class that matches any single letter (uppercase or lowercase).</li>
+<li>The <code>{2,}</code> quantifier after the character class means that the preceding pattern (the character class) must match two or more times.</li>
+<li>This part of the regex matches the top-level domain (TLD) of the email address, which must consist of at least two letters (e.g., <code>.com</code>, <code>.org</code>, <code>.net</code>, <code>.edu</code>, etc.).</li>
+</ul></li>
+</ol>
+<p>In summary, this regular expression matches email addresses that follow the standard format: a user part consisting of letters, digits, and certain special characters, followed by the <code>@</code> symbol, then a domain part consisting of letters, digits, periods, and hyphens, and finally a top-level domain with at least two letters.</p>
+<p>Here are some examples of email addresses that would match this regular expression:</p>
+<ul>
+<li><code>example@example.com</code></li>
+<li><code>john.doe@company.org</code></li>
+<li><code>hello123@subdomain.example.co.uk</code></li>
+</ul>
+<p>And some examples that would not match:</p>
+<ul>
+<li><code>invalid@email</code> (missing the top-level domain)</li>
+<li><code>invalid@email.1</code> (top-level domain with less than two letters)</li>
+<li><code>invalid@example.</code> (missing the top-level domain)</li>
+</ul>
+<p>Here some code, if you want to use regex in Python:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_valid_email(email):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Checks if the provided string is a valid email address.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">        email (str): The string to be validated as an email address.</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">        bool: True if the string is a valid email address, False otherwise.</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    email_regex <span class="op">=</span> <span class="vs">r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">bool</span>(re.match(email_regex, email))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function with some examples</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"example@example.com"</span>))  <span class="co"># True</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"john.doe@company.org"</span>))  <span class="co"># True</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"hello123@subdomain.example.co.uk"</span>))  <span class="co"># True</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"invalid@email"</span>))  <span class="co"># False</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"invalid@email.1"</span>))  <span class="co"># False</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_valid_email(<span class="st">"invalid@example."</span>))  <span class="co"># False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+True
+True
+False
+False
+False</code></pre>
+</div>
+</div>
+</section>
+<section id="why-use-an-r-string-raw-string-for-the-regex" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-an-r-string-raw-string-for-the-regex">Why use an <code>r" "</code> string (raw string) for the regex?</h2>
+<p>In Python, we use raw strings (denoted by <code>r""</code> or <code>r''</code>) for regular expressions to avoid having to escape backslash characters (<code>\</code>) explicitly. Regular expressions often use backslashes for special character sequences, and using a raw string allows the regular expression to be written more naturally without the need for additional escaping.</p>
+<p>Here’s an example to illustrate the difference:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Without a raw string</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>regex <span class="op">=</span> <span class="st">"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This would cause a syntax error because \. and \+ are interpreted as</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># escape sequences for a literal period and plus sign, respectively.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># With a raw string</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>regex <span class="op">=</span> <span class="vs">r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This works as intended because the backslashes are treated literally</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># and not as escape characters.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the first example, Python would interpret <code>\.</code> and <code>\+</code> as escape sequences, which is not the intended behavior for a regular expression pattern. The <code>\</code> is used to escape special characters in regular expressions, like the period (<code>.</code>) and the plus sign (<code>+</code>).</p>
+<p>By using a raw string (<code>r"..."</code> or <code>r'...'</code>), Python treats the backslash (<code>\</code>) as a literal character instead of an escape character. This means that you don’t have to escape backslashes in your regular expression patterns, making them more readable and easier to write.</p>
+<p>While it’s possible to use regular strings for regular expressions and escape the backslashes manually (e.g., <code>"[A-Za-z0-9.\_%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"</code>), using raw strings is the recommended and more Pythonic way of writing regular expressions, as it improves readability and reduces the risk of introducing errors due to incorrect escaping.</p>
+<blockquote class="blockquote">
+<p>Raw strings are used for regular expressions in Python to avoid having to escape backslashes manually, making the regular expression patterns more readable and easier to write and maintain.</p>
+</blockquote>
+</section>
+<section id="regex-in-chemistry-smiles-tokenizer" class="level2">
+<h2 class="anchored" data-anchor-id="regex-in-chemistry-smiles-tokenizer">Regex in Chemistry: SMILES Tokenizer</h2>
+<p>In the realm of cheminformatics, regular expressions have found their way into various applications, including the processing and manipulation of chemical data. One example is the work done by the <a href="https://pubs.acs.org/doi/full/10.1021/acscentsci.9b00576">Molecular Transformer</a> project, which leverages regex to tokenize SMILES (Simplified Molecular-Input Line-Entry System) strings.</p>
+<p>SMILES is a linear notation system used to represent molecular structures, where each character or combination of characters represents a specific atom or bond. To effectively process and analyze SMILES data, it is often necessary to break them down into individual tokens or components.</p>
+<p>The <code>smiles_tokenizer</code> function provided in the question is designed to perform this tokenization task using a carefully constructed regular expression pattern. Let’s break down the different components of this function:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smiles_tokenizer(smiles):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Tokenize a SMILES molecule or reaction</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> re</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    pattern <span class="op">=</span>  <span class="st">"(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|</span><span class="ch">\\\\</span><span class="st">|\/|:|~|@|\?|&gt;|\*|\$|\%[0-9]</span><span class="sc">{2}</span><span class="st">|[0-9])"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    regex <span class="op">=</span> re.<span class="bu">compile</span>(pattern)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> regex.findall(smiles)]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> smiles <span class="op">==</span> <span class="st">''</span>.join(tokens)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(tokens)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><code>pattern = "(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|\\\\|\/|:|~|@|\?|&gt;|\*|\$|\%[0-9]{2}|[0-9])"</code>
+<ul>
+<li>This regular expression pattern is designed to match various components of a SMILES string.</li>
+<li><code>(\[[^\]]+])</code> matches any sequence of characters enclosed within square brackets, which is commonly used to represent atoms with specific properties or isotopes.</li>
+<li><code>Br?</code>, <code>Cl?</code>, <code>N</code>, <code>O</code>, <code>S</code>, <code>P</code>, <code>F</code>, <code>I</code>, <code>b</code>, <code>c</code>, <code>n</code>, <code>o</code>, <code>s</code>, <code>p</code> match single-character representations of atoms or their aromatic counterparts.</li>
+<li><code>\(</code>, <code>\)</code>, <code>\.</code>, <code>=</code>, <code>#</code>, <code>-</code>, <code>\+</code>, <code>\\\\</code>, <code>\/</code>, <code>:</code>, <code>~</code>, <code>@</code>, <code>\?</code>, <code>&gt;</code>, <code>\*</code>, <code>\$</code> match various special characters and bond types used in SMILES notation.</li>
+<li><code>\%[0-9]{2}</code> matches percentage signs followed by two digits and <code>[0-9]</code> matches individual digits, which can represent ring opening/closures.</li>
+</ul></li>
+<li><code>regex = re.compile(pattern)</code>
+<ul>
+<li>This line compiles the regular expression pattern into a regex object, which can be used for efficient pattern matching.</li>
+</ul></li>
+<li><code>tokens = [token for token in regex.findall(smi)]</code>
+<ul>
+<li>The <code>regex.findall(smi)</code> method finds all occurrences of the pattern in the input SMILES string <code>smi</code> and returns them as a list.</li>
+<li>The list comprehension <code>[token for token in regex.findall(smi)]</code> creates a new list <code>tokens</code> containing all the matched tokens.</li>
+</ul></li>
+<li><code>assert smiles == ''.join(tokens)</code>
+<ul>
+<li>This line asserts that the original SMILES string <code>smiles</code> is equal to the concatenation of all the tokens in the <code>tokens</code> list.</li>
+<li>This assertion is used to ensure that the tokenization process did not miss or add any characters, and that the original SMILES string can be reconstructed from the tokens.</li>
+</ul></li>
+<li><code>return ' '.join(tokens)</code>
+<ul>
+<li>Finally, the function returns a string where all the tokens are joined together with a space character. This is a common format for tokenized input in natural language processing tasks, and it allows for easy processing and manipulation of the tokenized SMILES data.</li>
+</ul></li>
+</ol>
+<p>Here is a Python code example:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smiles_tokenizer(smiles):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Tokenize a SMILES molecule or reaction</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> re</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    pattern <span class="op">=</span>  <span class="st">"(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|=|#|-|\+|</span><span class="ch">\\\\</span><span class="st">|\/|:|~|@|\?|&gt;|\*|\$|\%[0-9]</span><span class="sc">{2}</span><span class="st">|[0-9])"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    regex <span class="op">=</span> re.<span class="bu">compile</span>(pattern)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> regex.findall(smiles)]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> smiles <span class="op">==</span> <span class="st">''</span>.join(tokens)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(tokens)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># List of molecules</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>smiles_list <span class="op">=</span> [</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>,                                    <span class="co"># Methane</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CCO'</span>,                                  <span class="co"># Ethanol</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC(=O)O'</span>,                              <span class="co"># Acetic acid</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'c1ccccc1'</span>,                             <span class="co"># Benzene</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'N'</span>,                                    <span class="co"># Ammonia</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'S'</span>,                                    <span class="co"># Hydrogen sulfide</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'P'</span>,                                    <span class="co"># Phosphine</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ClC(Cl)Cl'</span>,                            <span class="co"># Chloroform</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C1CCCCC1'</span>,                             <span class="co"># Cyclohexane</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'c1ccc2ccccc2c1'</span>,                       <span class="co"># Naphthalene</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C1C2CC3CC1CC(C2)C3'</span>,                   <span class="co"># Adamantane</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'[NH4+]'</span>,                               <span class="co"># Ammonium ion</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC(=O)[O-].[Na+]'</span>,                     <span class="co"># Sodium acetate</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'[NH2+]=C([NH2+])[NH2+]'</span>,               <span class="co"># Guanidinium</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'[2H]C([2H])([2H])[2H]'</span>,                <span class="co"># Deuterated methane</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'[13CH3][13CH2]O'</span>,                      <span class="co"># Carbon-13 labeled ethanol</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC(=O)OC1=CC=CC=C1C(=O)O'</span>,             <span class="co"># Aspirin</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC1(C(=O)NC(C(=O)N2C(C(=O)O)CS2)=C(O)C3=CC=CC=C3)C(=O)N(C)C(=O)N1'</span>,  <span class="co"># Penicillin G</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Cl[Ir](Cl)(P(C3CCCCC3)3)=C(Cl)Cl'</span>,     <span class="co"># Vaska's complex</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C1=CC=CC=C1.C=C=C=C&gt;&gt;C1C2=CC=CC=C2C3C=CC=CC3C1'</span>,  <span class="co"># Diels-Alder reaction</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'[NH3+]CC(=O)[O-].[CH3+]&gt;&gt;CC(=O)N.O'</span>    <span class="co"># Nucleophilic substitution</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the tokenizer</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> smiles <span class="kw">in</span> smiles_list:</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> smiles_tokenizer(smiles)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"SMILES: </span><span class="sc">{</span>smiles<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Tokenized: </span><span class="sc">{</span>tokens<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>SMILES: C
+Tokenized: C
+
+SMILES: CCO
+Tokenized: C C O
+
+SMILES: CC(=O)O
+Tokenized: C C ( = O ) O
+
+SMILES: c1ccccc1
+Tokenized: c 1 c c c c c 1
+
+SMILES: N
+Tokenized: N
+
+SMILES: S
+Tokenized: S
+
+SMILES: P
+Tokenized: P
+
+SMILES: ClC(Cl)Cl
+Tokenized: Cl C ( Cl ) Cl
+
+SMILES: C1CCCCC1
+Tokenized: C 1 C C C C C 1
+
+SMILES: c1ccc2ccccc2c1
+Tokenized: c 1 c c c 2 c c c c c 2 c 1
+
+SMILES: C1C2CC3CC1CC(C2)C3
+Tokenized: C 1 C 2 C C 3 C C 1 C C ( C 2 ) C 3
+
+SMILES: [NH4+]
+Tokenized: [NH4+]
+
+SMILES: CC(=O)[O-].[Na+]
+Tokenized: C C ( = O ) [O-] . [Na+]
+
+SMILES: [NH2+]=C([NH2+])[NH2+]
+Tokenized: [NH2+] = C ( [NH2+] ) [NH2+]
+
+SMILES: [2H]C([2H])([2H])[2H]
+Tokenized: [2H] C ( [2H] ) ( [2H] ) [2H]
+
+SMILES: [13CH3][13CH2]O
+Tokenized: [13CH3] [13CH2] O
+
+SMILES: CC(=O)OC1=CC=CC=C1C(=O)O
+Tokenized: C C ( = O ) O C 1 = C C = C C = C 1 C ( = O ) O
+
+SMILES: CC1(C(=O)NC(C(=O)N2C(C(=O)O)CS2)=C(O)C3=CC=CC=C3)C(=O)N(C)C(=O)N1
+Tokenized: C C 1 ( C ( = O ) N C ( C ( = O ) N 2 C ( C ( = O ) O ) C S 2 ) = C ( O ) C 3 = C C = C C = C 3 ) C ( = O ) N ( C ) C ( = O ) N 1
+
+SMILES: Cl[Ir](Cl)(P(C3CCCCC3)3)=C(Cl)Cl
+Tokenized: Cl [Ir] ( Cl ) ( P ( C 3 C C C C C 3 ) 3 ) = C ( Cl ) Cl
+
+SMILES: C1=CC=CC=C1.C=C=C=C&gt;&gt;C1C2=CC=CC=C2C3C=CC=CC3C1
+Tokenized: C 1 = C C = C C = C 1 . C = C = C = C &gt; &gt; C 1 C 2 = C C = C C = C 2 C 3 C = C C = C C 3 C 1
+
+SMILES: [NH3+]CC(=O)[O-].[CH3+]&gt;&gt;CC(=O)N.O
+Tokenized: [NH3+] C C ( = O ) [O-] . [CH3+] &gt; &gt; C C ( = O ) N . O
+</code></pre>
+</div>
+</div>
+<p>By tokenizing SMILES strings using this regular expression pattern, the Molecular Transformer project and other cheminformatics applications can effectively break down molecular structures into their constituent components. This preprocessing step is crucial for tasks such as molecular property prediction, reaction prediction, and other machine learning applications in the field of chemistry.</p>
+</section>
+<section id="language-models-in-chemistry" class="level2">
+<h2 class="anchored" data-anchor-id="language-models-in-chemistry">Language models in chemistry</h2>
+<p>The tokenized SMILES sequences generated by the <code>smiles_tokenizer</code> function can serve as input to language models, similar to how subwords or letters are used in natural language processing tasks.</p>
+<p>Just as language models are trained on sequences of words, characters, or subword units to learn patterns and relationships in natural language, molecular language models can be trained on sequences of SMILES tokens to learn patterns and relationships in molecular structures.</p>
+<p>By breaking down SMILES strings into their constituent tokens (atoms, bonds, rings, and other special characters), we essentially create a “vocabulary” of molecular building blocks. These tokens can be treated as the “letters” or “subwords” of the molecular “language,” allowing language models to capture the intrinsic grammar and syntax of molecular representations.</p>
+<p>For example, a molecular language model trained on tokenized SMILES data could learn that certain sequences of tokens are more likely to appear together, representing common molecular substructures or functional groups. It could also learn about the valid ways atoms and bonds can be combined, effectively learning the “rules” of molecular structure.</p>
+<p>This approach has been successfully applied in various cheminformatics tasks, such as:</p>
+<ol type="1">
+<li><p><strong>Molecular Property Prediction</strong>: Language models can be trained to predict properties like drug-likeness, solubility, or toxicity based on the sequence of SMILES tokens, similar to how language models predict the next word in a sentence.</p></li>
+<li><p><strong>Molecular Generation</strong>: Language models can be used to generate novel molecular structures by sampling from the learned distribution of SMILES token sequences, potentially leading to the discovery of new compounds with desired properties.</p></li>
+<li><p><strong>Reaction Prediction</strong>: By training on sequences of reactants and products, language models can learn to predict the outcome of chemical reactions, aiding in retrosynthesis planning and synthesis route prediction.</p></li>
+<li><p><strong>Molecular Representation Learning</strong>: The learned representations from molecular language models can be used as input features for other machine learning tasks, capturing relevant chemical information in a data-driven manner.</p></li>
+</ol>
+<p>The tokenization step provided by the <code>smiles_tokenizer</code> function is enabling this translation of molecular structures into a format suitable for language modeling techniques. By treating SMILES tokens as the “letters” of the molecular “language,” we can leverage the power of modern language models and adapt them to the chemical domain, opening up new avenues for computational chemistry and drug discovery.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../tutorials/lecture_06/02_rdkit_smarts.html" class="pagination-link">
+        <span class="nav-page-text">RDKit SMARTS</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

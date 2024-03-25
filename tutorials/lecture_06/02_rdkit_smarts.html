@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Practical programming in Chemistry – rdkit_smarts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../tutorials/lecture_06/01_regex.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/lecture_06/02_rdkit_smarts.html">RDKit SMARTS</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Home</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands summary</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 01</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/01_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: Configuration</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/02_github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: GitHub Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/03_ssh_connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial: SSH Connection</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_01/04_next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Next steps: Fork and Code</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 02</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/01_jupyter_notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/02_python_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/03_python_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_02/04_python_iterations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python iterations</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 03</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/01_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/02_classes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/04_fileio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File IO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_03/05_errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Error handling</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 04</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/01_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/02_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matplotlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_04/03_seaborn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seaborn</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 05</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/01_rdkit_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheminformatics and RDKit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/02_rdkit_descriptors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RDkit descriptors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_05/03_rdkit_fingerprints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RDKit fingerprints</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Lecture 06</span></span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_06/01_regex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regular expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/lecture_06/02_rdkit_smarts.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">RDKit SMARTS</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#connecting-regex-and-smarts" id="toc-connecting-regex-and-smarts" class="nav-link active" data-scroll-target="#connecting-regex-and-smarts">Connecting Regex and SMARTS</a></li>
+  <li><a href="#getting-started-with-smarts-in-rdkit" id="toc-getting-started-with-smarts-in-rdkit" class="nav-link" data-scroll-target="#getting-started-with-smarts-in-rdkit">Getting Started with SMARTS in RDKit</a>
+  <ul class="collapse">
+  <li><a href="#example-1-matching-simple-substructures" id="toc-example-1-matching-simple-substructures" class="nav-link" data-scroll-target="#example-1-matching-simple-substructures">Example 1: Matching Simple Substructures</a></li>
+  <li><a href="#example-2-aromatic-rings" id="toc-example-2-aromatic-rings" class="nav-link" data-scroll-target="#example-2-aromatic-rings">Example 2: Aromatic Rings</a></li>
+  <li><a href="#example-3-specifying-atom-counts" id="toc-example-3-specifying-atom-counts" class="nav-link" data-scroll-target="#example-3-specifying-atom-counts">Example 3: Specifying Atom Counts</a></li>
+  <li><a href="#example-4-using-logic-operators" id="toc-example-4-using-logic-operators" class="nav-link" data-scroll-target="#example-4-using-logic-operators">Example 4: Using Logic Operators</a></li>
+  <li><a href="#example-5-ring-sizes-and-aromaticity" id="toc-example-5-ring-sizes-and-aromaticity" class="nav-link" data-scroll-target="#example-5-ring-sizes-and-aromaticity">Example 5: Ring Sizes and Aromaticity</a></li>
+  </ul></li>
+  <li><a href="#visualizing-matches" id="toc-visualizing-matches" class="nav-link" data-scroll-target="#visualizing-matches">Visualizing Matches</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SMARTS: The Regex of the Molecular World</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="connecting-regex-and-smarts" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-regex-and-smarts">Connecting Regex and SMARTS</h2>
+<p>Now, imagine applying a similar concept to the molecular world, where instead of letters and numbers, we work with atoms and bonds. This is where SMARTS (SMILES Arbitrary Target Specification) enters the picture.</p>
+<p>Just as regex allows you to search through text for patterns like email addresses or phone numbers based on a defined rule, SMARTS enables you to search for molecular patterns. Here are some examples that draw parallels between regex and SMARTS:</p>
+<ul>
+<li><strong>Regex</strong>: <code>\b[A-Za-z]+ol\b</code> matches words ending with “ol” (e.g., “ethanol” or “methanol”).
+<ul>
+<li><strong>SMARTS Analogy</strong>: <code>[OH]</code> looks for hydroxyl groups, a common feature in alcohols.</li>
+</ul></li>
+<li><strong>Regex</strong>: <code>\b[A-Za-z]+ic acid\b</code> finds phrases like “acetic acid” or “benzoic acid”.
+<ul>
+<li><strong>SMARTS Analogy</strong>: <code>C(=O)O</code> matches carboxylic acid functional groups.</li>
+</ul></li>
+<li><strong>Regex</strong>: <code>benzene|benzo[a-z]+</code> searches for “benzene” or words starting with “benzo”.
+<ul>
+<li><strong>SMARTS Analogy</strong>: <code>c1ccccc1</code> identifies the aromatic ring structure present in benzene and its derivatives.</li>
+</ul></li>
+</ul>
+<p>As you can see, both tools use a pattern language for specifying what you’re looking for, whether in a text document or a chemical database.</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 23%">
+<col style="width: 43%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Symbol</strong></th>
+<th><strong>Symbol name</strong></th>
+<th><strong>Atomic property requirements</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*</code></td>
+<td>wildcard</td>
+<td>any atom</td>
+<td>(no default)</td>
+</tr>
+<tr class="even">
+<td><code>a</code></td>
+<td>aromatic</td>
+<td>aromatic</td>
+<td>(no default)</td>
+</tr>
+<tr class="odd">
+<td><code>A</code></td>
+<td>aliphatic</td>
+<td>aliphatic</td>
+<td>(no default)</td>
+</tr>
+<tr class="even">
+<td><code>D&lt;n&gt;</code></td>
+<td>degree</td>
+<td><code>&lt;n&gt;</code> explicit connections</td>
+<td>exactly one</td>
+</tr>
+<tr class="odd">
+<td><code>H&lt;n&gt;</code></td>
+<td>total-H-count</td>
+<td><code>&lt;n&gt;</code> attached hydrogens</td>
+<td>exactly one</td>
+</tr>
+<tr class="even">
+<td><code>h&lt;n&gt;</code></td>
+<td>implicit-H-count</td>
+<td><code>&lt;n&gt;</code> implicit hydrogens</td>
+<td>at least one</td>
+</tr>
+<tr class="odd">
+<td><code>R&lt;n&gt;</code></td>
+<td>ring membership</td>
+<td>in <code>&lt;n&gt;</code> SSSR rings</td>
+<td>any ring atom</td>
+</tr>
+<tr class="even">
+<td><code>r&lt;n&gt;</code></td>
+<td>ring size</td>
+<td>in smallest SSSR ring of size <code>&lt;n&gt;</code></td>
+<td>any ring atom</td>
+</tr>
+<tr class="odd">
+<td><code>v&lt;n&gt;</code></td>
+<td>valence</td>
+<td>total bond order <code>&lt;n&gt;</code></td>
+<td>exactly one</td>
+</tr>
+<tr class="even">
+<td><code>X&lt;n&gt;</code></td>
+<td>connectivity</td>
+<td><code>&lt;n&gt;</code> total connections</td>
+<td>exactly one</td>
+</tr>
+<tr class="odd">
+<td><code>x&lt;n&gt;</code></td>
+<td>ring connectivity</td>
+<td><code>&lt;n&gt;</code> total ring connections</td>
+<td>at least one</td>
+</tr>
+<tr class="even">
+<td><code>-&lt;n&gt;</code></td>
+<td>negative charge</td>
+<td><code>-&lt;n&gt;</code> charge</td>
+<td><code>-1</code> charge (<code>--</code> is <code>-2</code>, etc)</td>
+</tr>
+<tr class="odd">
+<td><code>+&lt;n&gt;</code></td>
+<td>positive charge</td>
+<td><code>+&lt;n&gt;</code> formal charge</td>
+<td><code>+1</code> charge (<code>++</code> is <code>+2</code>, etc)</td>
+</tr>
+<tr class="even">
+<td><code>#n</code></td>
+<td>atomic number</td>
+<td>atomic number <code>&lt;n&gt;</code></td>
+<td>(no default)</td>
+</tr>
+<tr class="odd">
+<td><code>@</code></td>
+<td>chirality</td>
+<td>anticlockwise</td>
+<td>anticlockwise, default class</td>
+</tr>
+<tr class="even">
+<td><code>@@</code></td>
+<td>chirality</td>
+<td>clockwise</td>
+<td>clockwise, default class</td>
+</tr>
+<tr class="odd">
+<td><code>@&lt;c&gt;&lt;n&gt;</code></td>
+<td>chirality</td>
+<td>chiral class <code>&lt;c&gt;</code> chirality <code>&lt;n&gt;</code></td>
+<td>(no default)</td>
+</tr>
+<tr class="even">
+<td><code>@&lt;c&gt;&lt;n&gt;?</code></td>
+<td>chiral or unspec</td>
+<td>chirality <code>&lt;c&gt;&lt;n&gt;</code> or unspecified</td>
+<td>(no default)</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;n&gt;</code></td>
+<td>atomic mass</td>
+<td>explicit atomic mass</td>
+<td>unspecified mass</td>
+</tr>
+</tbody>
+</table>
+<p>And here are some examples with SMARTS, description, and matching SMILES:</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 35%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>SMARTS</th>
+<th>Description</th>
+<th>Matching SMILES</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[D3]</code></td>
+<td>Atom with 3 explicit bonds (excluding implicit hydrogens)</td>
+<td><code>C(=O)OC</code>, <code>C#N</code></td>
+</tr>
+<tr class="even">
+<td><code>[H3]</code></td>
+<td>Atom with 3 attached hydrogens</td>
+<td><code>CC</code>, <code>CN</code></td>
+</tr>
+<tr class="odd">
+<td><code>[v3]</code></td>
+<td>Atom with bond orders totaling 3 (including implicit hydrogens)</td>
+<td><code>N</code>, <code>C#N</code></td>
+</tr>
+<tr class="even">
+<td><code>[r5]</code></td>
+<td>Atom in a 5-membered ring</td>
+<td><code>c1cccc1</code>, <code>C1CCCC1</code></td>
+</tr>
+<tr class="odd">
+<td><code>[R2]</code></td>
+<td>Atom in 2 SSSR rings</td>
+<td><code>c1ccc2ccccc2c1</code></td>
+</tr>
+<tr class="even">
+<td><code>[+]</code></td>
+<td>Positively charged atom</td>
+<td><code>[NH3+]C</code>, <code>[N+](=O)(O)C</code></td>
+</tr>
+</tbody>
+</table>
+<p>More information and complex examples can be found on <a href="https://www.daylight.com/dayhtml/doc/theory/theory.smarts.html">Daylight SMARTS</a>.</p>
+</section>
+<section id="getting-started-with-smarts-in-rdkit" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-with-smarts-in-rdkit">Getting Started with SMARTS in RDKit</h2>
+<p>First, ensure you have RDKit installed and import the necessary modules:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let’s dive into some SMARTS examples using RDKit.</p>
+<p>Sure, here are the examples with more detailed descriptions:</p>
+<section id="example-1-matching-simple-substructures" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-matching-simple-substructures">Example 1: Matching Simple Substructures</h3>
+<p>Suppose we want to find all molecules that contain an alcohol group (-OH). The SMARTS pattern for an alcohol group is <code>[OH]</code>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a molecule and a SMARTS pattern</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CCCO'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'[OH]'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the HasSubstructMatch method to check if the pattern matches the molecule</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> mol.HasSubstructMatch(pattern)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Contains alcohol group:"</span>, matches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains alcohol group: True</code></pre>
+</div>
+</div>
+<p>This will print <code>True</code> because the molecule <code>CCCO</code> (propanol) contains an alcohol group. The SMARTS pattern <code>[OH]</code> matches any oxygen atom attached to a hydrogen atom, which is the definition of an alcohol group.</p>
+</section>
+<section id="example-2-aromatic-rings" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-aromatic-rings">Example 2: Aromatic Rings</h3>
+<p>To match any aromatic ring, we use the SMARTS pattern <code>c1ccccc1</code>. This looks for a six-membered carbon ring where each carbon is aromatic (<code>c</code>).</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>benzoic_acid <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'O=C(O)c1ccccc1'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'c1ccccc1'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> benzoic_acid.HasSubstructMatch(pattern)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Contains benzene ring:"</span>, matches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains benzene ring: True</code></pre>
+</div>
+</div>
+<p>This will print <code>True</code> because the molecule <code>O=C(O)c1ccccc1</code> (benzoic acid) contains a benzene ring. The SMARTS pattern <code>c1ccccc1</code> specifies a ring of six aromatic carbon atoms, which is the definition of a benzene ring.</p>
+</section>
+<section id="example-3-specifying-atom-counts" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-specifying-atom-counts">Example 3: Specifying Atom Counts</h3>
+<p>You can specify the number of specific atoms. For instance, to find structures with exactly two nitrogen atoms, you’d use <code>[N][N]</code>.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>molecule <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'NCCN'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'[N].[N]'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> molecule.HasSubstructMatch(pattern)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Contains two nitrogens:"</span>, matches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains two nitrogens: True</code></pre>
+</div>
+</div>
+<p>This will print <code>True</code> because the molecule <code>NCCN</code> contains two nitrogen atoms. The SMARTS pattern <code>[N][N]</code> matches any structure that contains two nitrogen atoms, regardless of their position or connectivity.</p>
+</section>
+<section id="example-4-using-logic-operators" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-using-logic-operators">Example 4: Using Logic Operators</h3>
+<p>SMARTS allows the use of logical operators to create more complex queries. For example, to find molecules containing oxygen or sulfur, use the pattern <code>[O,S]</code>.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> smiles <span class="kw">in</span> [<span class="st">'OCCS'</span>, <span class="st">'CCS'</span>, <span class="st">'OCC'</span>, <span class="st">'CC'</span>]:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    mol <span class="op">=</span> Chem.MolFromSmiles(smiles)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'[O,S]'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> mol.HasSubstructMatch(pattern)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>smiles<span class="sc">}</span><span class="ss"> ontains oxygen or sulfur: </span><span class="sc">{</span>matches<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>OCCS ontains oxygen or sulfur: True
+CCS ontains oxygen or sulfur: True
+OCC ontains oxygen or sulfur: True
+CC ontains oxygen or sulfur: False</code></pre>
+</div>
+</div>
+<p>This will print <code>True</code> because the molecule <code>OCCS</code> contains both oxygen and sulfur atoms. The SMARTS pattern <code>[O,S]</code> matches any atom that is either oxygen or sulfur, using the logical <code>OR</code> operator <code>,</code>.</p>
+</section>
+<section id="example-5-ring-sizes-and-aromaticity" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-ring-sizes-and-aromaticity">Example 5: Ring Sizes and Aromaticity</h3>
+<p>To find molecules with an aromatic ring of exactly six members, the SMARTS <code>a1aaaaa1</code> can be used.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'c1ccccn1'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'a1aaaaa1'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> mol.HasSubstructMatch(pattern)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Contains an aromatic ring of six members:"</span>, matches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains an aromatic ring of six members: True</code></pre>
+</div>
+</div>
+<p>This will print <code>True</code> because the molecule <code>c1ccccn1</code> contains an aromatic ring of six members. The SMARTS pattern <code>a1aaaaa1</code> specifies a ring of six aromatic atoms (<code>a</code>), where the <code>1</code> and <code>1</code> indicate that the ring is closed.</p>
+</section>
+</section>
+<section id="visualizing-matches" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-matches">Visualizing Matches</h2>
+<p>RDKit offers tools to visualize the matches. Here’s how you can highlight the parts of the molecule that match a given SMARTS pattern.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(<span class="st">'CCN(CC)CCO'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'[N](C)C'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the atoms that match the pattern</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> mol.GetSubstructMatches(pattern)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matches)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight the matching substructures</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Draw.MolToImage(mol, highlightAtoms<span class="op">=</span>[atom <span class="cf">for</span> match <span class="kw">in</span> matches <span class="cf">for</span> atom <span class="kw">in</span> match])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>((2, 1, 3), (2, 1, 5), (2, 3, 5))</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<p><img src="02_rdkit_smarts_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Or for a list of molecules with <code>MolsToGridImage</code>.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit.Chem <span class="im">import</span> Draw</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a list of carboxylic acids</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>smiles <span class="op">=</span> [</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'O=CO'</span>, <span class="co"># Formic acid</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC(O)=O'</span>, <span class="co"># Acetic acid</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CC(=O)O'</span>, <span class="co"># Propionic acid</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C(=O)(C(=O)O)O'</span>,  <span class="co"># Oxalic acid</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C(=O)(C(Cl)(Cl)Cl)O'</span>,  <span class="co"># Trichloroacetic acid</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C(CCC(=O)O)CC(=O)O'</span>,  <span class="co"># Adipic acid</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'OC(=O)c1ccccc1'</span>,     <span class="co"># Benzoic acid</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C(CC(=O)O)C(=O)O'</span>     <span class="co"># Succinic acid</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SMILES to RDKit molecules</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>mols <span class="op">=</span> [Chem.MolFromSmiles(smi) <span class="cf">for</span> smi <span class="kw">in</span> smiles]</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight carboxylic acid groups</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> Chem.MolFromSmarts(<span class="st">'C(=O)O'</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the atoms that match the pattern for each molecule</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> [mol.GetSubstructMatches(pattern) <span class="cf">for</span> mol <span class="kw">in</span> mols]</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight the matching substructures</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>highlighted_atoms <span class="op">=</span> [[atom <span class="cf">for</span> match <span class="kw">in</span> mol_match <span class="cf">for</span> atom <span class="kw">in</span> match] <span class="cf">for</span> mol_match <span class="kw">in</span> matches]</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid image with the highlighted molecules</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>Draw.MolsToGridImage(</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    mols,</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    highlightAtomLists<span class="op">=</span>highlighted_atoms,</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    molsPerRow<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    subImgSize<span class="op">=</span>(<span class="dv">300</span>, <span class="dv">300</span>),</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    legends<span class="op">=</span>[Chem.MolToSmiles(mol) <span class="cf">for</span> mol <span class="kw">in</span> mols]</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<p><img src="02_rdkit_smarts_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>By understanding and utilizing SMARTS with RDKit, you unlock a powerful tool for molecular pattern matching and querying. Experiment with different SMARTS patterns to get comfortable with their syntax and capabilities.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../tutorials/lecture_06/01_regex.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Regular expressions</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

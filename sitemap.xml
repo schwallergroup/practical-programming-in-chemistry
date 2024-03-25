@@ -2,94 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/cheatsheets.html</loc>
-    <lastmod>2024-03-17T16:35:19.359Z</lastmod>
+    <lastmod>2024-03-25T17:52:05.127Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_03/01_functions.html</loc>
-    <lastmod>2024-03-17T16:35:18.565Z</lastmod>
+    <lastmod>2024-03-25T17:52:04.312Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_03/02_classes.html</loc>
-    <lastmod>2024-03-17T16:35:17.839Z</lastmod>
+    <lastmod>2024-03-25T17:52:03.564Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_04/01_pandas.html</loc>
-    <lastmod>2024-03-17T16:35:16.983Z</lastmod>
+    <lastmod>2024-03-25T17:52:02.668Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_04/02_matplotlib.html</loc>
-    <lastmod>2024-03-17T16:35:09.173Z</lastmod>
+    <lastmod>2024-03-25T17:51:54.650Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_05/01_rdkit_basics.html</loc>
-    <lastmod>2024-03-17T16:35:02.284Z</lastmod>
+    <lastmod>2024-03-25T17:51:47.645Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_02/03_python_structures.html</loc>
-    <lastmod>2024-03-17T16:34:56.230Z</lastmod>
+    <lastmod>2024-03-25T17:51:40.909Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_02/02_python_basics.html</loc>
-    <lastmod>2024-03-17T16:34:51.344Z</lastmod>
+    <lastmod>2024-03-25T17:51:35.880Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/04_next_steps.html</loc>
-    <lastmod>2024-03-17T16:34:45.982Z</lastmod>
+    <lastmod>2024-03-25T17:51:32.205Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/02_github.html</loc>
-    <lastmod>2024-03-17T16:34:44.722Z</lastmod>
+    <lastmod>2024-03-25T17:51:30.899Z</lastmod>
   </url>
   <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_06/01_rdkit_advanced.html</loc>
-    <lastmod>2024-03-17T16:34:43.737Z</lastmod>
-  </url>
-  <url>
-    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/Untitled.html</loc>
-    <lastmod>2024-03-17T16:34:43.154Z</lastmod>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_06/02_rdkit_smarts.html</loc>
+    <lastmod>2024-03-25T17:51:29.910Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/index.html</loc>
-    <lastmod>2024-03-17T16:34:43.474Z</lastmod>
+    <lastmod>2024-03-25T17:51:21.378Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/Untitled.html</loc>
+    <lastmod>2024-03-25T17:51:21.025Z</lastmod>
+  </url>
+  <url>
+    <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_06/01_regex.html</loc>
+    <lastmod>2024-03-25T17:51:26.632Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/03_ssh_connection.html</loc>
-    <lastmod>2024-03-17T16:34:44.180Z</lastmod>
+    <lastmod>2024-03-25T17:51:30.343Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_01/01_setup.html</loc>
-    <lastmod>2024-03-17T16:34:45.544Z</lastmod>
+    <lastmod>2024-03-25T17:51:31.763Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_02/01_jupyter_notebooks.html</loc>
-    <lastmod>2024-03-17T16:34:46.623Z</lastmod>
+    <lastmod>2024-03-25T17:51:32.945Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_02/04_python_iterations.html</loc>
-    <lastmod>2024-03-17T16:34:53.779Z</lastmod>
+    <lastmod>2024-03-25T17:51:38.395Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_05/02_rdkit_descriptors.html</loc>
-    <lastmod>2024-03-17T16:34:59.529Z</lastmod>
+    <lastmod>2024-03-25T17:51:44.325Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_05/03_rdkit_fingerprints.html</loc>
-    <lastmod>2024-03-17T16:35:04.992Z</lastmod>
+    <lastmod>2024-03-25T17:51:50.431Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_04/03_seaborn.html</loc>
-    <lastmod>2024-03-17T16:35:13.341Z</lastmod>
+    <lastmod>2024-03-25T17:51:58.898Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_03/04_fileio.html</loc>
-    <lastmod>2024-03-17T16:35:17.377Z</lastmod>
+    <lastmod>2024-03-25T17:52:03.074Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_03/05_errors.html</loc>
-    <lastmod>2024-03-17T16:35:18.195Z</lastmod>
+    <lastmod>2024-03-25T17:52:03.934Z</lastmod>
   </url>
   <url>
     <loc>https://schwallergroup.github.io/practical-programming-in-chemistry/tutorials/lecture_03/03_packages.html</loc>
-    <lastmod>2024-03-17T16:35:18.956Z</lastmod>
+    <lastmod>2024-03-25T17:52:04.713Z</lastmod>
   </url>
 </urlset>
